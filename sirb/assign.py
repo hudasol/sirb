@@ -86,20 +86,31 @@ def total_path_length(src: np.ndarray, dst: np.ndarray, perm: np.ndarray) -> flo
     return float(np.linalg.norm(dst[perm] - src, axis=1).sum())
 
 
-def linear_conflicts(src: np.ndarray, dst: np.ndarray, perm: np.ndarray, d_sep: float) -> int:
-    """Pairs whose synchronous straight-line paths come closer than d_sep (exact)."""
+def linear_conflicts(src: np.ndarray, dst: np.ndarray, perm: np.ndarray, d_sep: float,
+                     block: int = 256) -> int:
+    """Pairs whose synchronous straight-line paths come closer than d_sep (exact).
+
+    Processed in row blocks so memory is O(block * n) rather than O(n^2); the result is
+    identical to the all-pairs formulation (checked in tests).
+    """
     p0 = src
     v = dst[perm] - src  # displacement over u in [0, 1]
-    dp = p0[:, None, :] - p0[None, :, :]
-    dv = v[:, None, :] - v[None, :, :]
-    a = (dv * dv).sum(-1)
-    b = (dp * dv).sum(-1)
-    c = (dp * dp).sum(-1)
-    with np.errstate(divide="ignore", invalid="ignore"):
-        u = np.where(a > 1e-18, np.clip(-b / np.where(a > 1e-18, a, 1.0), 0.0, 1.0), 0.0)
-    dmin2 = c + 2 * b * u + a * u * u
-    iu = np.triu_indices(len(src), k=1)
-    return int((dmin2[iu] < d_sep * d_sep).sum())
+    n = len(src)
+    total = 0
+    for i0 in range(0, n, block):
+        i1 = min(i0 + block, n)
+        dp = p0[i0:i1, None, :] - p0[None, :, :]
+        dv = v[i0:i1, None, :] - v[None, :, :]
+        a = (dv * dv).sum(-1)
+        b = (dp * dv).sum(-1)
+        c = (dp * dp).sum(-1)
+        with np.errstate(divide="ignore", invalid="ignore"):
+            u = np.where(a > 1e-18, np.clip(-b / np.where(a > 1e-18, a, 1.0), 0.0, 1.0), 0.0)
+        dmin2 = c + 2 * b * u + a * u * u
+        # count each unordered pair once: columns j > i
+        upper = np.arange(n)[None, :] > np.arange(i0, i1)[:, None]
+        total += int(((dmin2 < d_sep * d_sep) & upper).sum())
+    return total
 
 
 def evaluate(src: np.ndarray, dst: np.ndarray, d_sep: float, seed: int = 0) -> dict[str, dict]:

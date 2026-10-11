@@ -23,7 +23,7 @@ Status: design (Phase 0/1). Decisions are justified here and revisited in `REVIE
 
 ## Data model
 
-`show.json` (schema in `docs/SHOW_SCHEMA.md` and `schema/show.schema.json`): metadata, vehicle model, limits (speed, acceleration, jerk, altitude band, geofence polygon or box), crowd line, stages (keyframes of shapes with hold durations), generator parameters and seed.
+`show.json` (format in `docs/SHOW_SCHEMA.md`, enforced by `sirb.spec.validate_show`; no separate JSON Schema file): metadata, vehicle model, limits (speed, acceleration, jerk, altitude band, geofence polygon or box), crowd line, stages (keyframes of shapes with hold durations), generator parameters and seed.
 
 Trajectory: per drone, a list of polynomial segments `(t0, t1, coeffs)` where `coeffs` has shape `(deg+1, 3)` in local time `tau = t - t0`. Planner output uses quintic minimum-jerk segments along chosen waypoints; the verifier accepts any polynomial degree up to 7 so adversarial tests can feed it arbitrary curves.
 
