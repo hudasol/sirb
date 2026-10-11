@@ -7,6 +7,7 @@ from __future__ import annotations
 
 import copy
 import json
+import math
 from pathlib import Path
 
 import numpy as np
@@ -68,8 +69,20 @@ def build_targets(show: dict) -> list[np.ndarray]:
             for i, st in enumerate(show["stages"])]
 
 
+def _is_num(x) -> bool:
+    """Finite real number (bool excluded; NaN and inf rejected)."""
+    return isinstance(x, (int, float)) and not isinstance(x, bool) and math.isfinite(x)
+
+
+def _range_ok(r) -> bool:
+    return (isinstance(r, (list, tuple)) and len(r) == 2 and all(_is_num(v) for v in r)
+            and r[0] < r[1])
+
+
 def validate_show(show: dict, check_targets: bool = True) -> list[str]:
-    """Return a list of error strings (empty if valid)."""
+    """Return a list of error strings (empty if valid). Never raises on malformed input."""
+    if not isinstance(show, dict):
+        return ["show must be a JSON object"]
     errs: list[str] = []
     for key in ("schema_version", "name", "n_drones", "seed", "vehicle", "limits", "stages"):
         if key not in show:
@@ -79,10 +92,12 @@ def validate_show(show: dict, check_targets: bool = True) -> list[str]:
     if show["schema_version"] != SCHEMA_VERSION:
         errs.append(f"unsupported schema_version {show['schema_version']}")
     n = show["n_drones"]
-    if not isinstance(n, int) or n < 2:
+    if not isinstance(n, int) or isinstance(n, bool) or n < 2:
         errs.append("n_drones must be an integer >= 2")
         return errs
     lim = show["limits"]
+    if not isinstance(lim, dict):
+        return ["limits must be an object"]
     for key in ("vmax_h", "vmax_up", "vmax_down", "amax", "jmax", "z_min", "z_max",
                 "geofence", "min_separation_m", "crowd"):
         if key not in lim:
@@ -90,24 +105,50 @@ def validate_show(show: dict, check_targets: bool = True) -> list[str]:
     if errs:
         return errs
     for key in ("vmax_h", "vmax_up", "vmax_down", "amax", "jmax", "min_separation_m"):
-        if not (isinstance(lim[key], (int, float)) and lim[key] > 0):
-            errs.append(f"limits.{key} must be > 0")
-    if lim["z_max"] <= lim["z_min"]:
+        if not (_is_num(lim[key]) and lim[key] > 0):
+            errs.append(f"limits.{key} must be a finite number > 0")
+    if not (_is_num(lim["z_min"]) and _is_num(lim["z_max"])):
+        errs.append("limits.z_min and limits.z_max must be finite numbers")
+    elif lim["z_max"] <= lim["z_min"]:
         errs.append("limits.z_max must exceed z_min")
+    veh = show["vehicle"]
+    if not isinstance(veh, dict):
+        errs.append("vehicle must be an object")
+    elif "radius_m" in veh:
+        r = veh["radius_m"]
+        if not (_is_num(r) and r > 0):
+            errs.append("vehicle.radius_m must be a finite number > 0")
+        elif _is_num(lim["min_separation_m"]) and lim["min_separation_m"] < 2 * r:
+            errs.append("limits.min_separation_m is below one vehicle diameter (2 x radius_m): "
+                        "the declared threshold would allow physical contact")
     g = lim["geofence"]
-    if not (g["x"][0] < g["x"][1] and g["y"][0] < g["y"][1]):
-        errs.append("geofence ranges must be increasing")
+    geo_ok = (isinstance(g, dict) and _range_ok(g.get("x")) and _range_ok(g.get("y")))
+    if not geo_ok:
+        errs.append("limits.geofence must be {x: [min, max], y: [min, max]} with finite "
+                    "increasing ranges")
     crowd = lim["crowd"]
-    if g["y"][0] < crowd["y"] + crowd["min_distance_m"] - 1e-9:
+    crowd_ok = (isinstance(crowd, dict) and _is_num(crowd.get("y"))
+                and _is_num(crowd.get("min_distance_m")) and crowd["min_distance_m"] >= 0)
+    if not crowd_ok:
+        errs.append("limits.crowd must be {y: number, min_distance_m: number >= 0}")
+    if geo_ok and crowd_ok and g["y"][0] < crowd["y"] + crowd["min_distance_m"] - 1e-9:
         errs.append("geofence reaches inside the crowd buffer")
     stages = show["stages"]
+    if not isinstance(stages, list):
+        errs.append("stages must be a list")
+        return errs
     if len(stages) < 2:
         errs.append("need at least 2 stages")
     for i, st in enumerate(stages):
-        if st.get("shape", {}).get("type") not in SHAPE_TYPES:
+        if not isinstance(st, dict):
+            errs.append(f"stage {i}: must be an object")
+            continue
+        shape = st.get("shape")
+        if not isinstance(shape, dict) or shape.get("type") not in SHAPE_TYPES:
             errs.append(f"stage {i}: unknown shape type")
-        if st.get("hold_s", 0) < 0:
-            errs.append(f"stage {i}: hold_s must be >= 0")
+        hold = st.get("hold_s", 0)
+        if not (_is_num(hold) and hold >= 0):
+            errs.append(f"stage {i}: hold_s must be a finite number >= 0")
     if errs or not check_targets:
         return errs
     try:
@@ -130,11 +171,11 @@ def validate_show(show: dict, check_targets: bool = True) -> list[str]:
 
 
 def save_show(show: dict, path: str | Path) -> None:
-    Path(path).write_text(json.dumps(show, indent=2) + "\n")
+    Path(path).write_text(json.dumps(show, indent=2) + "\n", encoding="utf-8")
 
 
 def load_show(path: str | Path) -> dict:
-    show = json.loads(Path(path).read_text())
+    show = json.loads(Path(path).read_text(encoding="utf-8"))
     errs = validate_show(show, check_targets=False)
     if errs:
         raise ValueError("invalid show: " + "; ".join(errs))

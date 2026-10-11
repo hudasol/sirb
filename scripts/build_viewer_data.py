@@ -42,6 +42,18 @@ SCENARIOS = {
 }
 
 
+def round_floats(x, nd: int = 6):
+    """Round every float in a JSON-like structure. index.json is diffed in CI; rounding keeps
+    that check robust to last-bit differences between BLAS/LAPACK builds."""
+    if isinstance(x, float):
+        return round(x, nd)
+    if isinstance(x, dict):
+        return {k: round_floats(v, nd) for k, v in x.items()}
+    if isinstance(x, list):
+        return [round_floats(v, nd) for v in x]
+    return x
+
+
 def nn_distance(X: np.ndarray) -> np.ndarray:
     K, n, _ = X.shape
     out = np.empty((K, n), dtype=np.float64)
@@ -96,7 +108,7 @@ def main() -> None:
             "min_separation_m": rep.min_separation, "independent_recheck": independent_ok,
             "certificate": f"{name}/certificate.json", "scenarios": sc})
         print(name, n, K, cert["verdict"], round(rep.min_separation, 3), flush=True)
-    (OUT / "index.json").write_text(json.dumps(index, indent=1))
+    (OUT / "index.json").write_text(json.dumps(round_floats(index), indent=1))
 
 
 if __name__ == "__main__":

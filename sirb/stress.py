@@ -225,12 +225,20 @@ def _worker(args):
             r.pair_involves_event_drone, bool(r.event_drones), r.runtime_s)
 
 
+def _fork_available() -> bool:
+    """Worker pools rely on fork (shared read-only reference). Windows has no fork; there the
+    runner falls back to serial execution, which gives identical numbers (each trial has its
+    own seed)."""
+    import multiprocessing as mp
+    return "fork" in mp.get_all_start_methods()
+
+
 def monte_carlo(ref: np.ndarray, cfg: StressConfig, d_min: float, trials: int, seed: int,
                 tag: int = 0, workers: int = 1) -> dict:
     t0 = time.perf_counter()
     jobs = [(cfg, d_min, seed, tag, t) for t in range(trials)]
     _WORK["ref"] = ref
-    if workers > 1:
+    if workers > 1 and _fork_available():
         import multiprocessing as mp
         with mp.get_context("fork").Pool(workers) as pool:
             res = pool.map(_worker, jobs, chunksize=max(1, trials // (workers * 4)))
