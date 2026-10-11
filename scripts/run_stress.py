@@ -113,7 +113,7 @@ def exp_contingency(trials: int) -> dict:
     show = load_show("shows/sirb_text_100.json")
     fleet, rep, ref = plan_and_ref(show)
     d_min = show["limits"]["min_separation_m"]
-    out = {"show": show["name"], "trials": trials, "rows": []}
+    out = {"show": show["name"], "trials": trials, "rejoin_vmax_mps": 10.0, "rows": []}
     cases = [
         ("comms_loss 5%", "comms_loss_fraction", 0.05, "comms_loss",
          ["continue", "hold", "descend", "corridor"], {}),
@@ -126,7 +126,7 @@ def exp_contingency(trials: int) -> dict:
     ]
     for label, param, val, kind, behaviours, extra in cases:
         for beh in behaviours:
-            cfg = StressConfig(dt=DT, **{param: val}, **extra).with_(
+            cfg = StressConfig(dt=DT, rejoin_vmax=10.0, **{param: val}, **extra).with_(
                 behavior={"comms_loss": "continue", "battery_low": "descend",
                           "gnss_loss": "continue", "motor_failure": "ballistic", kind: beh})
             mc = monte_carlo(ref, cfg, d_min, trials, SEED, workers=WORKERS)
