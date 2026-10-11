@@ -84,7 +84,7 @@
     <p class="ar ar-sum">تُفحص السرعة والتسارع والارتجاج والارتفاع والسياج الجغرافي والمسافة إلى الجمهور بإيجاد قيم قصوى لمتعددات الحدود في كل مقطع (جذور المشتقات)، وتُعرض القيمة القصوى المبلَّغ عنها مقابل الحد.</p>
     <div class="en en-detail">
       <p><strong>Summary.</strong> For each segment the extrema of <code>|v_h|^2</code>, <code>v_z</code> (max and min), <code>|a|^2</code>, <code>|j|^2</code> and the coordinates x, y, z are found from derivative roots, not sampled. The table shows the maximum reached over the show and the limit from the show file. Geofence and crowd rows are margins (distance to the limit; larger is safer).</p>
-      <p>Structural checks cover time contiguity (1e-9 s), position continuity (1e-4 m), velocity continuity (1e-3 m/s) and finite coefficients. Limits marked <code>assumption</code> in the certificate are not datasheet values.</p>
+      <p>Structural checks cover time contiguity (1e-9 s), position continuity (1e-4 m), velocity continuity (1e-3 m/s), acceleration continuity (1e-3 m/s^2; a step would mean unbounded jerk) and finite coefficients. Limits marked <code>assumption</code> in the certificate are not datasheet values.</p>
     </div>
   </section>
 

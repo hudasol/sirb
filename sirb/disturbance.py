@@ -61,6 +61,7 @@ class StressConfig:
     corridor_len: float = 40.0
     corridor_speed: float = 3.0
     rejoin_s: float = 6.0
+    rejoin_vmax: float | None = None  # opt-in cap on the rejoin blend closing speed, m/s
     drone_radius: float = 0.24     # m, X7 fact sheet (half of 48 cm)
     air_drag_per_s: float = 0.5    # horizontal velocity decay in ballistic fall (ASSUMPTION)
 

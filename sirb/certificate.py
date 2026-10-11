@@ -24,8 +24,8 @@ METHOD = (
     "derivative roots) discard pairs that provably cannot come within the search radius. "
     "Speed, acceleration, jerk, altitude, geofence and crowd limits are checked via the "
     "extrema of the corresponding scalar polynomials (derivative roots) per segment. "
-    "Structural checks cover time contiguity, position and velocity continuity and finite "
-    "coefficients. No time sampling is used."
+    "Structural checks cover time contiguity, position, velocity and acceleration continuity "
+    "and finite coefficients. No time sampling is used."
 )
 
 GUARANTEES = [
@@ -35,8 +35,8 @@ GUARANTEES = [
     "every pair whose minimum is below the search radius.",
     "Dynamic limits (speed, climb/descent rate, acceleration, jerk, altitude, geofence, "
     "crowd distance) hold for the polynomials as written, within the stated tolerance policy.",
-    "Segments are contiguous in time with position and velocity continuity within the stated "
-    "tolerances.",
+    "Segments are contiguous in time with position, velocity and acceleration continuity "
+    "within the stated tolerances (an acceleration step would mean unbounded jerk).",
 ]
 
 NOT_GUARANTEED = [

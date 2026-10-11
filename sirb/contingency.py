@@ -80,6 +80,16 @@ def rejoin_reference(ref_nominal_i, ref_i, k0, k1, cfg):
     p = ref_nominal_i[k0].copy()
     ref_i[k0:k1] = p
     m = max(int(cfg.rejoin_s / cfg.dt), 1)
+    if cfg.rejoin_vmax is not None:
+        # Opt-in rate limit: lengthen the blend until the (moving) distance to cover implies a
+        # closing speed 1.875 * d / T (minimum-jerk peak) no larger than rejoin_vmax.
+        for _ in range(8):
+            d = float(np.linalg.norm(ref_nominal_i[k1:min(k1 + m + 1, K)] - p, axis=1).max()) \
+                if k1 < K else 0.0
+            m_new = max(m, int(math.ceil(1.875 * d / cfg.rejoin_vmax / cfg.dt)))
+            if m_new == m:
+                break
+            m = m_new
     for j in range(m):
         k = k1 + j
         if k >= K:
