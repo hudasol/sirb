@@ -1,0 +1,415 @@
+{
+ "sirb_text_100": [
+  {
+   "transition": "launch->orb",
+   "identity": {
+    "total_path_length_m": 10190.199476538002,
+    "conflicting_pairs": 228
+   },
+   "random": {
+    "total_path_length_m": 10199.934406579081,
+    "conflicting_pairs": 150
+   },
+   "greedy": {
+    "total_path_length_m": 10165.271133664119,
+    "conflicting_pairs": 208
+   },
+   "hungarian_len": {
+    "total_path_length_m": 10129.55993134864,
+    "conflicting_pairs": 34
+   },
+   "hungarian_sq": {
+    "total_path_length_m": 10143.404149428876,
+    "conflicting_pairs": 0
+   },
+   "pinned15": {
+    "total_path_length_m": 10149.89832494041,
+    "conflicting_pairs": 20
+   }
+  },
+  {
+   "transition": "orb->word",
+   "identity": {
+    "total_path_length_m": 5595.565574279104,
+    "conflicting_pairs": 72
+   },
+   "random": {
+    "total_path_length_m": 5572.970601796055,
+    "conflicting_pairs": 81
+   },
+   "greedy": {
+    "total_path_length_m": 4856.715377165725,
+    "conflicting_pairs": 42
+   },
+   "hungarian_len": {
+    "total_path_length_m": 4795.2066063181865,
+    "conflicting_pairs": 8
+   },
+   "hungarian_sq": {
+    "total_path_length_m": 4830.342719542992,
+    "conflicting_pairs": 0
+   },
+   "pinned15": {
+    "total_path_length_m": 4953.062160753583,
+    "conflicting_pairs": 12
+   }
+  },
+  {
+   "transition": "word->ring",
+   "identity": {
+    "total_path_length_m": 7656.93437200422,
+    "conflicting_pairs": 215
+   },
+   "random": {
+    "total_path_length_m": 6959.084157503265,
+    "conflicting_pairs": 171
+   },
+   "greedy": {
+    "total_path_length_m": 4062.87004647242,
+    "conflicting_pairs": 116
+   },
+   "hungarian_len": {
+    "total_path_length_m": 3397.2460181023853,
+    "conflicting_pairs": 30
+   },
+   "hungarian_sq": {
+    "total_path_length_m": 3506.272063927463,
+    "conflicting_pairs": 0
+   },
+   "pinned15": {
+    "total_path_length_m": 4058.9978072813383,
+    "conflicting_pairs": 32
+   }
+  },
+  {
+   "transition": "ring->land",
+   "identity": {
+    "total_path_length_m": 11379.251671670314,
+    "conflicting_pairs": 93
+   },
+   "random": {
+    "total_path_length_m": 11547.91974739468,
+    "conflicting_pairs": 67
+   },
+   "greedy": {
+    "total_path_length_m": 11130.890585280034,
+    "conflicting_pairs": 40
+   },
+   "hungarian_len": {
+    "total_path_length_m": 11092.736438197619,
+    "conflicting_pairs": 2
+   },
+   "hungarian_sq": {
+    "total_path_length_m": 11193.258011087017,
+    "conflicting_pairs": 0
+   },
+   "pinned15": {
+    "total_path_length_m": 11228.746381326227,
+    "conflicting_pairs": 13
+   }
+  }
+ ],
+ "skyline_200": [
+  {
+   "transition": "launch->skyline",
+   "identity": {
+    "total_path_length_m": 20384.55586862072,
+    "conflicting_pairs": 349
+   },
+   "random": {
+    "total_path_length_m": 20475.4521634744,
+    "conflicting_pairs": 321
+   },
+   "greedy": {
+    "total_path_length_m": 19825.208686897084,
+    "conflicting_pairs": 124
+   },
+   "hungarian_len": {
+    "total_path_length_m": 19764.1078073753,
+    "conflicting_pairs": 0
+   },
+   "hungarian_sq": {
+    "total_path_length_m": 19894.451452810288,
+    "conflicting_pairs": 0
+   },
+   "pinned15": {
+    "total_path_length_m": 20017.486703175986,
+    "conflicting_pairs": 86
+   }
+  },
+  {
+   "transition": "skyline->galaxy",
+   "identity": {
+    "total_path_length_m": 8664.22486048995,
+    "conflicting_pairs": 1169
+   },
+   "random": {
+    "total_path_length_m": 8131.346459650945,
+    "conflicting_pairs": 1047
+   },
+   "greedy": {
+    "total_path_length_m": 5213.881785924972,
+    "conflicting_pairs": 765
+   },
+   "hungarian_len": {
+    "total_path_length_m": 4737.203195362625,
+    "conflicting_pairs": 176
+   },
+   "hungarian_sq": {
+    "total_path_length_m": 4854.859981328633,
+    "conflicting_pairs": 0
+   },
+   "pinned15": {
+    "total_path_length_m": 5452.838413801626,
+    "conflicting_pairs": 170
+   }
+  },
+  {
+   "transition": "galaxy->helix",
+   "identity": {
+    "total_path_length_m": 8647.711459085778,
+    "conflicting_pairs": 215
+   },
+   "random": {
+    "total_path_length_m": 8736.393736104572,
+    "conflicting_pairs": 236
+   },
+   "greedy": {
+    "total_path_length_m": 7360.54172737314,
+    "conflicting_pairs": 230
+   },
+   "hungarian_len": {
+    "total_path_length_m": 6739.769827473009,
+    "conflicting_pairs": 10
+   },
+   "hungarian_sq": {
+    "total_path_length_m": 6801.709221569734,
+    "conflicting_pairs": 0
+   },
+   "pinned15": {
+    "total_path_length_m": 6943.036962370606,
+    "conflicting_pairs": 38
+   }
+  },
+  {
+   "transition": "helix->land",
+   "identity": {
+    "total_path_length_m": 19432.858662051847,
+    "conflicting_pairs": 428
+   },
+   "random": {
+    "total_path_length_m": 19382.57420236368,
+    "conflicting_pairs": 334
+   },
+   "greedy": {
+    "total_path_length_m": 19073.289702627644,
+    "conflicting_pairs": 331
+   },
+   "hungarian_len": {
+    "total_path_length_m": 18922.495880220937,
+    "conflicting_pairs": 50
+   },
+   "hungarian_sq": {
+    "total_path_length_m": 19013.452218796712,
+    "conflicting_pairs": 0
+   },
+   "pinned15": {
+    "total_path_length_m": 19066.62766557325,
+    "conflicting_pairs": 59
+   }
+  }
+ ],
+ "torus_300": [
+  {
+   "transition": "launch->torus",
+   "identity": {
+    "total_path_length_m": 34406.12555713803,
+    "conflicting_pairs": 1024
+   },
+   "random": {
+    "total_path_length_m": 33833.1400670444,
+    "conflicting_pairs": 851
+   },
+   "greedy": {
+    "total_path_length_m": 33089.10790878821,
+    "conflicting_pairs": 963
+   },
+   "hungarian_len": {
+    "total_path_length_m": 31938.37167440525,
+    "conflicting_pairs": 30
+   },
+   "hungarian_sq": {
+    "total_path_length_m": 31994.904855011948,
+    "conflicting_pairs": 0
+   },
+   "pinned15": {
+    "total_path_length_m": 32261.23835289551,
+    "conflicting_pairs": 140
+   }
+  },
+  {
+   "transition": "torus->super",
+   "identity": {
+    "total_path_length_m": 15302.003305291622,
+    "conflicting_pairs": 249
+   },
+   "random": {
+    "total_path_length_m": 15195.853775426354,
+    "conflicting_pairs": 207
+   },
+   "greedy": {
+    "total_path_length_m": 8739.277795821403,
+    "conflicting_pairs": 73
+   },
+   "hungarian_len": {
+    "total_path_length_m": 8310.60874545202,
+    "conflicting_pairs": 1
+   },
+   "hungarian_sq": {
+    "total_path_length_m": 8454.778581303952,
+    "conflicting_pairs": 0
+   },
+   "pinned15": {
+    "total_path_length_m": 9513.642057508987,
+    "conflicting_pairs": 29
+   }
+  },
+  {
+   "transition": "super->land",
+   "identity": {
+    "total_path_length_m": 31936.4587468401,
+    "conflicting_pairs": 817
+   },
+   "random": {
+    "total_path_length_m": 32219.340241324353,
+    "conflicting_pairs": 584
+   },
+   "greedy": {
+    "total_path_length_m": 31628.138856335212,
+    "conflicting_pairs": 561
+   },
+   "hungarian_len": {
+    "total_path_length_m": 31270.4793664525,
+    "conflicting_pairs": 103
+   },
+   "hungarian_sq": {
+    "total_path_length_m": 31408.845576644468,
+    "conflicting_pairs": 0
+   },
+   "pinned15": {
+    "total_path_length_m": 31530.293127223733,
+    "conflicting_pairs": 76
+   }
+  }
+ ],
+ "wall_500": [
+  {
+   "transition": "launch->orb",
+   "identity": {
+    "total_path_length_m": 53647.66498642807,
+    "conflicting_pairs": 1734
+   },
+   "random": {
+    "total_path_length_m": 54379.99498510338,
+    "conflicting_pairs": 1233
+   },
+   "greedy": {
+    "total_path_length_m": 52957.15086670451,
+    "conflicting_pairs": 1326
+   },
+   "hungarian_len": {
+    "total_path_length_m": 52148.45118226489,
+    "conflicting_pairs": 187
+   },
+   "hungarian_sq": {
+    "total_path_length_m": 52459.54977437576,
+    "conflicting_pairs": 0
+   },
+   "pinned15": {
+    "total_path_length_m": 52673.39303754429,
+    "conflicting_pairs": 157
+   }
+  },
+  {
+   "transition": "orb->skyline",
+   "identity": {
+    "total_path_length_m": 24695.161161144497,
+    "conflicting_pairs": 901
+   },
+   "random": {
+    "total_path_length_m": 25399.080441477992,
+    "conflicting_pairs": 905
+   },
+   "greedy": {
+    "total_path_length_m": 17752.76307443075,
+    "conflicting_pairs": 459
+   },
+   "hungarian_len": {
+    "total_path_length_m": 16610.02602260303,
+    "conflicting_pairs": 97
+   },
+   "hungarian_sq": {
+    "total_path_length_m": 17056.4977613301,
+    "conflicting_pairs": 0
+   },
+   "pinned15": {
+    "total_path_length_m": 18139.88357506741,
+    "conflicting_pairs": 122
+   }
+  },
+  {
+   "transition": "skyline->super",
+   "identity": {
+    "total_path_length_m": 25630.384778702915,
+    "conflicting_pairs": 696
+   },
+   "random": {
+    "total_path_length_m": 26211.744480399117,
+    "conflicting_pairs": 703
+   },
+   "greedy": {
+    "total_path_length_m": 17329.776724951247,
+    "conflicting_pairs": 350
+   },
+   "hungarian_len": {
+    "total_path_length_m": 16244.370198016266,
+    "conflicting_pairs": 42
+   },
+   "hungarian_sq": {
+    "total_path_length_m": 16836.84911047475,
+    "conflicting_pairs": 0
+   },
+   "pinned15": {
+    "total_path_length_m": 18152.48173229103,
+    "conflicting_pairs": 105
+   }
+  },
+  {
+   "transition": "super->land",
+   "identity": {
+    "total_path_length_m": 53924.55323745004,
+    "conflicting_pairs": 1456
+   },
+   "random": {
+    "total_path_length_m": 54542.93818353075,
+    "conflicting_pairs": 975
+   },
+   "greedy": {
+    "total_path_length_m": 53103.32277181739,
+    "conflicting_pairs": 998
+   },
+   "hungarian_len": {
+    "total_path_length_m": 52156.209030961225,
+    "conflicting_pairs": 165
+   },
+   "hungarian_sq": {
+    "total_path_length_m": 52527.559511100015,
+    "conflicting_pairs": 0
+   },
+   "pinned15": {
+    "total_path_length_m": 52814.637926224896,
+    "conflicting_pairs": 154
+   }
+  }
+ ]
+}

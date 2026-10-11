@@ -7,7 +7,7 @@ from hypothesis import given, settings
 from hypothesis import strategies as st
 
 from sirb.shapes import generate_points, min_nn_distance
-from sirb.spec import build_targets, load_show, new_show, validate_show
+from sirb.spec import load_show, validate_show
 from sirb.trajectory import Fleet, Segment, Trajectory
 
 SHAPES = [

@@ -1,0 +1,454 @@
+{
+ "sirb_text_100": [
+  {
+   "planner": "baseline sync (hungarian)",
+   "verified_ok": true,
+   "violation_counts": {},
+   "completion_time_s": 155.63533088510906,
+   "min_separation_m": 2.188611612420222,
+   "min_separation_is_lower_bound": false,
+   "max_speed_h": 9.803921568627443,
+   "max_accel": 2.015303821735199,
+   "max_jerk": 1.385810963432507,
+   "plan_runtime_s": 0.03598062899982324,
+   "verify_runtime_s": 0.28738198799965176
+  },
+  {
+   "planner": "baseline async (hungarian)",
+   "verified_ok": false,
+   "violation_counts": {
+    "separation": 303
+   },
+   "completion_time_s": 155.63533088510906,
+   "min_separation_m": 0.015836664356221667,
+   "min_separation_is_lower_bound": false,
+   "max_speed_h": 9.803921568627487,
+   "max_accel": 3.8446751249521514,
+   "max_jerk": 7.538578676376413,
+   "plan_runtime_s": 0.03792526500001259,
+   "verify_runtime_s": 0.43873662899977717
+  },
+  {
+   "planner": "baseline sync (identity)",
+   "verified_ok": false,
+   "violation_counts": {
+    "separation": 522
+   },
+   "completion_time_s": 166.5964644098197,
+   "min_separation_m": 1.660519418143752e-15,
+   "min_separation_is_lower_bound": false,
+   "max_speed_h": 9.803921568627436,
+   "max_accel": 1.6670798778970042,
+   "max_jerk": 0.9542118407402392,
+   "plan_runtime_s": 0.031738282999867806,
+   "verify_runtime_s": 0.46612625000034313
+  },
+  {
+   "planner": "baseline 4 waves x 3 s",
+   "verified_ok": false,
+   "violation_counts": {
+    "separation": 211
+   },
+   "completion_time_s": 191.63533088510906,
+   "min_separation_m": 0.026456591663317312,
+   "min_separation_is_lower_bound": false,
+   "max_speed_h": 9.803921568627471,
+   "max_accel": 2.0153038217350985,
+   "max_jerk": 1.3858109634325002,
+   "plan_runtime_s": 0.03767645399966568,
+   "verify_runtime_s": 0.49444597199999407
+  },
+  {
+   "planner": "waves (hungarian)",
+   "verified_ok": true,
+   "violation_counts": {},
+   "completion_time_s": 155.63533088510906,
+   "min_separation_m": 2.188611612420247,
+   "min_separation_is_lower_bound": false,
+   "max_speed_h": 9.803921568627443,
+   "max_accel": 2.015303821735199,
+   "max_jerk": 1.385810963432507,
+   "plan_runtime_s": 0.06736535599975468,
+   "verify_runtime_s": 0.2936795880000318
+  },
+  {
+   "planner": "prioritized (hungarian)",
+   "verified_ok": true,
+   "violation_counts": {},
+   "completion_time_s": 155.63533088510906,
+   "min_separation_m": 2.188611612420222,
+   "min_separation_is_lower_bound": false,
+   "max_speed_h": 9.803921568627443,
+   "max_accel": 2.015303821735199,
+   "max_jerk": 1.385810963432507,
+   "plan_runtime_s": 0.6364618389998213,
+   "verify_runtime_s": 0.27712308699983623
+  },
+  {
+   "planner": "baseline sync (pinned15)",
+   "verified_ok": false,
+   "violation_counts": {
+    "separation": 81
+   },
+   "completion_time_s": 155.63533088510906,
+   "min_separation_m": 2.4868995751603507e-14,
+   "min_separation_is_lower_bound": false,
+   "max_speed_h": 9.803921568627443,
+   "max_accel": 2.0318952522513243,
+   "max_jerk": 1.397219955992584,
+   "plan_runtime_s": 0.03734456300026068,
+   "verify_runtime_s": 0.3128960119997828
+  },
+  {
+   "planner": "waves (pinned15)",
+   "planning_failed": true,
+   "reason": "wave scheduling stuck at drone 12",
+   "plan_runtime_s": 0.01968114700002843
+  },
+  {
+   "planner": "prioritized (pinned15)",
+   "planning_failed": true,
+   "reason": "planning time budget exceeded",
+   "plan_runtime_s": 31.78586266399998
+  }
+ ],
+ "skyline_200": [
+  {
+   "planner": "baseline sync (hungarian)",
+   "verified_ok": true,
+   "violation_counts": {},
+   "completion_time_s": 130.68544587837255,
+   "min_separation_m": 2.188611612420237,
+   "min_separation_is_lower_bound": false,
+   "max_speed_h": 8.337368168118354,
+   "max_accel": 1.324465858168677,
+   "max_jerk": 0.9784736539580038,
+   "plan_runtime_s": 0.09354445999997552,
+   "verify_runtime_s": 0.7943646090002403
+  },
+  {
+   "planner": "baseline async (hungarian)",
+   "verified_ok": false,
+   "violation_counts": {
+    "separation": 303
+   },
+   "completion_time_s": 130.68544587837255,
+   "min_separation_m": 0.003261528654662996,
+   "min_separation_is_lower_bound": false,
+   "max_speed_h": 9.803921568627484,
+   "max_accel": 3.8446751249520634,
+   "max_jerk": 7.538578676376435,
+   "plan_runtime_s": 0.09393313500004297,
+   "verify_runtime_s": 1.2513817939998262
+  },
+  {
+   "planner": "baseline sync (identity)",
+   "verified_ok": false,
+   "violation_counts": {
+    "separation": 2033
+   },
+   "completion_time_s": 163.00402639812626,
+   "min_separation_m": 0.0,
+   "min_separation_is_lower_bound": false,
+   "max_speed_h": 9.44297052175242,
+   "max_accel": 1.3624073518419124,
+   "max_jerk": 0.596591020371218,
+   "plan_runtime_s": 0.07891395200022089,
+   "verify_runtime_s": 1.524107488000027
+  },
+  {
+   "planner": "baseline 4 waves x 3 s",
+   "verified_ok": false,
+   "violation_counts": {
+    "separation": 436
+   },
+   "completion_time_s": 166.68544587837255,
+   "min_separation_m": 0.016531386202656217,
+   "min_separation_is_lower_bound": false,
+   "max_speed_h": 8.337368168118354,
+   "max_accel": 1.324465858168677,
+   "max_jerk": 0.9784736539580038,
+   "plan_runtime_s": 0.09505033999994339,
+   "verify_runtime_s": 1.6216030290001981
+  },
+  {
+   "planner": "waves (hungarian)",
+   "verified_ok": true,
+   "violation_counts": {},
+   "completion_time_s": 130.68544587837255,
+   "min_separation_m": 2.188611612420237,
+   "min_separation_is_lower_bound": false,
+   "max_speed_h": 8.337368168118354,
+   "max_accel": 1.324465858168677,
+   "max_jerk": 0.9784736539580038,
+   "plan_runtime_s": 0.17178478200003156,
+   "verify_runtime_s": 0.811149024000315
+  },
+  {
+   "planner": "prioritized (hungarian)",
+   "verified_ok": true,
+   "violation_counts": {},
+   "completion_time_s": 130.68544587837255,
+   "min_separation_m": 2.188611612420237,
+   "min_separation_is_lower_bound": false,
+   "max_speed_h": 8.337368168118354,
+   "max_accel": 1.324465858168677,
+   "max_jerk": 0.9784736539580038,
+   "plan_runtime_s": 1.3793835460000992,
+   "verify_runtime_s": 0.8658936140000151
+  },
+  {
+   "planner": "baseline sync (pinned15)",
+   "verified_ok": false,
+   "violation_counts": {
+    "separation": 318
+   },
+   "completion_time_s": 149.69606773021454,
+   "min_separation_m": 8.881784197001252e-16,
+   "min_separation_is_lower_bound": false,
+   "max_speed_h": 9.230374168944738,
+   "max_accel": 1.309457355314995,
+   "max_jerk": 0.5734044951267995,
+   "plan_runtime_s": 0.09633084600000075,
+   "verify_runtime_s": 1.0564885100002357
+  },
+  {
+   "planner": "waves (pinned15)",
+   "planning_failed": true,
+   "reason": "wave scheduling stuck at drone 51",
+   "plan_runtime_s": 0.05066350800007058
+  },
+  {
+   "planner": "prioritized (pinned15)",
+   "planning_failed": true,
+   "reason": "planning time budget exceeded",
+   "plan_runtime_s": 30.02560072899996
+  }
+ ],
+ "torus_300": [
+  {
+   "planner": "baseline sync (hungarian)",
+   "verified_ok": true,
+   "violation_counts": {},
+   "completion_time_s": 106.73197799977586,
+   "min_separation_m": 2.195873282153338,
+   "min_separation_is_lower_bound": false,
+   "max_speed_h": 9.358703321341666,
+   "max_accel": 1.7966906671226754,
+   "max_jerk": 1.5849663357888746,
+   "plan_runtime_s": 0.11861211599989474,
+   "verify_runtime_s": 1.076449593000234
+  },
+  {
+   "planner": "baseline async (hungarian)",
+   "verified_ok": false,
+   "violation_counts": {
+    "separation": 222
+   },
+   "completion_time_s": 106.73197799977586,
+   "min_separation_m": 0.1484806544208938,
+   "min_separation_is_lower_bound": false,
+   "max_speed_h": 9.803921568627487,
+   "max_accel": 3.8446751249523454,
+   "max_jerk": 7.538578676376447,
+   "plan_runtime_s": 0.11895967700002075,
+   "verify_runtime_s": 1.6673717200001192
+  },
+  {
+   "planner": "baseline sync (identity)",
+   "verified_ok": false,
+   "violation_counts": {
+    "separation": 2000
+   },
+   "completion_time_s": 126.79639417090308,
+   "min_separation_m": 0.023862615724814778,
+   "min_separation_is_lower_bound": false,
+   "max_speed_h": 9.803921568627473,
+   "max_accel": 1.071455687472686,
+   "max_jerk": 0.3637457946977533,
+   "plan_runtime_s": 0.06397765499968955,
+   "verify_runtime_s": 2.262791902999652
+  },
+  {
+   "planner": "baseline 4 waves x 3 s",
+   "verified_ok": false,
+   "violation_counts": {
+    "separation": 317
+   },
+   "completion_time_s": 133.73197799977586,
+   "min_separation_m": 0.11606167171687772,
+   "min_separation_is_lower_bound": false,
+   "max_speed_h": 9.358703321341666,
+   "max_accel": 1.7966906671226754,
+   "max_jerk": 1.5849663357888746,
+   "plan_runtime_s": 0.11092071000030046,
+   "verify_runtime_s": 1.8389827109999715
+  },
+  {
+   "planner": "waves (hungarian)",
+   "verified_ok": true,
+   "violation_counts": {},
+   "completion_time_s": 106.73197799977586,
+   "min_separation_m": 2.195873282153338,
+   "min_separation_is_lower_bound": false,
+   "max_speed_h": 9.358703321341666,
+   "max_accel": 1.7966906671226754,
+   "max_jerk": 1.5849663357888746,
+   "plan_runtime_s": 0.23012266900013856,
+   "verify_runtime_s": 1.0420652699999664
+  },
+  {
+   "planner": "prioritized (hungarian)",
+   "verified_ok": true,
+   "violation_counts": {},
+   "completion_time_s": 106.73197799977586,
+   "min_separation_m": 2.195873282153338,
+   "min_separation_is_lower_bound": false,
+   "max_speed_h": 9.358703321341666,
+   "max_accel": 1.7966906671226754,
+   "max_jerk": 1.5849663357888746,
+   "plan_runtime_s": 2.011370966999948,
+   "verify_runtime_s": 1.1089811770002598
+  },
+  {
+   "planner": "baseline sync (pinned15)",
+   "verified_ok": false,
+   "violation_counts": {
+    "separation": 261
+   },
+   "completion_time_s": 119.75746690015899,
+   "min_separation_m": 0.14858420400757294,
+   "min_separation_is_lower_bound": false,
+   "max_speed_h": 9.803921568627457,
+   "max_accel": 1.2555214839824127,
+   "max_jerk": 0.6818015619679062,
+   "plan_runtime_s": 0.11718302000008407,
+   "verify_runtime_s": 1.3402726079998502
+  },
+  {
+   "planner": "waves (pinned15)",
+   "planning_failed": true,
+   "reason": "wave scheduling stuck at drone 137",
+   "plan_runtime_s": 0.048522837000291474
+  },
+  {
+   "planner": "prioritized (pinned15)",
+   "planning_failed": true,
+   "reason": "planning time budget exceeded",
+   "plan_runtime_s": 30.828038919999926
+  }
+ ],
+ "wall_500": [
+  {
+   "planner": "baseline sync (hungarian)",
+   "verified_ok": true,
+   "violation_counts": {},
+   "completion_time_s": 131.9012471163254,
+   "min_separation_m": 2.448015183892534,
+   "min_separation_is_lower_bound": false,
+   "max_speed_h": 9.803921568627443,
+   "max_accel": 3.5889539347656187,
+   "max_jerk": 4.112172464550702,
+   "plan_runtime_s": 0.5787603270000545,
+   "verify_runtime_s": 3.9701544670001567
+  },
+  {
+   "planner": "baseline async (hungarian)",
+   "verified_ok": false,
+   "violation_counts": {
+    "separation": 977
+   },
+   "completion_time_s": 131.9012471163254,
+   "min_separation_m": 0.0257180655621185,
+   "min_separation_is_lower_bound": false,
+   "max_speed_h": 9.803921568627487,
+   "max_accel": 3.8446751249524302,
+   "max_jerk": 7.538578676376414,
+   "plan_runtime_s": 0.6060371719995601,
+   "verify_runtime_s": 6.189151956999922
+  },
+  {
+   "planner": "baseline sync (identity)",
+   "verified_ok": false,
+   "violation_counts": {
+    "separation": 3057
+   },
+   "completion_time_s": 174.24429437300608,
+   "min_separation_m": 0.008258526076145923,
+   "min_separation_is_lower_bound": false,
+   "max_speed_h": 9.06921826796126,
+   "max_accel": 1.2165971876670905,
+   "max_jerk": 0.4691806903653607,
+   "plan_runtime_s": 0.222449129999859,
+   "verify_runtime_s": 8.23976407500004
+  },
+  {
+   "planner": "baseline 4 waves x 3 s",
+   "verified_ok": false,
+   "violation_counts": {
+    "separation": 1283
+   },
+   "completion_time_s": 167.9012471163254,
+   "min_separation_m": 0.03194144057918823,
+   "min_separation_is_lower_bound": false,
+   "max_speed_h": 9.803921568627443,
+   "max_accel": 3.5889539347656187,
+   "max_jerk": 4.112172464550702,
+   "plan_runtime_s": 0.5543806279997625,
+   "verify_runtime_s": 7.119286032999753
+  },
+  {
+   "planner": "waves (hungarian)",
+   "verified_ok": true,
+   "violation_counts": {},
+   "completion_time_s": 131.9012471163254,
+   "min_separation_m": 2.448015183892534,
+   "min_separation_is_lower_bound": false,
+   "max_speed_h": 9.803921568627443,
+   "max_accel": 3.5889539347656187,
+   "max_jerk": 4.112172464550702,
+   "plan_runtime_s": 1.0526393980003377,
+   "verify_runtime_s": 3.8462417619998632
+  },
+  {
+   "planner": "prioritized (hungarian)",
+   "verified_ok": true,
+   "violation_counts": {},
+   "completion_time_s": 131.9012471163254,
+   "min_separation_m": 2.448015183892534,
+   "min_separation_is_lower_bound": false,
+   "max_speed_h": 9.803921568627443,
+   "max_accel": 3.5889539347656187,
+   "max_jerk": 4.112172464550702,
+   "plan_runtime_s": 6.016977797999971,
+   "verify_runtime_s": 4.155383636999886
+  },
+  {
+   "planner": "baseline sync (pinned15)",
+   "verified_ok": false,
+   "violation_counts": {
+    "separation": 557
+   },
+   "completion_time_s": 174.94795553827646,
+   "min_separation_m": 0.11299060343934861,
+   "min_separation_is_lower_bound": false,
+   "max_speed_h": 9.709275203633737,
+   "max_accel": 1.2078122851687247,
+   "max_jerk": 0.46579279282557845,
+   "plan_runtime_s": 0.5912495890001992,
+   "verify_runtime_s": 4.806799875999786
+  },
+  {
+   "planner": "waves (pinned15)",
+   "planning_failed": true,
+   "reason": "wave scheduling stuck at drone 251",
+   "plan_runtime_s": 0.18745359100012138
+  },
+  {
+   "planner": "prioritized (pinned15)",
+   "planning_failed": true,
+   "reason": "planning time budget exceeded",
+   "plan_runtime_s": 30.091155318000347
+  }
+ ]
+}

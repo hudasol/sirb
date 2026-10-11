@@ -111,7 +111,7 @@ class Fleet:
         }
 
     @classmethod
-    def from_dict(cls, d: dict) -> "Fleet":
+    def from_dict(cls, d: dict) -> Fleet:
         trs = [
             Trajectory([Segment(s["t0"], s["t1"], np.array(s["coeffs"], dtype=float))
                         for s in segs])

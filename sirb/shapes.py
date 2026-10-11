@@ -38,7 +38,7 @@ SUPPORTED_LETTERS = "".join(sorted(_FONT))
 
 def _along_polylines(polys: list[np.ndarray], n: int) -> np.ndarray:
     """n points equally spaced by arc length along the concatenated polylines."""
-    pts, cum, total = [], [], 0.0
+    pts, total = [], 0.0
     for p in polys:
         d = np.linalg.norm(np.diff(p, axis=0), axis=1)
         for a, b, L in zip(p[:-1], p[1:], d):

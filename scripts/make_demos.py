@@ -5,8 +5,8 @@ from __future__ import annotations
 import sys
 from pathlib import Path
 
-from sirb.spec import build_targets, new_show, save_show, validate_show
 from sirb.shapes import min_nn_distance
+from sirb.spec import build_targets, new_show, save_show, validate_show
 
 LAUNCH = {"type": "launch_grid", "spacing_m": 3.0, "center": [0.0, -85.0, 0.0]}
 
