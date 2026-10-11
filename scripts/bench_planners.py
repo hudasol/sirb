@@ -53,7 +53,7 @@ def planner_row(show: dict, label: str, fn) -> dict:
 def main(shows_dir: str = "shows", out_dir: str = "results") -> int:
     Path(out_dir).mkdir(exist_ok=True)
     asg, plans = {}, {}
-    for f in sorted(Path(shows_dir).glob("*.json")):
+    for f in sorted(Path(shows_dir).glob("[!g]*.json")):
         show = load_show(f)
         asg[f.stem] = assignment_table(show)
         plans[f.stem] = [
