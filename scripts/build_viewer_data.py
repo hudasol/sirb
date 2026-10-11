@@ -10,7 +10,6 @@ nearest-neighbour distance per drone per frame as uint16 centimetres. Everything
 from __future__ import annotations
 
 import json
-import math
 from pathlib import Path
 
 import numpy as np
