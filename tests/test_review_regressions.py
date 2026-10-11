@@ -542,3 +542,247 @@ def test_round5_preflight_fails_closed_on_missing_or_nan_inputs():
     for kw in ({"wind_forecast_mps": nan, "wind_limit_mps": 9.0},
                {"wind_forecast_mps": 4.0, "wind_limit_mps": 0.0}):
         assert "INPUT_INVALID" in preflight(show, fleet, d, ld, **kw).codes("FAIL")
+
+
+# ---- Round 6 (security, dependencies, coverage) -----------------------------------------------
+
+def test_round6_verifier_rejects_unsupported_degree_and_trims_zero_padding():
+    from sirb.spec import DEFAULT_LIMITS
+    from sirb.trajectory import Fleet, Trajectory
+    from sirb.verify import MAX_DEGREE, verify
+
+    far = Trajectory([_seg([[50, 50, 20]], 0.0, 10.0)])
+    hostile = np.zeros((MAX_DEGREE + 2, 3))
+    hostile[0] = [0, 0, 20]
+    hostile[-1] = [1e-6, 0, 0]                      # genuinely degree MAX_DEGREE + 1
+    rep = verify(Fleet([Trajectory([_seg(hostile, 0.0, 10.0)]), far]), DEFAULT_LIMITS)
+    assert "unsupported_degree" in rep.violation_counts and not rep.ok
+    # 2000 rows of which only the first two are non-zero is just a line, and is accepted
+    padded = np.zeros((2000, 3))
+    padded[0] = [0, 0, 20]
+    padded[1] = [1.0, 0, 0]
+    rep = verify(Fleet([Trajectory([_seg(padded, 0.0, 10.0)]), far]), DEFAULT_LIMITS)
+    assert "unsupported_degree" not in rep.violation_counts
+    exact = verify(Fleet([Trajectory([_seg([[0, 0, 20], [1.0, 0, 0]], 0.0, 10.0)]), far]),
+                   DEFAULT_LIMITS)
+    assert rep.min_separation == exact.min_separation
+
+
+def test_round6_unreadable_and_malformed_segments_never_crash_the_verifier():
+    from sirb.spec import DEFAULT_LIMITS
+    from sirb.trajectory import Fleet, Segment, Trajectory
+    from sirb.verify import verify
+
+    good = Trajectory([_seg([[0, 0, 20]], 0.0, 10.0)])
+    bads = [Segment(0.0, 10.0, np.zeros((3, 2))),          # wrong width
+            Segment(0.0, 10.0, np.zeros(3)),               # 1-D
+            Segment(0.0, 10.0, np.zeros((0, 3))),          # empty
+            Segment("a", 10.0, np.zeros((1, 3))),          # unreadable time
+            Segment(0.0, float("inf"), np.zeros((1, 3)))]  # non-finite time
+    for b in bads:
+        rep = verify(Fleet([good, Trajectory([b])]), DEFAULT_LIMITS)
+        assert not rep.ok and "nonfinite" in rep.violation_counts, b
+
+
+def test_round6_bounded_file_reading(tmp_path, monkeypatch):
+    import os
+
+    from sirb import export, fileio, spec
+
+    big = tmp_path / "big.json"
+    big.write_text("{" + " " * 200 + "}")
+    monkeypatch.setattr(fileio, "MAX_FILE_BYTES", 100)
+    for loader in (spec.load_show, export.load_export):
+        with pytest.raises(ValueError, match="limit"):
+            loader(big)
+    monkeypatch.undo()
+    with pytest.raises(ValueError, match="regular file"):
+        spec.load_show(tmp_path)                         # a directory
+    with pytest.raises(ValueError, match="regular file"):
+        export.load_export("/dev/zero")                  # would otherwise read forever
+    fifo = tmp_path / "pipe"
+    os.mkfifo(fifo)
+    with pytest.raises(ValueError, match="regular file"):
+        spec.load_show(fifo)                             # would otherwise block
+    with pytest.raises(OSError):
+        spec.load_show(tmp_path / "missing.json")
+
+
+def test_round6_apply_events_dispatches_every_behaviour():
+    from sirb.contingency import apply_events
+    from sirb.disturbance import StressConfig
+
+    dt, K, n = 0.2, 300, 4
+    t = np.arange(K) * dt
+    ref = np.zeros((K, n, 3))
+    ref[:, :, 0] = np.arange(n) * 30.0
+    ref[:, :, 2] = 50.0 + 0 * t[:, None]
+    ref[:, 0, 1] = 5.0 * t                                 # drone 0 flies north
+    ev = lambda kind: [{"drone": 0, "kind": kind, "k": 100}]   # noqa: E731
+    base = StressConfig(dt=dt)
+
+    def run(beh, kind="comms_loss", gnss=None):
+        cfg = base.with_(behavior={"comms_loss": beh, "battery_low": beh, "gnss_loss": beh,
+                                   "motor_failure": "ballistic"})
+        return apply_events(ref, ev(kind) if gnss is None else [], gnss or {}, cfg)
+
+    R, bal = run("continue")
+    assert np.array_equal(R, ref) and bal == []
+    R, _ = run("hold")
+    assert np.allclose(R[100:150, 0], ref[100, 0]) and R[-1, 0, 2] < 50.0      # hover then descend
+    R, _ = run("descend")
+    assert R[-1, 0, 2] < ref[100, 0, 2] and np.allclose(R[-1, 0, :2], ref[100, 0, :2])
+    R, _ = run("corridor")
+    assert np.linalg.norm(R[150, 0, :2] - ref[100, 0, :2]) > 5.0               # left the path
+    R, bal = run("ballistic", "motor_failure")
+    assert bal == [(0, 100)]
+    for beh in ("hold", "rejoin", "descend", "corridor"):
+        R, _ = run(beh, gnss={"loss_windows": {0: (80, 120)}})
+        assert R.shape == ref.shape and not np.array_equal(R[:, 0], ref[:, 0]), beh
+    with pytest.raises(ValueError):
+        run("teleport")
+    assert np.array_equal(ref[:, 1:], run("hold")[0][:, 1:])                   # others untouched
+
+
+def test_round6_python_dash_m_sirb_runs():
+    import subprocess
+    import sys
+
+    r = subprocess.run([sys.executable, "-m", "sirb", "--help"], capture_output=True, text=True,
+                       timeout=60)
+    assert r.returncode == 0 and "not flight-certified" in r.stdout.lower().replace("\n", " ")
+
+
+def test_round6_viewer_has_no_html_injection_sinks_and_a_matching_csp():
+    import base64
+    import hashlib
+    import re
+    from pathlib import Path
+
+    sinks = re.compile(r"innerHTML|outerHTML|insertAdjacentHTML|document\.write|\beval\(|new Function|"
+                       r"srcdoc|javascript:|setAttribute\(\s*[\"']on")
+    for f in ("viewer/app.js", "viewer/i18n.js", "viewer/index.html", "viewer/methods.html"):
+        text = Path(f).read_text(encoding="utf-8")
+        assert not sinks.search(text), (f, sinks.search(text).group(0))
+    for f in ("viewer/index.html", "viewer/methods.html"):
+        html = Path(f).read_text(encoding="utf-8")
+        meta = re.search(r'http-equiv="Content-Security-Policy" content="([^"]+)"', html)
+        assert meta, f
+        csp = meta.group(1)
+        for needed in ("object-src 'none'", "base-uri 'none'", "form-action 'none'",
+                       "connect-src 'self'", "default-src 'self'"):
+            assert needed in csp, (f, needed)
+        assert "'unsafe-eval'" not in csp
+        script_src = re.search(r"script-src ([^;]+)", csp).group(1)
+        assert "'unsafe-inline'" not in script_src
+        inline = re.findall(r"<script(?![^>]*\bsrc=)[^>]*>(.*?)</script>", html, re.S)
+        assert inline
+        for body in inline:
+            h = "'sha256-" + base64.b64encode(hashlib.sha256(body.encode("utf-8")).digest()).decode() + "'"
+            assert h in script_src, f"{f}: inline script hash not allowed by CSP (edit the hash)"
+
+
+def test_round6_vendored_three_js_matches_recorded_hashes():
+    import hashlib
+    import re
+    from pathlib import Path
+
+    doc = Path("docs/DATA_SOURCES.md").read_text(encoding="utf-8")
+    rows = re.findall(r"`(viewer/vendor/[^`]+)` \| `([0-9a-f]{64})`", doc)
+    assert len(rows) == 3
+    for path, digest in rows:
+        assert hashlib.sha256(Path(path).read_bytes()).hexdigest() == digest, path
+
+
+def test_round6_no_secret_shaped_strings_in_tracked_files():
+    import re
+    import subprocess
+    from pathlib import Path
+
+    try:
+        files = subprocess.run(["git", "ls-files"], capture_output=True, text=True, check=True,
+                               timeout=30).stdout.split()
+    except (OSError, subprocess.SubprocessError):
+        pytest.skip("not a git checkout")
+    pat = re.compile(r"AKIA[0-9A-Z]{16}|ghp_[A-Za-z0-9]{30,}|github_pat_[A-Za-z0-9_]{20,}|"
+                     r"sk-[A-Za-z0-9]{20,}|xox[baprs]-[A-Za-z0-9-]{10,}|"
+                     r"-----BEGIN [A-Z ]*PRIVATE KEY-----|AIza[0-9A-Za-z_-]{35}")
+    for f in files:
+        p = Path(f)
+        if p.suffix in {".bin", ".png"} or "vendor/three" in f or not p.is_file():
+            continue
+        assert not pat.search(p.read_text(encoding="utf-8", errors="ignore")), f
+    assert not [f for f in files if re.search(r"(^|/)\.env|\.pem$|\.key$|credential", f, re.I)]
+
+
+def test_round6_constraints_pin_every_declared_dependency():
+    import re
+    from pathlib import Path
+
+    pins = {m.group(1): m.group(2) for m in re.finditer(r"^([a-z0-9_.-]+)==(\S+)$",
+            Path("constraints.txt").read_text(), re.M)}
+    from importlib.metadata import version
+    for name in ("numpy", "scipy", "pytest", "hypothesis", "ruff"):
+        assert name in pins
+    # the pins are what the recorded results were produced with; drift is reported, not failed
+    for name in ("numpy", "scipy"):
+        if version(name) != pins[name]:
+            import warnings
+            warnings.warn(f"{name} {version(name)} differs from constraints.txt ({pins[name]}): "
+                          "recorded results may differ in the last digits", stacklevel=1)
+
+
+def test_round6_verify_certificate_rejects_each_kind_of_mismatch():
+    """Coverage gap: the individual rejection branches of verify_certificate were never hit."""
+    from sirb.certificate import make_certificate, verify_certificate
+    from sirb.verify import verify
+
+    show = _show(12)
+    fleet, _ = plan_baseline(show)
+    cert = make_certificate(verify(fleet, show["limits"]), fleet, show["limits"])
+    assert verify_certificate(cert, fleet)
+    mutations = {
+        "tool": lambda c: c.__setitem__("tool", "other"),
+        "version": lambda c: c.__setitem__("certificate_version", 99),
+        "hash": lambda c: c.__setitem__("fleet_sha256", "0" * 64),
+        "n_drones": lambda c: c.__setitem__("n_drones", 99),
+        "verdict": lambda c: c.__setitem__("verdict", "FAIL"),
+        "number": lambda c: c["results"].__setitem__("max_speed_h", c["results"]["max_speed_h"] + 1),
+        "number_none": lambda c: c["results"].__setitem__("max_jerk", None),
+        "counts": lambda c: c["results"].__setitem__("violation_counts", {"separation": 1}),
+        "lower_bound_flag": lambda c: c["results"].__setitem__(
+            "min_separation_is_lower_bound", not c["results"]["min_separation_is_lower_bound"]),
+        "unchecked": lambda c: c.__setitem__("unchecked_limits", ["amax"]),
+        "missing_results": lambda c: c.pop("results"),
+    }
+    for name, mutate in mutations.items():
+        bad = copy.deepcopy(cert)
+        mutate(bad)
+        assert not verify_certificate(bad, fleet), name
+
+
+def test_round6_cli_error_paths(tmp_path, capsys):
+    from sirb.spec import save_show
+
+    s = _show()
+    s["limits"]["geofence"] = 5
+    bad = tmp_path / "bad.json"
+    save_show(s, bad)
+    assert cli.main(["validate", str(bad)]) == 1            # load_show raises ValueError
+    capsys.readouterr()
+    assert cli.main(["plan", str(bad), "--out", str(tmp_path / "o.json")]) == 1
+    junk = tmp_path / "junk.json"
+    junk.write_text("not json")
+    assert cli.main(["check", str(junk)]) == 1
+    assert "error:" in capsys.readouterr().err
+
+
+def test_round6_sweep_runs_and_labels_rows():
+    import sirb.stress as st
+    from sirb.disturbance import StressConfig
+
+    show = _show(10)
+    fleet, _ = plan_baseline(show)
+    ref = st.sample_reference(fleet, 0.5)
+    rows = st.sweep(ref, StressConfig(dt=0.5), "w20", [0.0, 6.0], 2.0, 3, 1)
+    assert [r["value"] for r in rows] == [0.0, 6.0] and all(r["trials"] == 3 for r in rows)

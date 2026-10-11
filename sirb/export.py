@@ -10,6 +10,7 @@ import json
 from pathlib import Path
 
 from .certificate import make_certificate, verify_certificate
+from .fileio import read_text_limited
 from .trajectory import Fleet
 from .verify import verify
 
@@ -53,7 +54,7 @@ def load_export(path: str | Path) -> tuple[dict, Fleet, dict]:
     """
     from .spec import validate_show
 
-    b = json.loads(Path(path).read_text(encoding="utf-8"))
+    b = json.loads(read_text_limited(path))
     if not isinstance(b, dict) or b.get("format") != FORMAT or b.get("label") != LABEL:
         raise ValueError("not a sirb export or label missing")
     try:

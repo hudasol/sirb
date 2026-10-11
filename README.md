@@ -22,7 +22,7 @@ Terminology: the "certificate" Sirb writes is a machine-readable verification re
 ## Quickstart
 
 ```
-pip install -e ".[dev]"
+pip install -c constraints.txt -e ".[dev]"   # exact versions used for the recorded results
 pytest -q && ruff check .
 
 python -m sirb validate shows/sirb_text_100.json

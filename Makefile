@@ -1,7 +1,7 @@
 # One-command reproduction. Fixed seeds; trial counts match the reported numbers.
 .PHONY: install test demos assignment planners viewer-data stress reproduce serve
 install:
-	pip install -e ".[dev]"
+	pip install -c constraints.txt -e ".[dev]"
 test:
 	ruff check . && pytest -q
 demos:

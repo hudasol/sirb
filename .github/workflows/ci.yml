@@ -1,5 +1,7 @@
 name: CI
 on: [push, pull_request]
+permissions:
+  contents: read
 jobs:
   test:
     runs-on: ubuntu-latest
@@ -8,7 +10,7 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.13"
-      - run: pip install -e ".[dev]"
+      - run: pip install -c constraints.txt -e ".[dev]"
       - run: ruff check .
       - run: pytest -q
       - name: Regenerate viewer data and check it is deterministic
