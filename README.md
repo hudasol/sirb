@@ -8,7 +8,7 @@ A simulation-first suite that turns shape sequences into multi-drone show trajec
 
 ## Status
 
-Built and committed: show spec and shapes (M1), assignment (M2), planners (M3), verifier and certificate (M4), disturbance models, stress simulator, contingency behaviours and pre-flight validator (M5, M6, M6b code), static viewer (M7), file export (M8), command line, and the critique rounds in `docs/REVIEW_ROUNDS.md`. Tags exist for M0 to M4, M7 and M8. Not done: milestone tags for M5/M6/M6b (the stress experiments in `results/stress_*.json` are still being generated), deployment (M9: no live URL, no CI badge), `docs/REPORT.md` and the final summary. See `plan.md` for the milestone definitions.
+Built and committed: show spec and shapes (M1), assignment (M2), planners (M3), verifier and certificate (M4), disturbance models, stress simulator, contingency behaviours and pre-flight validator (M5, M6, M6b code), static viewer (M7), file export (M8), command line, and the critique rounds in `docs/REVIEW_ROUNDS.md`. Tags exist for M0 to M4, M7 and M8. Not done: milestone tags for M5/M6/M6b (the stress outputs `results/stress_*.json` were generated while the review rounds changed code and are not committed; rerun `make stress` at the final commit first, see the last note in `docs/REVIEW_ROUNDS.md`), deployment (M9: no live URL, no CI badge), `docs/REPORT.md` and the final summary. See `plan.md` for the milestone definitions.
 
 ## What the evidence supports
 
