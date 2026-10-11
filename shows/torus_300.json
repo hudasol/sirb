@@ -1,0 +1,109 @@
+{
+  "schema_version": 1,
+  "name": "Torus orbit (300 drones)",
+  "n_drones": 300,
+  "seed": 33,
+  "vehicle": {
+    "name": "reference-multirotor-0.83kg",
+    "mass_kg": 0.83,
+    "radius_m": 0.24,
+    "sources": {
+      "mass_kg": "datasheet",
+      "radius_m": "datasheet"
+    }
+  },
+  "limits": {
+    "vmax_h": 10.0,
+    "vmax_up": 6.0,
+    "vmax_down": 3.0,
+    "amax": 4.0,
+    "jmax": 8.0,
+    "z_min": 0.0,
+    "z_max": 120.0,
+    "geofence": {
+      "x": [
+        -150.0,
+        150.0
+      ],
+      "y": [
+        -130.0,
+        100.0
+      ]
+    },
+    "min_separation_m": 2.0,
+    "crowd": {
+      "y": -250.0,
+      "min_distance_m": 50.0
+    },
+    "sources": {
+      "vmax_h": "datasheet",
+      "vmax_up": "datasheet",
+      "vmax_down": "assumption",
+      "amax": "assumption",
+      "jmax": "assumption",
+      "z_max": "assumption",
+      "geofence": "assumption",
+      "min_separation_m": "assumption",
+      "crowd": "cited guidance, see docs/RESEARCH.md"
+    }
+  },
+  "stages": [
+    {
+      "name": "launch",
+      "shape": {
+        "type": "launch_grid",
+        "spacing_m": 3.0,
+        "center": [
+          0.0,
+          -85.0,
+          0.0
+        ]
+      },
+      "hold_s": 2
+    },
+    {
+      "name": "torus",
+      "shape": {
+        "type": "torus",
+        "minor_ratio": 0.35,
+        "spacing_m": 3.2,
+        "center": [
+          0,
+          0,
+          60
+        ]
+      },
+      "hold_s": 5
+    },
+    {
+      "name": "super",
+      "shape": {
+        "type": "supershape",
+        "m1": 6,
+        "m2": 2,
+        "amplitude": 0.3,
+        "spacing_m": 3.3,
+        "center": [
+          0,
+          0,
+          60
+        ]
+      },
+      "hold_s": 5
+    },
+    {
+      "name": "land",
+      "shape": {
+        "type": "launch_grid",
+        "spacing_m": 3.0,
+        "center": [
+          0.0,
+          -85.0,
+          0.0
+        ]
+      },
+      "hold_s": 2
+    }
+  ],
+  "disclaimer": "simulation-validated only; not flight-certified"
+}
