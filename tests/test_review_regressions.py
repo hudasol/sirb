@@ -347,3 +347,198 @@ def test_round4_cli_and_export_say_not_an_approval(tmp_path, capsys):
     assert b["label"] == "simulation-validated only"
     assert "not flight-certified" in b["certificate"]["statement"]
     assert "Regulatory" in " ".join(b["certificate"]["not_guaranteed"])
+
+
+# ---- Round 5 (ATRC-style engineer: boundaries, independence, test quality) -------------------
+
+def _import_graph():
+    """Module -> set of sirb modules it imports (static, including function-level imports)."""
+    import ast
+    from pathlib import Path
+
+    root = Path("sirb")
+    graph = {}
+    for f in root.rglob("*.py"):
+        parts = list(f.with_suffix("").parts)
+        if parts[-1] == "__init__":
+            parts = parts[:-1]
+        mod = ".".join(parts)
+        pkg = parts if f.name == "__init__.py" else parts[:-1]
+        deps = set()
+        for node in ast.walk(ast.parse(f.read_text(encoding="utf-8"))):
+            if isinstance(node, ast.Import):
+                deps |= {a.name for a in node.names if a.name.split(".")[0] == "sirb"}
+            elif isinstance(node, ast.ImportFrom):
+                if node.level:
+                    base = pkg[: len(pkg) - (node.level - 1)]
+                    target = ".".join(base + ([node.module] if node.module else []))
+                else:
+                    target = node.module or ""
+                if target.split(".")[0] == "sirb":
+                    deps.add(target)
+                    for a in node.names:             # `from . import X` may import a submodule
+                        deps.add(f"{target}.{a.name}")
+        graph[mod] = {d for d in deps}
+    names = set(graph)
+    return {m: {d for d in ds if d in names and d != m} for m, ds in graph.items()}
+
+
+def _closure(graph, start):
+    seen, todo = set(), [start]
+    while todo:
+        m = todo.pop()
+        for d in graph.get(m, ()):
+            if d not in seen:
+                seen.add(d)
+                todo.append(d)
+    return seen
+
+
+def test_round5_verifier_imports_nothing_from_sirb():
+    g = _import_graph()
+    assert g["sirb.verify"] == set(), g["sirb.verify"]
+
+
+def test_round5_planners_and_stress_never_reach_the_verifier_or_certificate():
+    g = _import_graph()
+    judges = {"sirb.verify", "sirb.certificate", "sirb.export", "sirb.preflight", "sirb.cli"}
+    producers = ["sirb.assign", "sirb.shapes", "sirb.spec", "sirb.trajectory", "sirb.stress",
+                 "sirb.disturbance", "sirb.contingency"] + [m for m in g if m.startswith("sirb.planner")]
+    for m in producers:
+        reach = _closure(g, m)
+        assert not (reach & judges), (m, reach & judges)
+
+
+def test_round5_trajectory_module_depends_on_nothing():
+    assert _import_graph()["sirb.trajectory"] == set()
+
+
+def test_round5_import_graph_detects_a_forbidden_import(tmp_path, monkeypatch):
+    """The checker itself must be able to fail: plant a forbidden import and look for it."""
+    import shutil
+    shutil.copytree("sirb", tmp_path / "sirb", ignore=shutil.ignore_patterns("__pycache__"))
+    p = tmp_path / "sirb" / "planner" / "baseline.py"
+    p.write_text(p.read_text() + "\nfrom ..verify import verify  # planted\n")
+    monkeypatch.chdir(tmp_path)
+    g = _import_graph()
+    assert "sirb.verify" in _closure(g, "sirb.planner.baseline")
+
+
+def test_round5_verifier_tests_have_power_grid_only_root_finding_is_caught(monkeypatch):
+    """Mutation check: if the exact root finding were replaced by the safety grid alone, a
+    minimum that falls between grid points must be missed, and the exact verifier must not."""
+    import sirb.verify as V
+    from sirb.trajectory import Fleet, Trajectory
+
+    # relative motion linear: d(s) = |(-1.3 + 4 s, 0.5, 0)| on s in [0, 1] -> minimum at s = 0.325
+    a = Trajectory([_seg([[0, 0, 20], [4, 0, 0]], 0.0, 1.0)])
+    b = Trajectory([_seg([[1.3, 0.5, 20], [0, 0, 0]], 0.0, 1.0)])
+    fl = Fleet([a, b])
+    exact = V.pair_minima(fl, 10.0)[0][(0, 1)][0]
+    assert exact == pytest.approx(0.5, abs=1e-9)
+
+    real = V._critical_points
+    monkeypatch.setattr(V, "_critical_points",
+                        lambda df: np.broadcast_to(np.linspace(0, 1, V._GRID + 1),
+                                                   (df.shape[0], V._GRID + 1)).copy())
+    mutated = V.pair_minima(fl, 10.0)[0][(0, 1)][0]
+    assert mutated > exact + 1e-3, "suite would not notice a verifier without root finding"
+    monkeypatch.setattr(V, "_critical_points", real)
+    assert V.pair_minima(fl, 10.0)[0][(0, 1)][0] == pytest.approx(exact, abs=1e-12)
+
+
+def test_round5_clean_pair_reports_exact_minimum_against_dense_sampling():
+    """Replaces a disjunctive assertion that held for any clean fleet."""
+    from sirb.spec import DEFAULT_LIMITS
+    from sirb.trajectory import Fleet, Trajectory
+    from sirb.verify import verify
+
+    def q(p0, p1, t0, T):
+        p0, p1 = np.asarray(p0, float), np.asarray(p1, float)
+        d = p1 - p0
+        c = np.zeros((6, 3))
+        c[0], c[3], c[4], c[5] = p0, 10 * d / T**3, -15 * d / T**4, 6 * d / T**5
+        return _seg(c, t0, t0 + T)
+
+    a = Trajectory([q([0, 0, 20], [20, 0, 20], 0, 10), q([20, 0, 20], [20, 20, 20], 10, 10)])
+    b = Trajectory([q([0, 10, 25], [20, 10, 25], 0, 10), q([20, 10, 25], [20, 30, 25], 10, 10)])
+    fl = Fleet([a, b])
+    ts = np.linspace(0, 20, 200001)
+    truth = np.linalg.norm(fl.trajectories[0].sample(ts) - fl.trajectories[1].sample(ts), axis=1).min()
+    rep = verify(fl, DEFAULT_LIMITS, search_radius=50.0)
+    assert rep.ok and not rep.min_separation_is_lower_bound
+    assert rep.min_separation == pytest.approx(truth, abs=1e-6)
+    assert rep.min_separation <= truth + 1e-9          # exact value can never exceed the sampled one
+    # default radius (8 m) is below the true minimum, so the report must say "lower bound"
+    short = verify(fl, DEFAULT_LIMITS)
+    assert short.min_separation_is_lower_bound and short.min_separation == 8.0
+
+
+def test_round5_export_rejects_certificate_for_other_limits_and_malformed_structure(tmp_path):
+    from sirb.export import build_export, load_export, save_export
+
+    show = _show(12)
+    fleet, _ = plan_baseline(show)
+    good = build_export(show, fleet)
+
+    def write(b):
+        p = tmp_path / "x.json"
+        save_export(p, b)
+        return p
+
+    load_export(write(good))
+    loose = copy.deepcopy(good)
+    loose["show"]["limits"]["min_separation_m"] = 1.0          # looser show, old certificate
+    with pytest.raises(ValueError, match="different limits"):
+        load_export(write(loose))
+    for mutate in (lambda b: b.__setitem__("fleet", []),
+                   lambda b: b.__setitem__("certificate", None),
+                   lambda b: b.pop("show"),
+                   lambda b: b["show"].__setitem__("n_drones", 99),
+                   lambda b: b["show"]["limits"].__setitem__("geofence", 5)):
+        bad = copy.deepcopy(good)
+        mutate(bad)
+        with pytest.raises(ValueError):
+            load_export(write(bad))
+    p = tmp_path / "list.json"
+    p.write_text("[1, 2]")
+    with pytest.raises(ValueError):
+        load_export(p)
+
+
+def test_round5_monte_carlo_does_not_retain_the_reference_array():
+    import sirb.stress as st
+    from sirb.disturbance import StressConfig
+
+    show = _show(10)
+    fleet, _ = plan_baseline(show)
+    ref = st.sample_reference(fleet, 0.5)
+    st.monte_carlo(ref, StressConfig(dt=0.5), 2.0, 2, 1)
+    assert "ref" not in st._WORK
+
+
+def test_round5_preflight_fails_closed_on_missing_or_nan_inputs():
+    """NaN comparisons are False, so NaN centre/heading/wind used to read as 'no mismatch'."""
+    from sirb.preflight import nominal_declaration, preflight
+
+    show = _show(12)
+    fleet, _ = plan_baseline(show)
+    nan = float("nan")
+    cases = [
+        lambda d, ld: ld.update(center_xy=[nan, 0.0]),
+        lambda d, ld: ld.update(heading_deg=nan),
+        lambda d, ld: ld.pop("center_xy"),
+        lambda d, ld: d.update(heading_deg="north"),
+        lambda d, ld: ld.update(center_xy=[1.0]),
+    ]
+    for mutate in cases:
+        d, ld = nominal_declaration(show, fleet)
+        d, ld = copy.deepcopy(d), copy.deepcopy(ld)
+        mutate(d, ld)
+        rep = preflight(show, fleet, d, ld)
+        assert not rep.ok and "INPUT_INVALID" in rep.codes("FAIL")
+    d, ld = nominal_declaration(show, fleet)
+    assert preflight(show, fleet, d, ld).ok
+    for kw in ({"wind_forecast_mps": nan, "wind_limit_mps": 9.0},
+               {"wind_forecast_mps": 4.0, "wind_limit_mps": 0.0}):
+        assert "INPUT_INVALID" in preflight(show, fleet, d, ld, **kw).codes("FAIL")

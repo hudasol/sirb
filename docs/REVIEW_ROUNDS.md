@@ -241,3 +241,66 @@ Not fixed (and why)
   ground-impact model. These are new models, not wording fixes; listed as limits.
 - `PreflightReport.ok` is true when no FAIL finding exists. The report always carries a
   `NOT_CHECKED` INFO finding naming what was not checked; renaming `ok` would break callers.
+
+## Round 5: ATRC-style engineer (architecture, API boundaries, verifier independence, test quality)
+
+Checked: the import graph mechanically (AST of every module in `sirb/`, including function-level
+and relative imports, followed transitively); where state crosses module boundaries; whether
+public functions fail closed on bad input; test oracles (what each test would catch), including
+a mutation check on the verifier tests; adversarial inputs to the verifier (coefficients of
+1e160 and 1e170, 1e-12 s segments, 1e9 s segments, a drone starting at 1e7 s, coincident
+stationary drones: no crash, every genuine violation reported).
+
+Findings
+- H1. `preflight` did not fail closed. A NaN in the loaded centre, loaded heading or wind
+  forecast made every comparison False, so it reported `ok = True` with no finding (reproduced
+  against the previous code: NaN centre gave `ok = True`); a missing key raised KeyError.
+- H2. `load_export` recomputed the certificate from the *certificate's own copy* of the limits and
+  never compared it with `show.limits`. Editing the show's limits (looser or stricter) beside an
+  untouched certificate was accepted, and a consumer reading `show.limits` would trust a PASS
+  computed against other limits. The embedded show was not validated, and structurally wrong
+  bundles raised TypeError/AttributeError (a traceback from the CLI) rather than ValueError.
+- M3. Verifier independence was a claim in three documents, not a check. Mechanical result:
+  `sirb/verify.py` imports nothing from `sirb`, not even `trajectory.py`; no planner, assignment,
+  shape, spec, stress, disturbance or contingency module reaches `verify`, `certificate`,
+  `export`, `preflight` or `cli`. The statement "shares only the data classes" was slightly off
+  in the other direction: the verifier does not import them at all (duck typing), while
+  `trajectory.py` is described as "data classes only" yet contains evaluation, sampling,
+  hashing and parsing helpers.
+- M4. Test power. `test_clean_passes` asserted `a or b or c` where `c` held for any clean fleet.
+  `test_noise_free_matches_exact_verifier` compares a minimum attained while drones are at rest,
+  so it cannot see interpolation error in motion. `test_risk_increases_with_gnss_differential_error`
+  asserts p = 0 and p = 1 from 8 trials each (a smoke test, not a monotonicity test). Nothing
+  showed the verifier tests could detect a broken verifier.
+- L5. `monte_carlo` left the reference array in a module-level dict after returning (memory
+  retained, not re-entrant). Duplicated helpers: `_assign` in three planner modules,
+  `drone_plan_hash` duplicating the fleet hash loop; a private `_pieces` argument in the public
+  `pair_minima` signature.
+
+Fixed
+- H1: `_check_inputs` returns `INPUT_INVALID` FAIL findings for missing, non-numeric, non-finite
+  or wrong-length centre/heading and for invalid wind inputs. Test covers 5 malformed cases plus
+  the clean case.
+- H2: `load_export` now validates the embedded show, requires fleet size = `n_drones`, requires
+  `certificate.limits == show.limits` after a JSON round trip, and converts every structural
+  failure to ValueError. The docstring and README state that this detects accidental change and
+  is not authentication. Test: looser show limits, `fleet = []`, `certificate = None`, missing
+  show, wrong `n_drones`, malformed geofence, and a JSON list at top level.
+- M3: `tests/test_review_regressions.py` builds the import graph with `ast`, asserts the verifier
+  imports nothing, that producers cannot reach the judges, and that the checker itself works by
+  planting a forbidden import in a copy of the package. `trajectory.py` docstring corrected.
+- M4: tautology replaced by an exact-versus-dense-sampling assertion and a lower-bound assertion;
+  mutation test replaces the root finder by the safety grid alone and requires the grazing case to
+  be missed by the mutant (error above 1e-3 m) and found by the real code (1e-9).
+- L5: `_WORK` is cleared in `finally`; test added.
+
+Not fixed (and why)
+- The duplicated helpers and the `_pieces` argument stay. They sit in modules that the running
+  experiment job imports (planner, verify, stress); a refactor with no behaviour change has no
+  numerical payoff and a nonzero chance of breaking an in-flight experiment. Candidate for
+  NEXT_STEPS.
+- The noise-free stress-versus-verifier test still checks only a static minimum; a test of the
+  interpolation error in motion needs curved reference paths, which the current planners do not
+  produce. The documented bound (METHODS section 5) is analytic, not measured.
+- Weak statistical smoke tests remain as smoke tests; they are labelled as such here, not
+  strengthened by adding trials (CI time).

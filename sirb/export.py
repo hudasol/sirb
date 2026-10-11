@@ -33,15 +33,42 @@ def build_export(show: dict, fleet: Fleet, stress_summary: dict | None = None) -
 
 
 def save_export(path: str | Path, bundle: dict) -> None:
-    Path(path).write_text(json.dumps(bundle, indent=1))
+    Path(path).write_text(json.dumps(bundle, indent=1), encoding="utf-8")
+
+
+def _canon(x):
+    """JSON round trip, so tuples/ints/floats compare the way they do on disk."""
+    return json.loads(json.dumps(x))
 
 
 def load_export(path: str | Path) -> tuple[dict, Fleet, dict]:
-    """Load and re-check: label present, fleet hash matches, certificate recomputes."""
-    b = json.loads(Path(path).read_text())
-    if b.get("format") != FORMAT or b.get("label") != LABEL:
+    """Load and re-check an export bundle.
+
+    Checks: format and label; the show validates; the fleet parses; the fleet hash matches; the
+    certificate's limits are the show's limits (otherwise a certificate computed against looser
+    limits could sit next to a stricter show); the drone count matches; the verification is
+    recomputed and agrees. This detects accidental change or stale bundles. It is not
+    authentication: whoever edits a bundle can also recompute every hash.
+    Raises ValueError for any failure, including malformed structure.
+    """
+    from .spec import validate_show
+
+    b = json.loads(Path(path).read_text(encoding="utf-8"))
+    if not isinstance(b, dict) or b.get("format") != FORMAT or b.get("label") != LABEL:
         raise ValueError("not a sirb export or label missing")
-    fleet = Fleet.from_dict(b["fleet"])
-    if not verify_certificate(b["certificate"], fleet):
+    try:
+        show, cert = b["show"], b["certificate"]
+        errs = validate_show(show, check_targets=False)
+        if errs:
+            raise ValueError("embedded show is invalid: " + "; ".join(errs))
+        fleet = Fleet.from_dict(b["fleet"])
+        if fleet.n != show["n_drones"]:
+            raise ValueError(f"fleet has {fleet.n} drones, show declares {show['n_drones']}")
+        if _canon(cert["limits"]) != _canon(show["limits"]):
+            raise ValueError("certificate was computed against different limits than the show")
+        ok = verify_certificate(cert, fleet)
+    except (KeyError, TypeError, AttributeError, IndexError) as exc:
+        raise ValueError(f"malformed export: {type(exc).__name__}: {exc}") from None
+    if not ok:
         raise ValueError("certificate does not match fleet (tampered or stale)")
-    return b["show"], fleet, b["certificate"]
+    return show, fleet, cert
