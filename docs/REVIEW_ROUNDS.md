@@ -67,3 +67,62 @@ Not fixed (and why)
   directly.
 - No machine-readable JSON Schema file. Adding one without a validator dependency would create
   a second source of truth that can drift; the validator is the specification.
+
+## Round 2: TII-style robotics researcher (mathematical correctness, unstated assumptions, statistics)
+
+Checked: the verifier's exactness claim by attack (400 random degree 1..7 polynomial pairs,
+segment lengths 1 to 600 s, forced near-grazing, truth from a 400,001-point grid plus bounded
+local minimisation: worst verifier-minus-truth gap 3e-14 m, 0 cases above 1e-7); the closed-form
+planner constants (peak speed 1.875, peak acceleration 5.7735, peak jerk 60 for the quintic);
+the Lipschitz margin used by the prioritized planner; the continuity checks across breakpoints;
+the stress model's equations, discretisation, wind delay indexing, Gauss-Markov and dead-reckoning
+variances; the candidate-pair pruning against all pairs; seed handling and what the Wilson
+intervals do and do not cover.
+
+Findings
+- H1. Continuity checks stopped one derivative too early. Position and velocity jumps were
+  flagged, but an *acceleration* step between segments (infinite jerk) passed, so a path with
+  a step in commanded acceleration could receive PASS and a certificate sentence saying jerk
+  limits hold. (Demonstrated with x = 0.5 t^2 followed by x = 0.5 + t.)
+- H2. The GNSS-dropout `hold` / `rejoin` contingency blends the reference back to the moving
+  nominal path over a fixed 6 s with no speed limit. On `sirb_text_100` with 30% of drones in
+  dropout the reference reached 23.4 m/s against a 10 m/s horizontal limit (46 m/s in a
+  synthetic stop-and-go case), and the tracking loop follows it. Rejoin rows in the contingency
+  experiment are therefore optimistic.
+- M3. Unstated model assumptions that change how stress numbers read: perfect acceleration
+  feed-forward (the error equation does not depend on the reference); no actuator or airframe
+  wind limit while the wind sweep goes to W20 = 20 m/s (mean wind of about 27.7 m/s at 60 m,
+  three times the X7 published 9 m/s sustained limit); GNSS white noise drawn once per step so
+  its effect depends on dt; independent per-drone GNSS error (conservative for RTK, not for a
+  shared spoofing pull-off); "Dryden" turbulence is intensity-only with a fixed correlation time.
+- M4. Seed structure undocumented. Sweeps reuse the same random streams in row 0 of every
+  sweep; spacing rows use common random numbers; Wilson intervals are per row, not
+  simultaneous; scaling rows have 6 to 20 trials and their `p_violation` is not an estimate.
+- L5. `dev_bound`, the pad that decides which pairs are ever examined, is a heuristic. Empirically
+  safe (0 of 2,953 violating pairs missed across five stressed configurations) but unproven.
+
+Fixed
+- H1: `accel_discontinuity` structural check (tolerance 1e-3 m/s^2, mirrored in the certificate
+  method text, guarantees text, Arabic guarantee string, methods page and `docs/VERIFIER.md`).
+  Planner output is unaffected (rest-to-rest quintics have zero acceleration at both ends); the
+  committed viewer certificates were regenerated and differ only in text and the new tolerance
+  entry. Tests: step flagged, smooth chain accepted, planner output clean.
+- H2 (partly): `StressConfig.rejoin_vmax` (default `None` = stored behaviour) lengthens the
+  blend to cap its closing speed. Test: default peaks above 25 m/s on a 100 m gap, capped run
+  stays within 10.1 m/s and still rejoins.
+- M3/M4/L5: documented in `docs/METHODS.md` section 5 with the computed numbers; a regression
+  test now compares pruned and all-pairs violating sets on stressed runs (and asserts that the
+  test actually contains violations).
+
+Not fixed (and why)
+- The rejoin cap is opt-in, not default, and `make stress` does not use it. Making it default
+  changes contingency numbers while the experiment job is producing them, so the shipped
+  contingency rows keep the caveat. Owner decision: rerun contingency with `rejoin_vmax = 10`
+  (the horizontal limit) before quoting any `hold`/`rejoin` row.
+- No saturation/wind-limit in the tracking model, no feed-forward error and no
+  common-mode GNSS option. Each is a model change that alters every stress number. Listed for
+  NEXT_STEPS.
+- `Fleet.content_hash` hashes raw bytes without length prefixes, so two different fleets could
+  in principle serialise to the same byte stream. Constructing such a pair needs coefficient
+  bytes that reproduce a segment header; not exploitable by accident, and changing the hash
+  invalidates every stored hash. A length-prefixed encoding is a v2 item.

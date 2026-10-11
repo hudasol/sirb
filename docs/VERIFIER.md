@@ -45,7 +45,9 @@ endpoints.
 **Structure.** Positive duration; contiguity within 1e-9 s (`time_gap`, also overlap);
 position continuity within 1e-4 m (`position_jump`); velocity continuity within 1e-3 m/s
 (`velocity_discontinuity`, since a jump means unbounded acceleration that the polynomial
-accel check cannot see); finite times/coefficients and well-formed shape (`nonfinite`;
+accel check cannot see); acceleration continuity within 1e-3 m/s^2 (`accel_discontinuity`,
+added in review round 2: a step means unbounded jerk that the in-segment jerk check cannot
+see); finite times/coefficients and well-formed shape (`nonfinite`;
 the drone is excluded from geometry but never crashes the verifier). A drone with no
 segments is reported as `time_gap`.
 

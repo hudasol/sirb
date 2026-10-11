@@ -20,6 +20,7 @@ import numpy as np
 TIME_TOL = 1e-9          # s, contiguity of segments
 POS_TOL = 1e-4           # m, position continuity at breakpoints
 VEL_TOL = 1e-3           # m/s, velocity continuity at breakpoints
+ACC_TOL = 1e-3           # m/s^2, acceleration continuity at breakpoints (a step = unbounded jerk)
 VIOLATION_CAP = 1000     # max listed violations per kind
 _ROOT_IMAG_TOL = 1e-3    # accept roots with |imag| below this (generous: extra candidates are harmless)
 _GRID = 8                # safety-net grid candidates k/8 added to every root search
@@ -280,6 +281,11 @@ def _structure(fleet, viol: list):
                     viol.append(Violation("velocity_discontinuity", (i,), pt1, dv, VEL_TOL,
                                           f"between segments {pk} and {k}: velocity jump of "
                                           f"{dv:.4g} m/s (unbounded acceleration)"))
+                da = float(np.linalg.norm(_eval_vec(pc, pt1 - pt0, 2) - _eval_vec(c, 0.0, 2)))
+                if da > ACC_TOL:
+                    viol.append(Violation("accel_discontinuity", (i,), pt1, da, ACC_TOL,
+                                          f"between segments {pk} and {k}: acceleration jump "
+                                          f"of {da:.4g} m/s^2 (unbounded jerk)"))
             prev = (k, t0, t1, c)
         per_drone.append(good)
         if not good:
@@ -584,6 +590,7 @@ def verify(fleet, limits: dict, *, search_radius: float | None = None,
     truncated = False
     for kind in ("separation", "speed_h", "speed_up", "speed_down", "accel", "jerk", "altitude",
                  "geofence", "crowd", "time_gap", "position_jump", "velocity_discontinuity",
+                 "accel_discontinuity",
                  "nonfinite"):
         items = sep_viol if kind == "separation" else [v for v in viol if v.kind == kind]
         if not items:
@@ -606,6 +613,7 @@ def verify(fleet, limits: dict, *, search_radius: float | None = None,
         "time_contiguity_s": TIME_TOL,
         "position_continuity_m": POS_TOL,
         "velocity_continuity_mps": VEL_TOL,
+        "acceleration_continuity_mps2": ACC_TOL,
         "violation_cap_per_kind": VIOLATION_CAP,
     }
     return VerifyReport(

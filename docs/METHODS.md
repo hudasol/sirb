@@ -58,6 +58,49 @@ discretization. kp = omega_n^2, omega_n = 2 rad/s, zeta = 0.9, drag_gain = 0.3 /
 - Statistics: Monte-Carlo with fixed seeds; proportions reported with Wilson 95% intervals. A
   zero-violation result with N trials only bounds the true rate by roughly 3/N.
 
+Further assumptions and limits found in critique round 2 (none of these change a stored number;
+they change how the numbers must be read):
+- *Perfect feed-forward.* The error equation above is independent of the reference, i.e. the
+  commanded acceleration is assumed to be tracked exactly and only disturbances excite the loop.
+  A more aggressive plan is therefore not penalised by this model.
+- *No authority limit.* There is no thrust, tilt or airframe wind limit: the loop can always
+  cancel the modelled disturbance. With the 1/7 power law, a 20 ft wind W20 gives a mean wind of
+  1.386 x W20 at 60 m (computed from the formula in `disturbance.py`). The X7 published sustained
+  wind limit is 9 m/s (RESEARCH.md section 5), so W20 above about 6.5 m/s is already beyond the
+  vehicle's published envelope at show altitude. Sweep rows for W20 = 9, 12, 15 and 20 m/s
+  describe conditions in which a real aircraft would be outside its stated limits; the model's
+  small tracking errors there are not predictions.
+- *Sampling.* Realised paths are piecewise linear between steps of dt = 0.2 s. The chord of a
+  reference with acceleration at most a lies within a dt^2 / 8 of the true path; with the default
+  amax = 4 m/s^2 that is 0.02 m per drone (0.04 m on a pair distance). GNSS white noise is drawn
+  once per step, so its effect on the loop depends on dt; at 0.015 m it is small next to the
+  other terms.
+- *GNSS error independence.* Per-drone errors are independent. For RTK-type errors, which are
+  largely common to nearby aircraft, this overstates differential error (conservative for
+  separation). For spoofing or jamming it is not conservative: a shared pull-off would be
+  correlated in a way that this model cannot produce.
+- *Turbulence.* Only the Dryden *intensities* are used. Each component is a first-order
+  Gauss-Markov process with a fixed correlation time (`wind_tau`, ASSUMPTION), not a Dryden
+  spectrum with altitude-dependent scale lengths.
+- *Candidate pairs.* Pair pruning (`dev_bound`) is a heuristic pad, not a proof. Check run in
+  review: all pairs versus pruned pairs on `sirb_text_100` for five stressed configurations
+  (6 seeds each, 2,953 truly violating pairs in total): 0 missed. Kept as a regression test
+  on a smaller case.
+- *Trials and seeds.* Trial t of a row uses the stream `[seed, tag, t]`, so trials inside a row
+  are independent draws. In `sweeps`, tag = index inside the sweep, so rows of one sweep are
+  independent but the same stream is reused by row 0 of every sweep; in `spacing`, every row
+  uses tag 0 (common random numbers across spacings, which sharpens comparisons between rows
+  but means rows are not independent of each other). Wilson intervals are per row at 95%; they
+  are not simultaneous over a table or a sweep. Rows of the scaling experiment use 6 to 20
+  trials and their `p_violation` is not an estimate of anything.
+- *Rejoin reference speed.* The reference for the GNSS-dropout `hold` / `rejoin` behaviours
+  blends back to the moving nominal path over a fixed 6 s. On `sirb_text_100` with 30% of
+  drones in dropout, the reference reached 23.4 m/s (6 seeds), against a 10 m/s horizontal
+  limit. The tracking loop follows it without saturation, so the `hold` / `rejoin` rows for
+  `gnss_loss` in `results/stress_contingency.json` are optimistic about how fast drones can
+  rejoin. `StressConfig.rejoin_vmax` (default `None`, which reproduces the stored behaviour)
+  lengthens the blend to cap the closing speed; `make stress` runs without it, so the shipped contingency rows carry this caveat.
+
 ## 6. Contingency behaviours (M6)
 continue, hold, descend, corridor (clearest of 8 horizontal directions, judged against others'
 nominal paths), rejoin (GNSS dropout), ballistic. They are expressed as modified references and flown

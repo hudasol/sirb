@@ -108,3 +108,92 @@ def test_round1_cli_validate_plan_check(tmp_path, capsys):
     out.write_text(json.dumps(b))
     assert cli.main(["check", str(out)]) == 1          # tamper -> non-zero, no traceback
     assert cli.main(["validate", str(tmp_path / "missing.json")]) == 1
+
+
+# ---- Round 2 (TII-style robotics researcher) -------------------------------------------------
+
+def _seg(coeffs, t0, t1):
+    from sirb.trajectory import Segment
+    return Segment(t0, t1, np.array(coeffs, float))
+
+
+def test_round2_acceleration_step_between_segments_is_flagged():
+    """Velocity-continuous but acceleration-discontinuous path (infinite jerk) used to pass the
+    jerk check, which only looks inside segments."""
+    from sirb.spec import DEFAULT_LIMITS
+    from sirb.trajectory import Fleet, Trajectory
+    from sirb.verify import verify
+
+    # seg 1: x = 0.5 t^2 (a = 1, v(1) = 1); seg 2: x = 0.5 + t (a = 0, v(0) = 1)
+    s1 = _seg([[0, 0, 20], [0, 0, 0], [0.5, 0, 0]], 0.0, 1.0)
+    s2 = _seg([[0.5, 0, 20], [1.0, 0, 0]], 1.0, 2.0)
+    rep = verify(Fleet([Trajectory([s1, s2])]), DEFAULT_LIMITS)
+    assert {v.kind for v in rep.violations} == {"accel_discontinuity"}
+    assert not rep.ok
+    # a smooth chain (a = 1 on both sides) is accepted
+    s2b = _seg([[0.5, 0, 20], [1.0, 0, 0], [0.5, 0, 0]], 1.0, 2.0)
+    assert verify(Fleet([Trajectory([s1, s2b])]), DEFAULT_LIMITS).ok
+
+
+def test_round2_planner_output_has_no_acceleration_steps():
+    from sirb.spec import DEFAULT_LIMITS
+    from sirb.verify import verify
+
+    show = _show(20)
+    fleet, _ = plan_baseline(show)
+    rep = verify(fleet, show["limits"])
+    assert rep.ok and "accel_discontinuity" not in rep.violation_counts
+    assert DEFAULT_LIMITS["jmax"] > 0
+
+
+def test_round2_rejoin_default_is_unrestricted_and_cap_is_opt_in():
+    from sirb.contingency import rejoin_reference
+    from sirb.disturbance import StressConfig
+
+    dt, K = 0.2, 600
+    t = np.arange(K) * dt
+    nom = np.stack([np.clip(10 * (t - 10), 0, 100), 0 * t, 0 * t + 50], axis=1)  # 100 m in 10 s
+    k0, k1 = int(10 / dt), int(20 / dt)
+
+    def peak(vmax):
+        cfg = StressConfig(dt=dt, rejoin_vmax=vmax)
+        R = nom.copy()
+        rejoin_reference(nom, R, k0, k1, cfg)
+        return float((np.linalg.norm(np.diff(R, axis=0), axis=1) / dt).max()), R
+
+    assert StressConfig().rejoin_vmax is None
+    p_default, _ = peak(None)
+    p_cap, R = peak(10.0)
+    assert p_default > 25.0                  # 100 m gap closed in 6 s: far above any airframe limit
+    assert p_cap <= 10.0 + 0.1
+    assert np.linalg.norm(R[-1] - nom[-1]) < 1e-9   # still rejoins the nominal path
+
+
+def test_round2_candidate_pair_pruning_never_hides_a_violation():
+    """dev_bound is a heuristic (6-sigma style) pad. Check it against all-pairs on stressed runs."""
+    import itertools
+
+    from sirb.disturbance import StressConfig
+    from sirb.stress import candidate_pairs, dev_bound, exact_pair_min, realize, sample_reference
+
+    show = _show(30)
+    fleet, _ = plan_baseline(show)
+    dt = 0.2
+    ref = sample_reference(fleet, dt)
+    n = ref.shape[1]
+    allp = np.array(list(itertools.combinations(range(n), 2)))
+    cfgs = [dict(gnss_deg_fraction=1.0, gnss_bias_sigma=2.0, w20=6.0),
+            dict(gnss_loss_fraction=0.4, behavior={"comms_loss": "continue", "battery_low": "descend",
+                                                   "gnss_loss": "rejoin", "motor_failure": "ballistic"})]
+    violating = 0
+    for kw in cfgs:
+        cfg = StressConfig(dt=dt).with_(**kw)
+        for seed in range(2):
+            X, R, *_ = realize(ref, cfg, [9, seed])
+            full, _ = exact_pair_min(X, allp)
+            truth = {tuple(p) for p in allp[full < 2.0]}
+            violating += len(truth)
+            pairs, klo, khi = candidate_pairs(R, 2.0 + dev_bound(cfg), dt=dt)
+            pm, _ = exact_pair_min(X, pairs, klo, khi)
+            assert truth <= {tuple(p) for p in pairs[pm < 2.0]}
+    assert violating > 0     # the test must actually exercise violations
