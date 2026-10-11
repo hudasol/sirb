@@ -125,7 +125,7 @@ Regulatory context, as read from GCAA CAR-UAS Issue 01 (issued 6 Feb 2018, appli
 | X7 thrust, drag, inertia | not published | ASSUMPTION |
 | Crazyflie 2.1 mass | 29 g | https://www.bitcraze.io/documentation/hardware/crazyflie_2_1/crazyflie_2_1-datasheet.pdf |
 
-Wind turbulence uses Dryden forms from MIL-HDBK-1797 as implemented in MathWorks documentation (https://www.mathworks.com/help/aeroblks/drydenwindturbulencemodelcontinuous.html): low-altitude sigma_w = 0.1 W20, scale lengths from altitude. These models were built for piloted aircraft; applying them to a 0.8 kg multirotor at 20 to 100 m is an **ASSUMPTION**.
+Wind turbulence uses Dryden forms from MIL-HDBK-1797 as implemented in MathWorks documentation (https://www.mathworks.com/help/aeroblks/drydenwindturbulencemodelcontinuous.html): low-altitude sigma_w = 0.1 W20, scale lengths from altitude (the implementation uses the intensities only and a fixed correlation time, see METHODS section 5). These models were built for piloted aircraft; applying them to a 0.8 kg multirotor at 20 to 100 m is an **ASSUMPTION**.
 
 ## 6. Consequences for Sirb's design
 

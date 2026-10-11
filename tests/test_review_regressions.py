@@ -197,3 +197,69 @@ def test_round2_candidate_pair_pruning_never_hides_a_violation():
             pm, _ = exact_pair_min(X, pairs, klo, khi)
             assert truth <= {tuple(p) for p in pairs[pm < 2.0]}
     assert violating > 0     # the test must actually exercise violations
+
+
+# ---- Round 3 (Al Ain University senior: docs-code consistency, claims vs evidence) -----------
+
+def test_round3_monte_carlo_is_independent_of_worker_count():
+    """README/METHODS say results are deterministic given the seed; the runner may use 2 workers."""
+    import sirb.stress as st
+    from sirb.disturbance import StressConfig
+
+    show = _show(10)
+    fleet, _ = plan_baseline(show)
+    ref = st.sample_reference(fleet, 0.5)
+    cfg = StressConfig(dt=0.5, w20=6.0, gnss_deg_fraction=0.5, gnss_bias_sigma=0.5)
+    a = st.monte_carlo(ref, cfg, 2.0, 6, 3, workers=1)
+    b = st.monte_carlo(ref, cfg, 2.0, 6, 3, workers=2)
+    for k in ("p_violation", "p_violation_ci95", "min_separation_quantiles",
+              "mean_max_tracking_error_m", "mean_violating_pairs"):
+        assert a[k] == b[k], k
+
+
+def test_round3_required_value_needs_all_larger_rows_to_qualify():
+    from sirb.stress import required_value, wilson
+
+    def row(v, k, n=300):
+        return {"formation_spacing_m": v, "p_violation_ci95": list(wilson(k, n))}
+
+    rows = [row(3.0, 120), row(4.0, 30), row(5.0, 0), row(6.0, 4), row(8.0, 0)]
+    # 5.0 is clean, but 6.0 (4/300) has an upper bound above 2%, so only 8.0 qualifies at 2%
+    assert required_value(rows, 0.02)["value"] == 8.0
+    assert required_value(rows, 0.05)["value"] == 5.0
+    # below the best attainable bound for N = 300 nothing can qualify
+    assert required_value(rows, 0.001)["value"] is None
+
+
+def test_round3_docs_list_the_shapes_and_letters_the_code_supports():
+    import re
+    from pathlib import Path
+
+    from sirb.shapes import SUPPORTED_LETTERS
+    from sirb.spec import SHAPE_TYPES
+
+    doc = Path("docs/SHOW_SCHEMA.md").read_text(encoding="utf-8")
+    line = next(ln for ln in doc.splitlines() if ln.startswith("Shape types:"))
+    documented = set(re.findall(r"`([a-z_]+)`", line.split("Common keys")[0]))
+    assert SHAPE_TYPES <= documented
+    assert set(SUPPORTED_LETTERS) == set(re.findall(r"letters ([A-Z ]+)\)", line)[0].replace(" ", ""))
+
+
+def test_round3_methods_quotes_current_stress_defaults():
+    from pathlib import Path
+
+    from sirb.disturbance import StressConfig
+
+    cfg = StressConfig()
+    doc = Path("docs/METHODS.md").read_text(encoding="utf-8")
+    for needle in (f"omega_n = {cfg.omega_n:g} rad/s", f"zeta = {cfg.zeta:g}",
+                   f"drag_gain = {cfg.drag_gain:g}", f"{cfg.gnss_white_sigma:g} m per axis",
+                   f"{cfg.gnss_dead_reckoning_rate:g} m/sqrt(s)",
+                   f"decay {cfg.air_drag_per_s:g} /s"):
+        assert needle in doc, needle
+    assert "2.0 m centre-to-centre separation threshold is an **ASSUMPTION**" in doc
+
+
+def test_round3_spec_labels_separation_threshold_as_assumption():
+    from sirb.spec import DEFAULT_LIMITS
+    assert DEFAULT_LIMITS["sources"]["min_separation_m"] == "assumption"

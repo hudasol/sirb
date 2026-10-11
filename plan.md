@@ -28,3 +28,10 @@ Simulation and planning only, not flight-certified, no regulatory claim. No flig
 - numpy and scipy only for the core; cvxpy and OR-tools deferred. SCP is listed in `NEXT_STEPS.md` rather than built unless time remains; the stronger method is prioritized planning, chosen for interpretability.
 - Pre-flight validator added after research showed the formally investigated incidents were configuration and wind failures.
 - Static viewer with precomputed artifacts; Vercel first, Render as fallback.
+
+## Status against the definitions of done (reconciled in review round 3)
+
+- Met: M0 to M4, M7 (viewer exists; **"500+ drones smooth" was never measured**: no frame-rate measurement is in the repo), M8.
+- Code present, experiments pending and milestone tags not yet created: M5, M6, M6b. M5's "separation required for a stated risk target" exists only as the post-processing helper `sirb.stress.required_value`; no reported value yet. "Scaling from tens to thousands of drones" is the `scaling` experiment of `scripts/run_stress.py`.
+- Not started: M9 (live URL, CI badge), Final (REPORT, summary, video script, NEXT_STEPS).
+- Overall definition of done: "one-command reproduction of every reported number" holds for numbers, not for wall-clock timing fields; "docs consistent with the code" is checked for the items in `tests/test_review_regressions.py` only.
