@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en" dir="ltr" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sirb viewer</title>
+<meta name="description" content="Static viewer for Sirb: verified drone-show plans next to stressed simulation scenarios. Simulation only.">
+<meta name="color-scheme" content="dark light">
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="style.css">
+<script type="importmap">
+{ "imports": { "three": "./vendor/three.module.min.js", "three/addons/": "./vendor/addons/" } }
+</script>
+</head>
+<body>
+<a class="skip" href="#viewer" data-i18n="skip">Skip to the viewer</a>
+
+<header class="top">
+  <div class="brand">
+    <h1 data-i18n="app_title">Sirb viewer</h1>
+    <p class="tagline" data-i18n="tagline"></p>
+  </div>
+  <div class="top-controls">
+    <label class="field">
+      <span data-i18n="show">Show</span>
+      <select id="showSelect" aria-describedby="showMeta"></select>
+    </label>
+    <span id="showMeta" class="meta"></span>
+    <button id="langBtn" type="button" class="btn" lang="ar"></button>
+    <button id="themeBtn" type="button" class="btn" data-i18n-aria="theme_switch_label"></button>
+    <a class="btn" href="methods.html" data-i18n="methods">Methods</a>
+  </div>
+</header>
+
+<aside id="banner" class="banner" role="note" aria-labelledby="bannerTitle">
+  <strong id="bannerTitle" data-i18n="banner_title">Simulation only</strong>
+  <p id="bannerText"></p>
+  <p id="bannerOrig" class="banner-orig" lang="en" dir="ltr" hidden></p>
+</aside>
+
+<div id="globalError" class="error" role="alert" hidden></div>
+
+<main id="viewer">
+  <section class="views" aria-label="3D views">
+    <article class="view" id="viewA">
+      <header class="view-head">
+        <h2 data-i18n="view_nominal">Nominal plan</h2>
+        <a class="badge badge-ok" href="methods.html#exact-verifier" data-i18n="view_nominal_badge">Exact verifier</a>
+      </header>
+      <p class="note scen-ph" data-i18n="nominal_label"></p>
+      <div class="canvas-wrap">
+        <canvas tabindex="0" role="img" data-i18n-aria="canvas_label_a"></canvas>
+        <div class="overlay" aria-live="polite"></div>
+      </div>
+      <dl class="readouts" id="roA"></dl>
+    </article>
+
+    <article class="view" id="viewB">
+      <header class="view-head">
+        <h2 data-i18n="view_stress">Stressed scenario</h2>
+        <a class="badge badge-warn" href="methods.html#stress-model" data-i18n="view_stress_badge">Simulation, ASSUMED models</a>
+      </header>
+      <label class="field scen">
+        <span data-i18n="scenario">Scenario</span>
+        <select id="scenSelect"></select>
+      </label>
+      <div class="canvas-wrap">
+        <canvas tabindex="0" role="img" data-i18n-aria="canvas_label_b"></canvas>
+        <div class="overlay" aria-live="polite"></div>
+      </div>
+      <dl class="readouts" id="roB"></dl>
+      <p class="note note-warn" data-i18n="stress_label"></p>
+    </article>
+  </section>
+
+  <section class="transport" aria-label="Playback">
+    <div class="tr-row">
+      <button id="playBtn" type="button" class="btn btn-primary"></button>
+      <button id="backBtn" type="button" class="btn" data-i18n-aria="step_back" aria-label="Back one frame">&#9664;&#9664;</button>
+      <button id="fwdBtn" type="button" class="btn" data-i18n-aria="step_fwd" aria-label="Forward one frame">&#9654;&#9654;</button>
+      <button id="restartBtn" type="button" class="btn" data-i18n="restart">Restart</button>
+      <div class="seg" role="group" data-i18n-aria="speed" aria-label="Speed" id="speedGroup"></div>
+      <output id="timeOut" class="time" aria-live="off"></output>
+    </div>
+    <input id="scrub" type="range" min="0" max="100" step="1" value="0" data-i18n-aria="timeline" aria-label="Timeline">
+    <div class="tr-row">
+      <div class="seg" role="group" data-i18n-aria="colour_mode" aria-label="Colour mode" id="modeGroup">
+        <button type="button" class="btn seg-btn" data-mode="height" aria-pressed="true" data-i18n="mode_height">By height</button>
+        <button type="button" class="btn seg-btn" data-mode="sep" aria-pressed="false" data-i18n="mode_sep">By separation</button>
+      </div>
+      <ul class="legend" id="legend"></ul>
+    </div>
+    <p class="note" id="keysHint"></p>
+  </section>
+
+  <section class="panels">
+    <article class="panel" id="certPanel" aria-labelledby="certH">
+      <h2 id="certH" data-i18n="cert_title">Verification certificate</h2>
+      <div id="certBody"></div>
+    </article>
+    <article class="panel" id="scenPanel" aria-labelledby="scenH">
+      <h2 id="scenH" data-i18n="scen_title">Scenario details</h2>
+      <div id="scenBody"></div>
+    </article>
+  </section>
+</main>
+
+<footer class="foot"><span id="footNote"></span></footer>
+<script type="module" src="app.js"></script>
+</body>
+</html>
