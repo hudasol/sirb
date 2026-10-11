@@ -263,3 +263,87 @@ def test_round3_methods_quotes_current_stress_defaults():
 def test_round3_spec_labels_separation_threshold_as_assumption():
     from sirb.spec import DEFAULT_LIMITS
     assert DEFAULT_LIMITS["sources"]["min_separation_m"] == "assumption"
+
+
+# ---- Round 4 (aviation safety assessor: wording, overclaiming, misreadable output) -----------
+
+def test_round4_certificate_is_incomplete_when_a_limit_family_is_missing():
+    import copy
+
+    from sirb.certificate import make_certificate, verify_certificate
+    from sirb.verify import verify
+
+    show = _show(12)
+    fleet, _ = plan_baseline(show)
+    lim = copy.deepcopy(show["limits"])
+    del lim["vmax_h"]
+    lim["jmax"] = None
+    rep = verify(fleet, lim)
+    assert rep.ok                      # nothing was checked against the missing limits...
+    cert = make_certificate(rep, fleet, lim)
+    assert cert["verdict"] == "INCOMPLETE"   # ...so the certificate must not say PASS
+    assert cert["unchecked_limits"] == ["vmax_h", "jmax"]
+    assert verify_certificate(cert, fleet)
+    cert["verdict"] = "PASS"
+    assert not verify_certificate(cert, fleet)
+    full = make_certificate(verify(fleet, show["limits"]), fleet, show["limits"])
+    assert full["verdict"] == "PASS" and full["unchecked_limits"] == []
+
+
+def test_round4_verdict_failure_still_fail_not_incomplete():
+    from sirb.certificate import verdict_for
+    assert verdict_for(False, {}) == "FAIL"
+
+
+def _i18n_blocks():
+    from pathlib import Path
+    s = Path("viewer/i18n.js").read_text(encoding="utf-8")
+    return s[s.index("  en: {"):s.index("  ar: {")], s[s.index("  ar: {"):s.index("export const CERT_AR")]
+
+
+def test_round4_every_english_ui_string_has_an_arabic_counterpart():
+    import re
+    en, ar = _i18n_blocks()
+    ke = set(re.findall(r"^    (\w+):", en, re.M))
+    ka = set(re.findall(r"^    (\w+):", ar, re.M))
+    assert ke == ka, (ke - ka, ka - ke)
+    assert {"verdict_note", "scen_scope"} <= ke
+
+
+def test_round4_no_ui_line_claims_safety_or_approval_without_negation():
+    """Every user-facing line that uses a loaded word must also negate it in the same line."""
+    import re
+    from pathlib import Path
+    loaded = re.compile(r"\b(safe|safely|approved|cleared|clearance|certified)\b", re.I)
+    negation = re.compile(r"\b(not|no|nor|never|without|need|needs)\b|n't", re.I)
+    offenders = []
+    for f in ("viewer/i18n.js", "viewer/index.html", "viewer/methods.html", "viewer/app.js"):
+        for i, line in enumerate(Path(f).read_text(encoding="utf-8").splitlines(), 1):
+            if loaded.search(line) and not negation.search(line):
+                offenders.append((f, i, line.strip()[:100]))
+    assert not offenders, offenders
+
+
+def test_round4_viewer_does_not_call_a_same_code_rerun_independent():
+    import json
+    from pathlib import Path
+    for f in Path("viewer").rglob("*"):
+        if f.suffix in {".js", ".html", ".json"} and "vendor" not in f.parts:
+            text = f.read_text(encoding="utf-8")
+            assert "independent_recheck" not in text, f
+            assert "Independent recheck" not in text, f
+    idx = json.loads(Path("viewer/data/index.json").read_text())
+    assert all(isinstance(s["recomputation_ok"], bool) for s in idx["shows"])
+
+
+def test_round4_cli_and_export_say_not_an_approval(tmp_path, capsys):
+    from sirb.spec import save_show
+    sp, out = tmp_path / "s.json", tmp_path / "e.json"
+    save_show(_show(), sp)
+    cli.main(["plan", str(sp), "--out", str(out)])
+    text = capsys.readouterr().out
+    assert "declared in the show file only" in text and "not an approval" in text
+    b = json.loads(out.read_text())
+    assert b["label"] == "simulation-validated only"
+    assert "not flight-certified" in b["certificate"]["statement"]
+    assert "Regulatory" in " ".join(b["certificate"]["not_guaranteed"])

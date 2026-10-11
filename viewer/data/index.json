@@ -28,7 +28,7 @@
    "fleet_sha256": "4c4766d0a25f65842efd3a5883e7f45a8595ee5ae361546fc78ce60b39a0557a",
    "verdict": "PASS",
    "min_separation_m": 2.188612,
-   "independent_recheck": true,
+   "recomputation_ok": true,
    "certificate": "sirb_text_100/certificate.json",
    "scenarios": [
     {
@@ -162,7 +162,7 @@
    "fleet_sha256": "59b00af34fb0baf932d2411b840ffa332f9730f6cbc006693c2c2d2486476717",
    "verdict": "PASS",
    "min_separation_m": 2.195873,
-   "independent_recheck": true,
+   "recomputation_ok": true,
    "certificate": "torus_300/certificate.json",
    "scenarios": [
     {
@@ -331,7 +331,7 @@
    "fleet_sha256": "a53142d7bb474e3d9e99b1f1bafc00c9daa2ac54f7fd9dd4e26c4161fd304ba3",
    "verdict": "PASS",
    "min_separation_m": 2.448015,
-   "independent_recheck": true,
+   "recomputation_ok": true,
    "certificate": "wall_500/certificate.json",
    "scenarios": [
     {

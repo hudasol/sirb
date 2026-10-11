@@ -17,6 +17,8 @@ Built and committed: show spec and shapes (M1), assignment (M2), planners (M3), 
 - Stress-test probabilities are properties of the simulated model with assumed parameters (`docs/METHODS.md`, sections 5 and 9). They are not real-world risk. Several sweeps go beyond the vehicle's published wind limit and the model has no actuator limit; read the caveats in METHODS section 5 before quoting any row.
 - Limited-search novelty claim: I found no open-source drone-show tool that publishes separation margins under modelled GNSS error or ships a verifier independent of the planner. That search was limited (`docs/RESEARCH.md` section 1.4).
 
+Terminology: the "certificate" Sirb writes is a machine-readable verification record of what the exact verifier computed. It is not an airworthiness certificate, an approval or a safety clearance; the viewer calls it a verification record. A verdict is `PASS` only if nothing failed and every limit family was supplied (otherwise `INCOMPLETE`).
+
 ## Quickstart
 
 ```

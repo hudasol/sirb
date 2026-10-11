@@ -81,7 +81,7 @@ def main() -> None:
         fleet, _ = plan_baseline(show)
         rep = verify(fleet, show["limits"])
         cert = make_certificate(rep, fleet, show["limits"])
-        independent_ok = bool(verify_certificate(cert, fleet))
+        recomputation_ok = bool(verify_certificate(cert, fleet))
         ref = sample_reference(fleet, DT)
         K, n, _ = ref.shape
         d = OUT / name
@@ -105,7 +105,7 @@ def main() -> None:
             "duration_s": float(fleet.t_end), "d_min_m": show["limits"]["min_separation_m"],
             "geofence": show["limits"]["geofence"], "crowd": show["limits"]["crowd"],
             "fleet_sha256": fleet.content_hash(), "verdict": cert["verdict"],
-            "min_separation_m": rep.min_separation, "independent_recheck": independent_ok,
+            "min_separation_m": rep.min_separation, "recomputation_ok": recomputation_ok,
             "certificate": f"{name}/certificate.json", "scenarios": sc})
         print(name, n, K, cert["verdict"], round(rep.min_separation, 3), flush=True)
     (OUT / "index.json").write_text(json.dumps(round_floats(index), indent=1))

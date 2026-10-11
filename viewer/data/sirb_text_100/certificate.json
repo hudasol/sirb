@@ -75,6 +75,7 @@
   "violations_truncated": false
  },
  "verdict": "PASS",
+ "unchecked_limits": [],
  "method": "Exact verification of piecewise-polynomial trajectories. Pairwise separation: for each pair of drones, time is split at all segment breakpoints (a drone is held at its start position before its first segment and at its final position after its last); on each sub-interval the squared centre distance is a scalar polynomial whose minimum is at an endpoint or a real root of its derivative, found by companion-matrix eigenvalues, Newton-polished and evaluated directly. Exact axis-aligned segment bounding boxes (from derivative roots) discard pairs that provably cannot come within the search radius. Speed, acceleration, jerk, altitude, geofence and crowd limits are checked via the extrema of the corresponding scalar polynomials (derivative roots) per segment. Structural checks cover time contiguity, position, velocity and acceleration continuity and finite coefficients. No time sampling is used.",
  "guarantees": [
   "Under the declared model (polynomial paths exactly as written, drones as points whose required separation is min_separation_m centre to centre) the reported minimum separation over all time is exact up to floating-point and root-finding tolerance, for every pair whose minimum is below the search radius.",

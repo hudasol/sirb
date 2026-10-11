@@ -33,7 +33,7 @@
       <li><a href="#declared-threshold"><span class="en">Declared threshold d_min</span><span class="ar">العتبة المعلنة d_min</span></a></li>
       <li><a href="#dynamics"><span class="en">Dynamic limits, geofence and crowd margins</span><span class="ar">الحدود الديناميكية وهوامش السياج والجمهور</span></a></li>
       <li><a href="#content-hash"><span class="en">Fleet SHA-256 (content hash)</span><span class="ar">بصمة SHA-256 للأسطول</span></a></li>
-      <li><a href="#independent-recheck"><span class="en">Independent recheck</span><span class="ar">إعادة التحقق المستقلة</span></a></li>
+      <li><a href="#recomputation-check"><span class="en">Recomputation check</span><span class="ar">فحص إعادة الحساب</span></a></li>
       <li><a href="#guarantees"><span class="en">Guarantees and non-guarantees</span><span class="ar">الضمانات وما لا يُضمن</span></a></li>
       <li><a href="#sampled-nn"><span class="en">Nearest-neighbour readouts in the viewer</span><span class="ar">قراءات أقرب جار في العارض</span></a></li>
       <li><a href="#stress-model"><span class="en">Stressed scenarios (disturbance model)</span><span class="ar">سيناريوهات الإجهاد (نموذج الاضطراب)</span></a></li>
@@ -56,7 +56,7 @@
       <p>The verifier shares only the trajectory data classes with the planner, so it is an independent check of the planner's output. Accuracy is about 1e-9 m for well-scaled data (<code>docs/VERIFIER.md</code>), but monomial-basis root finding degrades for badly scaled polynomials, and this is not interval-arithmetic proof.</p>
       <p><strong>Search radius.</strong> By default 4 x d_min. Pairs whose minimum is below the radius are reported exactly. If no pair is, the reported value is the radius and is flagged as a lower bound (<code>min_separation_is_lower_bound</code>). The radius is clamped to at least 1.01 d_min + 1e-3 so violations cannot hide.</p>
       <p><strong>Verdict.</strong> PASS means no structural, dynamic, geometric or separation violation beyond the tolerance policy: a limit is violated only if exceeded by more than <code>tol * (1 + |limit|)</code> with tol = 1e-6. Separation is violated if the minimum is below <code>d_min - tol*(1 + d_min)</code>.</p>
-      <p><strong>Margin over d_min</strong> in the certificate panel is the exact minimum separation minus d_min.</p>
+      <p><strong>Margin over d_min</strong> in the verification record panel is the exact minimum separation minus d_min.</p>
     </div>
   </section>
 
@@ -96,11 +96,11 @@
     </div>
   </section>
 
-  <section id="independent-recheck">
-    <h2><span class="en">Independent recheck</span><span class="ar">إعادة التحقق المستقلة</span></h2>
+  <section id="recomputation-check">
+    <h2><span class="en">Recomputation check (same code)</span><span class="ar">فحص إعادة الحساب (الشيفرة نفسها)</span></h2>
     <p class="ar ar-sum">عند بناء بيانات العارض استُدعيت الدالة verify_certificate: تتحقق من مطابقة البصمة ثم تعيد حساب التحقق كاملًا وتقارن الحكم والأرقام. العلم المعروض هو نتيجة ذلك الفحص وقت البناء، لا فحص يجري في المتصفح.</p>
     <div class="en en-detail">
-      <p><strong>Summary.</strong> <code>independent_recheck</code> is the boolean returned by <code>verify_certificate(cert, fleet)</code> in <code>scripts/build_viewer_data.py</code> when the data bundle was generated. That function checks the tool name and certificate version, the fleet hash and drone count, then re-runs <code>verify</code> with the recorded search radius and tolerance and compares the verdict, the numeric results (relative tolerance 1e-9), the violation counts and the lower-bound flag.</p>
+      <p><strong>Summary.</strong> <code>recomputation_ok</code> is the boolean returned by <code>verify_certificate(cert, fleet)</code> in <code>scripts/build_viewer_data.py</code> when the data bundle was generated. That function checks the tool name and certificate version, the fleet hash and drone count, then re-runs <code>verify</code> with the recorded search radius and tolerance and compares the verdict, the numeric results (relative tolerance 1e-9), the violation counts and the lower-bound flag.</p>
       <p>It is a recomputation by the same verifier code on the same fleet, so it detects tampering and non-reproducibility, not a bug shared by the verifier itself. The browser does not re-run it.</p>
     </div>
   </section>
@@ -109,7 +109,7 @@
     <h2><span class="en">Guarantees and non-guarantees</span><span class="ar">الضمانات وما لا يُضمن</span></h2>
     <p class="ar ar-sum">الضمانات محصورة في النموذج المعلن: مسارات متعددة الحدود كما كُتبت وطائرات كنقاط. لا تشمل الضمانات تتبّع الطائرات الحقيقية ولا الرياح ولا أخطاء GNSS ولا الأعطال ولا أي خاصية تنظيمية.</p>
     <div class="en en-detail">
-      <p><strong>Summary.</strong> The lists in the certificate panel are quoted from <code>sirb/certificate.py</code> (<code>GUARANTEES</code>, <code>NOT_GUARANTEED</code>) and stored in each <code>certificate.json</code>. The guarantees hold only under the declared model. The non-guarantees include real aircraft tracking, wind, GNSS error, aerodynamic interaction, vehicle size and battery behaviour, failures and contingencies, and any regulatory, airworthiness or operational approval property.</p>
+      <p><strong>Summary.</strong> The lists in the verification record panel are quoted from <code>sirb/certificate.py</code> (<code>GUARANTEES</code>, <code>NOT_GUARANTEED</code>) and stored in each <code>certificate.json</code>. The guarantees hold only under the declared model. The non-guarantees include real aircraft tracking, wind, GNSS error, aerodynamic interaction, vehicle size and battery behaviour, failures and contingencies, and any regulatory, airworthiness or operational approval property.</p>
       <p>The certificate statement is: "simulation-validated only; not flight-certified; no regulatory compliance claim".</p>
     </div>
   </section>
@@ -200,6 +200,7 @@
         <li>GNSS error is a simple bias plus noise; jamming and spoofing are not simulated in these scenarios.</li>
         <li>Failure behaviour is simplified; battery, link and failsafe logic of a real fleet differ by vendor.</li>
         <li>Limits such as d_min, geofence and accelerations are assumptions or cited guidance, not approved operating conditions.</li>
+        <li>Stressed scenarios evaluate distances between drones only. Geofence containment, distance to the crowd, ground impact of falling drones, battery endurance and launch/landing are not evaluated under disturbance, and the "corridor" behaviour can leave the geofence.</li>
         <li>No regulatory property is claimed or implied. A real show needs an operator safety case and approvals from the relevant UAE aviation authorities.</li>
       </ul>
     </div>

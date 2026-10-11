@@ -135,4 +135,17 @@ set was not verified as current**, and nothing here states that a show satisfies
 6. Battery variance is represented only as discrete low-battery events.
 7. Radio links, show-control software, human factors and procedures are out of scope.
 8. Monte-Carlo probabilities are properties of the simulated model; they are not real-world risk.
+9. *Scope of the stress metric.* Stress runs evaluate distances between drones only. Geofence
+   containment, distance to the crowd line, ground impact of a falling drone, battery endurance
+   and launch/landing are not evaluated under disturbance. The `corridor` behaviour picks a
+   direction using other drones' nominal paths only and can leave the geofence.
+10. *Abort and termination logic.* Fleet-level abort rules (hold or land when a count of aircraft
+   lose GNSS or link, flight termination) mentioned in RESEARCH.md section 2 are not
+   implemented or tested.
+11. *Margins are thin next to disturbance.* The nominal plans pass with a minimum separation of
+   2.19 to 2.45 m against the assumed 2.0 m threshold (`results/planners.json`), while the
+   `wind_gnss` scenario on `sirb_text_100` reaches 2.08 m of tracking error and a sampled
+   nearest-neighbour minimum of 1.48 m (`viewer/data/index.json`). A PASS verdict on the plan
+   and a threshold-crossing stressed scenario for the same show are both true statements about
+   different models.
 The verifier's guarantee concerns the plan as written, not the aircraft's actual motion.

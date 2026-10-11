@@ -181,3 +181,63 @@ Not fixed (and why)
   the Final milestone and the stress results are still being generated.
 - Milestone tags v0.5.0 / v0.6.0 / v0.6.1 not created: they should mark finished experiments.
 - No frame-rate measurement for the viewer: needs a real GPU/browser; listed as unmet in plan.md.
+
+## Round 4: aviation safety assessor (overclaiming, wording of guarantees, missing failure modes, misreadable output)
+
+Checked: every user-facing string (viewer EN and AR strings, `index.html`, `methods.html`,
+`app.js` templates, CLI output, certificate text, export labels, README) for words that could be
+read as approval, clearance or independent validation; the UAE-rule statements against what
+RESEARCH.md marks UNVERIFIED; which failure modes the stress metric and the docs cover; what
+`PASS` actually means when inputs are incomplete.
+
+Findings
+- H1. The viewer labelled a same-code re-run "Independent recheck" (`independent_recheck` in
+  the data, an `#independent-recheck` anchor), while its own methods page said "a recomputation
+  by the same verifier code". The label contradicted the explanation and claimed independence
+  that does not exist.
+- H2. A certificate returned `PASS` and listed "Dynamic limits (speed, ... geofence, crowd) hold"
+  even when those limits were missing from the limits dict: `verify()` silently skips absent
+  limits (only `min_separation_m` is required). A caller could receive a green PASS for
+  checks that never ran.
+- H3. "Certificate" and a green tick beside "PASS" read as an official certification. The
+  panel title, the tick glyph, the page `<title>`-level description ("verified drone-show plans"),
+  the canvas label ("verified drone formation") and the CLI line `verdict: PASS` all lacked the
+  qualifier "against the limits declared in the show file, several of which are assumptions".
+- M4. Missing failure modes were undocumented or only implied: the stress metric measures
+  inter-drone distance only (no geofence, crowd distance or ground impact under disturbance; the
+  corridor behaviour can leave the geofence); no fleet-level abort or termination logic; the
+  demo plans pass with margins of 0.19 to 0.45 m over an assumed threshold while the wind+GNSS
+  scenario of the same show goes below it (1.48 m sampled), which a reader of a green PASS
+  next to it could miss.
+- M5. The legend's "Green: otherwise" invites reading green as safe.
+- L6. RESEARCH.md quoted "1,000 drones for a GCAA-hosted ICAO symposium dinner" with no source.
+- UAE rules: checked. The only UAE regulatory content is RESEARCH.md section 4, which is
+  marked UNVERIFIED (CAR-UAS Issue 01 possibly not current; Dubai and Abu Dhabi primary pages
+  and current no-fly maps not verified; no swarm provisions). Everywhere else the text says only
+  that approvals are required and the UAE rule set was not verified. The 50 m crowd buffer is
+  cited to UK CAP 722E and Hong Kong AC-010, not to UAE rules, and METHODS now says so.
+
+Fixed
+- H1: renamed to "Recomputation check (same verifier code, re-run)" in EN and AR, data key
+  `recomputation_ok`, anchor `#recomputation-check`; VIEWER.md updated; test fails if the old name
+  reappears anywhere in `viewer/`.
+- H2: verdict is `PASS` only if nothing failed and every limit family was supplied; otherwise
+  `INCOMPLETE` with an `unchecked_limits` list, enforced again by `verify_certificate`.
+  Regression test builds exactly the silent-skip case. Committed viewer certificates regenerated
+  (they gain `"unchecked_limits": []`, nothing else changes).
+- H3, M5: panel is "Verification record (not an approval or regulatory certificate)" with a
+  visible note under the verdict ("means only that the paths as written meet the limits declared
+  in the show file, several of which are assumptions ..."); no tick on PASS; qualified canvas,
+  description and legend strings; CLI prints "against the limits declared in the show file only";
+  README and VERIFIER.md define "certificate". A test requires every UI line containing
+  safe/approved/cleared/certified to negate it, and EN/AR key parity.
+- M4: scope sentence in the scenario panel (EN and AR) and METHODS section 9 items 9 to 11.
+- L6: flagged UNVERIFIED in RESEARCH.md.
+
+Not fixed (and why)
+- The code still says `certificate` (module, file name, JSON key). Renaming is an API break across
+  scripts, tests and stored data; the term is defined wherever it is shown to a reader.
+- No fleet-level abort logic, geofence/crowd checks under disturbance, launch/landing stage or
+  ground-impact model. These are new models, not wording fixes; listed as limits.
+- `PreflightReport.ok` is true when no FAIL finding exists. The report always carries a
+  `NOT_CHECKED` INFO finding naming what was not checked; renaming `ok` would break callers.
