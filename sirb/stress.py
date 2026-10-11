@@ -215,6 +215,27 @@ def wilson(k: int, n: int, z: float = 1.96) -> tuple[float, float]:
     return max(0.0, c - h), min(1.0, c + h)
 
 
+def required_value(rows: list[dict], target: float, key: str = "formation_spacing_m") -> dict:
+    """Smallest value of ``key`` whose Monte-Carlo violation risk is demonstrably <= ``target``.
+
+    Rule (conservative): value v qualifies when the upper 95% Wilson bound of ``p_violation`` is
+    at most ``target`` for v *and for every larger value in the table*, so one lucky row does
+    not set the answer. Returns ``{"value": v or None, "target": target, "rows_checked": ...}``.
+    The answer holds only for the simulated scenario and model, and only resolves targets above
+    the best attainable bound for the trial count (with zero violations in N trials the upper
+    bound is 3.84 / (N + 3.84)); a smaller target returns ``None`` however good the plan is.
+    """
+    ordered = sorted(rows, key=lambda r: r[key])
+    ok_from = None
+    for r in reversed(ordered):
+        if r["p_violation_ci95"][1] <= target:
+            ok_from = r[key]
+        else:
+            break
+    return {"value": ok_from, "target": target, "key": key,
+            "rows_checked": [(r[key], r["p_violation_ci95"][1]) for r in ordered]}
+
+
 _WORK: dict = {}
 
 

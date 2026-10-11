@@ -22,9 +22,13 @@ synchronous straight-line motion this tends to avoid crossings; it is not a proo
 - *waves*: closed-form pairwise constraints to schedule departure waves.
 - *prioritized*: per-drone routing with vertical/sideways lanes and delays, sampled at dt = 0.05 s with
   a Lipschitz safety margin dt/2 (vpeak_i + vpeak_j) plus fine refinement; 60 s time budget.
-Measured limits (documented honestly in `results/planners.json`): on the demo shows the Hungarian +
-synchronous baseline already verifies; the stronger planners help only on crossing assignments and
-have limited capacity (they fail on 200+ drone pinned cases). Planners never import the verifier.
+Measured limits (`results/planners.json`): on the four demo shows the Hungarian + synchronous
+baseline already verifies, and the wave and prioritized planners reproduce its completion time
+and minimum separation. On the deliberately crossed `pinned15` assignment (15% of drones swapped
+to random targets) **neither stronger planner produced a plan on any of the four shows** (wave
+scheduling stuck at the first unschedulable drone; prioritized exhausted its 30 s budget). The
+benchmark therefore shows no case in which the stronger planners rescue a failing baseline.
+Planners never import the verifier (checked by import inspection in review round 5).
 
 ## 4. Independent verifier (M4) - what is *guaranteed*
 Relative position of two drones is a vector polynomial per segment overlap, so |d|^2 is a scalar
@@ -114,9 +118,10 @@ It checks software consistency of declared inputs only; it cannot know whether a
 
 ## 8. Vehicle and limit parameters
 Defaults in `sirb/spec.py` are cited to retrieved datasheets or labeled assumptions in the show
-spec (`limits` sources). The 2.0 m separation threshold and the 50 m crowd buffer follow cited
-published guidance listed in RESEARCH.md; **the UAE rule set was not verified as current**, and
-nothing here states that a show satisfies it.
+spec (`limits` sources). The 50 m crowd buffer follows published guidance listed in RESEARCH.md (UK CAP 722E, Hong
+Kong AC-010). The 2.0 m centre-to-centre separation threshold is an **ASSUMPTION** with no cited
+source (it is a declared verification threshold, labeled as such in `sirb/spec.py`). **The UAE rule
+set was not verified as current**, and nothing here states that a show satisfies it.
 
 ## 9. Sim-to-real gap (read this before using any number)
 1. **No real flight data was used.** Every stressed result depends on assumed disturbance models.

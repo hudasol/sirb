@@ -126,3 +126,58 @@ Not fixed (and why)
   in principle serialise to the same byte stream. Constructing such a pair needs coefficient
   bytes that reproduce a segment header; not exploitable by accident, and changing the hash
   invalidates every stored hash. A length-prefixed encoding is a v2 item.
+
+## Round 3: Al Ain University senior (clarity, reproducibility, docs-code consistency, claims versus evidence)
+
+Checked: every statement in README, plan, ARCHITECTURE, METHODS, VERIFIER, VIEWER, SHOW_SCHEMA and
+DATA_SOURCES against the code or `results/*.json`; what a reader following the README would
+actually be able to run; whether "reproducible" survives timing fields and Windows.
+
+Findings
+- H1. METHODS section 8 said the 2.0 m separation threshold follows "cited published guidance".
+  It does not: RESEARCH.md cites a 50 m crowd buffer (CAP 722E, AC-010) and no source for 2.0 m,
+  and `sirb/spec.py` itself labels it ASSUMPTION. The sentence gave an assumed number borrowed
+  authority.
+- H2. METHODS section 3 said the stronger planners "help only on crossing assignments" and "fail
+  on 200+ drone pinned cases". `results/planners.json` shows both fail on *all four* shows
+  including the 100-drone one, and shows no case in which either rescues a failing baseline. The
+  benchmark gives no evidence that they add capability, and the text claimed otherwise.
+- H3. README was the Phase 1 text: "Nothing below the research layer is implemented", a
+  "(planned)" method list, no commands. It also called the output a "collision-free" plan and
+  an "independently verified" certificate, which can be read as third-party validation.
+- M4. ARCHITECTURE described things that do not exist or work differently: geofence polygons,
+  step/ramp GNSS spoofing, battery capacity variance, a `docs/REPORT.md` with a consistency test,
+  "separation measured with the same exact method as the verifier" (the stress code uses an
+  exact minimum over piecewise-linear interpolation and never imports the verifier), a
+  bounding-sphere prefilter (boxes are built), a browser smoke test and a "reproduction check" in CI
+  (CI only diffs `index.json`), a `required nominal separation` function (none existed), a
+  `waves.py` planner missing from the table.
+- M5. plan.md's "500+ drones smooth" was never measured; nothing in the repo supports it.
+- M6. "Reproducible" is true for numbers, false for the `*_runtime_s`, `wall_s` and `*_cpu_s`
+  fields stored next to them; this was not said anywhere, nor that last-bit float differences are
+  possible across BLAS builds.
+- L7. The contingency table calls the GNSS-dropout behaviour `hold`, but the code runs the
+  rejoin blend for it; METHODS did not say so (now covered in the round 2 note on rejoin).
+- L8. RESEARCH.md promised Dryden scale lengths; the code uses intensities and a fixed
+  correlation time.
+
+Fixed
+- H1, H2, M4, L8: corrected in METHODS, ARCHITECTURE, RESEARCH; new tests assert the 2.0 m
+  provenance sentence and the spec label, and that METHODS quotes the current stress defaults.
+- H3: README rewritten: real status, a "What the evidence supports" section (independent in
+  code and method, not in authorship; planner benchmark outcome; stress numbers are model
+  properties; limited-search novelty claim), working commands, Windows note, what is and is not
+  deterministic, layout, limitations. The word "collision-free" no longer appears as a promise.
+- M5, M6: plan.md status section; README reproducibility paragraph.
+- M4 (missing function): `sirb.stress.required_value(rows, target)` implements the plan's
+  "separation required for a stated risk target" conservatively (a value qualifies only if its
+  Wilson upper bound and that of every larger tabulated value meet the target; targets below the
+  attainable bound return `None`). Tested.
+- New tests: worker-count independence of Monte-Carlo output, docs list every shape type and
+  letter the code supports.
+
+Not fixed (and why)
+- No `docs/REPORT.md` or consistency test between a report and results: the report belongs to
+  the Final milestone and the stress results are still being generated.
+- Milestone tags v0.5.0 / v0.6.0 / v0.6.1 not created: they should mark finished experiments.
+- No frame-rate measurement for the viewer: needs a real GPU/browser; listed as unmet in plan.md.
