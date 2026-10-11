@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="en" dir="ltr" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sirb methods</title>
+<meta name="color-scheme" content="dark light">
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="doc">
+  <div class="nav">
+    <a class="btn" id="backLink" href="index.html" data-i18n="m_back">Back to viewer</a>
+    <button id="langBtn" type="button" class="btn"></button>
+    <button id="themeBtn" type="button" class="btn" data-i18n-aria="theme_switch_label"></button>
+  </div>
+
+  <aside class="banner" role="note" id="safety-statement">
+    <strong class="en">Simulation only</strong><strong class="ar">محاكاة فقط</strong>
+    <p class="en">Simulation and planning tool only. Not flight-certified; no claim of regulatory compliance. Real shows need an operator safety case and approvals from the relevant UAE aviation authorities. Simulation-validated only.</p>
+    <p class="ar">أداة محاكاة وتخطيط فقط. غير معتمدة للطيران ولا تدّعي أي امتثال تنظيمي. تحتاج العروض الحقيقية إلى ملف سلامة تشغيلي وموافقات من الجهات المختصة بالطيران في دولة الإمارات. التحقق تمّ بالمحاكاة فقط.</p>
+  </aside>
+
+  <h1><span class="en">Methods: how every number in the viewer is computed</span><span class="ar">المنهجية: كيف يُحسب كل رقم في العارض</span></h1>
+  <p class="note" data-i18n="m_lang_note"></p>
+
+  <nav aria-labelledby="tocH">
+    <h2 id="tocH" style="border:0;margin-top:1rem" data-i18n="m_toc">Contents</h2>
+    <ol class="toc">
+      <li><a href="#exact-verifier"><span class="en">Minimum separation (exact verifier)</span><span class="ar">أقل تباعد (المدقِّق الدقيق)</span></a></li>
+      <li><a href="#prefilter"><span class="en">Segments and pairs checked</span><span class="ar">المقاطع والأزواج المفحوصة</span></a></li>
+      <li><a href="#declared-threshold"><span class="en">Declared threshold d_min</span><span class="ar">العتبة المعلنة d_min</span></a></li>
+      <li><a href="#dynamics"><span class="en">Dynamic limits, geofence and crowd margins</span><span class="ar">الحدود الديناميكية وهوامش السياج والجمهور</span></a></li>
+      <li><a href="#content-hash"><span class="en">Fleet SHA-256 (content hash)</span><span class="ar">بصمة SHA-256 للأسطول</span></a></li>
+      <li><a href="#independent-recheck"><span class="en">Independent recheck</span><span class="ar">إعادة التحقق المستقلة</span></a></li>
+      <li><a href="#guarantees"><span class="en">Guarantees and non-guarantees</span><span class="ar">الضمانات وما لا يُضمن</span></a></li>
+      <li><a href="#sampled-nn"><span class="en">Nearest-neighbour readouts in the viewer</span><span class="ar">قراءات أقرب جار في العارض</span></a></li>
+      <li><a href="#stress-model"><span class="en">Stressed scenarios (disturbance model)</span><span class="ar">سيناريوهات الإجهاد (نموذج الاضطراب)</span></a></li>
+      <li><a href="#tracking-error"><span class="en">Tracking error</span><span class="ar">خطأ التتبّع</span></a></li>
+      <li><a href="#events"><span class="en">Failure events and behaviours</span><span class="ar">أحداث الأعطال والسلوكيات</span></a></li>
+      <li><a href="#ballistic"><span class="en">Ballistic drones</span><span class="ar">الطائرات في السقوط الحر</span></a></li>
+      <li><a href="#stress-config"><span class="en">Scenario parameters (assumptions)</span><span class="ar">معاملات السيناريو (افتراضات)</span></a></li>
+      <li><a href="#fixed-seed"><span class="en">Fixed seed, one realisation</span><span class="ar">بذرة ثابتة وتحقّق واحد</span></a></li>
+      <li><a href="#sim-to-real"><span class="en">Sim-to-real gap</span><span class="ar">فجوة المحاكاة والواقع</span></a></li>
+      <li><a href="#data-format"><span class="en">Viewer data format</span><span class="ar">صيغة بيانات العارض</span></a></li>
+    </ol>
+  </nav>
+
+  <section id="exact-verifier">
+    <h2><span class="en">Minimum separation (exact verifier)</span><span class="ar">أقل تباعد (المدقِّق الدقيق)</span></h2>
+    <p class="ar ar-sum">يحسب المدقِّق أقل مسافة بين كل زوج من الطائرات على امتداد الزمن بحلّ دقيق لمتعددات الحدود (جذور المشتقة) بدلًا من أخذ عيّنات زمنية. الرقم يُنسب إلى المسارات كما كُتبت، لا إلى طائرات حقيقية.</p>
+    <div class="en en-detail">
+      <p><strong>Summary.</strong> The certificate's minimum separation is computed by <code>sirb/verify.py</code> with exact polynomial root finding, never by sampling time. It is a property of the planned polynomial paths as written, with drones treated as points.</p>
+      <p>For each pair of drones, time is split at every segment breakpoint. A drone is held at its start position before its first segment and at its final position after its last, so it keeps occupying space. On each sub-interval the squared centre distance is a scalar polynomial. Its minimum is at an interval endpoint or at a real root of its derivative. Roots come from companion-matrix eigenvalues (the algorithm behind <code>numpy.roots</code>), are polished with two Newton steps, and every candidate is evaluated directly as the distance (not via a square root of the polynomial, which loses precision near zero). A coarse safety grid is added to the candidates; extra candidates can only lower a reported minimum toward the true value.</p>
+      <p>The verifier shares only the trajectory data classes with the planner, so it is an independent check of the planner's output. Accuracy is about 1e-9 m for well-scaled data (<code>docs/VERIFIER.md</code>), but monomial-basis root finding degrades for badly scaled polynomials, and this is not interval-arithmetic proof.</p>
+      <p><strong>Search radius.</strong> By default 4 x d_min. Pairs whose minimum is below the radius are reported exactly. If no pair is, the reported value is the radius and is flagged as a lower bound (<code>min_separation_is_lower_bound</code>). The radius is clamped to at least 1.01 d_min + 1e-3 so violations cannot hide.</p>
+      <p><strong>Verdict.</strong> PASS means no structural, dynamic, geometric or separation violation beyond the tolerance policy: a limit is violated only if exceeded by more than <code>tol * (1 + |limit|)</code> with tol = 1e-6. Separation is violated if the minimum is below <code>d_min - tol*(1 + d_min)</code>.</p>
+      <p><strong>Margin over d_min</strong> in the certificate panel is the exact minimum separation minus d_min.</p>
+    </div>
+  </section>
+
+  <section id="prefilter">
+    <h2><span class="en">Segments and pairs checked</span><span class="ar">المقاطع والأزواج المفحوصة</span></h2>
+    <p class="ar ar-sum">كل مسار يتألف من مقاطع متعددة الحدود. يستبعد مرشِّح أوّلي بصناديق محيطة دقيقة الأزواج التي لا يمكن أن تقترب أكثر من نصف قطر البحث، ثم تُحلّ الأزواج المتبقية بدقة.</p>
+    <div class="en en-detail">
+      <p><strong>Summary.</strong> <code>n_segments</code> is the total number of polynomial segments in the fleet. <code>n_pairs_checked</code> is the number of drone pairs that survived the prefilter and were solved exactly.</p>
+      <p>Each piece gets an exact axis-aligned bounding box (per-coordinate extrema from derivative roots). Pieces are sorted by start time; only time-overlapping pieces of other drones are compared, and a pair is kept only if the box-to-box distance is at most the search radius. That distance is a lower bound on the true distance, so the filter discards only pairs that provably cannot come closer than the radius. Survivors are solved in vectorised batches and reduced to one minimum per drone pair.</p>
+    </div>
+  </section>
+
+  <section id="declared-threshold">
+    <h2><span class="en">Declared threshold d_min</span><span class="ar">العتبة المعلنة d_min</span></h2>
+    <p class="ar ar-sum">d_min هي أقل مسافة مطلوبة بين مراكز الطائرات كما يعلنها ملف العرض. هي افتراض تصميمي وليست قيمة معتمدة من جهة تنظيمية أو من مصنّع.</p>
+    <div class="en en-detail">
+      <p><strong>Summary.</strong> <code>min_separation_m</code> in the show file is the declared required centre-to-centre separation. In the bundled shows its source is labelled <code>assumption</code> (see the <code>sources</code> field of the limits, and <code>docs/RESEARCH.md</code> / <code>docs/SHOW_SCHEMA.md</code>). Changing it changes the verdict; it is not derived from a regulation.</p>
+      <p>The viewer's separation colour mode compares nearest-neighbour distance to this value: red below d_min, amber below 1.25 d_min, green otherwise. The 1.25 factor is a display choice, not a safety margin.</p>
+      <p>The crowd line, buffer and geofence drawn in the 3D views come from the same limits (<code>crowd.y</code>, <code>crowd.min_distance_m</code>, <code>geofence</code>); the crowd region is <code>y &lt;= crowd.y</code> and the buffer line is drawn at <code>crowd.y + min_distance_m</code>. Their sources are also listed as assumption or cited guidance in the certificate.</p>
+    </div>
+  </section>
+
+  <section id="dynamics">
+    <h2><span class="en">Dynamic limits, geofence and crowd margins</span><span class="ar">الحدود الديناميكية وهوامش السياج والجمهور</span></h2>
+    <p class="ar ar-sum">تُفحص السرعة والتسارع والارتجاج والارتفاع والسياج الجغرافي والمسافة إلى الجمهور بإيجاد قيم قصوى لمتعددات الحدود في كل مقطع (جذور المشتقات)، وتُعرض القيمة القصوى المبلَّغ عنها مقابل الحد.</p>
+    <div class="en en-detail">
+      <p><strong>Summary.</strong> For each segment the extrema of <code>|v_h|^2</code>, <code>v_z</code> (max and min), <code>|a|^2</code>, <code>|j|^2</code> and the coordinates x, y, z are found from derivative roots, not sampled. The table shows the maximum reached over the show and the limit from the show file. Geofence and crowd rows are margins (distance to the limit; larger is safer).</p>
+      <p>Structural checks cover time contiguity (1e-9 s), position continuity (1e-4 m), velocity continuity (1e-3 m/s) and finite coefficients. Limits marked <code>assumption</code> in the certificate are not datasheet values.</p>
+    </div>
+  </section>
+
+  <section id="content-hash">
+    <h2><span class="en">Fleet SHA-256 (content hash)</span><span class="ar">بصمة SHA-256 للأسطول</span></h2>
+    <p class="ar ar-sum">البصمة تعرّف محتوى الأسطول (المسارات) تعريفًا فريدًا؛ أي تغيير في المسارات يغيّر البصمة. تربط الشهادة بالمسارات التي فُحصت فعلًا.</p>
+    <div class="en en-detail">
+      <p><strong>Summary.</strong> <code>fleet_sha256</code> is the SHA-256 digest returned by <code>Fleet.content_hash()</code> over the trajectory data. The certificate records it so that a verdict can be tied to exactly the paths that were checked. It identifies content; it is not a signature, carries no timestamp and says nothing about who produced the file. The viewer shows the first and last 8 hex characters; the full value is available under "Show full hash" and via the copy button.</p>
+    </div>
+  </section>
+
+  <section id="independent-recheck">
+    <h2><span class="en">Independent recheck</span><span class="ar">إعادة التحقق المستقلة</span></h2>
+    <p class="ar ar-sum">عند بناء بيانات العارض استُدعيت الدالة verify_certificate: تتحقق من مطابقة البصمة ثم تعيد حساب التحقق كاملًا وتقارن الحكم والأرقام. العلم المعروض هو نتيجة ذلك الفحص وقت البناء، لا فحص يجري في المتصفح.</p>
+    <div class="en en-detail">
+      <p><strong>Summary.</strong> <code>independent_recheck</code> is the boolean returned by <code>verify_certificate(cert, fleet)</code> in <code>scripts/build_viewer_data.py</code> when the data bundle was generated. That function checks the tool name and certificate version, the fleet hash and drone count, then re-runs <code>verify</code> with the recorded search radius and tolerance and compares the verdict, the numeric results (relative tolerance 1e-9), the violation counts and the lower-bound flag.</p>
+      <p>It is a recomputation by the same verifier code on the same fleet, so it detects tampering and non-reproducibility, not a bug shared by the verifier itself. The browser does not re-run it.</p>
+    </div>
+  </section>
+
+  <section id="guarantees">
+    <h2><span class="en">Guarantees and non-guarantees</span><span class="ar">الضمانات وما لا يُضمن</span></h2>
+    <p class="ar ar-sum">الضمانات محصورة في النموذج المعلن: مسارات متعددة الحدود كما كُتبت وطائرات كنقاط. لا تشمل الضمانات تتبّع الطائرات الحقيقية ولا الرياح ولا أخطاء GNSS ولا الأعطال ولا أي خاصية تنظيمية.</p>
+    <div class="en en-detail">
+      <p><strong>Summary.</strong> The lists in the certificate panel are quoted from <code>sirb/certificate.py</code> (<code>GUARANTEES</code>, <code>NOT_GUARANTEED</code>) and stored in each <code>certificate.json</code>. The guarantees hold only under the declared model. The non-guarantees include real aircraft tracking, wind, GNSS error, aerodynamic interaction, vehicle size and battery behaviour, failures and contingencies, and any regulatory, airworthiness or operational approval property.</p>
+      <p>The certificate statement is: "simulation-validated only; not flight-certified; no regulatory compliance claim".</p>
+    </div>
+  </section>
+
+  <section id="sampled-nn">
+    <h2><span class="en">Nearest-neighbour readouts in the viewer</span><span class="ar">قراءات أقرب جار في العارض</span></h2>
+    <p class="ar ar-sum">أرقام "أقل مسافة إلى أقرب جار" في العارض محسوبة من مواقع مأخوذة كل 0.2 ثانية، وليست الحل الدقيق. قد تفوتها القيم الدنيا بين الإطارات، لذا الرقم الدقيق للخطة الاسمية هو الوارد في الشهادة.</p>
+    <div class="en en-detail">
+      <p><strong>Summary.</strong> <code>scripts/build_viewer_data.py</code> samples each trajectory every <code>dt</code> = 0.2 s, stores positions as int16 centimetres and, for every frame and drone, the distance to the nearest other drone (<code>scipy.spatial.cKDTree</code>) as uint16 centimetres. The viewer interpolates linearly between frames for positions and for these distances.</p>
+      <ul>
+        <li><em>Min nearest-neighbour distance now</em> is the minimum over drones of the interpolated value at the current time.</li>
+        <li><em>So far</em> is the running minimum over frames up to the current time (and the current interpolated value).</li>
+        <li><em>Drones below d_min</em> counts drones whose interpolated nearest-neighbour distance is below d_min.</li>
+      </ul>
+      <p class="callout">Sampling can miss a closest approach that happens between two frames (two drones closing at 10 m/s each cover 4 m in 0.2 s), and positions are rounded to 1 cm. For the nominal plan the exact verifier number is authoritative: for example the sampled minimum of the 100-drone show is 2.19 m versus the exact 2.1886 m. For stressed scenarios the stored minimum is also a sampled value from the realised paths.</p>
+    </div>
+  </section>
+
+  <section id="stress-model">
+    <h2><span class="en">Stressed scenarios (disturbance model)</span><span class="ar">سيناريوهات الإجهاد (نموذج الاضطراب)</span></h2>
+    <p class="ar ar-sum">تُنتج سيناريوهات الإجهاد بمحاكاة تضيف إلى الخطة الاسمية رياحًا وأخطاء GNSS وأعطالًا بنماذج وبارامترات مفترضة. النتائج محاكاة تحت افتراضات، وليست ضمانات ولا قياسات.</p>
+    <div class="en en-detail">
+      <p><strong>Summary.</strong> Each stressed scenario takes the verified plan sampled at 0.2 s as a reference and flies it through a simulated tracking loop with disturbances (<code>sirb/disturbance.py</code>, <code>sirb/stress.py</code>, <code>sirb/contingency.py</code>). Every parameter is either cited in <code>docs/RESEARCH.md</code> or labelled ASSUMPTION. No real flight data is used.</p>
+      <h3 id="wind">Wind</h3>
+      <p>Mean wind at 20 ft (<code>w20</code>) with a 1/7 power-law altitude profile (ASSUMPTION). Turbulence intensity from the Dryden low-altitude relations of MIL-HDBK-1797 as implemented in MathWorks documentation: sigma_w = 0.1 W20, sigma_u = sigma_v = sigma_w / (0.177 + 0.000823 h_ft)^0.4. Those relations were built for piloted aircraft; applying them to a small multirotor is an ASSUMPTION. Spatial structure by frozen turbulence: every drone sees the same first-order Gauss-Markov process delayed by its position along the wind, plus an independent local component (fraction 0.3, ASSUMPTION), so differential wind between neighbours is physical rather than imposed.</p>
+      <h3 id="gnss">GNSS error</h3>
+      <p>Per-drone position-estimate error: white noise (RTK-fixed level, ASSUMPTION informed by a u-blox ZED-F9P datasheet figure) plus, for a configured share of drones, a first-order Gauss-Markov bias with sigma <code>gnss_bias_sigma</code> and a 30 s time constant (ASSUMPTIONS informed by forum-reported float errors). Optional dropout windows random-walk the error (dead reckoning, ASSUMPTION). Differential per-drone errors are what matter for separation.</p>
+      <p><strong>What the minimum in a scenario means.</strong> After realising the paths, the closest approach over the show is computed on the realised, sampled paths. The viewer's scenario minimum is the stored sampled value (see <a href="#sampled-nn">above</a>). Comparing it with d_min tells you what this one simulated run did under these assumed models; it is not a probability and not a guarantee.</p>
+    </div>
+  </section>
+
+  <section id="tracking-error">
+    <h2><span class="en">Tracking error</span><span class="ar">خطأ التتبّع</span></h2>
+    <p class="ar ar-sum">أقصى خطأ تتبّع هو أكبر انحراف بين الموضع المحقَّق والموضع المرجعي لأي طائرة في السيناريو، من نموذج حلقة تحكم من الدرجة الثانية مفترض. هو نتيجة نموذج وليس قياسًا لمتحكم حقيقي.</p>
+    <div class="en en-detail">
+      <p><strong>Summary.</strong> Each drone's error <code>eps = x - r</code> obeys <code>eps'' = -kd eps' - kp eps - kp e(t) + a_wind(t)</code> with kp = omega_n^2, kd = 2 zeta omega_n (omega_n = 2 rad/s, zeta = 0.9, ASSUMPTIONS), where e(t) is the GNSS estimation error (the controller acts on the estimated position) and a_wind = drag_gain x wind velocity (drag_gain 0.3 1/s, ASSUMPTION). It is discretised exactly with a zero-order hold. The number shown is the largest absolute value of eps over all drones, axes and frames, stored as <code>max_tracking_error_m</code>.</p>
+    </div>
+  </section>
+
+  <section id="events">
+    <h2><span class="en">Failure events and behaviours</span><span class="ar">أحداث الأعطال والسلوكيات</span></h2>
+    <p class="ar ar-sum">تُفعَّل الأحداث (عطل محرّك، فقدان اتصال، بطارية منخفضة) لطائرات مختارة عشوائيًا في أوقات عشوائية بين 15٪ و85٪ من العرض. يستبدل سلوك الطوارئ المسار المرجعي للطائرة المعنية من لحظة الحدث.</p>
+    <div class="en en-detail">
+      <p><strong>Summary.</strong> Discrete events are drawn at uniform random times in [0.15 T, 0.85 T] for randomly chosen drones (no drone gets two events). Event counts for comms loss and low battery are binomial draws from the scenario's fraction. Each event is replaced from its step onward by a behaviour (<code>sirb/contingency.py</code>):</p>
+      <ul>
+        <li><code>continue</code>: the pre-programmed path keeps playing.</li>
+        <li><code>hold</code>: hover at the event position for <code>hold_s</code> (10 s), then descend vertically.</li>
+        <li><code>descend</code>: descend vertically in place at 2 m/s (ASSUMPTION).</li>
+        <li><code>ballistic</code> (motor failure only): uncontrolled fall, see below.</li>
+      </ul>
+      <p>The bundled scenarios use motor failure with ballistic fall, and comms loss with hold-then-descend. The diamonds in the 3D view switch on at the event time; the "failure events triggered" readout counts events whose time has passed. The behaviour table in the scenario panel shows the configured mapping from event kind to behaviour.</p>
+    </div>
+  </section>
+
+  <section id="ballistic">
+    <h2><span class="en">Ballistic drones</span><span class="ar">الطائرات في السقوط الحر</span></h2>
+    <p class="ar ar-sum">عند عطل المحرّك تسقط الطائرة سقوطًا حرًا غير متحكَّم به بعد لحظة الحدث. النموذج مبسّط جدًا ولا يمثل ديناميكا مركبة حقيقية.</p>
+    <div class="en en-detail">
+      <p><strong>Summary.</strong> After a motor failure the drone leaves its commanded path and falls under gravity with horizontal velocity decaying at <code>air_drag_per_s</code> = 0.5 1/s (ASSUMPTION), handled by <code>sirb/stress.py</code>. The model ignores tumbling, aerodynamics of the airframe and debris. The ids listed in the scenario panel are the drones that fell this way. Whether a falling drone passes close to another is part of the scenario minimum; what it would do to people or property on the ground is not modelled.</p>
+    </div>
+  </section>
+
+  <section id="stress-config">
+    <h2><span class="en">Scenario parameters (assumptions)</span><span class="ar">معاملات السيناريو (افتراضات)</span></h2>
+    <p class="ar ar-sum">القيم المعروضة (سرعة الرياح، نسبة الطائرات ذات GNSS المتدهور، تحيّز GNSS، عدد الأعطال، نسبة فقدان الاتصال) هي مدخلات اختارها واضع السيناريو وليست قيَمًا مقاسة.</p>
+    <div class="en en-detail">
+      <p><strong>Summary.</strong> The parameter list in the scenario panel is the exact override set passed to <code>StressConfig</code> in <code>scripts/build_viewer_data.py</code>; all other parameters keep the defaults in <code>sirb/disturbance.py</code>. They are chosen stress levels, not measurements of any site. Wind is in m/s at 20 ft; fractions are shares of the fleet; <code>gnss_bias_sigma</code> is metres per axis.</p>
+    </div>
+  </section>
+
+  <section id="fixed-seed">
+    <h2><span class="en">Fixed seed, one realisation</span><span class="ar">بذرة ثابتة وتحقّق واحد</span></h2>
+    <p class="ar ar-sum">كل سيناريو في العارض هو تحقّق عشوائي واحد بذرة ثابتة لضمان إعادة الإنتاج. تشغيل واحد لا يعطي احتمالات ولا حدودًا للحالة الأسوأ.</p>
+    <div class="en en-detail">
+      <p><strong>Summary.</strong> The viewer shows one realisation per scenario, generated with seed 20261011 (plus a small per-scenario offset, as in <code>build_viewer_data.py</code>), so the bundle is reproducible. The stress module can run many trials (Monte-Carlo with Wilson confidence intervals for violation rates) but the viewer does not display those statistics. A single run may be milder or harsher than typical.</p>
+    </div>
+  </section>
+
+  <section id="sim-to-real">
+    <h2><span class="en">Sim-to-real gap</span><span class="ar">فجوة المحاكاة والواقع</span></h2>
+    <p class="ar ar-sum">كل ما يعرضه العارض نتيجة محاكاة. الفجوة إلى العرض الحقيقي كبيرة: المتحكمات والمستشعرات والرياح الفعلية وتداخل الهواء وأعطال الاتصال والتنظيمات لا تُمثَّل هنا تمثيلًا كافيًا. لا تُستخدم هذه النتائج بديلًا عن اختبار طيران وملف سلامة وموافقات الجهات المختصة في الإمارات.</p>
+    <div class="en en-detail">
+      <p><strong>Summary.</strong> Nothing here has been validated against flight data. Known gaps:</p>
+      <ul>
+        <li>Drones are points in the verifier; the 0.24 m vehicle radius is only used for a contact flag in the stress code. The viewer draws drones larger (0.9 m) for visibility.</li>
+        <li>The tracking loop is a generic second-order model, not a real autopilot with latency, saturation and estimator behaviour.</li>
+        <li>Wind uses aircraft-derived turbulence spectra, a power-law profile and a simple drag gain; no gusts at the scale of a real site, no terrain or building wakes, no downwash between close neighbours.</li>
+        <li>GNSS error is a simple bias plus noise; jamming and spoofing are not simulated in these scenarios.</li>
+        <li>Failure behaviour is simplified; battery, link and failsafe logic of a real fleet differ by vendor.</li>
+        <li>Limits such as d_min, geofence and accelerations are assumptions or cited guidance, not approved operating conditions.</li>
+        <li>No regulatory property is claimed or implied. A real show needs an operator safety case and approvals from the relevant UAE aviation authorities.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="data-format">
+    <h2><span class="en">Viewer data format</span><span class="ar">صيغة بيانات العارض</span></h2>
+    <p class="ar ar-sum">تُنتج البيانات بالسكربت scripts/build_viewer_data.py: مواقع بالسنتيمتر (int16) ومسافة أقرب جار بالسنتيمتر (uint16)، والإحداثيات: x شرقًا وy شمالًا وz للأعلى بالمتر.</p>
+    <div class="en en-detail">
+      <p><strong>Summary.</strong> <code>data/index.json</code> lists shows and scenarios. <code>&lt;scenario&gt;.bin</code> is little-endian int16 of shape (frames, n, 3) in centimetres; <code>&lt;scenario&gt;.nn.bin</code> is uint16 of shape (frames, n) in centimetres. Frame: x east, y north, z up, local origin, metres (<code>docs/SHOW_SCHEMA.md</code>). Values are clipped to +-327.67 m by the int16 range, which covers the geofence and crowd line of the bundled shows. The 3D scene maps (x, y, z) to (x, z, -y).</p>
+    </div>
+  </section>
+</div>
+<script type="module">
+import { STRINGS, getLang, storeLang, applyDocLang, makeT, translateDom } from "./i18n.js";
+const q = new URLSearchParams(location.search).get("lang");
+let lang = q === "ar" || q === "en" ? q : getLang();
+let theme = "dark";
+try { const v = localStorage.getItem("sirb.viewer.theme"); if (v === "dark" || v === "light") theme = v; else if (matchMedia("(prefers-color-scheme: light)").matches) theme = "light"; } catch (e) { if (matchMedia("(prefers-color-scheme: light)").matches) theme = "light"; }
+function apply() {
+  const t = makeT(lang);
+  applyDocLang(lang); translateDom(document, t);
+  document.documentElement.dataset.theme = theme;
+  document.title = lang === "ar" ? "سرب: المنهجية" : "Sirb methods";
+  const b = document.getElementById("langBtn"); b.textContent = t("lang_switch"); b.setAttribute("aria-label", t("lang_switch_label")); b.lang = lang === "ar" ? "en" : "ar";
+  document.getElementById("themeBtn").textContent = theme === "dark" ? t("theme_light") : t("theme_dark");
+  document.getElementById("backLink").href = "index.html";
+}
+document.getElementById("langBtn").addEventListener("click", () => { lang = lang === "ar" ? "en" : "ar"; storeLang(lang); apply(); });
+document.getElementById("themeBtn").addEventListener("click", () => { theme = theme === "dark" ? "light" : "dark"; try { localStorage.setItem("sirb.viewer.theme", theme); } catch (e) {} apply(); });
+apply();
+if (location.hash) { const e = document.getElementById(location.hash.slice(1)); if (e) e.scrollIntoView(); }
+</script>
+</body>
+</html>

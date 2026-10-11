@@ -1,6 +1,6 @@
 # Data sources and licenses
 
-Updated as dependencies are added. Python package licenses below were read from installed package metadata on 2026-10-11 (numpy 2.5.3, scipy 1.18.1, pytest 9.1.1, hypothesis 6.168.5). three.js is still unverified until vendored.
+Updated as dependencies are added. Python package licenses below were read from installed package metadata on 2026-10-11 (numpy 2.5.3, scipy 1.18.1, pytest 9.1.1, hypothesis 6.168.5). three.js was verified when vendored (below).
 
 ## Code dependencies
 
@@ -11,9 +11,9 @@ Updated as dependencies are added. Python package licenses below were read from 
 | pytest | tests | MIT | package metadata |
 | hypothesis | property-based tests (dev only, not redistributed) | MPL-2.0 | package metadata |
 | ruff | lint (dev only) | MIT | package metadata |
-| three.js | viewer | MIT (expected) | to verify when vendored |
+| three.js 0.170.0 (`three.module.min.js`, `addons/OrbitControls.js`) | viewer 3D rendering, vendored in `viewer/vendor/` (no CDN) | MIT ("Copyright 2010-2024 three.js authors") | `license` field of the npm package and its LICENSE file, copied to `viewer/vendor/LICENSE` (2026-10-11) |
 
-three.js "expected" means stated from general knowledge; replace with the verified value when vendored, before v0.9.0.
+The viewer has no other JavaScript dependencies (vanilla ES modules and an importmap).
 
 ## Data
 
