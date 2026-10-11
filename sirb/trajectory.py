@@ -1,6 +1,9 @@
-"""Trajectory data format shared by planner, verifier and stress tests.
+"""Trajectory data format shared by planners, stress tests, export and certificates.
 
-Data classes only, no planning or verification logic. A trajectory is a list of
+Data classes plus small helpers (evaluation, sampling, content hash, dict round trip), no planning
+or verification logic. ``sirb.verify`` does not import this module (it reads ``.segments``,
+``.t0``, ``.t1`` and ``.coeffs`` by attribute), which ``tests/test_review_regressions.py`` checks
+from the import graph. A trajectory is a list of
 contiguous polynomial segments; within a segment ``pos(tau) = sum_k coeffs[k] * tau**k``
 with ``tau = t - t0`` (metres, seconds; x east, y north, z up).
 """

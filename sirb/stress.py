@@ -259,12 +259,15 @@ def monte_carlo(ref: np.ndarray, cfg: StressConfig, d_min: float, trials: int, s
     t0 = time.perf_counter()
     jobs = [(cfg, d_min, seed, tag, t) for t in range(trials)]
     _WORK["ref"] = ref
-    if workers > 1 and _fork_available():
-        import multiprocessing as mp
-        with mp.get_context("fork").Pool(workers) as pool:
-            res = pool.map(_worker, jobs, chunksize=max(1, trials // (workers * 4)))
-    else:
-        res = [_worker(j) for j in jobs]
+    try:
+        if workers > 1 and _fork_available():
+            import multiprocessing as mp
+            with mp.get_context("fork").Pool(workers) as pool:
+                res = pool.map(_worker, jobs, chunksize=max(1, trials // (workers * 4)))
+        else:
+            res = [_worker(j) for j in jobs]
+    finally:
+        _WORK.pop("ref", None)   # module-level hand-over to forked workers; do not retain it
     seps = np.array([r[0] for r in res])
     k = sum(r[1] for r in res)
     kc = sum(r[2] for r in res)

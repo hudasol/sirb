@@ -69,6 +69,35 @@ class PreflightReport:
         return {f.code for f in self.findings if level is None or f.level == level}
 
 
+def _finite_vec(x, n):
+    try:
+        a = np.asarray(x, dtype=float)
+    except (TypeError, ValueError):
+        return False
+    return a.shape == (n,) and bool(np.isfinite(a).all())
+
+
+def _finite_num(x) -> bool:
+    return isinstance(x, (int, float)) and not isinstance(x, bool) and math.isfinite(x)
+
+
+def _check_inputs(declared, loaded, wind_forecast_mps, wind_limit_mps) -> list[str]:
+    errs: list[str] = []
+    for name, d in (("declared", declared), ("loaded", loaded)):
+        if not isinstance(d, dict):
+            errs.append(f"{name} must be a dict")
+            continue
+        if not _finite_vec(d.get("center_xy"), 2):
+            errs.append(f"{name}.center_xy must be two finite numbers")
+        if not _finite_num(d.get("heading_deg")):
+            errs.append(f"{name}.heading_deg must be a finite number")
+    if wind_forecast_mps is not None and not _finite_num(wind_forecast_mps):
+        errs.append("wind_forecast_mps must be a finite number")
+    if wind_limit_mps is not None and not (_finite_num(wind_limit_mps) and wind_limit_mps > 0):
+        errs.append("wind_limit_mps must be a finite number > 0")
+    return errs
+
+
 def preflight(show: dict, fleet: Fleet, declared: dict, loaded: dict, *,
               center_tol_m: float = 1.0, heading_tol_deg: float = 1.0,
               wind_forecast_mps: float | None = None, wind_limit_mps: float | None = None
@@ -81,6 +110,13 @@ def preflight(show: dict, fleet: Fleet, declared: dict, loaded: dict, *,
     """
     f: list[Finding] = []
     lim = show["limits"]
+
+    bad_inputs = _check_inputs(declared, loaded, wind_forecast_mps, wind_limit_mps)
+    if bad_inputs:
+        # A consistency check that cannot read its inputs must fail, not raise and not pass
+        # (comparisons with NaN are False, which would silently read as "no mismatch").
+        f.extend(Finding("FAIL", "INPUT_INVALID", m) for m in bad_inputs)
+        return PreflightReport(ok=False, findings=f)
 
     dc = np.array(declared["center_xy"], float)
     lc = np.array(loaded["center_xy"], float)
