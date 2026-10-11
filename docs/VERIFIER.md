@@ -75,6 +75,12 @@ caveat: monomial-basis root finding degrades for badly scaled polynomials (huge 
 very long segments). The safety grid and direct evaluation bound the damage but this is not a
 proof-grade interval arithmetic method.
 
+Naming: a "certificate" here is a machine-readable verification record. It is not an airworthiness
+certificate, an approval or a safety clearance, and the viewer labels it "verification record".
+`verify()` skips any limit that is absent from the limits dict (only `min_separation_m` is
+mandatory), so `make_certificate` reports verdict `INCOMPLETE` (and lists `unchecked_limits`)
+instead of `PASS` when a limit family is missing; `FAIL` still takes precedence.
+
 Certificates (`make_certificate` / `verify_certificate`) carry the fleet SHA-256, limits, all
 results (except wall-clock runtime, omitted so output is reproducible), a verdict, method
 text, and the statement "simulation-validated only; not flight-certified; no regulatory

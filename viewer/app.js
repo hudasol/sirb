@@ -353,8 +353,9 @@ function renderCert() {
   if (!c) { body.textContent = t("cert_loading"); return; }
   const r = c.results, lim = c.limits, wrap = el("div");
   const pass = c.verdict === "PASS";
-  const vlink = el("a", { class: `verdict ${pass ? "pass" : "fail"}`, href: methodsHref("exact-verifier"), text: `${pass ? "✔" : "✖"} ${t(pass ? "pass" : "fail")}` });
+  const vlink = el("a", { class: `verdict ${pass ? "pass" : "fail"}`, href: methodsHref("exact-verifier"), text: `${pass ? "" : "✖ "}${t(pass ? "pass" : "fail")}` });
   wrap.append(el("div", {}, el("span", { class: "note", text: t("verdict") + " " }), vlink));
+  wrap.append(el("p", { class: "assumed", text: t("verdict_note") }));
   const dl = el("dl", { class: "kv" });
   kv(dl, t("cert_min_sep"), (() => { const f = withUnit(num(r.min_separation, 3), "exact-verifier");
     if (r.min_separation_pair && r.min_separation_time != null) f.append(el("div", { class: "note", text: t("cert_min_sep_at", { t: num(r.min_separation_time, 1), a: S.int(r.min_separation_pair[0]), b: S.int(r.min_separation_pair[1]) }) }));
@@ -362,7 +363,7 @@ function renderCert() {
   kv(dl, t("cert_dmin"), (() => { const f = withUnit(num(lim.min_separation_m, 2), "declared-threshold");
     if (lim.sources?.min_separation_m === "assumption") f.append(el("span", { class: "chip", text: t("cert_dmin_assumed") })); return f; })());
   kv(dl, t("cert_margin"), withUnit(num(r.min_separation - lim.min_separation_m, 3), "exact-verifier"));
-  kv(dl, t("cert_recheck"), el("a", { class: "num", href: methodsHref("independent-recheck"), text: (sh.independent_recheck ? "✔ " : "✖ ") + t(sh.independent_recheck ? "recheck_yes" : "recheck_no") }));
+  kv(dl, t("cert_recheck"), el("a", { class: "num", href: methodsHref("recomputation-check"), text: (sh.recomputation_ok ? "" : "✖ ") + t(sh.recomputation_ok ? "recheck_yes" : "recheck_no") }));
   const full = c.fleet_sha256, short = `${full.slice(0, 8)}…${full.slice(-8)}`;
   const shaWrap = el("div", {}, el("a", { class: "num", href: methodsHref("content-hash") }, el("code", { class: "hash", text: short })), " ");
   const copy = el("button", { type: "button", class: "btn ev-btn", text: t("copy") }); const stat = el("span", { class: "note", role: "status" });
@@ -401,6 +402,7 @@ function renderScenario() {
   const body = $("#scenBody"), t = S.t, num = S.num, sc = S.show?.scenarios.find((s) => s.id === S.scenId);
   if (!sc) return; const wrap = el("div");
   wrap.append(el("p", { class: "assumed", text: t("scen_assumed") }));
+  wrap.append(el("p", { class: "note", text: t("scen_scope") }));
   wrap.append(el("h3", { text: S.lang === "ar" ? sc.label_ar : sc.label_en }));
   if (sc.id === "nominal") { wrap.append(el("p", { class: "note", text: t("scen_nominal_note") })); }
   const dl = el("dl", { class: "kv" });

@@ -30,7 +30,8 @@ def _print_cert(cert: dict) -> int:
     res = cert["results"]
     bound = " (lower bound: no pair came within the search radius)" \
         if res.get("min_separation_is_lower_bound") else ""
-    print(f"verdict: {cert['verdict']}   [simulation-validated only; not an approval]")
+    print(f"verdict: {cert['verdict']} (against the limits declared in the show file only)   "
+          "[simulation-validated only; not an approval]")
     print(f"drones: {cert['n_drones']}   fleet sha256: {cert['fleet_sha256']}")
     print(f"minimum centre separation: {res['min_separation']:.4f} m{bound}; "
           f"declared threshold {cert['limits']['min_separation_m']} m")

@@ -67,6 +67,23 @@ def _jsonable(x):
     return x
 
 
+# Limit families the verifier checks when present. A limit that is absent is silently skipped by
+# ``verify`` (only min_separation_m is mandatory), so a certificate must say so rather than PASS.
+CHECKED_LIMITS = ("vmax_h", "vmax_up", "vmax_down", "amax", "jmax", "z_min", "z_max",
+                  "geofence", "crowd")
+
+
+def unchecked_limits(limits: dict) -> list[str]:
+    return [k for k in CHECKED_LIMITS if limits.get(k) is None]
+
+
+def verdict_for(ok: bool, limits: dict) -> str:
+    """PASS only if nothing failed and every limit family was actually supplied."""
+    if not ok:
+        return "FAIL"
+    return "PASS" if not unchecked_limits(limits) else "INCOMPLETE"
+
+
 def make_certificate(report: VerifyReport, fleet, limits: dict, *, extra: dict | None = None) -> dict:
     results = asdict(report)
     results.pop("runtime_s", None)   # not reproducible; deliberately excluded
@@ -79,7 +96,8 @@ def make_certificate(report: VerifyReport, fleet, limits: dict, *, extra: dict |
         "n_drones": int(fleet.n),
         "limits": copy.deepcopy(limits),
         "results": results,
-        "verdict": "PASS" if report.ok else "FAIL",
+        "verdict": verdict_for(report.ok, limits),
+        "unchecked_limits": unchecked_limits(limits),
         "method": METHOD,
         "guarantees": list(GUARANTEES),
         "not_guaranteed": list(NOT_GUARANTEED),
@@ -105,7 +123,9 @@ def verify_certificate(cert: dict, fleet) -> bool:
         res = cert["results"]
         tol = res["tolerances"]
         rep = verify(fleet, cert["limits"], search_radius=tol["search_radius"], tol=tol["tol"])
-        if ("PASS" if rep.ok else "FAIL") != cert["verdict"]:
+        if verdict_for(rep.ok, cert["limits"]) != cert["verdict"]:
+            return False
+        if unchecked_limits(cert["limits"]) != cert.get("unchecked_limits"):
             return False
         new = _jsonable(asdict(rep))
         for k in _NUMERIC:
