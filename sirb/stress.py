@@ -156,8 +156,9 @@ def sample_reference(fleet: Fleet, dt: float, t_end: float | None = None) -> np.
     return fleet.sample(times)
 
 
-def run_trial(ref: np.ndarray, cfg: StressConfig, d_min: float, seed) -> Trial:
-    t_wall = time.perf_counter()
+def realize(ref: np.ndarray, cfg: StressConfig, seed):
+    """One disturbed realisation: returns (X realized, R modified reference, eps, events,
+    ginfo, ballistic drone list)."""
     rng = np.random.default_rng(seed)
     K, n, _ = ref.shape
     wind = wind_velocity(ref, cfg, rng)
@@ -174,6 +175,13 @@ def run_trial(ref: np.ndarray, cfg: StressConfig, d_min: float, seed) -> Trial:
             continue
         X[k_e:, i, :] = ballistic_track(X[k_e - 1, i], X[k_e, i], K, k_e, cfg)
         bal_idx.append(i)
+    return X, R, eps, events, ginfo, bal_idx
+
+
+def run_trial(ref: np.ndarray, cfg: StressConfig, d_min: float, seed) -> Trial:
+    t_wall = time.perf_counter()
+    K, n, _ = ref.shape
+    X, R, eps, events, ginfo, bal_idx = realize(ref, cfg, seed)
     radius = d_min + dev_bound(cfg)
     pairs, k_lo, k_hi = candidate_pairs(R, radius, dt=cfg.dt)
     if bal_idx:
