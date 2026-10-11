@@ -12,6 +12,7 @@ from pathlib import Path
 
 import numpy as np
 
+from .fileio import read_text_limited
 from .shapes import generate_points, min_nn_distance
 
 SCHEMA_VERSION = 1
@@ -175,7 +176,7 @@ def save_show(show: dict, path: str | Path) -> None:
 
 
 def load_show(path: str | Path) -> dict:
-    show = json.loads(Path(path).read_text(encoding="utf-8"))
+    show = json.loads(read_text_limited(path))
     errs = validate_show(show, check_targets=False)
     if errs:
         raise ValueError("invalid show: " + "; ".join(errs))

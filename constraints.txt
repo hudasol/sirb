@@ -1,0 +1,12 @@
+# Versions the recorded results, tests and licence review were produced with (Python 3.13).
+# Use:  pip install -c constraints.txt -e ".[dev]"   (pytest-cov is optional and not pinned)
+hypothesis==6.168.5
+iniconfig==2.3.1
+numpy==2.5.3
+packaging==26.3
+pluggy==1.6.0
+pygments==2.21.0
+pytest==9.1.1
+ruff==0.17.0
+scipy==1.18.1
+sortedcontainers==2.4.0

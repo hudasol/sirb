@@ -20,6 +20,7 @@ import numpy as np
 TIME_TOL = 1e-9          # s, contiguity of segments
 POS_TOL = 1e-4           # m, position continuity at breakpoints
 VEL_TOL = 1e-3           # m/s, velocity continuity at breakpoints
+MAX_DEGREE = 7           # highest supported polynomial degree (docs/ARCHITECTURE.md); bounds memory
 ACC_TOL = 1e-3           # m/s^2, acceleration continuity at breakpoints (a step = unbounded jerk)
 VIOLATION_CAP = 1000     # max listed violations per kind
 _ROOT_IMAG_TOL = 1e-3    # accept roots with |imag| below this (generous: extra candidates are harmless)
@@ -255,6 +256,16 @@ def _structure(fleet, viol: list):
             if not (math.isfinite(t0) and math.isfinite(t1) and np.all(np.isfinite(c))):
                 viol.append(Violation("nonfinite", (i,), t0 if math.isfinite(t0) else 0.0,
                                       float("nan"), 0.0, f"segment {k}: NaN/inf in times or coefficients"))
+                bad.add(i)
+                prev = None
+                continue
+            nz = np.nonzero(np.any(c != 0.0, axis=1))[0]
+            c = c[: int(nz[-1]) + 1] if len(nz) else c[:1]      # drop trailing zero rows
+            if c.shape[0] - 1 > MAX_DEGREE:
+                viol.append(Violation("unsupported_degree", (i,), t0, float(c.shape[0] - 1),
+                                      float(MAX_DEGREE),
+                                      f"segment {k}: degree {c.shape[0] - 1} exceeds the "
+                                      f"supported maximum {MAX_DEGREE}"))
                 bad.add(i)
                 prev = None
                 continue
@@ -590,7 +601,7 @@ def verify(fleet, limits: dict, *, search_radius: float | None = None,
     truncated = False
     for kind in ("separation", "speed_h", "speed_up", "speed_down", "accel", "jerk", "altitude",
                  "geofence", "crowd", "time_gap", "position_jump", "velocity_discontinuity",
-                 "accel_discontinuity",
+                 "accel_discontinuity", "unsupported_degree",
                  "nonfinite"):
         items = sep_viol if kind == "separation" else [v for v in viol if v.kind == kind]
         if not items:

@@ -304,3 +304,80 @@ Not fixed (and why)
   produce. The documented bound (METHODS section 5) is analytic, not measured.
 - Weak statistical smoke tests remain as smoke tests; they are labelled as such here, not
   strengthened by adding trials (CI time).
+
+## Round 6: security, dependency and coverage pass
+
+Checked: installed versions and license metadata of every declared dependency and its
+transitive dev dependencies against `docs/DATA_SOURCES.md`; `pip check`; the vendored three.js
+files against the npm tarball; XSS surface of the viewer, both statically and by loading a
+poisoned copy of the data in headless Chromium; path handling in `load_show` / `load_export`;
+secrets in the working tree and the whole git history; CI workflow permissions; line and branch
+coverage with `pytest-cov` (installed ad hoc, not a declared dependency).
+
+Findings
+- M1. `load_show` / `load_export` read any path with no checks: a device file such as
+  `/dev/zero` or a FIFO hangs or exhausts memory, and an arbitrarily large file is read whole.
+  (Path traversal is not an issue for a local CLI that is given the path by its user; the
+  scripts write only to fixed locations.)
+- M2. The verifier documents "polynomial degree up to 7" but enforced nothing: a degree-2000
+  coefficient array from an untrusted export is expanded into n x K x K work arrays (about 32 MB
+  per piece at K = 2000) and root-found at degree 4000, a denial of service and numerically
+  meaningless.
+- M3. Documentation gaps in `docs/DATA_SOURCES.md`: transitive dev dependencies were not listed;
+  the bundled-library note named OpenBLAS only, while numpy/scipy wheels also bundle libgfortran
+  (GPL-3.0 with the GCC Runtime Library Exception) and libquadmath (LGPL), per the bundled LICENSE
+  text. Sirb does not redistribute them, but the statement was incomplete. No hash was recorded
+  for the vendored three.js files.
+- M4. Installs were unpinned ranges, so "deterministic given library versions" had no way to
+  state the versions; CI ran with the default (write-capable) token permissions.
+- L5. No Content-Security-Policy on the viewer pages.
+- Clean results: licenses in metadata agree with DATA_SOURCES (numpy BSD-3-Clause AND 0BSD AND MIT
+  AND Zlib AND CC0-1.0; scipy BSD; pytest MIT; hypothesis MPL-2.0, dev only; ruff MIT);
+  `pip check` reports no broken requirements; runtime dependencies are numpy and scipy only.
+  Vendored `three.module.min.js`, `OrbitControls.js` and `LICENSE` are byte-identical to
+  `three@0.170.0` (tarball sha512 matches the registry). The viewer has no HTML injection sinks;
+  a copy of the data with `<img onerror>` and `<svg onload>` payloads in every string field
+  rendered them as text and ran no script. A scan for key, token and private-key patterns over
+  all tracked and untracked files and all history found nothing; no `.env`, key or credential
+  files are tracked; no absolute local paths in the repository.
+- Coverage (statements and branches, 150 tests before the additions below): 92% total. Lowest:
+  `planner/common.py` 74% (two unused helpers, `path_segments`, `path_duration`, are dead
+  code), `cli.py` 78%, `spec.py` 83%, `planner/prioritized.py` 85%, `stress.py` 91% (the
+  `sweep` driver ran only from scripts). The uncovered part of `prioritized.py` is exactly its
+  retry machinery: promotion after a failed drone, window widening and the fine-refinement branch
+  never run in any test, because the demo shows never need them. That is also the code that
+  failed on every `pinned15` case.
+
+Fixed
+- M1: `sirb/fileio.py::read_text_limited` (regular files only, 512 MiB cap, UTF-8) used by
+  `load_show` and `load_export`; tests for a directory, `/dev/zero`, a FIFO, an oversize file and
+  a missing file.
+- M2: `MAX_DEGREE = 7`; trailing all-zero rows are trimmed (a padded line is still a line) and a
+  genuinely higher degree is reported as `unsupported_degree` and excluded from geometry. Tests
+  cover both, and malformed/unreadable segments (wrong width, 1-D, empty, string time, infinite
+  time).
+- M3, M4: DATA_SOURCES updated with transitive dependencies, bundled libraries, vendored hashes
+  (a test recomputes them); `constraints.txt` with exact versions, used by the Makefile and CI
+  (`pip install -c constraints.txt`); CI `permissions: contents: read`.
+- L5: CSP meta tag on both pages (hash-allowed inline scripts), verified in headless Chromium
+  (page works; an injected inline script is refused); a test keeps the hashes in step with the
+  inline scripts. `docs/VIEWER.md` has the security notes.
+- Coverage: new tests for `apply_events` dispatch of every behaviour (previously exercised only
+  by scripts), each `verify_certificate` rejection branch (11 mutations), CLI error paths,
+  `python -m sirb`, `sweep`, malformed verifier inputs. Total after additions is above 92%.
+- New standing tests: no secret-shaped strings or credential files in tracked files; no HTML sink
+  patterns in the viewer.
+
+Not fixed (and why)
+- GitHub Actions are pinned by tag (`actions/checkout@v4`, `actions/setup-python@v5`), not
+  commit SHA: the commit SHAs could not be retrieved in this session (GitHub API access was not
+  available). Owner should pin them when the repository is public.
+- `style-src` still needs `'unsafe-inline'` (one inline `style` attribute in `methods.html`);
+  moving it to the stylesheet is a cosmetic change deferred to M9. `frame-ancestors` and other
+  header-only protections need host configuration.
+- Dead helpers in `planner/common.py` and the untested retry machinery of the prioritized
+  planner stay: that module is imported by the experiment job, and a test for the retry path
+  needs a purpose-built crossing case that the current planner may not solve (see round 3).
+- `pytest-cov` is not added to the dev extras; coverage is an occasional check, not a gate.
+- Integrity of exports and certificates remains accident detection, not authentication (no
+  signing key exists; adding one is a key-management decision for the owner).
