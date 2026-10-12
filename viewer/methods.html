@@ -2,7 +2,7 @@
 <html lang="en" dir="ltr" data-theme="dark">
 <head>
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-C6uk9kwTCjD2Xmii58a90E1ift805IwwzfYWT00Kz1w='; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-HnHVJy0Hiei89zcTgSCR2pSO+QnLSuxEZ49DwzdG6Bw='; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Sirb methods</title>
 <meta name="color-scheme" content="dark light">
@@ -11,18 +11,19 @@
 </head>
 <body>
 <div class="doc">
-  <div class="nav">
+  <header class="nav">
     <a class="btn" id="backLink" href="index.html" data-i18n="m_back">Back to viewer</a>
     <button id="langBtn" type="button" class="btn"></button>
     <button id="themeBtn" type="button" class="btn" data-i18n-aria="theme_switch_label"></button>
-  </div>
+  </header>
 
-  <aside class="banner" role="note" id="safety-statement">
+  <aside class="banner" id="safety-statement" data-i18n-aria="banner_title" aria-label="Simulation only">
     <strong class="en">Simulation only</strong><strong class="ar">محاكاة فقط</strong>
     <p class="en">Simulation and planning tool only. Not flight-certified; no claim of regulatory compliance. Real shows need an operator safety case and approvals from the relevant UAE aviation authorities. Simulation-validated only.</p>
     <p class="ar">أداة محاكاة وتخطيط فقط. غير معتمدة للطيران ولا تدّعي أي امتثال تنظيمي. تحتاج العروض الحقيقية إلى ملف سلامة تشغيلي وموافقات من الجهات المختصة بالطيران في دولة الإمارات. التحقق تمّ بالمحاكاة فقط.</p>
   </aside>
 
+  <main>
   <h1><span class="en">Methods: how every number in the viewer is computed</span><span class="ar">المنهجية: كيف يُحسب كل رقم في العارض</span></h1>
   <p class="note" data-i18n="m_lang_note"></p>
 
@@ -214,6 +215,7 @@
       <p><strong>Summary.</strong> <code>data/index.json</code> lists shows and scenarios. <code>&lt;scenario&gt;.bin</code> is little-endian int16 of shape (frames, n, 3) in centimetres; <code>&lt;scenario&gt;.nn.bin</code> is uint16 of shape (frames, n) in centimetres. Frame: x east, y north, z up, local origin, metres (<code>docs/SHOW_SCHEMA.md</code>). Values are clipped to +-327.67 m by the int16 range, which covers the geofence and crowd line of the bundled shows. The 3D scene maps (x, y, z) to (x, z, -y).</p>
     </div>
   </section>
+  </main>
 </div>
 <script type="module">
 import { STRINGS, getLang, storeLang, applyDocLang, makeT, translateDom } from "./i18n.js";
@@ -226,7 +228,7 @@ function apply() {
   applyDocLang(lang); translateDom(document, t);
   document.documentElement.dataset.theme = theme;
   document.title = lang === "ar" ? "سرب: المنهجية" : "Sirb methods";
-  const b = document.getElementById("langBtn"); b.textContent = t("lang_switch"); b.setAttribute("aria-label", t("lang_switch_label")); b.lang = lang === "ar" ? "en" : "ar";
+  const b = document.getElementById("langBtn"); b.textContent = t("lang_switch"); b.title = t("lang_switch_label"); b.lang = lang === "ar" ? "en" : "ar";
   document.getElementById("themeBtn").textContent = theme === "dark" ? t("theme_light") : t("theme_dark");
   document.getElementById("backLink").href = "index.html";
 }
