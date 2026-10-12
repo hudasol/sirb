@@ -19,6 +19,33 @@ It must be served over HTTP; `file://` cannot fetch the binary data (the page sh
 - Every analysis number links to a section of `methods.html`.
 - EN/AR toggle (`dir=rtl`, logical CSS, Arabic-Indic digits), remembered in `localStorage` (also passed as `?lang=` to the methods page). Dark by default unless the OS prefers light; manual toggle.
 
+## Accessibility, RTL and checks (goal 6)
+
+Scripts (Playwright with the preinstalled Chromium, software WebGL, never `playwright install`):
+
+```
+python scripts/axe_check.py --label after   # axe-core 4.14.0 on index and methods, EN/AR, dark/light -> results/axe.json
+python scripts/viewer_checks.py --screens   # keyboard, reduced motion, light theme, file://, RTL, overflow -> results/viewer_checks.json, viewer/screenshots/
+```
+
+axe-core (MPL-2.0) lives in `scripts/vendor/axe-core/` and is injected by the script only; it is not part of the shipped site (see `docs/DATA_SOURCES.md`). The index page is audited with a show loaded and a scenario selected. The audit contexts bypass the page CSP, because injecting a script is otherwise refused; the shipped pages keep their CSP.
+
+**axe before and after** (8 runs: 2 pages x EN/AR x dark/light; `results/axe.json`): before, 18 rule violations (12 moderate, 6 serious; 162 nodes) and 4 incomplete checks; after, 0 violations and 0 incomplete. No colour contrast issue was reported in either theme, so none was changed. axe covers only part of WCAG (roughly the machine checkable part); it does not test reading order, focus behaviour beyond tab reachability, or screen reader output, and it cannot judge the 3D canvas.
+
+Fixes: the safety banner lost its landmark because `role="note"` replaced the `aside` role (now a labelled complementary landmark); methods.html gained `<header>` and `<main>`; the language button keeps its visible name (an `aria-label` that did not contain the visible text moved to `title`); the step buttons draw their glyphs with CSS so the name is only the label; the section labels "3D views" and "Playback" were hardcoded English and are now translated.
+
+**Arabic and RTL decisions.** The page is `dir=rtl` with logical CSS. The nominal pane is first in reading order, so it sits on the right in Arabic. Time is not mirrored: the timeline, and the back, play and forward group, stay left to right (`dir=ltr`), like media players in RTL interfaces, so the arrows point in the direction time moves and ArrowRight always means later. Hashes, `d_min`, file names and commands are isolated LTR runs; the English original of the safety statement is its own LTR block under an Arabic label. Numbers use Arabic-Indic digits everywhere in the interface, including scenario parameters and the seed; digits inside quoted technical identifiers and in the long Methods prose keep Latin form. Checked at 1440 and 390 px (and 320 px) in both languages for horizontal overflow.
+
+**Checks** (`results/viewer_checks.json`, 40 of 40 pass): tab order from the skip link through every control without a trap and with a visible focus outline; Space and Enter on buttons; scrubber arrows, Shift+arrows, Home, End; global Space; `prefers-reduced-motion` (no autoplay, no CSS animation or transition; the page has no animation other than user started playback); light theme (stored, OS preference, toggle); `file://` (a classic script, `fileguard.js`, reveals a static bilingual notice, because ES modules cannot load from `file://` and previously the page stayed blank with no message); RTL and overflow checks. Screenshots are in `viewer/screenshots/`.
+
+## Benchmark (prepared, not yet measured)
+
+```
+nice -n 10 python scripts/viewer_bench.py
+```
+
+Builds `results/bench_data/` (git ignored) with `scripts/build_viewer_bench_data.py`: a deterministic 1000 drone synthetic show (launch grid, sphere, landing; enlarged geofence, baseline planner). The planner output passes the exact verifier at 1000 drones (min separation 2.534 m against d_min 2.0 m), so the dataset is a valid verified show, not only a rendering load. The script then loads `index.html?bench=1` (data read from `./bench/`, per frame timings in `window.__bench`), plays the show in a loop and writes `results/viewer_bench.json` with median and p95 of the requestAnimationFrame interval, the JS update step and the render submission separately. Prediction P8's smoothness part is pending, to be measured on an idle machine; a trial run on the shared two CPU machine, under load, was not recorded because it would not be meaningful.
+
 ## Limits
 
 Readouts are nearest-neighbour distances sampled every 0.2 s and can miss minima between frames; the exact verifier figure is the authoritative one for the nominal plan. Stressed results are simulation under assumed models, never guarantees. Drones are drawn enlarged (0.9 m). Simulation only; not flight certified.

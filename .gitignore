@@ -9,3 +9,4 @@ node_modules/
 .venv/
 .coverage
 htmlcov/
+results/bench_data/
