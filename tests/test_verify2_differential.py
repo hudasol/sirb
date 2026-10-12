@@ -125,3 +125,17 @@ def test_larger_fleets_big_tier(seed):
     fleet, _, _ = random_large_fleet(seed, n=12)
     _, dis = _check(fleet, None, None, seed)
     assert not dis, dis
+
+
+def test_multiple_root_refinement_regression():
+    """Found by differential testing: at a high-multiplicity root companion-matrix eigenvalues are
+    only accurate to ~eps^(1/k), and the reported minimum was too large by up to 2.3e-7 m. The
+    local refinement in sirb.verify must keep the error below 1e-7 m on the same family."""
+    from sirb.diffcases import ADVERSARIAL
+    from sirb.verify import pairwise_min_separation
+    worst = 0.0
+    for seed in range(120):
+        fleet, _d_min, meta = ADVERSARIAL["degenerate_collision"](seed, 0.0)
+        dmin = pairwise_min_separation(fleet, 5.0)[0]
+        worst = max(worst, abs(dmin - meta["d_true"]))
+    assert worst < 1e-7, worst
