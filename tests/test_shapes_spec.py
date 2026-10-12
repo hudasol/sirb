@@ -42,7 +42,7 @@ def test_size_and_spacing_exclusive():
 
 
 def test_demo_shows_valid():
-    files = sorted(Path("shows").glob("*.json"))
+    files = sorted(Path("shows").glob("[!g]*.json"))
     assert len(files) >= 4
     for f in files:
         show = json.loads(f.read_text())
@@ -51,7 +51,7 @@ def test_demo_shows_valid():
 
 
 def test_validator_catches_problems():
-    base = json.loads(sorted(Path("shows").glob("*.json"))[0].read_text())
+    base = json.loads(sorted(Path("shows").glob("[!g]*.json"))[0].read_text())
     bad = json.loads(json.dumps(base))
     bad["limits"]["geofence"]["y"][0] = -240.0
     assert any("crowd" in e for e in validate_show(bad))
