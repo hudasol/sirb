@@ -20,6 +20,9 @@ dev = ["pytest>=8", "hypothesis>=6", "ruff>=0.6"]
 [tool.setuptools.packages.find]
 include = ["sirb*"]
 
+[tool.setuptools.package-data]
+sirb = ["schemas/*.json"]
+
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 
