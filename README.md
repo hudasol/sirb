@@ -28,7 +28,7 @@ Not done: field or flight validation of any kind, regulatory work, and the explo
 - Simulated GNSS bias (25% of drones degraded, ASSUMED): P(violation) exceeds 5% already at bias sigma 0.1 m (36.0%); the nominal margin over d_min is only 0.189 m.
 - Nominal separation needed in the stated scenario for a 5% Wilson upper bound: 3.54 m (formation spacing 5.0 m, 300 trials).
 - Contingency runs: largest bystander to bystander violation rate over all rows: 0.0%; violations involved the drone that had the event.
-- Scaling: baseline plan + exact verification at n = 2000: 28.4 s + 52.4 s (verified = False).
+- Stress study scaling: largest verified size n = 1000: plan 3.3 s + exact verification 14.6 s. Sizes [2000] did not verify because the shapes exceed the altitude band (a limit of the test shapes, not a timing result).
 <!-- HEADLINES:END -->
 
 ## Verification evidence (generated from `results/*.json`)
@@ -39,6 +39,8 @@ Not done: field or flight validation of any kind, regulatory work, and the explo
 - Viewer accessibility (axe-core 4.14.0, 8 page runs): 18 violated rules before, 0 after; this is an automated check and does not replace manual testing.
 - Viewer behaviour checks (keyboard, reduced motion, light theme, file protocol, RTL, overflow): 40 passed, 0 failed.
 - Scale (computational study): n = 4000: plan 226 s, exact verification 206 s, peak memory 666 MB (`docs/PERFORMANCE.md`).
+- Viewer, 1000 drones, two panes, software WebGL: median frame interval 317 ms (3.2 fps), JavaScript update p95 1.2 ms; smoothness on a GPU is not measured.
+- Largest one at a time swings of the median minimum separation (stressed baseline): gnss_bias_sigma (1.57 m), gnss_deg_fraction (0.45 m), gnss_bias_tau (0.10 m) (`docs/SENSITIVITY.md`).
 <!-- ASSURANCE:END -->
 
 What these checks are and are not: they show that two implementations with different methods agree on large random and adversarial sets, that the test suite detects most small code changes, and that the viewer passes an automated accessibility scan. They do not prove the verifier correct, and the first two are statements about the plan as written, not about aircraft.
