@@ -1,0 +1,85 @@
+{
+ "rows": [
+  {
+   "n": 20,
+   "plan_s": 0.005734682083129883,
+   "verify_s": 0.05291675899934489,
+   "verified_ok": true,
+   "nominal_min_separation_m": 2.262741699796953,
+   "pairs_checked": 187,
+   "stress_trials": 20,
+   "stress_mean_trial_cpu_s": 0.13901987285007636,
+   "p_violation": 0.25
+  },
+  {
+   "n": 50,
+   "plan_s": 0.01990056037902832,
+   "verify_s": 0.24813152299975627,
+   "verified_ok": true,
+   "nominal_min_separation_m": 2.2627416997969263,
+   "pairs_checked": 981,
+   "stress_trials": 20,
+   "stress_mean_trial_cpu_s": 0.3113329893498758,
+   "p_violation": 0.65
+  },
+  {
+   "n": 100,
+   "plan_s": 0.037953853607177734,
+   "verify_s": 0.524789755000711,
+   "verified_ok": true,
+   "nominal_min_separation_m": 2.2627416997969387,
+   "pairs_checked": 3198,
+   "stress_trials": 20,
+   "stress_mean_trial_cpu_s": 0.6115563135001139,
+   "p_violation": 0.5
+  },
+  {
+   "n": 200,
+   "plan_s": 0.08221292495727539,
+   "verify_s": 1.2540182599996115,
+   "verified_ok": true,
+   "nominal_min_separation_m": 2.2627416997969303,
+   "pairs_checked": 10538,
+   "stress_trials": 20,
+   "stress_mean_trial_cpu_s": 1.5099130175001392,
+   "p_violation": 0.85
+  },
+  {
+   "n": 500,
+   "plan_s": 0.4997851848602295,
+   "verify_s": 5.1293349570005375,
+   "verified_ok": true,
+   "nominal_min_separation_m": 2.2627416997969316,
+   "pairs_checked": 54599,
+   "stress_trials": 20,
+   "stress_mean_trial_cpu_s": 7.338725996500034,
+   "p_violation": 0.95
+  },
+  {
+   "n": 1000,
+   "plan_s": 3.2724297046661377,
+   "verify_s": 14.610751827000058,
+   "verified_ok": true,
+   "nominal_min_separation_m": 2.262741699796924,
+   "pairs_checked": 183226,
+   "stress_trials": 6,
+   "stress_mean_trial_cpu_s": 20.73919155399987,
+   "p_violation": 1.0
+  },
+  {
+   "n": 2000,
+   "plan_s": 28.397756814956665,
+   "verify_s": 52.42259260500032,
+   "verified_ok": false,
+   "nominal_min_separation_m": 2.2627416997969076,
+   "pairs_checked": 654193,
+   "stress_trials": 6,
+   "stress_mean_trial_cpu_s": 53.85580273099989,
+   "p_violation": 1.0
+  }
+ ],
+ "scenario": {
+  "gnss_deg_fraction": 0.25,
+  "gnss_bias_sigma": 0.25
+ }
+}
