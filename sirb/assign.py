@@ -16,9 +16,17 @@ from scipy.optimize import linear_sum_assignment
 from scipy.spatial.distance import cdist
 
 
+def _quantize(cost: np.ndarray) -> np.ndarray:
+    """Round costs to 1e-4 so that exact ties (regular grids and walls have many) are decided the
+    same way on every CPU and BLAS build. Without this, last bit differences in cdist change which
+    of several equal cost assignments linear_sum_assignment returns, and the plan hash changes
+    (seen in CI). Assignments whose costs differ by less than 1e-4 are treated as tied."""
+    return np.round(cost, 4)
+
+
 def assign_hungarian_sq(src: np.ndarray, dst: np.ndarray) -> np.ndarray:
     """perm such that drone i goes to dst[perm[i]], minimising sum of squared distances."""
-    cost = cdist(src, dst, "sqeuclidean")
+    cost = _quantize(cdist(src, dst, "sqeuclidean"))
     r, c = linear_sum_assignment(cost)
     perm = np.empty(len(src), dtype=int)
     perm[r] = c
@@ -26,7 +34,7 @@ def assign_hungarian_sq(src: np.ndarray, dst: np.ndarray) -> np.ndarray:
 
 
 def assign_hungarian_len(src: np.ndarray, dst: np.ndarray) -> np.ndarray:
-    cost = cdist(src, dst, "euclidean")
+    cost = _quantize(cdist(src, dst, "euclidean"))
     r, c = linear_sum_assignment(cost)
     perm = np.empty(len(src), dtype=int)
     perm[r] = c
