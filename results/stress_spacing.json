@@ -1,0 +1,173 @@
+{
+ "scenario": {
+  "w20": 6.0,
+  "gnss_deg_fraction": 0.25,
+  "gnss_bias_sigma": 0.5
+ },
+ "trials": 300,
+ "dt": 0.2,
+ "rows": [
+  {
+   "formation_spacing_m": 3.0,
+   "nominal_min_separation_m": 2.1213203435596326,
+   "verified_ok": true,
+   "trials": 300,
+   "p_violation": 1.0,
+   "p_violation_ci95": [
+    0.9873565700022643,
+    0.9999999999999999
+   ],
+   "p_contact": 0.016666666666666666,
+   "p_contact_ci95": [
+    0.0071393720427721935,
+    0.038415943621705605
+   ],
+   "p_violation_involving_event_drone": 0.0,
+   "p_violation_between_bystanders": 1.0,
+   "min_separation_quantiles": {
+    "0.0": 0.12240531339160778,
+    "0.05": 0.6869722027778365,
+    "0.5": 1.1447256675684303
+   },
+   "mean_violating_pairs": 17.723333333333333,
+   "mean_max_tracking_error_m": 2.0629125877687473,
+   "wall_s": 141.68314921,
+   "mean_trial_cpu_s": 0.9387686351800206
+  },
+  {
+   "formation_spacing_m": 3.5,
+   "nominal_min_separation_m": 2.4748737341529012,
+   "verified_ok": true,
+   "trials": 300,
+   "p_violation": 0.96,
+   "p_violation_ci95": [
+    0.9313951365400219,
+    0.9769729078620613
+   ],
+   "p_contact": 0.0033333333333333335,
+   "p_contact_ci95": [
+    0.0005886425761407379,
+    0.018637164554943353
+   ],
+   "p_violation_involving_event_drone": 0.0,
+   "p_violation_between_bystanders": 0.96,
+   "min_separation_quantiles": {
+    "0.0": 0.47375983023207524,
+    "0.05": 1.0212298488519465,
+    "0.5": 1.5614450692709387
+   },
+   "mean_violating_pairs": 3.683333333333333,
+   "mean_max_tracking_error_m": 2.055752191794336,
+   "wall_s": 114.13437736100013,
+   "mean_trial_cpu_s": 0.7572647462633267
+  },
+  {
+   "formation_spacing_m": 4.0,
+   "nominal_min_separation_m": 2.828427124746176,
+   "verified_ok": true,
+   "trials": 300,
+   "p_violation": 0.5966666666666667,
+   "p_violation_ci95": [
+    0.5402701497811767,
+    0.6506187870859278
+   ],
+   "p_contact": 0.0,
+   "p_contact_ci95": [
+    0.0,
+    0.012643429997735661
+   ],
+   "p_violation_involving_event_drone": 0.0,
+   "p_violation_between_bystanders": 0.5966666666666667,
+   "min_separation_quantiles": {
+    "0.0": 0.8164496113207558,
+    "0.05": 1.3877570863361162,
+    "0.5": 1.9364468259136334
+   },
+   "mean_violating_pairs": 0.8633333333333333,
+   "mean_max_tracking_error_m": 2.0479089643805564,
+   "wall_s": 97.23496495900008,
+   "mean_trial_cpu_s": 0.6475981515133268
+  },
+  {
+   "formation_spacing_m": 5.0,
+   "nominal_min_separation_m": 3.5355339059327275,
+   "verified_ok": true,
+   "trials": 300,
+   "p_violation": 0.02,
+   "p_violation_ci95": [
+    0.009197506067771085,
+    0.042940186730055147
+   ],
+   "p_contact": 0.0,
+   "p_contact_ci95": [
+    0.0,
+    0.012643429997735661
+   ],
+   "p_violation_involving_event_drone": 0.0,
+   "p_violation_between_bystanders": 0.02,
+   "min_separation_quantiles": {
+    "0.0": 1.4379573918642157,
+    "0.05": 2.128793151170591,
+    "0.5": 2.6937167237414847
+   },
+   "mean_violating_pairs": 0.02,
+   "mean_max_tracking_error_m": 2.0717989685370553,
+   "wall_s": 87.28473423800006,
+   "mean_trial_cpu_s": 0.581135326159997
+  },
+  {
+   "formation_spacing_m": 6.0,
+   "nominal_min_separation_m": 4.242640687119281,
+   "verified_ok": true,
+   "trials": 300,
+   "p_violation": 0.0033333333333333335,
+   "p_violation_ci95": [
+    0.0005886425761407379,
+    0.018637164554943353
+   ],
+   "p_contact": 0.0,
+   "p_contact_ci95": [
+    0.0,
+    0.012643429997735661
+   ],
+   "p_violation_involving_event_drone": 0.0,
+   "p_violation_between_bystanders": 0.0033333333333333335,
+   "min_separation_quantiles": {
+    "0.0": 1.957370866992593,
+    "0.05": 2.829621021410355,
+    "0.5": 3.404393680208927
+   },
+   "mean_violating_pairs": 0.0033333333333333335,
+   "mean_max_tracking_error_m": 2.0602665297414933,
+   "wall_s": 73.73408551500006,
+   "mean_trial_cpu_s": 0.48965255218333215
+  },
+  {
+   "formation_spacing_m": 8.0,
+   "nominal_min_separation_m": 5.65685424949237,
+   "verified_ok": true,
+   "trials": 300,
+   "p_violation": 0.0,
+   "p_violation_ci95": [
+    0.0,
+    0.012643429997735661
+   ],
+   "p_contact": 0.0,
+   "p_contact_ci95": [
+    0.0,
+    0.012643429997735661
+   ],
+   "p_violation_involving_event_drone": 0.0,
+   "p_violation_between_bystanders": 0.0,
+   "min_separation_quantiles": {
+    "0.0": 3.3912996385750636,
+    "0.05": 4.121798524055807,
+    "0.5": 4.892128768964791
+   },
+   "mean_violating_pairs": 0.0,
+   "mean_max_tracking_error_m": 2.045759307887318,
+   "wall_s": 60.75105792600016,
+   "mean_trial_cpu_s": 0.4031731416033411
+  }
+ ]
+}

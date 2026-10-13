@@ -1,0 +1,397 @@
+{
+ "show": "Sirb text (100 drones)",
+ "trials": 200,
+ "rejoin_vmax_mps": 10.0,
+ "rows": [
+  {
+   "case": "comms_loss 5%",
+   "behavior": "continue",
+   "trials": 200,
+   "p_violation": 0.0,
+   "p_violation_ci95": [
+    0.0,
+    0.018846005918320894
+   ],
+   "p_contact": 0.0,
+   "p_contact_ci95": [
+    0.0,
+    0.018846005918320894
+   ],
+   "p_violation_involving_event_drone": 0.0,
+   "p_violation_between_bystanders": 0.0,
+   "min_separation_quantiles": {
+    "0.0": 2.161557531381595,
+    "0.05": 2.1664658094847242,
+    "0.5": 2.1721723312373378
+   },
+   "mean_violating_pairs": 0.0,
+   "mean_max_tracking_error_m": 0.022727987688813026,
+   "wall_s": 58.10799933299995,
+   "mean_trial_cpu_s": 0.5708968457399942
+  },
+  {
+   "case": "comms_loss 5%",
+   "behavior": "hold",
+   "trials": 200,
+   "p_violation": 0.875,
+   "p_violation_ci95": [
+    0.8219846471534161,
+    0.9138808484078432
+   ],
+   "p_contact": 0.45,
+   "p_contact_ci95": [
+    0.38263948633754313,
+    0.519245114254289
+   ],
+   "p_violation_involving_event_drone": 0.875,
+   "p_violation_between_bystanders": 0.0,
+   "min_separation_quantiles": {
+    "0.0": 0.011669973596957853,
+    "0.05": 0.037521016409761965,
+    "0.5": 0.5196851862104142
+   },
+   "mean_violating_pairs": 3.95,
+   "mean_max_tracking_error_m": 0.022727987688813026,
+   "wall_s": 55.17959220400007,
+   "mean_trial_cpu_s": 0.5464219329500178
+  },
+  {
+   "case": "comms_loss 5%",
+   "behavior": "descend",
+   "trials": 200,
+   "p_violation": 0.88,
+   "p_violation_ci95": [
+    0.8276563857409517,
+    0.9180206497611246
+   ],
+   "p_contact": 0.4,
+   "p_contact_ci95": [
+    0.3346046396837895,
+    0.46916456149987484
+   ],
+   "p_violation_involving_event_drone": 0.88,
+   "p_violation_between_bystanders": 0.0,
+   "min_separation_quantiles": {
+    "0.0": 0.002141179596480151,
+    "0.05": 0.015317883602521407,
+    "0.5": 0.6476476822836283
+   },
+   "mean_violating_pairs": 4.165,
+   "mean_max_tracking_error_m": 0.022727987688813026,
+   "wall_s": 56.803785010999945,
+   "mean_trial_cpu_s": 0.5614489515449828
+  },
+  {
+   "case": "comms_loss 5%",
+   "behavior": "corridor",
+   "trials": 200,
+   "p_violation": 0.215,
+   "p_violation_ci95": [
+    0.16371792563672208,
+    0.2770242977367209
+   ],
+   "p_contact": 0.02,
+   "p_contact_ci95": [
+    0.007804300176394188,
+    0.050287865505193874
+   ],
+   "p_violation_involving_event_drone": 0.215,
+   "p_violation_between_bystanders": 0.0,
+   "min_separation_quantiles": {
+    "0.0": 0.086077470532019,
+    "0.05": 0.8582814201695836,
+    "0.5": 2.171291643885392
+   },
+   "mean_violating_pairs": 0.365,
+   "mean_max_tracking_error_m": 0.022727987688813026,
+   "wall_s": 55.694714876000035,
+   "mean_trial_cpu_s": 0.5514716019900083
+  },
+  {
+   "case": "battery_low 5%",
+   "behavior": "hold",
+   "trials": 200,
+   "p_violation": 0.875,
+   "p_violation_ci95": [
+    0.8219846471534161,
+    0.9138808484078432
+   ],
+   "p_contact": 0.45,
+   "p_contact_ci95": [
+    0.38263948633754313,
+    0.519245114254289
+   ],
+   "p_violation_involving_event_drone": 0.875,
+   "p_violation_between_bystanders": 0.0,
+   "min_separation_quantiles": {
+    "0.0": 0.011669973596957853,
+    "0.05": 0.037521016409761965,
+    "0.5": 0.5196851862104142
+   },
+   "mean_violating_pairs": 3.95,
+   "mean_max_tracking_error_m": 0.022727987688813026,
+   "wall_s": 55.2936178559994,
+   "mean_trial_cpu_s": 0.5506255211100143
+  },
+  {
+   "case": "battery_low 5%",
+   "behavior": "descend",
+   "trials": 200,
+   "p_violation": 0.88,
+   "p_violation_ci95": [
+    0.8276563857409517,
+    0.9180206497611246
+   ],
+   "p_contact": 0.4,
+   "p_contact_ci95": [
+    0.3346046396837895,
+    0.46916456149987484
+   ],
+   "p_violation_involving_event_drone": 0.88,
+   "p_violation_between_bystanders": 0.0,
+   "min_separation_quantiles": {
+    "0.0": 0.002141179596480151,
+    "0.05": 0.015317883602521407,
+    "0.5": 0.6476476822836283
+   },
+   "mean_violating_pairs": 4.165,
+   "mean_max_tracking_error_m": 0.022727987688813026,
+   "wall_s": 56.70399023000027,
+   "mean_trial_cpu_s": 0.5631703460099879
+  },
+  {
+   "case": "battery_low 5%",
+   "behavior": "corridor",
+   "trials": 200,
+   "p_violation": 0.215,
+   "p_violation_ci95": [
+    0.16371792563672208,
+    0.2770242977367209
+   ],
+   "p_contact": 0.02,
+   "p_contact_ci95": [
+    0.007804300176394188,
+    0.050287865505193874
+   ],
+   "p_violation_involving_event_drone": 0.215,
+   "p_violation_between_bystanders": 0.0,
+   "min_separation_quantiles": {
+    "0.0": 0.086077470532019,
+    "0.05": 0.8582814201695836,
+    "0.5": 2.171291643885392
+   },
+   "mean_violating_pairs": 0.365,
+   "mean_max_tracking_error_m": 0.022727987688813026,
+   "wall_s": 59.08622343699972,
+   "mean_trial_cpu_s": 0.5782935453250729
+  },
+  {
+   "case": "gnss_dropout 10% x 10 s",
+   "behavior": "continue",
+   "trials": 200,
+   "p_violation": 0.715,
+   "p_violation_ci95": [
+    0.648845269187895,
+    0.773050948267227
+   ],
+   "p_contact": 0.01,
+   "p_contact_ci95": [
+    0.0027466006037749346,
+    0.03572248519617954
+   ],
+   "p_violation_involving_event_drone": 0.715,
+   "p_violation_between_bystanders": 0.0,
+   "min_separation_quantiles": {
+    "0.0": 0.2664138708536548,
+    "0.05": 0.9373099836683789,
+    "0.5": 1.719881833197769
+   },
+   "mean_violating_pairs": 1.215,
+   "mean_max_tracking_error_m": 2.148860841031931,
+   "wall_s": 132.82330386899957,
+   "mean_trial_cpu_s": 1.3218680936050533
+  },
+  {
+   "case": "gnss_dropout 10% x 10 s",
+   "behavior": "hold",
+   "trials": 200,
+   "p_violation": 0.995,
+   "p_violation_ci95": [
+    0.9722256001302286,
+    0.999116854010634
+   ],
+   "p_contact": 0.56,
+   "p_contact_ci95": [
+    0.4907154834956251,
+    0.6270229957941764
+   ],
+   "p_violation_involving_event_drone": 0.995,
+   "p_violation_between_bystanders": 0.0,
+   "min_separation_quantiles": {
+    "0.0": 0.010514148145300318,
+    "0.05": 0.1217073416721762,
+    "0.5": 0.43204562622540643
+   },
+   "mean_violating_pairs": 7.775,
+   "mean_max_tracking_error_m": 2.148860841031931,
+   "wall_s": 133.18951398099944,
+   "mean_trial_cpu_s": 1.3240213818199573
+  },
+  {
+   "case": "gnss_dropout 10% x 10 s",
+   "behavior": "descend",
+   "trials": 200,
+   "p_violation": 0.995,
+   "p_violation_ci95": [
+    0.9722256001302286,
+    0.999116854010634
+   ],
+   "p_contact": 0.625,
+   "p_contact_ci95": [
+    0.5561417515728713,
+    0.6891467469475485
+   ],
+   "p_violation_involving_event_drone": 0.995,
+   "p_violation_between_bystanders": 0.0,
+   "min_separation_quantiles": {
+    "0.0": 0.015944590761823408,
+    "0.05": 0.07125832183080759,
+    "0.5": 0.3802008317262011
+   },
+   "mean_violating_pairs": 8.08,
+   "mean_max_tracking_error_m": 2.148860841031931,
+   "wall_s": 84.60911254100029,
+   "mean_trial_cpu_s": 0.8427372685400268
+  },
+  {
+   "case": "gnss_dropout 10% x 10 s",
+   "behavior": "corridor",
+   "trials": 200,
+   "p_violation": 0.355,
+   "p_violation_ci95": [
+    0.29198518653239286,
+    0.4234801551839203
+   ],
+   "p_contact": 0.1,
+   "p_contact_ci95": [
+    0.06566994117157123,
+    0.14940686356308552
+   ],
+   "p_violation_involving_event_drone": 0.355,
+   "p_violation_between_bystanders": 0.0,
+   "min_separation_quantiles": {
+    "0.0": 0.0159445907618224,
+    "0.05": 0.3067964155506572,
+    "0.5": 2.1696757080482607
+   },
+   "mean_violating_pairs": 0.615,
+   "mean_max_tracking_error_m": 2.148860841031931,
+   "wall_s": 93.54800139200051,
+   "mean_trial_cpu_s": 0.9266929510349428
+  },
+  {
+   "case": "gnss_dropout 10% x 10 s, wind 9 m/s",
+   "behavior": "continue",
+   "trials": 200,
+   "p_violation": 0.765,
+   "p_violation_ci95": [
+    0.7015850701327535,
+    0.8184265467305365
+   ],
+   "p_contact": 0.005,
+   "p_contact_ci95": [
+    0.0008831459893662054,
+    0.02777439986977148
+   ],
+   "p_violation_involving_event_drone": 0.765,
+   "p_violation_between_bystanders": 0.0,
+   "min_separation_quantiles": {
+    "0.0": 0.3980351161924103,
+    "0.05": 0.9058568090646808,
+    "0.5": 1.7405517769720116
+   },
+   "mean_violating_pairs": 1.325,
+   "mean_max_tracking_error_m": 2.571927244565618,
+   "wall_s": 162.06875860299988,
+   "mean_trial_cpu_s": 1.6136125957900003
+  },
+  {
+   "case": "gnss_dropout 10% x 10 s, wind 9 m/s",
+   "behavior": "hold",
+   "trials": 200,
+   "p_violation": 0.985,
+   "p_violation_ci95": [
+    0.9568335194437211,
+    0.9948858548155076
+   ],
+   "p_contact": 0.51,
+   "p_contact_ci95": [
+    0.441184632709161,
+    0.5784384471724727
+   ],
+   "p_violation_involving_event_drone": 0.985,
+   "p_violation_between_bystanders": 0.0,
+   "min_separation_quantiles": {
+    "0.0": 0.00721960503951368,
+    "0.05": 0.10966417593583383,
+    "0.5": 0.4669313182800246
+   },
+   "mean_violating_pairs": 7.56,
+   "mean_max_tracking_error_m": 2.571927244565618,
+   "wall_s": 163.56091035100053,
+   "mean_trial_cpu_s": 1.6313593090599852
+  },
+  {
+   "case": "gnss_dropout 10% x 10 s, wind 9 m/s",
+   "behavior": "descend",
+   "trials": 200,
+   "p_violation": 0.98,
+   "p_violation_ci95": [
+    0.9497121344948062,
+    0.9921956998236058
+   ],
+   "p_contact": 0.605,
+   "p_contact_ci95": [
+    0.5358822087449843,
+    0.6701601300121683
+   ],
+   "p_violation_involving_event_drone": 0.98,
+   "p_violation_between_bystanders": 0.0,
+   "min_separation_quantiles": {
+    "0.0": 0.004022586583290619,
+    "0.05": 0.07237624441320809,
+    "0.5": 0.366694299137969
+   },
+   "mean_violating_pairs": 8.25,
+   "mean_max_tracking_error_m": 2.571927244565618,
+   "wall_s": 149.66060300699974,
+   "mean_trial_cpu_s": 1.4865627454300192
+  },
+  {
+   "case": "gnss_dropout 10% x 10 s, wind 9 m/s",
+   "behavior": "corridor",
+   "trials": 200,
+   "p_violation": 0.41,
+   "p_violation_ci95": [
+    0.34415559179081295,
+    0.4792366892744849
+   ],
+   "p_contact": 0.12,
+   "p_contact_ci95": [
+    0.08197935023887545,
+    0.17234361425904846
+   ],
+   "p_violation_involving_event_drone": 0.41,
+   "p_violation_between_bystanders": 0.0,
+   "min_separation_quantiles": {
+    "0.0": 0.007823198082678041,
+    "0.05": 0.20977106938119758,
+    "0.5": 2.0839825124769744
+   },
+   "mean_violating_pairs": 0.68,
+   "mean_max_tracking_error_m": 2.571927244565618,
+   "wall_s": 148.5148711110005,
+   "mean_trial_cpu_s": 1.4781699391050096
+  }
+ ]
+}

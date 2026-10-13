@@ -40,6 +40,21 @@ def family_show(spacing: float, n: int = 100, big: bool = False) -> dict:
     ], seed=7, **over)
 
 
+CACHE = Path("results/.cache")
+
+
+def cached(key: str, fn):
+    """Checkpoint each unit of work so a killed run resumes (results are deterministic, so a
+    cached unit is identical to a recomputed one). Cache lives in results/.cache (gitignored)."""
+    CACHE.mkdir(parents=True, exist_ok=True)
+    f = CACHE / (key.replace("/", "_").replace(" ", "_") + ".json")
+    if f.exists():
+        return json.loads(f.read_text())
+    val = fn()
+    f.write_text(json.dumps(val))
+    return json.loads(json.dumps(val))
+
+
 def plan_and_ref(show: dict):
     fleet, _ = plan_baseline(show)
     rep = verify(fleet, show["limits"])
@@ -66,8 +81,8 @@ def exp_sweeps(trials: int) -> dict:
     }
     for name, (param, values, extra) in plan.items():
         t = time.time()
-        out["sweeps"][name] = sweep(ref, base.with_(**extra), param, values, d_min, trials,
-                                    SEED, WORKERS)
+        out["sweeps"][name] = cached(f"sweeps_{trials}_{name}", lambda: sweep(
+            ref, base.with_(**extra), param, values, d_min, trials, SEED, WORKERS))
         print(f"{name}: {time.time() - t:.0f}s", flush=True)
     return out
 
@@ -76,35 +91,40 @@ def exp_spacing(trials: int) -> dict:
     scenario = {"w20": 6.0, "gnss_deg_fraction": 0.25, "gnss_bias_sigma": 0.5}
     out = {"scenario": scenario, "trials": trials, "dt": DT, "rows": []}
     for s in (3.0, 3.5, 4.0, 5.0, 6.0, 8.0):
-        show = family_show(s)
-        fleet, rep, ref = plan_and_ref(show)
-        d_min = show["limits"]["min_separation_m"]
-        mc = monte_carlo(ref, StressConfig(dt=DT, **scenario), d_min, trials, SEED, workers=WORKERS)
-        out["rows"].append({"formation_spacing_m": s,
-                            "nominal_min_separation_m": rep.min_separation,
-                            "verified_ok": rep.ok, **mc})
-        print(f"spacing {s}: nominal {rep.min_separation:.2f} m, "
-              f"P={mc['p_violation']:.3f} hi={mc['p_violation_ci95'][1]:.3f}", flush=True)
+        def one(s=s):
+            show = family_show(s)
+            fleet, rep, ref = plan_and_ref(show)
+            d_min = show["limits"]["min_separation_m"]
+            mc = monte_carlo(ref, StressConfig(dt=DT, **scenario), d_min, trials, SEED,
+                             workers=WORKERS)
+            return {"formation_spacing_m": s, "nominal_min_separation_m": rep.min_separation,
+                    "verified_ok": rep.ok, **mc}
+        row = cached(f"spacing_{trials}_{s}", one)
+        out["rows"].append(row)
+        print(f"spacing {s}: nominal {row['nominal_min_separation_m']:.2f} m, "
+              f"P={row['p_violation']:.3f} hi={row['p_violation_ci95'][1]:.3f}", flush=True)
     return out
 
 
 def exp_scaling() -> dict:
     out = {"rows": [], "scenario": {"gnss_deg_fraction": 0.25, "gnss_bias_sigma": 0.25}}
     for n in (20, 50, 100, 200, 500, 1000, 2000):
-        show = family_show(3.2, n, big=True)
-        t = time.time()
-        fleet, _ = plan_baseline(show)
-        plan_s = time.time() - t
-        rep = verify(fleet, show["limits"])
-        ref = sample_reference(fleet, DT)
-        trials = 20 if n <= 500 else 6
-        mc = monte_carlo(ref, StressConfig(dt=DT, **out["scenario"]), 2.0, trials, SEED,
-                         workers=WORKERS)
-        out["rows"].append({"n": n, "plan_s": plan_s, "verify_s": rep.runtime_s,
-                            "verified_ok": rep.ok, "nominal_min_separation_m": rep.min_separation,
-                            "pairs_checked": rep.n_pairs_checked, "stress_trials": trials,
-                            "stress_mean_trial_cpu_s": mc["mean_trial_cpu_s"],
-                            "p_violation": mc["p_violation"]})
+        def one(n=n):
+            show = family_show(3.2, n, big=True)
+            t = time.time()
+            fleet, _ = plan_baseline(show)
+            plan_s = time.time() - t
+            rep = verify(fleet, show["limits"])
+            ref = sample_reference(fleet, DT)
+            trials = 20 if n <= 500 else 6
+            mc = monte_carlo(ref, StressConfig(dt=DT, **out["scenario"]), 2.0, trials, SEED,
+                             workers=WORKERS)
+            return {"n": n, "plan_s": plan_s, "verify_s": rep.runtime_s,
+                    "verified_ok": rep.ok, "nominal_min_separation_m": rep.min_separation,
+                    "pairs_checked": rep.n_pairs_checked, "stress_trials": trials,
+                    "stress_mean_trial_cpu_s": mc["mean_trial_cpu_s"],
+                    "p_violation": mc["p_violation"]}
+        out["rows"].append(cached(f"scaling_{n}", one))
         print(out["rows"][-1], flush=True)
     return out
 
@@ -129,7 +149,8 @@ def exp_contingency(trials: int) -> dict:
             cfg = StressConfig(dt=DT, rejoin_vmax=10.0, **{param: val}, **extra).with_(
                 behavior={"comms_loss": "continue", "battery_low": "descend",
                           "gnss_loss": "continue", "motor_failure": "ballistic", kind: beh})
-            mc = monte_carlo(ref, cfg, d_min, trials, SEED, workers=WORKERS)
+            mc = cached(f"contingency_{trials}_{label}_{beh}", lambda: monte_carlo(
+                ref, cfg, d_min, trials, SEED, workers=WORKERS))
             out["rows"].append({"case": label, "behavior": beh, **mc})
             print(f"{label:38s} {beh:9s} P={mc['p_violation']:.3f} "
                   f"event={mc['p_violation_involving_event_drone']:.3f} "
