@@ -1,5 +1,9 @@
 # Sirb (سرب)
 
+> **SAFETY STATEMENT. Simulation and planning tool only. Not flight-certified. No claim of regulatory compliance. No flight-control, radio or MAVLink code; exports are files labeled "simulation-validated only". A real drone show needs an operator safety case and approvals from the relevant UAE aviation authorities. There is no real flight data behind any result in this repository.**
+
+[![CI](https://github.com/hudasol/sirb/actions/workflows/ci.yml/badge.svg)](https://github.com/hudasol/sirb/actions/workflows/ci.yml)
+
 *Sirb* is Arabic for "flock" or "squadron".
 
 A simulation-first suite that turns shape sequences into multi-drone show trajectories, checks them with an exact separation verifier that shares no logic with the planners, stress-tests them in Monte-Carlo simulation against wind, GNSS degradation, drone failures and comms/battery events, and writes a report with the measured margins.

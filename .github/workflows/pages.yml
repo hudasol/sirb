@@ -1,0 +1,29 @@
+name: Deploy viewer to GitHub Pages
+# Free tier. The viewer is fully static (no build step). One manual step is needed once:
+# Settings > Pages > Source: "GitHub Actions". Live URL: https://hudasol.github.io/sirb/
+on:
+  push:
+    branches: [main]
+    paths: ["viewer/**", ".github/workflows/pages.yml"]
+  workflow_dispatch:
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+concurrency:
+  group: pages
+  cancel-in-progress: true
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: viewer
+      - id: deployment
+        uses: actions/deploy-pages@v4
