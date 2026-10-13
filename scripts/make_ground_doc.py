@@ -38,7 +38,19 @@ def main() -> None:
           "| Task | Planner | Verified / runs |", "|---|---|---|"]
     for (task, pl), (ok, n) in sorted(tot.items()):
         L.append(f"| {task} | {pl} | {ok} / {n} |")
-    L += ["", "## Reading", "",
+    errs = {}
+    for r in rows:
+        if not r["plan"]:
+            e = r["error"].split(" at drone")[0]
+            errs.setdefault((r["planner"], e), []).append(r["n"])
+    L += ["", "Planner failures (no plan produced), by cause:", "",
+          "| Planner | Error | Sizes affected |", "|---|---|---|"]
+    for (pl, e), ns in sorted(errs.items()):
+        L.append(f"| {pl} | {e} | {', '.join(map(str, sorted(set(ns))))} |")
+    L += ["", "The waves and prioritized planners separate drones mostly by altitude or by "
+          "lateral lanes. With the altitude band closed and a dense 2 m grid they cannot find a "
+          "schedule when assignments cross. This is a limitation of those planners on this task, "
+          "not evidence about any robot.", "", "## Reading", "",
           "A planner that fails here fails under the stated assumed limits and gets no credit or "
           "blame beyond this simulation. A verified plan is guaranteed only under the model: point "
           "robots, exact polynomial paths, the limits above.", ""]

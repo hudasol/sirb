@@ -128,9 +128,14 @@ def headlines() -> list[str]:
                    f"{pct(by)}; violations involved the drone that had the event.")
     sc = load("stress_scaling.json")
     if sc:
-        last = sc["rows"][-1]
-        out.append(f"- Scaling: baseline plan + exact verification at n = {last['n']}: "
-                   f"{last['plan_s']:.1f} s + {last['verify_s']:.1f} s (verified = {last['verified_ok']}).")
+        okr = [r for r in sc["rows"] if r["verified_ok"]]
+        bad = [r["n"] for r in sc["rows"] if not r["verified_ok"]]
+        if okr:
+            last = okr[-1]
+            out.append(f"- Stress study scaling: largest verified size n = {last['n']}: plan "
+                       f"{last['plan_s']:.1f} s + exact verification {last['verify_s']:.1f} s."
+                       + (f" Sizes {bad} did not verify because the shapes exceed the altitude band "
+                          "(a limit of the test shapes, not a timing result)." if bad else ""))
     return out
 
 
@@ -181,6 +186,11 @@ def assurance_lines() -> list[str]:
         out.append(f"- Scale (computational study): n = {r['n']}: plan {r['plan_total_s']:.0f} s, exact "
                    f"verification {r['verify_s']:.0f} s, peak memory {r['peak_rss_mb']:.0f} MB "
                    "(`docs/PERFORMANCE.md`).")
+    vb = load("viewer_bench.json")
+    if vb:
+        out.append(f"- Viewer, {vb['drones']} drones, two panes, software WebGL: median frame interval "
+                   f"{vb['raf_interval']['median_ms']:.0f} ms ({vb['raf_fps_median']:.1f} fps), JavaScript "
+                   f"update p95 {vb['js_update_step']['p95_ms']:.1f} ms; smoothness on a GPU is not measured.")
     se = load("sensitivity.json")
     if se:
         top = se["ranking_by_swing"]["stressed_spacing_4.0"][:3]
