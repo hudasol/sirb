@@ -40,6 +40,8 @@ def main() -> int:
     d = diff(new, old)
     for line in d:
         print(line)
+    for line in d[:8]:
+        print("::error::" + line[:200])
     print("differences:", len(d))
     return 1 if d else 0
 
