@@ -17,11 +17,11 @@ from scipy.spatial.distance import cdist
 
 
 def _quantize(cost: np.ndarray) -> np.ndarray:
-    """Quantise costs to cells of 1e-4 (edges offset by an irrational fraction so that costs on a decimal lattice are never near an edge) so that exact ties (regular grids and walls have many) are decided the
+    """Round costs to 1e-4 so that exact ties (regular grids and walls have many) are decided the
     same way on every CPU and BLAS build. Without this, last bit differences in cdist change which
     of several equal cost assignments linear_sum_assignment returns, and the plan hash changes
     (seen in CI). Assignments whose costs differ by less than 1e-4 are treated as tied."""
-    return np.floor(cost * 1e4 + 0.3141592653589793)  # offset keeps decimal lattice values off the cell edge
+    return np.round(cost, 4)
 
 
 def assign_hungarian_sq(src: np.ndarray, dst: np.ndarray) -> np.ndarray:
