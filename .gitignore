@@ -10,3 +10,4 @@ node_modules/
 .coverage
 htmlcov/
 mutants/
+results/bench_data/

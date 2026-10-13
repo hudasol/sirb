@@ -22,6 +22,12 @@ const S = {
   A: null, B: null, dataA: null, dataB: null, loadToken: 0, dirty: true,
 };
 const SPEEDS = [0.5, 1, 2, 4];
+// ?bench=1 (used by scripts/viewer_bench.py): reads the dataset from ./bench/ instead of ./data/ and records
+// per-frame timings in window.__bench. It never changes what the normal page does.
+const BENCH = new URLSearchParams(location.search).get("bench") === "1";
+const DATA = BENCH ? "bench" : "data";
+const bench = BENCH ? { raf: [], update: [], render: [], total: [] } : null;
+if (BENCH) window.__bench = bench;
 const reducedMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
 
 // ------------------------------------------------------------------ theme
@@ -75,7 +81,7 @@ async function fetchJSON(path) {
   return r.json();
 }
 async function loadScenarioData(show, sc) {
-  const [pb, nb] = await Promise.all([fetchBuf(`data/${show.id}/${sc.pos}`), fetchBuf(`data/${show.id}/${sc.nn}`)]);
+  const [pb, nb] = await Promise.all([fetchBuf(`${DATA}/${show.id}/${sc.pos}`), fetchBuf(`${DATA}/${show.id}/${sc.nn}`)]);
   const pos = new Int16Array(pb), nn = new Uint16Array(nb);
   const n = show.n, K = show.frames;
   if (pos.length !== K * n * 3 || nn.length !== K * n) throw new Error(`${sc.pos}: unexpected size`);
@@ -321,7 +327,8 @@ function updateTransport() {
 function renderBanner() {
   const st = S.index?.safety_statement ?? STRINGS.en.safety_statement;
   $("#bannerText").textContent = S.lang === "ar" ? S.t("safety_statement") : st;
-  const o = $("#bannerOrig"); o.hidden = S.lang !== "ar"; o.textContent = `${S.t("banner_en_original")} ${st}`;
+  const o = $("#bannerOrig"); o.hidden = S.lang !== "ar";
+  o.replaceChildren(el("span", { text: S.t("banner_en_original") }), el("span", { lang: "en", dir: "ltr", class: "en-block", text: st }));
 }
 
 function renderShowMeta() {
@@ -409,12 +416,12 @@ function renderScenario() {
   kv(dl, t("scen_min_nn"), withUnit(num(sc.min_nn_m, 2), sc.id === "nominal" ? "sampled-nn" : "stress-model"));
   if (sc.id !== "nominal") {
     kv(dl, t("scen_max_err"), withUnit(num(sc.max_tracking_error_m, 2), "tracking-error"));
-    kv(dl, t("scen_seed"), numLink(String(S.index.seed), "fixed-seed"));
-    const cfg = el("ul", { class: "list", dir: "ltr", lang: "en" });
+    kv(dl, t("scen_seed"), numLink(S.int(S.index.seed), "fixed-seed"));
+    const cfg = el("ul", { class: "list" });
     for (const [k, v] of Object.entries(sc.config || {})) {
       let val;
-      if (typeof v === "number") val = numLink(new Intl.NumberFormat("en", { maximumFractionDigits: 3 }).format(v), "stress-config");
-      else val = numLink(Object.entries(v).map(([a, b]) => `${a}: ${b}`).join(", "), "events");
+      if (typeof v === "number") val = numLink(new Intl.NumberFormat(S.lang === "ar" ? "ar-u-nu-arab" : "en", { maximumFractionDigits: 3, useGrouping: false }).format(v), "stress-config");
+      else { val = numLink(Object.entries(v).map(([a, b]) => `${a}: ${b}`).join(", "), "events"); val.dir = "ltr"; val.style.unicodeBidi = "isolate"; }
       cfg.append(el("li", {}, `${STRINGS[S.lang]["cfg_" + k] ?? STRINGS.en["cfg_" + k] ?? k}: `, val));
     }
     kv(dl, t("scen_config"), cfg);
@@ -458,7 +465,7 @@ async function loadShow(id) {
   for (const w of ["A", "B"]) showOverlay(w, S.t("loading_show", { name: show.name }));
   updateTransport();
   try {
-    const cert = await fetchJSON(`data/${show.certificate}`); if (token !== S.loadToken) return;
+    const cert = await fetchJSON(`${DATA}/${show.certificate}`); if (token !== S.loadToken) return;
     S.cert = cert; renderCert();
     S.A.setShow(show, cert); S.B.setShow(show, cert);
     const nomSc = show.scenarios.find((s) => s.id === "nominal");
@@ -483,7 +490,7 @@ function setLang(lang, store = true) {
   if (store) storeLang(lang);
   applyDocLang(lang); translateDom(document, S.t);
   document.title = S.t("app_title");
-  $("#langBtn").textContent = S.t("lang_switch"); $("#langBtn").setAttribute("aria-label", S.t("lang_switch_label"));
+  $("#langBtn").textContent = S.t("lang_switch"); $("#langBtn").title = S.t("lang_switch_label");
   $("#langBtn").lang = lang === "ar" ? "en" : "ar";
   $("#themeBtn").textContent = S.theme === "dark" ? S.t("theme_light") : S.t("theme_dark");
   $("#keysHint").textContent = S.t("keys_hint");
@@ -500,17 +507,25 @@ function setLang(lang, store = true) {
 let last = performance.now();
 function loop(now) {
   requestAnimationFrame(loop);
-  const dtr = Math.min((now - last) / 1000, 0.1); last = now;
+  const dtr = Math.min((now - last) / 1000, 0.1);
+  if (bench && S.show && S.dataA && S.dataB) { bench.raf.push(now - last); S.playing = true; S.dirty = true; }
+  last = now;
   if (S.playing) {
     S.time += dtr * S.speed;
-    if (S.time >= S.T) { S.time = S.T; S.playing = false; }
+    if (S.time >= S.T) { if (bench) S.time = 0; else { S.time = S.T; S.playing = false; } }
     updateTransport(); S.dirty = true;
   }
   if (!S.dirty || !S.show) return;
   S.dirty = false;
+  const t0 = bench ? performance.now() : 0;
   const rA = S.A.update(S.time), rB = S.B.update(S.time);
   setRO("A", rA); setRO("B", rB);
+  const t1 = bench ? performance.now() : 0;
   S.A.render(); S.B.render();
+  if (bench && S.dataA && S.dataB) {
+    const t2 = performance.now();
+    bench.update.push(t1 - t0); bench.render.push(t2 - t1); bench.total.push(t2 - t0);
+  }
   window.__sirb = { time: S.time, rA, rB, frames: (window.__sirb?.frames ?? 0) + 1 };
 }
 
@@ -549,7 +564,7 @@ async function main() {
   catch (e) { const g = $("#globalError"); g.hidden = false; g.textContent = S.t("webgl_error"); return; }
   S.A.resize(); S.B.resize();
   for (const w of ["A", "B"]) showOverlay(w, S.t("loading"));
-  try { S.index = await fetchJSON("data/index.json"); } catch (e) { for (const w of ["A", "B"]) showOverlay(w, ""); showError(e); return; }
+  try { S.index = await fetchJSON(`${DATA}/index.json`); } catch (e) { for (const w of ["A", "B"]) showOverlay(w, ""); showError(e); return; }
   renderBanner(); fillSelects();
   await loadShow(S.index.shows[0].id);
   setLang(S.lang, false); // re-render dynamic parts now that the index is loaded

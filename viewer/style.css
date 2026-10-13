@@ -129,3 +129,9 @@ html[dir="rtl"] .doc .en-detail ul { padding-inline-start: 0; padding-inline-end
 @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; scroll-behavior: auto !important; } }
 
 .scen-ph { min-block-size: 34px; display: flex; align-items: center; }
+
+/* transport: media controls and the timeline keep left-to-right order in Arabic (time runs left to right) */
+.media { display: inline-flex; gap: 8px; }
+.en-block { display: block; text-align: left; }
+.ico-back::before { content: "\25C0\25C0"; }
+.ico-fwd::before { content: "\25B6\25B6"; }
