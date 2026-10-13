@@ -134,12 +134,68 @@ def headlines() -> list[str]:
     return out
 
 
-def fill_markers(path: str, lines: list[str]) -> None:
+def assurance_lines() -> list[str]:
+    """Verification evidence lines, every number read from result files."""
+    out = []
+    d = load("differential.json")
+    if d:
+        c, v, b = d["counts"], d["verdicts"], d["brute_force"]
+        md = d["max_discrepancies"]
+        out.append(f"- Second, independent verifier (interval branch and bound, `sirb/verify2.py`): "
+                   f"{c['total_fleets']} fleets ({c['random_fleets']} random, {c['adversarial_fleets']} "
+                   f"adversarial in {len(c['adversarial_by_family'])} families), "
+                   f"{c['verdict_checks']} verdict checks: lower bound above the exact value in "
+                   f"{'0' if md['max_l_minus_e'] <= 1e-9 else 'some'} cases "
+                   f"(max l minus e = {md['max_l_minus_e']:.1e} m), FAIL verdicts with the exact value "
+                   f"at or above the threshold: {v['fail_with_exact_at_or_above_threshold']} (max margin "
+                   f"{v['fail_with_exact_above_threshold_max_margin']:.1e} m); "
+                   f"{c['n_disagreement_records']} disagreement records, all in the high multiplicity "
+                   f"root family, largest exact minus lower bound {md['max_e_minus_l']:.1e} m "
+                   f"(`docs/VERIFIER.md`). Brute force sampling at dt = 1e-4 s against the exact value: "
+                   f"{b['n_comparisons']} comparisons, largest sampled minus exact "
+                   f"{b['grid_plus_breakpoints_max_sampled_minus_exact']:.1e} m (grid plus breakpoints), "
+                   f"largest negative gap {b['grid_plus_breakpoints_max_negative_gap']:.1e} m.")
+    m = load("mutation.json")
+    if m:
+        parts = []
+        for f, a in m["after"].items():
+            bsc = m["before"].get(f, {}).get("score")
+            if bsc is not None:
+                parts.append(f"`{f.replace('sirb/', '')}` {100 * bsc:.1f}% to {100 * a['score']:.1f}%")
+        out.append("- Mutation testing (mutmut, killed over total, before to after added tests): "
+                   + "; ".join(parts) + " (`docs/MUTATION.md`).")
+    ax = load("axe.json")
+    if ax:
+        bs, as_ = ax["before"]["summary"], ax["after"]["summary"]
+        out.append(f"- Viewer accessibility (axe-core {ax['axe_core']['version']}, 8 page runs): "
+                   f"{bs['violation_rules']} violated rules before, {as_['violation_rules']} after; "
+                   "this is an automated check and does not replace manual testing.")
+    vc = load("viewer_checks.json")
+    if vc:
+        out.append(f"- Viewer behaviour checks (keyboard, reduced motion, light theme, file protocol, "
+                   f"RTL, overflow): {vc['passed']} passed, {vc['failed']} failed.")
+    sp = load("scaling_profile.json")
+    if sp:
+        rows = [r for r in sp["rows"] if not r.get("failed")]
+        r = rows[-1]
+        out.append(f"- Scale (computational study): n = {r['n']}: plan {r['plan_total_s']:.0f} s, exact "
+                   f"verification {r['verify_s']:.0f} s, peak memory {r['peak_rss_mb']:.0f} MB "
+                   "(`docs/PERFORMANCE.md`).")
+    se = load("sensitivity.json")
+    if se:
+        top = se["ranking_by_swing"]["stressed_spacing_4.0"][:3]
+        out.append("- Largest one at a time swings of the median minimum separation (stressed baseline): "
+                   + ", ".join(f"{t['param']} ({t['swing_m']:.2f} m)" for t in top)
+                   + " (`docs/SENSITIVITY.md`).")
+    return out
+
+
+def fill_markers(path: str, lines: list[str], tag: str = "HEADLINES") -> None:
     p = Path(path)
     if not p.exists():
         return
     t = p.read_text()
-    a, b = "<!-- HEADLINES:START -->", "<!-- HEADLINES:END -->"
+    a, b = f"<!-- {tag}:START -->", f"<!-- {tag}:END -->"
     if a in t and b in t:
         t = t[:t.index(a) + len(a)] + "\n" + "\n".join(lines) + "\n" + t[t.index(b):]
         p.write_text(t)
@@ -158,6 +214,8 @@ def main():
     h = headlines()
     for f in ("docs/REPORT.md", "docs/ONE_PAGER.md", "README.md"):
         fill_markers(f, h)
+    for f in ("docs/REPORT.md", "README.md"):
+        fill_markers(f, assurance_lines(), "ASSURANCE")
 
 
 if __name__ == "__main__":
