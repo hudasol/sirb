@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "model": "sirb-gnss-gauss-markov",
+  "provenance": {
+    "source_name": "Sirb assumed defaults",
+    "url": "docs/METHODS.md",
+    "licence": "MIT (Sirb repository LICENSE)",
+    "retrieval_date": "2026-10-12",
+    "derived_by": "sirb.gnss_params.from_stress_config(StressConfig()) on 2026-10-12; no external data used",
+    "notes": "Every value is an ASSUMPTION; see docs/METHODS.md section 5 and docs/RESEARCH.md section 3."
+  },
+  "parameters": {
+    "white_sigma": {
+      "value": 0.015,
+      "unit": "m",
+      "assumed": true
+    },
+    "degraded_fraction": {
+      "value": 0.0,
+      "unit": "1",
+      "assumed": true
+    },
+    "bias_sigma": {
+      "value": 0.0,
+      "unit": "m",
+      "assumed": true
+    },
+    "bias_tau": {
+      "value": 30.0,
+      "unit": "s",
+      "assumed": true
+    },
+    "dropout_fraction": {
+      "value": 0.0,
+      "unit": "1",
+      "assumed": true
+    },
+    "dropout_duration": {
+      "value": 10.0,
+      "unit": "s",
+      "assumed": true
+    },
+    "dead_reckoning_rate": {
+      "value": 0.3,
+      "unit": "m/sqrt(s)",
+      "assumed": true
+    }
+  }
+}

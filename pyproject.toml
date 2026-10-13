@@ -15,10 +15,13 @@ dependencies = ["numpy>=2.0", "scipy>=1.14"]
 sirb = "sirb.cli:main"
 
 [project.optional-dependencies]
-dev = ["pytest>=8", "hypothesis>=6", "ruff>=0.6"]
+dev = ["pytest>=8", "hypothesis>=6", "ruff>=0.6", "mutmut==3.8.0"]
 
 [tool.setuptools.packages.find]
 include = ["sirb*"]
+
+[tool.setuptools.package-data]
+sirb = ["schemas/*.json"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
@@ -28,3 +31,39 @@ line-length = 100
 
 [tool.ruff.lint]
 select = ["E9", "F", "I"]
+
+[tool.mutmut]
+# Mutation testing (docs/MUTATION.md). Run: nice -n 15 mutmut run --max-children 8
+source_paths = ["sirb/"]
+only_mutate = [
+    "sirb/verify.py",
+    "sirb/verify2.py",
+    "sirb/assign.py",
+    "sirb/planner/common.py",
+    "sirb/planner/baseline.py",
+    "sirb/planner/waves.py",
+    "sirb/planner/prioritized.py",
+]
+also_copy = ["shows/", "docs/", "results/", "scripts/", "viewer/", "README.md", "plan.md", "LICENSE", "Makefile", "constraints.txt"]
+pytest_add_cli_args = ["-p", "no:cacheprovider", "-q"]
+# Fast targeted selection (see docs/MUTATION.md for the exact command and the reason for each
+# exclusion). mutmut then runs, per mutant, only the selected tests whose coverage touches the
+# mutated function, and stops at the first failure.
+pytest_add_cli_args_test_selection = [
+    "tests/test_verify.py",
+    "tests/test_certificate.py",
+    "tests/test_review_regressions.py",
+    "tests/test_assign_planners.py",
+    "tests/test_verify2_differential.py",
+    "tests/test_mutation_killers_verify.py",
+    "tests/test_mutation_killers_planners.py",
+    "--deselect=tests/test_verify.py::test_exact_min_vs_bruteforce",
+    "--deselect=tests/test_verify.py::test_prefilter_equals_bruteforce",
+    "--deselect=tests/test_verify.py::test_1000_drone_fleet",
+    "--deselect=tests/test_verify.py::test_1000_drone_fleet_with_one_collision_found",
+    "--deselect=tests/test_assign_planners.py::test_unsynchronised_and_identity_baselines_are_flagged",
+    "--deselect=tests/test_verify2_differential.py::test_hundred_drone_fleet_is_fast",
+    "--deselect=tests/test_verify2_differential.py::test_random_fleets_degree_1_to_5",
+    "--deselect=tests/test_verify2_differential.py::test_adversarial_families",
+    "--deselect=tests/test_review_regressions.py::test_round6_python_dash_m_sirb_runs",
+]

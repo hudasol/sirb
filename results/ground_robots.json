@@ -1,0 +1,441 @@
+{
+ "note": "exploratory simulation, assumed limits, points on a flat floor; see docstring",
+ "limits": {
+  "vmax_h": 1.5,
+  "vmax_up": 0.05,
+  "vmax_down": 0.05,
+  "amax": 1.0,
+  "jmax": 3.0,
+  "z_min": -0.05,
+  "z_max": 0.05,
+  "min_separation_m": 1.0,
+  "geofence": {
+   "x": [
+    -60.0,
+    60.0
+   ],
+   "y": [
+    -60.0,
+    60.0
+   ]
+  },
+  "crowd": {
+   "y": -500.0,
+   "min_distance_m": 50.0
+  },
+  "sources": {
+   "vmax_h": "assumption",
+   "vmax_up": "assumption",
+   "vmax_down": "assumption",
+   "amax": "assumption",
+   "jmax": "assumption",
+   "z_min": "assumption",
+   "z_max": "assumption",
+   "geofence": "assumption",
+   "min_separation_m": "assumption",
+   "crowd": "not used on the floor study"
+  }
+ },
+ "rows": [
+  {
+   "n": 16,
+   "task": "translate",
+   "assignment": "hungarian_sq",
+   "planner": "baseline",
+   "plan": true,
+   "plan_s": 0.0035794400000668247,
+   "verified_ok": true,
+   "min_separation_m": 2.0,
+   "violation_counts": {},
+   "duration_s": 27.5
+  },
+  {
+   "n": 16,
+   "task": "translate",
+   "assignment": "hungarian_sq",
+   "planner": "waves",
+   "plan": true,
+   "plan_s": 0.0034257039997100946,
+   "verified_ok": true,
+   "min_separation_m": 2.0,
+   "violation_counts": {},
+   "duration_s": 27.5
+  },
+  {
+   "n": 16,
+   "task": "translate",
+   "assignment": "hungarian_sq",
+   "planner": "prioritized",
+   "plan": true,
+   "plan_s": 0.008204116000342765,
+   "verified_ok": true,
+   "min_separation_m": 2.0,
+   "violation_counts": {},
+   "duration_s": 27.5
+  },
+  {
+   "n": 16,
+   "task": "shuffle",
+   "assignment": "random",
+   "planner": "baseline",
+   "plan": true,
+   "plan_s": 0.0015798920003362582,
+   "verified_ok": false,
+   "min_separation_m": 0.0,
+   "violation_counts": {
+    "separation": 24
+   },
+   "duration_s": 12.818733752154175
+  },
+  {
+   "n": 16,
+   "task": "shuffle",
+   "assignment": "random",
+   "planner": "waves",
+   "plan": false,
+   "error": "RuntimeError: wave scheduling stuck at drone 5",
+   "plan_s": 0.0011824509992948151
+  },
+  {
+   "n": 16,
+   "task": "shuffle",
+   "assignment": "random",
+   "planner": "prioritized",
+   "plan": false,
+   "error": "RuntimeError: transition 0: no feasible plan",
+   "plan_s": 0.19619356200018956
+  },
+  {
+   "n": 16,
+   "task": "swap15",
+   "assignment": "pinned15",
+   "planner": "baseline",
+   "plan": true,
+   "plan_s": 0.0013314609996086801,
+   "verified_ok": false,
+   "min_separation_m": 0.0,
+   "violation_counts": {
+    "separation": 5
+   },
+   "duration_s": 10.063808033429368
+  },
+  {
+   "n": 16,
+   "task": "swap15",
+   "assignment": "pinned15",
+   "planner": "waves",
+   "plan": false,
+   "error": "RuntimeError: wave scheduling stuck at drone 15",
+   "plan_s": 0.0010245089997624746
+  },
+  {
+   "n": 16,
+   "task": "swap15",
+   "assignment": "pinned15",
+   "planner": "prioritized",
+   "plan": false,
+   "error": "RuntimeError: transition 0: no feasible plan",
+   "plan_s": 0.08672478999960731
+  },
+  {
+   "n": 36,
+   "task": "translate",
+   "assignment": "hungarian_sq",
+   "planner": "baseline",
+   "plan": true,
+   "plan_s": 0.002267908000249008,
+   "verified_ok": true,
+   "min_separation_m": 2.0,
+   "violation_counts": {},
+   "duration_s": 27.5
+  },
+  {
+   "n": 36,
+   "task": "translate",
+   "assignment": "hungarian_sq",
+   "planner": "waves",
+   "plan": true,
+   "plan_s": 0.005410984999798529,
+   "verified_ok": true,
+   "min_separation_m": 2.0,
+   "violation_counts": {},
+   "duration_s": 27.5
+  },
+  {
+   "n": 36,
+   "task": "translate",
+   "assignment": "hungarian_sq",
+   "planner": "prioritized",
+   "plan": true,
+   "plan_s": 0.02374459900056536,
+   "verified_ok": true,
+   "min_separation_m": 2.0,
+   "violation_counts": {},
+   "duration_s": 27.5
+  },
+  {
+   "n": 36,
+   "task": "shuffle",
+   "assignment": "random",
+   "planner": "baseline",
+   "plan": true,
+   "plan_s": 0.002367989999584097,
+   "verified_ok": false,
+   "min_separation_m": 0.0,
+   "violation_counts": {
+    "separation": 76
+   },
+   "duration_s": 16.868927331855517
+  },
+  {
+   "n": 36,
+   "task": "shuffle",
+   "assignment": "random",
+   "planner": "waves",
+   "plan": false,
+   "error": "RuntimeError: wave scheduling stuck at drone 28",
+   "plan_s": 0.0013073000000076718
+  },
+  {
+   "n": 36,
+   "task": "shuffle",
+   "assignment": "random",
+   "planner": "prioritized",
+   "plan": false,
+   "error": "RuntimeError: transition 0: no feasible plan",
+   "plan_s": 0.5195096650004416
+  },
+  {
+   "n": 36,
+   "task": "swap15",
+   "assignment": "pinned15",
+   "planner": "baseline",
+   "plan": true,
+   "plan_s": 0.002956505999463843,
+   "verified_ok": false,
+   "min_separation_m": 0.0,
+   "violation_counts": {
+    "separation": 12
+   },
+   "duration_s": 15.002499759661601
+  },
+  {
+   "n": 36,
+   "task": "swap15",
+   "assignment": "pinned15",
+   "planner": "waves",
+   "plan": false,
+   "error": "RuntimeError: wave scheduling stuck at drone 33",
+   "plan_s": 0.0020781600005648215
+  },
+  {
+   "n": 36,
+   "task": "swap15",
+   "assignment": "pinned15",
+   "planner": "prioritized",
+   "plan": false,
+   "error": "RuntimeError: transition 0: no feasible plan",
+   "plan_s": 0.1878837989997919
+  },
+  {
+   "n": 64,
+   "task": "translate",
+   "assignment": "hungarian_sq",
+   "planner": "baseline",
+   "plan": true,
+   "plan_s": 0.004029509999782022,
+   "verified_ok": true,
+   "min_separation_m": 2.0,
+   "violation_counts": {},
+   "duration_s": 27.5
+  },
+  {
+   "n": 64,
+   "task": "translate",
+   "assignment": "hungarian_sq",
+   "planner": "waves",
+   "plan": true,
+   "plan_s": 0.009705419000056281,
+   "verified_ok": true,
+   "min_separation_m": 2.0,
+   "violation_counts": {},
+   "duration_s": 27.5
+  },
+  {
+   "n": 64,
+   "task": "translate",
+   "assignment": "hungarian_sq",
+   "planner": "prioritized",
+   "plan": true,
+   "plan_s": 0.03983484299988049,
+   "verified_ok": true,
+   "min_separation_m": 2.0,
+   "violation_counts": {},
+   "duration_s": 27.5
+  },
+  {
+   "n": 64,
+   "task": "shuffle",
+   "assignment": "random",
+   "planner": "baseline",
+   "plan": true,
+   "plan_s": 0.003637668999544985,
+   "verified_ok": false,
+   "min_separation_m": 0.0,
+   "violation_counts": {
+    "separation": 227
+   },
+   "duration_s": 22.5587572581613
+  },
+  {
+   "n": 64,
+   "task": "shuffle",
+   "assignment": "random",
+   "planner": "waves",
+   "plan": false,
+   "error": "RuntimeError: wave scheduling stuck at drone 44",
+   "plan_s": 0.002898652999647311
+  },
+  {
+   "n": 64,
+   "task": "shuffle",
+   "assignment": "random",
+   "planner": "prioritized",
+   "plan": false,
+   "error": "RuntimeError: transition 0: no feasible plan",
+   "plan_s": 2.6649028539995925
+  },
+  {
+   "n": 64,
+   "task": "swap15",
+   "assignment": "pinned15",
+   "planner": "baseline",
+   "plan": true,
+   "plan_s": 0.004196453999611549,
+   "verified_ok": false,
+   "min_separation_m": 0.0,
+   "violation_counts": {
+    "separation": 30
+   },
+   "duration_s": 25.50983836609686
+  },
+  {
+   "n": 64,
+   "task": "swap15",
+   "assignment": "pinned15",
+   "planner": "waves",
+   "plan": false,
+   "error": "RuntimeError: wave scheduling stuck at drone 57",
+   "plan_s": 0.002293409999765572
+  },
+  {
+   "n": 64,
+   "task": "swap15",
+   "assignment": "pinned15",
+   "planner": "prioritized",
+   "plan": false,
+   "error": "RuntimeError: transition 0: no feasible plan",
+   "plan_s": 0.38789129399992817
+  },
+  {
+   "n": 100,
+   "task": "translate",
+   "assignment": "hungarian_sq",
+   "planner": "baseline",
+   "plan": true,
+   "plan_s": 0.006933656999535742,
+   "verified_ok": true,
+   "min_separation_m": 2.0,
+   "violation_counts": {},
+   "duration_s": 27.5
+  },
+  {
+   "n": 100,
+   "task": "translate",
+   "assignment": "hungarian_sq",
+   "planner": "waves",
+   "plan": true,
+   "plan_s": 0.023225721000017074,
+   "verified_ok": true,
+   "min_separation_m": 2.0,
+   "violation_counts": {},
+   "duration_s": 27.5
+  },
+  {
+   "n": 100,
+   "task": "translate",
+   "assignment": "hungarian_sq",
+   "planner": "prioritized",
+   "plan": true,
+   "plan_s": 0.0644518250001056,
+   "verified_ok": true,
+   "min_separation_m": 2.0,
+   "violation_counts": {},
+   "duration_s": 27.5
+  },
+  {
+   "n": 100,
+   "task": "shuffle",
+   "assignment": "random",
+   "planner": "baseline",
+   "plan": true,
+   "plan_s": 0.006458818000282918,
+   "verified_ok": false,
+   "min_separation_m": 0.0,
+   "violation_counts": {
+    "separation": 445
+   },
+   "duration_s": 29.10687182247336
+  },
+  {
+   "n": 100,
+   "task": "shuffle",
+   "assignment": "random",
+   "planner": "waves",
+   "plan": false,
+   "error": "RuntimeError: wave scheduling stuck at drone 62",
+   "plan_s": 0.0076816580003651325
+  },
+  {
+   "n": 100,
+   "task": "shuffle",
+   "assignment": "random",
+   "planner": "prioritized",
+   "plan": false,
+   "error": "RuntimeError: transition 0: no feasible plan",
+   "plan_s": 3.0980013660000623
+  },
+  {
+   "n": 100,
+   "task": "swap15",
+   "assignment": "pinned15",
+   "planner": "baseline",
+   "plan": true,
+   "plan_s": 0.005015052000089781,
+   "verified_ok": false,
+   "min_separation_m": 0.0,
+   "violation_counts": {
+    "separation": 59
+   },
+   "duration_s": 25.50983836609686
+  },
+  {
+   "n": 100,
+   "task": "swap15",
+   "assignment": "pinned15",
+   "planner": "waves",
+   "plan": false,
+   "error": "RuntimeError: wave scheduling stuck at drone 87",
+   "plan_s": 0.012354028999652655
+  },
+  {
+   "n": 100,
+   "task": "swap15",
+   "assignment": "pinned15",
+   "planner": "prioritized",
+   "plan": false,
+   "error": "RuntimeError: transition 0: no feasible plan",
+   "plan_s": 0.5285734479994062
+  }
+ ]
+}

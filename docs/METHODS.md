@@ -149,3 +149,7 @@ set was not verified as current**, and nothing here states that a show satisfies
    and a threshold-crossing stressed scenario for the same show are both true statements about
    different models.
 The verifier's guarantee concerns the plan as written, not the aircraft's actual motion.
+
+## Reproducibility across machines
+
+Runs are deterministic on one machine with fixed seeds (checked in CI by building the viewer data twice). Byte identical plans across different CPU or BLAS builds are not guaranteed: for shapes with many equal cost assignments (grids, walls), a last bit difference in a computed distance can change which of the tied assignments the Hungarian solver returns, which changes the plan hash. This was observed between a development machine and the CI runner. The verification verdicts do not depend on it (every regenerated show verifies), but a committed fleet hash is only reproducible on a matching build. A tie breaking quantisation of the cost matrix was tried and removed because it did not make the hashes agree across the two machines.
