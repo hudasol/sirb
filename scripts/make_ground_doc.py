@@ -120,7 +120,7 @@ def main() -> None:
           "A planner that fails here fails under the stated assumed limits and gets no credit or "
           "blame beyond this simulation. A verified plan is guaranteed only under the model: point "
           "robots, exact polynomial paths, the limits above.", ""]
-    Path("docs/GROUND_ROBOTS.md").write_text("\n".join(L))
+    Path("docs/GROUND_ROBOTS.md").write_text("\n".join(L), encoding="utf-8")
 
 
 if __name__ == "__main__":
