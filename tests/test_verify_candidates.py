@@ -92,11 +92,13 @@ def test_empty_single_and_all_bad_fleets(prefilter):
     assert P.n == 0 and _same(P, 5.0, prefilter) == 0
 
 
-@pytest.mark.parametrize("block", [1, 3, 50])
+@pytest.mark.parametrize("block,tile_rows", [(1, 1024), (3, 1024), (50, 1024), (10**9, 1), (10**9, 3),
+                                              (200, 4)])
 @pytest.mark.parametrize("prefilter", [True, False])
-def test_chunk_boundaries(monkeypatch, block, prefilter):
-    """Pair counts far above the block size, including rows wider than one block."""
+def test_chunk_boundaries(monkeypatch, block, tile_rows, prefilter):
+    """Pair counts far above the cell budget, rows wider than one tile, and tiles of 1 to 4 rows."""
     monkeypatch.setattr(V, "_PAIR_BLOCK", block)
+    monkeypatch.setattr(V, "_TILE_ROWS", tile_rows)
     exceeded = 0
     fleets = [_holds_fleet(s, n=30) for s in range(4)]
     fleets += [random_large_fleet(s, n=25, spread=5.0)[0] for s in range(4)]
@@ -104,7 +106,7 @@ def test_chunk_boundaries(monkeypatch, block, prefilter):
     for fleet in fleets:
         P = _pieces(fleet)
         for R in (1.0, 8.0):
-            exceeded += _same(P, R, prefilter) > block
+            exceeded += _same(P, R, prefilter) > min(block, tile_rows)
     assert exceeded > 0
 
 
