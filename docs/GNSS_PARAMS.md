@@ -1,8 +1,11 @@
 # GNSS model parameter file (version 1)
 
-**Status: interface only. No external GNSS study, dataset or repository is coupled to Sirb today.**
-The only file that ships, `shows/gnss_assumed_default.json`, reproduces the existing defaults of
-`StressConfig`, and every value in it is flagged `assumed: true`. Nothing in it was measured.
+**Status: no external GNSS study, dataset or repository is coupled to Sirb's model.** Two files ship.
+`shows/gnss_assumed_default.json` reproduces the defaults of `StressConfig`. Since phase 6,
+`shows/gnss_faa_sps_standalone.json` takes the bias magnitude from public FAA accuracy statistics
+(`docs/GNSS_SOURCED.md`); the source gives the absolute error of one receiver, not the relative
+error between drones the model needs, so every value in both files is flagged `assumed: true`.
+Nothing in either file was measured by this project.
 
 ## Why a file format
 

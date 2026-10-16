@@ -12,10 +12,18 @@ Everything is a property of the simulated model with ASSUMED parameters. Results
 in results/.cache so an interrupted run resumes.
 
     python scripts/sensitivity.py            # writes results/sensitivity.json
+    python scripts/sensitivity.py --gnss shows/gnss_faa_sps_standalone.json         --bias-range-json results/gnss_faa_derivation.json --tag faa --out results/sensitivity_faa.json
+
+With ``--gnss`` the seven GNSS values of the scenario come from a GNSS parameter file
+(docs/GNSS_PARAMS.md) instead of SCENARIO and the defaults, ``--bias-range`` replaces the low and
+high values of gnss_bias_sigma (``--bias-range-json`` reads them from the site minimum and maximum
+in the output of scripts/derive_gnss_faa.py), and every other range keeps its default about the new centre only
+where the parameter is a GNSS one (centre halved and doubled). Cache keys carry ``--tag``.
 """
 
 from __future__ import annotations
 
+import argparse
 import json
 import math
 import sys
@@ -57,6 +65,9 @@ ADDONS = {
 }
 
 
+TAG = ""
+
+
 def run(ref, d_min, over, trials, tag=0):
     cfg = StressConfig(dt=DT, **{**SCENARIO, **over})
     return monte_carlo(ref, cfg, d_min, trials, SEED, tag=tag, workers=WORKERS)
@@ -74,17 +85,17 @@ def oat(name, spacing):
     _fleet, rep, ref = plan_and_ref(show)
     d_min = show["limits"]["min_separation_m"]
     out = {"nominal_min_separation_m": rep.min_separation, "d_min": d_min, "trials": TRIALS_OAT,
-           "baseline": cached(f"sens_{name}_base", lambda: slim(run(ref, d_min, {}, TRIALS_OAT))),
+           "baseline": cached(f"sens{TAG}_{name}_base", lambda: slim(run(ref, d_min, {}, TRIALS_OAT))),
            "params": {}, "addons": {}}
     for p, (lo, _de, hi) in PARAMS.items():
         out["params"][p] = {
-            "low": {"value": lo, **cached(f"sens_{name}_{p}_lo",
+            "low": {"value": lo, **cached(f"sens{TAG}_{name}_{p}_lo",
                                           lambda: slim(run(ref, d_min, {p: lo}, TRIALS_OAT)))},
-            "high": {"value": hi, **cached(f"sens_{name}_{p}_hi",
+            "high": {"value": hi, **cached(f"sens{TAG}_{name}_{p}_hi",
                                            lambda: slim(run(ref, d_min, {p: hi}, TRIALS_OAT)))}}
         print(name, p, flush=True)
     for a, over in ADDONS.items():
-        out["addons"][a] = cached(f"sens_{name}_add_{a}",
+        out["addons"][a] = cached(f"sens{TAG}_{name}_add_{a}",
                                   lambda: slim(run(ref, d_min, over, TRIALS_OAT)))
     return out
 
@@ -104,7 +115,7 @@ def lhs():
         for j, p in enumerate(names):
             lo, _de, hi = PARAMS[p]
             over[p] = float(math.exp(math.log(lo) + u[i, j] * (math.log(hi) - math.log(lo))))
-        r = cached(f"sens_lhs_{i}", lambda: slim(run(ref, d_min, over, TRIALS_LHS, tag=i + 1)))
+        r = cached(f"sens{TAG}_lhs_{i}", lambda: slim(run(ref, d_min, over, TRIALS_LHS, tag=i + 1)))
         rows.append({"params": over, **r})
     from scipy.stats import spearmanr
     y_med = [r["median_min_sep"] for r in rows]
@@ -138,15 +149,51 @@ def rank_table(res):
     return out
 
 
+GNSS_KEYS = {"white_sigma": "gnss_white_sigma", "degraded_fraction": "gnss_deg_fraction",
+             "bias_sigma": "gnss_bias_sigma", "bias_tau": "gnss_bias_tau",
+             "dropout_fraction": "gnss_loss_fraction", "dropout_duration": "gnss_loss_s",
+             "dead_reckoning_rate": "gnss_dead_reckoning_rate"}
+
+
+def use_gnss_file(path, bias_range):
+    """Replace the GNSS part of SCENARIO and PARAMS from a parameter file (see module docstring)."""
+    from sirb.gnss_params import load
+    gp = load(path)
+    for name, field in GNSS_KEYS.items():
+        SCENARIO[field] = gp.values[name]
+        if field in PARAMS:
+            v = gp.values[name]
+            PARAMS[field] = (v / 2, v, v * 2)
+    if bias_range:
+        PARAMS["gnss_bias_sigma"] = (bias_range[0], SCENARIO["gnss_bias_sigma"], bias_range[1])
+    return gp
+
+
 def main():
+    global TAG
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--gnss", help="GNSS parameter file for the scenario")
+    ap.add_argument("--bias-range", nargs=2, type=float, metavar=("LOW", "HIGH"))
+    ap.add_argument("--bias-range-json", help="derivation summary with site min and max sigma")
+    ap.add_argument("--tag", default="")
+    ap.add_argument("--out", default="results/sensitivity.json")
+    a = ap.parse_args()
+    TAG = f"_{a.tag}" if a.tag else ""
+    if a.bias_range_json:
+        st = json.loads(Path(a.bias_range_json).read_text())["statistics"]
+        a.bias_range = [st["bias_sigma_min_site_m"], st["bias_sigma_max_site_m"]]
+    gp = use_gnss_file(a.gnss, a.bias_range) if a.gnss else None
     t = time.time()
     res = {"scenario": SCENARIO, "trials_oat": TRIALS_OAT, "ranges": PARAMS, "oat": {}}
+    if gp is not None:
+        res["gnss_file"] = {"path": a.gnss, "provenance": gp.provenance,
+                            "assumed": gp.assumed}
     for name, sp in BASELINES.items():
         res["oat"][name] = oat(name, sp)
     res["ranking_by_swing"] = rank_table(res)
     res["global"] = lhs()
     res["wall_s"] = time.time() - t
-    Path("results/sensitivity.json").write_text(json.dumps(res, indent=1))
+    Path(a.out).write_text(json.dumps(res, indent=1))
 
 
 if __name__ == "__main__":

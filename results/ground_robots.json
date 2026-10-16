@@ -36,6 +36,12 @@
    "crowd": "not used on the floor study"
   }
  },
+ "grid_settings": {
+  "pitch_m": 2.0,
+  "margin_cells": 2,
+  "restarts": 30,
+  "time_budget_s": 60.0
+ },
  "rows": [
   {
    "n": 16,
@@ -43,7 +49,7 @@
    "assignment": "hungarian_sq",
    "planner": "baseline",
    "plan": true,
-   "plan_s": 0.0035794400000668247,
+   "plan_s": 0.017611523000596208,
    "verified_ok": true,
    "min_separation_m": 2.0,
    "violation_counts": {},
@@ -55,7 +61,7 @@
    "assignment": "hungarian_sq",
    "planner": "waves",
    "plan": true,
-   "plan_s": 0.0034257039997100946,
+   "plan_s": 0.033557339000253705,
    "verified_ok": true,
    "min_separation_m": 2.0,
    "violation_counts": {},
@@ -67,7 +73,7 @@
    "assignment": "hungarian_sq",
    "planner": "prioritized",
    "plan": true,
-   "plan_s": 0.008204116000342765,
+   "plan_s": 0.26790179499948863,
    "verified_ok": true,
    "min_separation_m": 2.0,
    "violation_counts": {},
@@ -75,11 +81,27 @@
   },
   {
    "n": 16,
+   "task": "translate",
+   "assignment": "hungarian_sq",
+   "planner": "grid",
+   "plan": true,
+   "plan_s": 0.07081408799967903,
+   "verified_ok": true,
+   "min_separation_m": 1.9999999999999991,
+   "violation_counts": {},
+   "duration_s": 36.883509312204616,
+   "steps": 10,
+   "step_s": 3.4883509312204617,
+   "orders_tried": 1,
+   "sum_of_costs": 160
+  },
+  {
+   "n": 16,
    "task": "shuffle",
    "assignment": "random",
    "planner": "baseline",
    "plan": true,
-   "plan_s": 0.0015798920003362582,
+   "plan_s": 0.2802592160005588,
    "verified_ok": false,
    "min_separation_m": 0.0,
    "violation_counts": {
@@ -94,7 +116,7 @@
    "planner": "waves",
    "plan": false,
    "error": "RuntimeError: wave scheduling stuck at drone 5",
-   "plan_s": 0.0011824509992948151
+   "plan_s": 0.003988403999755974
   },
   {
    "n": 16,
@@ -103,7 +125,23 @@
    "planner": "prioritized",
    "plan": false,
    "error": "RuntimeError: transition 0: no feasible plan",
-   "plan_s": 0.19619356200018956
+   "plan_s": 0.9585948750009265
+  },
+  {
+   "n": 16,
+   "task": "shuffle",
+   "assignment": "random",
+   "planner": "grid",
+   "plan": true,
+   "plan_s": 0.09083799700056261,
+   "verified_ok": true,
+   "min_separation_m": 1.4142135623730951,
+   "violation_counts": {},
+   "duration_s": 29.906807449763694,
+   "steps": 8,
+   "step_s": 3.4883509312204617,
+   "orders_tried": 3,
+   "sum_of_costs": 82
   },
   {
    "n": 16,
@@ -111,7 +149,7 @@
    "assignment": "pinned15",
    "planner": "baseline",
    "plan": true,
-   "plan_s": 0.0013314609996086801,
+   "plan_s": 0.14100764999966486,
    "verified_ok": false,
    "min_separation_m": 0.0,
    "violation_counts": {
@@ -126,7 +164,7 @@
    "planner": "waves",
    "plan": false,
    "error": "RuntimeError: wave scheduling stuck at drone 15",
-   "plan_s": 0.0010245089997624746
+   "plan_s": 0.002879887999370112
   },
   {
    "n": 16,
@@ -135,7 +173,23 @@
    "planner": "prioritized",
    "plan": false,
    "error": "RuntimeError: transition 0: no feasible plan",
-   "plan_s": 0.08672478999960731
+   "plan_s": 0.3191197860014654
+  },
+  {
+   "n": 16,
+   "task": "swap15",
+   "assignment": "pinned15",
+   "planner": "grid",
+   "plan": true,
+   "plan_s": 0.019795628999418113,
+   "verified_ok": true,
+   "min_separation_m": 1.4142135623730951,
+   "violation_counts": {},
+   "duration_s": 15.953403724881847,
+   "steps": 4,
+   "step_s": 3.4883509312204617,
+   "orders_tried": 1,
+   "sum_of_costs": 27
   },
   {
    "n": 36,
@@ -143,7 +197,7 @@
    "assignment": "hungarian_sq",
    "planner": "baseline",
    "plan": true,
-   "plan_s": 0.002267908000249008,
+   "plan_s": 0.01538664999861794,
    "verified_ok": true,
    "min_separation_m": 2.0,
    "violation_counts": {},
@@ -155,7 +209,7 @@
    "assignment": "hungarian_sq",
    "planner": "waves",
    "plan": true,
-   "plan_s": 0.005410984999798529,
+   "plan_s": 0.028917949999595294,
    "verified_ok": true,
    "min_separation_m": 2.0,
    "violation_counts": {},
@@ -167,7 +221,7 @@
    "assignment": "hungarian_sq",
    "planner": "prioritized",
    "plan": true,
-   "plan_s": 0.02374459900056536,
+   "plan_s": 0.10391650300152833,
    "verified_ok": true,
    "min_separation_m": 2.0,
    "violation_counts": {},
@@ -175,11 +229,27 @@
   },
   {
    "n": 36,
+   "task": "translate",
+   "assignment": "hungarian_sq",
+   "planner": "grid",
+   "plan": true,
+   "plan_s": 0.11212601199986238,
+   "verified_ok": true,
+   "min_separation_m": 1.9999999999999991,
+   "violation_counts": {},
+   "duration_s": 36.883509312204616,
+   "steps": 10,
+   "step_s": 3.4883509312204617,
+   "orders_tried": 1,
+   "sum_of_costs": 360
+  },
+  {
+   "n": 36,
    "task": "shuffle",
    "assignment": "random",
    "planner": "baseline",
    "plan": true,
-   "plan_s": 0.002367989999584097,
+   "plan_s": 0.008246483999755583,
    "verified_ok": false,
    "min_separation_m": 0.0,
    "violation_counts": {
@@ -194,7 +264,7 @@
    "planner": "waves",
    "plan": false,
    "error": "RuntimeError: wave scheduling stuck at drone 28",
-   "plan_s": 0.0013073000000076718
+   "plan_s": 0.0041387450000911485
   },
   {
    "n": 36,
@@ -203,7 +273,23 @@
    "planner": "prioritized",
    "plan": false,
    "error": "RuntimeError: transition 0: no feasible plan",
-   "plan_s": 0.5195096650004416
+   "plan_s": 2.252787867999359
+  },
+  {
+   "n": 36,
+   "task": "shuffle",
+   "assignment": "random",
+   "planner": "grid",
+   "plan": true,
+   "plan_s": 1.3048567779987934,
+   "verified_ok": true,
+   "min_separation_m": 1.4142135623730951,
+   "violation_counts": {},
+   "duration_s": 68.27866769318877,
+   "steps": 19,
+   "step_s": 3.4883509312204617,
+   "orders_tried": 23,
+   "sum_of_costs": 288
   },
   {
    "n": 36,
@@ -211,7 +297,7 @@
    "assignment": "pinned15",
    "planner": "baseline",
    "plan": true,
-   "plan_s": 0.002956505999463843,
+   "plan_s": 0.016381334999095998,
    "verified_ok": false,
    "min_separation_m": 0.0,
    "violation_counts": {
@@ -226,7 +312,7 @@
    "planner": "waves",
    "plan": false,
    "error": "RuntimeError: wave scheduling stuck at drone 33",
-   "plan_s": 0.0020781600005648215
+   "plan_s": 0.0034178340010839747
   },
   {
    "n": 36,
@@ -235,7 +321,23 @@
    "planner": "prioritized",
    "plan": false,
    "error": "RuntimeError: transition 0: no feasible plan",
-   "plan_s": 0.1878837989997919
+   "plan_s": 1.0656360350003524
+  },
+  {
+   "n": 36,
+   "task": "swap15",
+   "assignment": "pinned15",
+   "planner": "grid",
+   "plan": true,
+   "plan_s": 0.041985316998761846,
+   "verified_ok": true,
+   "min_separation_m": 1.4142135623730951,
+   "violation_counts": {},
+   "duration_s": 26.41845651854323,
+   "steps": 7,
+   "step_s": 3.4883509312204617,
+   "orders_tried": 2,
+   "sum_of_costs": 102
   },
   {
    "n": 64,
@@ -243,7 +345,7 @@
    "assignment": "hungarian_sq",
    "planner": "baseline",
    "plan": true,
-   "plan_s": 0.004029509999782022,
+   "plan_s": 0.020365509999464848,
    "verified_ok": true,
    "min_separation_m": 2.0,
    "violation_counts": {},
@@ -255,7 +357,7 @@
    "assignment": "hungarian_sq",
    "planner": "waves",
    "plan": true,
-   "plan_s": 0.009705419000056281,
+   "plan_s": 0.06854790900069929,
    "verified_ok": true,
    "min_separation_m": 2.0,
    "violation_counts": {},
@@ -267,7 +369,7 @@
    "assignment": "hungarian_sq",
    "planner": "prioritized",
    "plan": true,
-   "plan_s": 0.03983484299988049,
+   "plan_s": 0.20016046400087362,
    "verified_ok": true,
    "min_separation_m": 2.0,
    "violation_counts": {},
@@ -275,11 +377,27 @@
   },
   {
    "n": 64,
+   "task": "translate",
+   "assignment": "hungarian_sq",
+   "planner": "grid",
+   "plan": true,
+   "plan_s": 0.22087611599999946,
+   "verified_ok": true,
+   "min_separation_m": 1.9999999999999991,
+   "violation_counts": {},
+   "duration_s": 36.883509312204616,
+   "steps": 10,
+   "step_s": 3.4883509312204617,
+   "orders_tried": 1,
+   "sum_of_costs": 640
+  },
+  {
+   "n": 64,
    "task": "shuffle",
    "assignment": "random",
    "planner": "baseline",
    "plan": true,
-   "plan_s": 0.003637668999544985,
+   "plan_s": 0.03582602999995288,
    "verified_ok": false,
    "min_separation_m": 0.0,
    "violation_counts": {
@@ -294,7 +412,7 @@
    "planner": "waves",
    "plan": false,
    "error": "RuntimeError: wave scheduling stuck at drone 44",
-   "plan_s": 0.002898652999647311
+   "plan_s": 0.008327129999088356
   },
   {
    "n": 64,
@@ -303,7 +421,17 @@
    "planner": "prioritized",
    "plan": false,
    "error": "RuntimeError: transition 0: no feasible plan",
-   "plan_s": 2.6649028539995925
+   "plan_s": 14.54660041399984
+  },
+  {
+   "n": 64,
+   "task": "shuffle",
+   "assignment": "random",
+   "planner": "grid",
+   "plan": false,
+   "cause": "blocked_by_reservations",
+   "error": "GridPlanError: no grid plan: robot 51 could not be routed after 27 of 64 robots were planned (cause blocked_by_reservations, 30 priority orders tried, horizon 272 steps)",
+   "plan_s": 8.799823220999315
   },
   {
    "n": 64,
@@ -311,7 +439,7 @@
    "assignment": "pinned15",
    "planner": "baseline",
    "plan": true,
-   "plan_s": 0.004196453999611549,
+   "plan_s": 0.03042496700072661,
    "verified_ok": false,
    "min_separation_m": 0.0,
    "violation_counts": {
@@ -326,7 +454,7 @@
    "planner": "waves",
    "plan": false,
    "error": "RuntimeError: wave scheduling stuck at drone 57",
-   "plan_s": 0.002293409999765572
+   "plan_s": 0.015390112999739358
   },
   {
    "n": 64,
@@ -335,7 +463,23 @@
    "planner": "prioritized",
    "plan": false,
    "error": "RuntimeError: transition 0: no feasible plan",
-   "plan_s": 0.38789129399992817
+   "plan_s": 4.185937672000364
+  },
+  {
+   "n": 64,
+   "task": "swap15",
+   "assignment": "pinned15",
+   "planner": "grid",
+   "plan": true,
+   "plan_s": 2.093510659999083,
+   "verified_ok": true,
+   "min_separation_m": 1.4142135623730951,
+   "violation_counts": {},
+   "duration_s": 47.348562105866,
+   "steps": 13,
+   "step_s": 3.4883509312204617,
+   "orders_tried": 3,
+   "sum_of_costs": 386
   },
   {
    "n": 100,
@@ -343,7 +487,7 @@
    "assignment": "hungarian_sq",
    "planner": "baseline",
    "plan": true,
-   "plan_s": 0.006933656999535742,
+   "plan_s": 0.3219967479999468,
    "verified_ok": true,
    "min_separation_m": 2.0,
    "violation_counts": {},
@@ -355,7 +499,7 @@
    "assignment": "hungarian_sq",
    "planner": "waves",
    "plan": true,
-   "plan_s": 0.023225721000017074,
+   "plan_s": 0.22475194800063036,
    "verified_ok": true,
    "min_separation_m": 2.0,
    "violation_counts": {},
@@ -367,7 +511,7 @@
    "assignment": "hungarian_sq",
    "planner": "prioritized",
    "plan": true,
-   "plan_s": 0.0644518250001056,
+   "plan_s": 1.1110621269999683,
    "verified_ok": true,
    "min_separation_m": 2.0,
    "violation_counts": {},
@@ -375,11 +519,27 @@
   },
   {
    "n": 100,
+   "task": "translate",
+   "assignment": "hungarian_sq",
+   "planner": "grid",
+   "plan": true,
+   "plan_s": 0.2586925750001683,
+   "verified_ok": true,
+   "min_separation_m": 1.9999999999999991,
+   "violation_counts": {},
+   "duration_s": 36.883509312204616,
+   "steps": 10,
+   "step_s": 3.4883509312204617,
+   "orders_tried": 1,
+   "sum_of_costs": 1000
+  },
+  {
+   "n": 100,
    "task": "shuffle",
    "assignment": "random",
    "planner": "baseline",
    "plan": true,
-   "plan_s": 0.006458818000282918,
+   "plan_s": 0.04790558199965744,
    "verified_ok": false,
    "min_separation_m": 0.0,
    "violation_counts": {
@@ -394,7 +554,7 @@
    "planner": "waves",
    "plan": false,
    "error": "RuntimeError: wave scheduling stuck at drone 62",
-   "plan_s": 0.0076816580003651325
+   "plan_s": 0.03169593500024348
   },
   {
    "n": 100,
@@ -403,7 +563,17 @@
    "planner": "prioritized",
    "plan": false,
    "error": "RuntimeError: transition 0: no feasible plan",
-   "plan_s": 3.0980013660000623
+   "plan_s": 16.595653194999613
+  },
+  {
+   "n": 100,
+   "task": "shuffle",
+   "assignment": "random",
+   "planner": "grid",
+   "plan": false,
+   "cause": "blocked_by_reservations",
+   "error": "GridPlanError: no grid plan: robot 62 could not be routed after 32 of 100 robots were planned (cause blocked_by_reservations, 30 priority orders tried, horizon 368 steps)",
+   "plan_s": 10.565748239998356
   },
   {
    "n": 100,
@@ -411,9 +581,9 @@
    "assignment": "pinned15",
    "planner": "baseline",
    "plan": true,
-   "plan_s": 0.005015052000089781,
+   "plan_s": 0.017554772000949015,
    "verified_ok": false,
-   "min_separation_m": 0.0,
+   "min_separation_m": 4.440892098500626e-16,
    "violation_counts": {
     "separation": 59
    },
@@ -426,7 +596,7 @@
    "planner": "waves",
    "plan": false,
    "error": "RuntimeError: wave scheduling stuck at drone 87",
-   "plan_s": 0.012354028999652655
+   "plan_s": 0.013724041000386933
   },
   {
    "n": 100,
@@ -435,7 +605,23 @@
    "planner": "prioritized",
    "plan": false,
    "error": "RuntimeError: transition 0: no feasible plan",
-   "plan_s": 0.5285734479994062
+   "plan_s": 1.876755459999913
+  },
+  {
+   "n": 100,
+   "task": "swap15",
+   "assignment": "pinned15",
+   "planner": "grid",
+   "plan": true,
+   "plan_s": 0.7753613069999119,
+   "verified_ok": true,
+   "min_separation_m": 1.4142135623730951,
+   "violation_counts": {},
+   "duration_s": 47.348562105866,
+   "steps": 13,
+   "step_s": 3.4883509312204617,
+   "orders_tried": 3,
+   "sum_of_costs": 689
   }
  ]
 }

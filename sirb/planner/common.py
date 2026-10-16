@@ -20,7 +20,7 @@ def min_leg_time(d: np.ndarray, lim: dict, margin: float = 1.02) -> float:
     """Smallest T meeting speed, accel and jerk limits for a straight rest-to-rest leg."""
     dh = math.hypot(d[0], d[1])
     dz = d[2]
-    L = float(np.linalg.norm(d))
+    L = math.sqrt(d[0] * d[0] + d[1] * d[1] + d[2] * d[2])   # no BLAS: same bits on every CPU
     if L < 1e-12:
         return 0.0
     vz = lim["vmax_up"] if dz >= 0 else lim["vmax_down"]
@@ -38,9 +38,10 @@ def leg_segment(t0: float, T: float, p0: np.ndarray, p1: np.ndarray) -> Segment:
     d = np.asarray(p1, float) - np.asarray(p0, float)
     c = np.zeros((6, 3))
     c[0] = p0
-    c[3] = 10 * d / T**3
-    c[4] = -15 * d / T**4
-    c[5] = 6 * d / T**5
+    T3 = T * T * T   # products, not pow(): libm pow can differ in the last bit between platforms
+    c[3] = 10 * d / T3
+    c[4] = -15 * d / (T3 * T)
+    c[5] = 6 * d / (T3 * T * T)
     return Segment(t0, t0 + T, c)
 
 

@@ -282,3 +282,16 @@ Survivors after
   re-run survivors against the full suite.
 * mutmut forks workers after a statistics run, so module-level caches such as `_binom`'s cache
   are warm in every worker. The `_binom` test empties the cache explicitly for that reason.
+
+## Phase 6 triage (manual check, not mutmut)
+
+mutmut could not run on the phase 6 machine in the time available, so the recorded survivors were
+re-checked one by one by `scripts/check_survivors.py`, which applies each recorded one line change
+to the current code and runs the selected tests. Results, per survivor and per file, are in
+`results/mutation_phase6_triage.json`; reasons for the mutants argued equivalent are in
+`scripts/survivor_reasons.json`. New tests: `tests/test_mutation_killers_verify2.py` and
+`tests/test_mutation_killers_assign.py`. The tables above are still the phase 5 mutmut run and were
+not regenerated; `results/mutation.json` is unchanged. Several phase 5 labels of `equivalent` or
+`no-effect` turned out to be wrong (the mutants are now killed), which is a reason to treat the
+remaining labels as arguments, not proofs. `verify.py` survivors were mostly not re-checked, and its
+`_candidate_pairs` changed in phase 6, so its mutation record needs a fresh mutmut run.
