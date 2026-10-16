@@ -317,6 +317,10 @@ def worker_main(job_path: str, result_path: str) -> int:
         finally:
             for k, f in funcs.items():
                 f.__code__, f.__defaults__, f.__kwdefaults__ = saved[k]
+            for mod_, _f, _s in mods.values():            # module caches filled by a mutant
+                for key, val in vars(mod_).items():
+                    if key.endswith("_CACHE") and isinstance(val, dict):
+                        val.clear()
             done.set()
         emit({"mutant": m["mutant"], "status": status, "killed_by": killer,
               "seconds": round(time.time() - t0, 1)})
