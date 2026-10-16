@@ -2,7 +2,7 @@
 
 **Exploratory. Simulation only. A proposal seed, not an achievement.** Generated from `results/ground_robots.json` by `scripts/make_ground_doc.py`.
 
-Benign warehouse style coordination: robots start on a square grid at 2.0 m pitch and the planners and the exact verifier are applied with the altitude band closed. Robots are points on a flat floor with assumed limits (max speed 1.5 m/s, max acceleration 1.0 m/s², required separation 1.0 m). There is no localisation error, no wheel dynamics and no obstacles. Nothing here says anything about a real robot.
+Benign warehouse style coordination: robots start on a square grid at 2.0 m pitch and the planners and the exact verifier are applied with the altitude band closed. Robots are points on a flat floor with assumed limits (max speed 1.5 m/s, max acceleration 1.0 m/sÂ², required separation 1.0 m). There is no localisation error, no wheel dynamics and no obstacles. Nothing here says anything about a real robot.
 
 Planners: `baseline` (straight synchronous legs), `waves`, `prioritized` (lanes only, robots cannot fly) and `grid` (`sirb/planner/grid.py`, added later): prioritised space time A* on the lattice with waiting, vertex and edge swap reservations, parked robots reserving their goal, and lockstep rest to rest steps of one cell. Grid settings (fixed before the recorded run): pitch 2.0 m, margin 2 free cells around the start and goal slots, up to 30 priority orders, 60 s budget per transition.
 
