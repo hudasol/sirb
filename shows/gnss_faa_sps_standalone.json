@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "model": "sirb-gnss-gauss-markov",
+  "provenance": {
+    "source_name": "FAA GPS SPS Performance Analysis Report 131 (Q3 2025), Table 5-2",
+    "url": "https://www.nstb.tc.faa.gov/reports/FAA_SPS_PAN_Report_131_v1.0.pdf",
+    "licence": "US government work, not subject to US copyright (17 U.S.C. 105)",
+    "retrieval_date": "2026-10-16",
+    "derived_by": "scripts/derive_gnss_faa.py from data/faa_sps_pan131_table5_2.csv",
+    "notes": "bias_sigma = median over 26 sites of the 95% horizontal error (2.710 m) / 2.4477 (circular Gaussian), rounded to 0.1 mm; site range 0.670 to 3.240 m. It is the ABSOLUTE error of one standalone receiver; the model applies it independently per drone, so it stands in for a RELATIVE error that no retrieved source gives. All values therefore stay assumed. degraded_fraction 0.25 is the scenario value of docs/SENSITIVITY.md; the other values are the StressConfig defaults (docs/METHODS.md section 5)."
+  },
+  "parameters": {
+    "white_sigma": {
+      "value": 0.015,
+      "unit": "m",
+      "assumed": true
+    },
+    "degraded_fraction": {
+      "value": 0.25,
+      "unit": "1",
+      "assumed": true
+    },
+    "bias_sigma": {
+      "value": 1.1071,
+      "unit": "m",
+      "assumed": true
+    },
+    "bias_tau": {
+      "value": 30.0,
+      "unit": "s",
+      "assumed": true
+    },
+    "dropout_fraction": {
+      "value": 0.0,
+      "unit": "1",
+      "assumed": true
+    },
+    "dropout_duration": {
+      "value": 10.0,
+      "unit": "s",
+      "assumed": true
+    },
+    "dead_reckoning_rate": {
+      "value": 0.3,
+      "unit": "m/sqrt(s)",
+      "assumed": true
+    }
+  }
+}
