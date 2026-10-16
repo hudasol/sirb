@@ -8,54 +8,54 @@ Planners: `baseline` (straight synchronous legs), `waves`, `prioritized` (lanes 
 
 | n | Task | Planner | Plan produced | Verified | Min separation (m) | Duration (s) | Plan time (s) | Failure cause |
 |---|---|---|---|---|---|---|---|---|
-| 16 | translate | baseline | yes | yes | 2.000 | 27.5 | 0.12 |  |
-| 16 | translate | waves | yes | yes | 2.000 | 27.5 | 0.26 |  |
-| 16 | translate | prioritized | yes | yes | 2.000 | 27.5 | 0.29 |  |
-| 16 | translate | grid | yes | yes | 2.000 | 36.9 | 0.04 |  |
-| 16 | shuffle | baseline | yes | no | 0.000 | 12.8 | 0.06 |  |
-| 16 | shuffle | waves | no | no |  |  | 0.01 | RuntimeError: wave scheduling stuck |
-| 16 | shuffle | prioritized | no | no |  |  | 5.24 | RuntimeError: transition 0: no feasible plan |
-| 16 | shuffle | grid | yes | yes | 1.414 | 29.9 | 0.50 |  |
-| 16 | swap15 | baseline | yes | no | 0.000 | 10.1 | 0.03 |  |
-| 16 | swap15 | waves | no | no |  |  | 0.03 | RuntimeError: wave scheduling stuck |
-| 16 | swap15 | prioritized | no | no |  |  | 0.84 | RuntimeError: transition 0: no feasible plan |
-| 16 | swap15 | grid | yes | yes | 1.414 | 16.0 | 0.01 |  |
-| 36 | translate | baseline | yes | yes | 2.000 | 27.5 | 0.01 |  |
-| 36 | translate | waves | yes | yes | 2.000 | 27.5 | 0.02 |  |
-| 36 | translate | prioritized | yes | yes | 2.000 | 27.5 | 0.06 |  |
-| 36 | translate | grid | yes | yes | 2.000 | 36.9 | 0.29 |  |
-| 36 | shuffle | baseline | yes | no | 0.000 | 16.9 | 0.06 |  |
-| 36 | shuffle | waves | no | no |  |  | 0.07 | RuntimeError: wave scheduling stuck |
-| 36 | shuffle | prioritized | no | no |  |  | 1.48 | RuntimeError: transition 0: no feasible plan |
-| 36 | shuffle | grid | yes | yes | 1.414 | 68.3 | 3.36 |  |
-| 36 | swap15 | baseline | yes | no | 0.000 | 15.0 | 0.03 |  |
+| 16 | translate | baseline | yes | yes | 2.000 | 27.5 | 0.02 |  |
+| 16 | translate | waves | yes | yes | 2.000 | 27.5 | 0.03 |  |
+| 16 | translate | prioritized | yes | yes | 2.000 | 27.5 | 0.27 |  |
+| 16 | translate | grid | yes | yes | 2.000 | 36.9 | 0.07 |  |
+| 16 | shuffle | baseline | yes | no | 0.000 | 12.8 | 0.28 |  |
+| 16 | shuffle | waves | no | no |  |  | 0.00 | RuntimeError: wave scheduling stuck |
+| 16 | shuffle | prioritized | no | no |  |  | 0.96 | RuntimeError: transition 0: no feasible plan |
+| 16 | shuffle | grid | yes | yes | 1.414 | 29.9 | 0.09 |  |
+| 16 | swap15 | baseline | yes | no | 0.000 | 10.1 | 0.14 |  |
+| 16 | swap15 | waves | no | no |  |  | 0.00 | RuntimeError: wave scheduling stuck |
+| 16 | swap15 | prioritized | no | no |  |  | 0.32 | RuntimeError: transition 0: no feasible plan |
+| 16 | swap15 | grid | yes | yes | 1.414 | 16.0 | 0.02 |  |
+| 36 | translate | baseline | yes | yes | 2.000 | 27.5 | 0.02 |  |
+| 36 | translate | waves | yes | yes | 2.000 | 27.5 | 0.03 |  |
+| 36 | translate | prioritized | yes | yes | 2.000 | 27.5 | 0.10 |  |
+| 36 | translate | grid | yes | yes | 2.000 | 36.9 | 0.11 |  |
+| 36 | shuffle | baseline | yes | no | 0.000 | 16.9 | 0.01 |  |
+| 36 | shuffle | waves | no | no |  |  | 0.00 | RuntimeError: wave scheduling stuck |
+| 36 | shuffle | prioritized | no | no |  |  | 2.25 | RuntimeError: transition 0: no feasible plan |
+| 36 | shuffle | grid | yes | yes | 1.414 | 68.3 | 1.30 |  |
+| 36 | swap15 | baseline | yes | no | 0.000 | 15.0 | 0.02 |  |
 | 36 | swap15 | waves | no | no |  |  | 0.00 | RuntimeError: wave scheduling stuck |
-| 36 | swap15 | prioritized | no | no |  |  | 0.60 | RuntimeError: transition 0: no feasible plan |
-| 36 | swap15 | grid | yes | yes | 1.414 | 26.4 | 0.03 |  |
+| 36 | swap15 | prioritized | no | no |  |  | 1.07 | RuntimeError: transition 0: no feasible plan |
+| 36 | swap15 | grid | yes | yes | 1.414 | 26.4 | 0.04 |  |
 | 64 | translate | baseline | yes | yes | 2.000 | 27.5 | 0.02 |  |
-| 64 | translate | waves | yes | yes | 2.000 | 27.5 | 0.04 |  |
-| 64 | translate | prioritized | yes | yes | 2.000 | 27.5 | 0.13 |  |
-| 64 | translate | grid | yes | yes | 2.000 | 36.9 | 0.15 |  |
-| 64 | shuffle | baseline | yes | no | 0.000 | 22.6 | 0.02 |  |
+| 64 | translate | waves | yes | yes | 2.000 | 27.5 | 0.07 |  |
+| 64 | translate | prioritized | yes | yes | 2.000 | 27.5 | 0.20 |  |
+| 64 | translate | grid | yes | yes | 2.000 | 36.9 | 0.22 |  |
+| 64 | shuffle | baseline | yes | no | 0.000 | 22.6 | 0.04 |  |
 | 64 | shuffle | waves | no | no |  |  | 0.01 | RuntimeError: wave scheduling stuck |
-| 64 | shuffle | prioritized | no | no |  |  | 27.58 | RuntimeError: transition 0: no feasible plan |
-| 64 | shuffle | grid | no | no |  |  | 4.09 | blocked_by_reservations |
-| 64 | swap15 | baseline | yes | no | 0.000 | 25.5 | 0.01 |  |
-| 64 | swap15 | waves | no | no |  |  | 0.01 | RuntimeError: wave scheduling stuck |
-| 64 | swap15 | prioritized | no | no |  |  | 1.18 | RuntimeError: transition 0: no feasible plan |
-| 64 | swap15 | grid | yes | yes | 1.414 | 47.3 | 0.48 |  |
-| 100 | translate | baseline | yes | yes | 2.000 | 27.5 | 0.03 |  |
-| 100 | translate | waves | yes | yes | 2.000 | 27.5 | 0.17 |  |
-| 100 | translate | prioritized | yes | yes | 2.000 | 27.5 | 0.14 |  |
-| 100 | translate | grid | yes | yes | 2.000 | 36.9 | 1.12 |  |
-| 100 | shuffle | baseline | yes | no | 0.000 | 29.1 | 0.02 |  |
-| 100 | shuffle | waves | no | no |  |  | 0.01 | RuntimeError: wave scheduling stuck |
-| 100 | shuffle | prioritized | no | no |  |  | 7.99 | RuntimeError: transition 0: no feasible plan |
-| 100 | shuffle | grid | no | no |  |  | 14.82 | blocked_by_reservations |
-| 100 | swap15 | baseline | yes | no | 0.000 | 25.5 | 0.08 |  |
+| 64 | shuffle | prioritized | no | no |  |  | 14.55 | RuntimeError: transition 0: no feasible plan |
+| 64 | shuffle | grid | no | no |  |  | 8.80 | blocked_by_reservations |
+| 64 | swap15 | baseline | yes | no | 0.000 | 25.5 | 0.03 |  |
+| 64 | swap15 | waves | no | no |  |  | 0.02 | RuntimeError: wave scheduling stuck |
+| 64 | swap15 | prioritized | no | no |  |  | 4.19 | RuntimeError: transition 0: no feasible plan |
+| 64 | swap15 | grid | yes | yes | 1.414 | 47.3 | 2.09 |  |
+| 100 | translate | baseline | yes | yes | 2.000 | 27.5 | 0.32 |  |
+| 100 | translate | waves | yes | yes | 2.000 | 27.5 | 0.22 |  |
+| 100 | translate | prioritized | yes | yes | 2.000 | 27.5 | 1.11 |  |
+| 100 | translate | grid | yes | yes | 2.000 | 36.9 | 0.26 |  |
+| 100 | shuffle | baseline | yes | no | 0.000 | 29.1 | 0.05 |  |
+| 100 | shuffle | waves | no | no |  |  | 0.03 | RuntimeError: wave scheduling stuck |
+| 100 | shuffle | prioritized | no | no |  |  | 16.60 | RuntimeError: transition 0: no feasible plan |
+| 100 | shuffle | grid | no | no |  |  | 10.57 | blocked_by_reservations |
+| 100 | swap15 | baseline | yes | no | 0.000 | 25.5 | 0.02 |  |
 | 100 | swap15 | waves | no | no |  |  | 0.01 | RuntimeError: wave scheduling stuck |
-| 100 | swap15 | prioritized | no | no |  |  | 1.15 | RuntimeError: transition 0: no feasible plan |
-| 100 | swap15 | grid | yes | yes | 1.414 | 47.3 | 0.54 |  |
+| 100 | swap15 | prioritized | no | no |  |  | 1.88 | RuntimeError: transition 0: no feasible plan |
+| 100 | swap15 | grid | yes | yes | 1.414 | 47.3 | 0.78 |  |
 
 Verified plans out of runs, by task and planner:
 
