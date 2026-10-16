@@ -13,6 +13,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import time
 from pathlib import Path
 
@@ -24,7 +25,7 @@ from sirb.verify import verify
 
 SEED = 20261011
 DT = 0.2
-WORKERS = 2
+WORKERS = int(os.environ.get("SIRB_WORKERS", "2"))   # numbers do not depend on it (per trial seeds)
 
 
 def family_show(spacing: float, n: int = 100, big: bool = False) -> dict:
