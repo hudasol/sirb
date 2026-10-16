@@ -16,9 +16,27 @@ from scipy.optimize import linear_sum_assignment
 from scipy.spatial.distance import cdist
 
 
+def _exact_sq_cost(src: np.ndarray, dst: np.ndarray) -> np.ndarray:
+    """Squared distances computed exactly in integers on the 2^-20 m grid of ``sirb.shapes``.
+
+    Exact costs make equal-cost (tied) assignments exactly equal on every machine, so the solver,
+    whose tie rule is a fixed index order, returns the same permutation everywhere. Points off the
+    grid are rounded to it for the cost only. Float conversion of the integer sum is deterministic.
+    """
+    a = np.rint(np.asarray(src, float) * 2.0 ** 20).astype(np.int64)
+    b = np.rint(np.asarray(dst, float) * 2.0 ** 20).astype(np.int64)
+    if max(np.abs(a).max(initial=0), np.abs(b).max(initial=0)) >= 2 ** 29:
+        raise ValueError("coordinates beyond 512 m; exact assignment cost would overflow")
+    cost = np.zeros((len(a), len(b)), np.int64)
+    for ax in range(3):
+        d = a[:, None, ax] - b[None, :, ax]
+        cost += d * d
+    return cost.astype(float) / 2.0 ** 40
+
+
 def assign_hungarian_sq(src: np.ndarray, dst: np.ndarray) -> np.ndarray:
     """perm such that drone i goes to dst[perm[i]], minimising sum of squared distances."""
-    cost = cdist(src, dst, "sqeuclidean")
+    cost = _exact_sq_cost(src, dst)
     r, c = linear_sum_assignment(cost)
     perm = np.empty(len(src), dtype=int)
     perm[r] = c
@@ -26,7 +44,7 @@ def assign_hungarian_sq(src: np.ndarray, dst: np.ndarray) -> np.ndarray:
 
 
 def assign_hungarian_len(src: np.ndarray, dst: np.ndarray) -> np.ndarray:
-    cost = cdist(src, dst, "euclidean")
+    cost = np.sqrt(_exact_sq_cost(src, dst))
     r, c = linear_sum_assignment(cost)
     perm = np.empty(len(src), dtype=int)
     perm[r] = c
