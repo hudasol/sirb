@@ -350,6 +350,16 @@ def test_cell_bounds_rounding_allowance_formula_for_linear_motion():
     assert lbd < 1.0 - 1e-7                                  # the allowance is visible at this gamma
 
 
+def test_cell_bounds_allowance_is_per_cell():
+    # two cells of the same polynomial with different widths and midpoints get different allowances
+    # gamma eps (|q0| + |q1| w)^2:  cell 0: (sqrt(1.25) + 1.5)^2, cell 1: (sqrt(2.5625) + 0.75)^2
+    gamma = 1e9
+    lbd = cb(D01, [0, 0], [1.5, 2.25], [1.5, 0.75], gamma=gamma)[0]
+    e0 = math.sqrt(1.0 - gamma * EPS * (math.sqrt(1.25) + 1.5) ** 2)
+    e1 = math.sqrt(1.25 - gamma * EPS * (math.sqrt(2.5625) + 0.75) ** 2)
+    np.testing.assert_allclose(lbd, [e0, e1], rtol=0, atol=1e-12)
+
+
 # Quartic |D|^2 cases. D(r) with the cell centred at 0 (mid = 0), so q = the coefficients.
 #   Q1: D = (1 + r^2, r + r^2, 0):  |D|^2 = 1 + 3 r^2 + 2 r^3 + 2 r^4
 #   Q2: D = (1 + r - r^2, 0, 0):    |D|^2 = 1 + 2 r - r^2 - 2 r^3 + r^4
@@ -436,8 +446,8 @@ def test_two_parked_drones_pass_with_all_fields_known():
     assert r.tol == 1e-9
     assert r.upper_bound == 3.0
     assert r.lower_bound == pytest.approx(3.0 - 1e-9, abs=1e-14)
-    assert r.max_rounding_allowance == pytest.approx(192 * EPS, rel=1e-12)
-    assert r.gap_bound == pytest.approx(1e-9 + 192 * EPS, rel=1e-12)
+    assert r.max_rounding_allowance == pytest.approx(192 * EPS, rel=1e-12, abs=0.0)
+    assert r.gap_bound == pytest.approx(1e-9 + 192 * EPS, rel=1e-12, abs=0.0)
     assert (r.n_drones, r.n_piece_pairs, r.n_cells, r.n_leaves) == (2, 3, 3, 0)
     assert r.pair_lower == {} and r.pair_upper == {}
     assert 0.0 <= r.runtime_s < 600.0
@@ -491,7 +501,7 @@ def test_tol_parameter_sets_the_pruning_margin_and_the_gap():
     assert r.tol == 0.5
     assert r.lower_bound == pytest.approx(2.5, abs=1e-14)    # u - tol
     assert r.upper_bound == 3.0
-    assert r.gap_bound == pytest.approx(0.5 + 192 * EPS, rel=1e-12)
+    assert r.gap_bound == pytest.approx(0.5 + 192 * EPS, rel=1e-12, abs=0.0)
     assert r.n_leaves == 0
 
 
@@ -574,8 +584,8 @@ def test_single_candidate_pair_is_resolved_not_skipped():
     assert r.lower_bound == pytest.approx(3.0 - 1e-9, abs=1e-13)
     # K = 3: gamma = 4 * 4^2 = 64; mag = |A| + |B| + |D| with abs_eval at |x| + h = 1:
     # B -> (10 + 40 + 40, 3, 0), D -> the same, A -> 0:  2 sqrt(8109)
-    assert r.max_rounding_allowance == pytest.approx(64 * EPS * 2 * math.sqrt(8109), rel=1e-12)
-    assert r.gap_bound == pytest.approx(1e-9 + 64 * EPS * 2 * math.sqrt(8109), rel=1e-12)
+    assert r.max_rounding_allowance == pytest.approx(64 * EPS * 2 * math.sqrt(8109), rel=1e-12, abs=0.0)
+    assert r.gap_bound == pytest.approx(1e-9 + 64 * EPS * 2 * math.sqrt(8109), rel=1e-12, abs=0.0)
     assert verify2(f, 4.0).verdict == "FAIL"                 # 3 < 4
 
 
@@ -585,7 +595,7 @@ def test_rounding_allowance_for_linear_pieces_uses_gamma_36():
     #   = 2 sqrt(34), the largest over the three pairs (the hold pairs give 2 sqrt(10), 2 sqrt(18)).
     f = fleet(parked((0, 0, 0), 0.0, 2.0), [seg(0, 2, [1, -3, 0], [-2, 0, 0])])
     r = verify2(f, 2.0)
-    assert r.max_rounding_allowance == pytest.approx(36 * EPS * 2 * math.sqrt(34), rel=1e-12)
+    assert r.max_rounding_allowance == pytest.approx(36 * EPS * 2 * math.sqrt(34), rel=1e-12, abs=0.0)
 
 
 def test_rounding_allowance_pins_every_term_of_the_magnitude():
@@ -598,7 +608,7 @@ def test_rounding_allowance_pins_every_term_of_the_magnitude():
     r = verify2(f, 2.0)
     assert r.n_piece_pairs == 3 and r.n_cells == 3 and r.n_leaves == 0
     assert r.upper_bound == 3.0
-    assert r.max_rounding_allowance == pytest.approx(36 * EPS * (9 + 3 * math.sqrt(5)), rel=1e-12)
+    assert r.max_rounding_allowance == pytest.approx(36 * EPS * (9 + 3 * math.sqrt(5)), rel=1e-12, abs=0.0)
 
 
 def test_nan_threshold_is_never_decided():
@@ -662,6 +672,41 @@ def test_segments_with_nonzero_time_origin_and_partial_overlap():
     assert r.n_leaves == 0
     assert verify2(f, 1.7).verdict == "PASS"
     assert verify2(f, 1.8).verdict == "FAIL"
+
+
+def test_overlapped_segment_piece_starts_at_the_cursor_not_at_its_own_origin():
+    # Drone 0: a far parked segment on [0, 4], then x = tau (tau = t - 2) on [2, 6]; only the part
+    # t in [4, 6] is a piece (start 4, time origin 2, so tau runs over [2, 4] there).  Drone 1 is
+    # parked at (3, 2, 0) on [3, 7].  Over t in [4, 6]: D = (t - 2 - 3, -2) = (t - 5, -2), minimum
+    # distance 2 at t = 5; every other pair of pieces is farther (the far segment, the holds at
+    # (4, 0, 0) and (3, 2, 0): distance sqrt 5).
+    f = fleet([seg(0, 4, [100, 100, 100]), seg(2, 6, [0, 0, 0], [1, 0, 0])],
+              [seg(3, 7, [3, 2, 0])])
+    r = verify2(f, 1.0)
+    assert r.upper_bound == 2.0
+    assert r.lower_bound == pytest.approx(2.0 - 1e-9, abs=1e-12)
+    assert r.verdict == "PASS"
+    assert verify2(f, 2.5).verdict == "FAIL"
+
+
+def test_cell_discarded_when_its_bound_equals_the_pruning_level(monkeypatch):
+    # Parked pair at distance 3, K = 1: the cell bound is sqrt(9 - 144 eps) - 192 eps in IEEE
+    # arithmetic (lb^2 = 9 - 144 eps is exact; sqrt is correctly rounded).  Choose tol so that the
+    # pruning level u - tol is exactly that number: the cells are discarded (bound reaches the level).
+    monkeypatch.setattr(V2, "_MAX_LEVEL", 3)
+    bound = math.sqrt(9.0 - 144 * EPS) - 192 * EPS
+    tol = 3.0 - bound
+    assert 3.0 - tol == bound
+    r = verify2(parked_pair(), 2.0, tol=tol)
+    assert (r.n_cells, r.n_leaves) == (3, 0)
+
+
+def test_negative_threshold_keeps_the_lower_bound_below_the_cap():
+    # lower_bound <= cap is part of the result's contract; with d_min = -5 the default cap is -5
+    r = verify2(parked_pair(), -5.0)
+    assert r.cap == -5.0
+    assert r.lower_bound <= r.cap
+    assert r.verdict == "PASS"
 
 
 def test_segment_shorter_than_one_second_does_not_extend_past_its_end():
