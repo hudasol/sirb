@@ -15,7 +15,8 @@ Effect: targets move by at most about 0.5 micrometre per coordinate; leg coeffic
 the last bits; tied assignments of grid and text shapes may resolve to another member of the tie,
 which can change a plan substantially while keeping its total cost. All fleet hashes changed.
 Regenerated so far, on Linux with `scripts/run_phase6_chain.sh`: `viewer/data/` (all three
-shows), `results/planners.json`, `results/assignment.json`. The text show's stressed scenario
+shows), `results/planners.json`, `results/assignment.json`, `results/ground_robots.json` (outcomes
+unchanged; seven separations differ in the last bit). The text show's stressed scenario
 minimum distances change visibly because its tied assignments resolve to another member of the tie.
 
 **Not yet regenerated** at the time of writing (they still come from the pre phase 6 code):
