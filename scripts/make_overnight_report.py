@@ -44,7 +44,11 @@ def main() -> None:
          "brief. mutmut and the forked Monte Carlo workers need Linux, so they ran under WSL. The "
          "machine was shared with another project's training jobs, and it was suspended for about "
          "three hours in the middle of the night (the WSL clock advanced 18 minutes while the wall "
-         "clock advanced about 3 hours 20 minutes). Long runs therefore finished late or not at all; "
+         "clock advanced about 3 hours 20 minutes). Later in the morning WSL itself stopped "
+         "responding (service timeout); it was not restarted, because that would also have killed "
+         "the other project's jobs. The sourced sensitivity run and the margin study were "
+         "interrupted with part of their units cached in the WSL clone `~/sirb-run/results/.cache`; "
+         "relaunching the chain resumes them. Long runs therefore finished late or not at all; "
          "each item below says which.", "",
          "## Per stream", "",
          "### A. Evidence debt (mutation survivors)", "",
@@ -93,7 +97,26 @@ def main() -> None:
     L += [f"Prediction P11: {prediction('P11')}.", "",
           "### D. Verifier speed", ""]
     if vs:
-        L.append("Benchmark in `results/verify_speed.json` (see `docs/PERFORMANCE.md` if updated).")
+        L += ["Vectorised `_candidate_pairs` (dense tiles with an exact x axis reject), the loop kept "
+              "as a test reference. Equality: identical arrays (values, order, dtype) on the 10,856 "
+              "differential fleets and on every benchmark fleet; `tests/test_verify_candidates.py`. "
+              f"Benchmark (`results/verify_speed.json`, {vs['machine'].get('platform', '')}, a "
+              "saturated machine, so times are noisy; verify timed once):", "",
+              "| n | candidate search old (s) | new (s) | speedup | verify old (s) | new (s) | speedup "
+              "| identical |", "|---|---|---|---|---|---|---|---|"]
+        for r in vs["rows"]:
+            c, v = r["prefilter"], r["verify"]
+            L.append(f"| {r['n']} | {f(c['old_s'])} | {f(c['new_s'])} | {f(c['speedup'], 2)} | "
+                     f"{f(v['old_s'], 1)} | {f(v['new_s'], 1)} | {f(v['speedup'], 2)} | "
+                     f"{c['identical'] and v['reports_equal']} |")
+        L += ["", "The candidate search was only a few percent of verification time, so the total "
+              "gain is small, as predicted. A full rerun of `scripts/differential_report.py` on "
+              "Windows gave the same output with the old and the new search, but both differed from "
+              "the committed `results/differential.json` in the degenerate collision family (one "
+              "disagreement record fewer, one verdict moved between FAIL and UNDECIDED, largest exact "
+              "minus lower bound larger), with Python 3.13.0 here against 3.13.16 for the committed "
+              "file. That is an environment dependence of the near degenerate cases, not a change "
+              "from stream D; the committed file was not overwritten."]
     else:
         L.append("**Not integrated**: the vectorised candidate search was delegated and was not "
                  "merged into this branch when this report was generated; `sirb/verify.py` is "
