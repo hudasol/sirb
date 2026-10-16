@@ -3,109 +3,109 @@
   {
    "transition": "launch->orb",
    "identity": {
-    "total_path_length_m": 10190.199476538002,
+    "total_path_length_m": 10190.199475526022,
     "conflicting_pairs": 228
    },
    "random": {
-    "total_path_length_m": 10199.934406579081,
+    "total_path_length_m": 10199.934405361595,
     "conflicting_pairs": 150
    },
    "greedy": {
-    "total_path_length_m": 10165.271133664119,
+    "total_path_length_m": 10165.271132077254,
     "conflicting_pairs": 208
    },
    "hungarian_len": {
-    "total_path_length_m": 10129.55993134864,
+    "total_path_length_m": 10129.55993014698,
     "conflicting_pairs": 34
    },
    "hungarian_sq": {
-    "total_path_length_m": 10143.404149428876,
+    "total_path_length_m": 10143.404148452773,
     "conflicting_pairs": 0
    },
    "pinned15": {
-    "total_path_length_m": 10149.89832494041,
+    "total_path_length_m": 10149.898324128997,
     "conflicting_pairs": 20
    }
   },
   {
    "transition": "orb->word",
    "identity": {
-    "total_path_length_m": 5595.565574279104,
+    "total_path_length_m": 5595.5655659847325,
     "conflicting_pairs": 72
    },
    "random": {
-    "total_path_length_m": 5572.970601796055,
+    "total_path_length_m": 5572.970597453416,
     "conflicting_pairs": 81
    },
    "greedy": {
-    "total_path_length_m": 4856.715377165725,
+    "total_path_length_m": 4856.715371322584,
     "conflicting_pairs": 42
    },
    "hungarian_len": {
-    "total_path_length_m": 4795.2066063181865,
+    "total_path_length_m": 4795.206599013431,
     "conflicting_pairs": 8
    },
    "hungarian_sq": {
-    "total_path_length_m": 4830.342719542992,
+    "total_path_length_m": 4830.342711811685,
     "conflicting_pairs": 0
    },
    "pinned15": {
-    "total_path_length_m": 4953.062160753583,
+    "total_path_length_m": 4953.062155264781,
     "conflicting_pairs": 12
    }
   },
   {
    "transition": "word->ring",
    "identity": {
-    "total_path_length_m": 7656.93437200422,
+    "total_path_length_m": 7656.934371016666,
     "conflicting_pairs": 215
    },
    "random": {
-    "total_path_length_m": 6959.084157503265,
+    "total_path_length_m": 6959.0841540796255,
     "conflicting_pairs": 171
    },
    "greedy": {
-    "total_path_length_m": 4062.87004647242,
+    "total_path_length_m": 4062.870060306388,
     "conflicting_pairs": 116
    },
    "hungarian_len": {
-    "total_path_length_m": 3397.2460181023853,
+    "total_path_length_m": 3397.2460167523654,
     "conflicting_pairs": 30
    },
    "hungarian_sq": {
-    "total_path_length_m": 3506.272063927463,
+    "total_path_length_m": 3506.27206614555,
     "conflicting_pairs": 0
    },
    "pinned15": {
-    "total_path_length_m": 4058.9978072813383,
+    "total_path_length_m": 4058.9978104339757,
     "conflicting_pairs": 32
    }
   },
   {
    "transition": "ring->land",
    "identity": {
-    "total_path_length_m": 11379.251671670314,
+    "total_path_length_m": 11379.251672504164,
     "conflicting_pairs": 93
    },
    "random": {
-    "total_path_length_m": 11547.91974739468,
+    "total_path_length_m": 11547.919748580187,
     "conflicting_pairs": 67
    },
    "greedy": {
-    "total_path_length_m": 11130.890585280034,
+    "total_path_length_m": 11130.890586276068,
     "conflicting_pairs": 40
    },
    "hungarian_len": {
-    "total_path_length_m": 11092.736438197619,
+    "total_path_length_m": 11092.736439024511,
     "conflicting_pairs": 2
    },
    "hungarian_sq": {
-    "total_path_length_m": 11193.258011087017,
+    "total_path_length_m": 11188.226610058138,
     "conflicting_pairs": 0
    },
    "pinned15": {
-    "total_path_length_m": 11228.746381326227,
-    "conflicting_pairs": 13
+    "total_path_length_m": 11224.329951967587,
+    "conflicting_pairs": 12
    }
   }
  ],
@@ -113,109 +113,109 @@
   {
    "transition": "launch->skyline",
    "identity": {
-    "total_path_length_m": 20384.55586862072,
+    "total_path_length_m": 20384.555805164142,
     "conflicting_pairs": 349
    },
    "random": {
-    "total_path_length_m": 20475.4521634744,
+    "total_path_length_m": 20475.452100302507,
     "conflicting_pairs": 321
    },
    "greedy": {
-    "total_path_length_m": 19825.208686897084,
+    "total_path_length_m": 19825.20862117129,
     "conflicting_pairs": 124
    },
    "hungarian_len": {
-    "total_path_length_m": 19764.1078073753,
+    "total_path_length_m": 19764.107741537635,
     "conflicting_pairs": 0
    },
    "hungarian_sq": {
-    "total_path_length_m": 19894.451452810288,
+    "total_path_length_m": 19900.647888946245,
     "conflicting_pairs": 0
    },
    "pinned15": {
-    "total_path_length_m": 20017.486703175986,
-    "conflicting_pairs": 86
+    "total_path_length_m": 20017.082919354296,
+    "conflicting_pairs": 87
    }
   },
   {
    "transition": "skyline->galaxy",
    "identity": {
-    "total_path_length_m": 8664.22486048995,
+    "total_path_length_m": 8664.224859814227,
     "conflicting_pairs": 1169
    },
    "random": {
-    "total_path_length_m": 8131.346459650945,
+    "total_path_length_m": 8131.346454722314,
     "conflicting_pairs": 1047
    },
    "greedy": {
-    "total_path_length_m": 5213.881785924972,
+    "total_path_length_m": 5213.8817797143765,
     "conflicting_pairs": 765
    },
    "hungarian_len": {
-    "total_path_length_m": 4737.203195362625,
+    "total_path_length_m": 4737.203195565429,
     "conflicting_pairs": 176
    },
    "hungarian_sq": {
-    "total_path_length_m": 4854.859981328633,
+    "total_path_length_m": 4854.859982254247,
     "conflicting_pairs": 0
    },
    "pinned15": {
-    "total_path_length_m": 5452.838413801626,
+    "total_path_length_m": 5452.838411808292,
     "conflicting_pairs": 170
    }
   },
   {
    "transition": "galaxy->helix",
    "identity": {
-    "total_path_length_m": 8647.711459085778,
+    "total_path_length_m": 8647.711460747883,
     "conflicting_pairs": 215
    },
    "random": {
-    "total_path_length_m": 8736.393736104572,
+    "total_path_length_m": 8736.393744321724,
     "conflicting_pairs": 236
    },
    "greedy": {
-    "total_path_length_m": 7360.54172737314,
+    "total_path_length_m": 7360.5417266970835,
     "conflicting_pairs": 230
    },
    "hungarian_len": {
-    "total_path_length_m": 6739.769827473009,
+    "total_path_length_m": 6739.769820815971,
     "conflicting_pairs": 10
    },
    "hungarian_sq": {
-    "total_path_length_m": 6801.709221569734,
+    "total_path_length_m": 6801.7092106927885,
     "conflicting_pairs": 0
    },
    "pinned15": {
-    "total_path_length_m": 6943.036962370606,
+    "total_path_length_m": 6943.036950472937,
     "conflicting_pairs": 38
    }
   },
   {
    "transition": "helix->land",
    "identity": {
-    "total_path_length_m": 19432.858662051847,
+    "total_path_length_m": 19432.85859827636,
     "conflicting_pairs": 428
    },
    "random": {
-    "total_path_length_m": 19382.57420236368,
+    "total_path_length_m": 19382.574138114054,
     "conflicting_pairs": 334
    },
    "greedy": {
-    "total_path_length_m": 19073.289702627644,
+    "total_path_length_m": 19073.28963462983,
     "conflicting_pairs": 331
    },
    "hungarian_len": {
-    "total_path_length_m": 18922.495880220937,
+    "total_path_length_m": 18922.49581113214,
     "conflicting_pairs": 50
    },
    "hungarian_sq": {
-    "total_path_length_m": 19013.452218796712,
+    "total_path_length_m": 19012.9906802326,
     "conflicting_pairs": 0
    },
    "pinned15": {
-    "total_path_length_m": 19066.62766557325,
-    "conflicting_pairs": 59
+    "total_path_length_m": 19072.148779607545,
+    "conflicting_pairs": 67
    }
   }
  ],
@@ -223,81 +223,81 @@
   {
    "transition": "launch->torus",
    "identity": {
-    "total_path_length_m": 34406.12555713803,
+    "total_path_length_m": 34406.125653180556,
     "conflicting_pairs": 1024
    },
    "random": {
-    "total_path_length_m": 33833.1400670444,
+    "total_path_length_m": 33833.140167513266,
     "conflicting_pairs": 851
    },
    "greedy": {
-    "total_path_length_m": 33089.10790878821,
+    "total_path_length_m": 33089.10800758388,
     "conflicting_pairs": 963
    },
    "hungarian_len": {
-    "total_path_length_m": 31938.37167440525,
+    "total_path_length_m": 31938.37178382268,
     "conflicting_pairs": 30
    },
    "hungarian_sq": {
-    "total_path_length_m": 31994.904855011948,
+    "total_path_length_m": 31994.904964688234,
     "conflicting_pairs": 0
    },
    "pinned15": {
-    "total_path_length_m": 32261.23835289551,
+    "total_path_length_m": 32261.238461153454,
     "conflicting_pairs": 140
    }
   },
   {
    "transition": "torus->super",
    "identity": {
-    "total_path_length_m": 15302.003305291622,
+    "total_path_length_m": 15302.00331538307,
     "conflicting_pairs": 249
    },
    "random": {
-    "total_path_length_m": 15195.853775426354,
+    "total_path_length_m": 15195.853776677908,
     "conflicting_pairs": 207
    },
    "greedy": {
-    "total_path_length_m": 8739.277795821403,
+    "total_path_length_m": 8739.277803810313,
     "conflicting_pairs": 73
    },
    "hungarian_len": {
-    "total_path_length_m": 8310.60874545202,
+    "total_path_length_m": 8310.608751172922,
     "conflicting_pairs": 1
    },
    "hungarian_sq": {
-    "total_path_length_m": 8454.778581303952,
+    "total_path_length_m": 8454.778590150006,
     "conflicting_pairs": 0
    },
    "pinned15": {
-    "total_path_length_m": 9513.642057508987,
+    "total_path_length_m": 9513.642064425247,
     "conflicting_pairs": 29
    }
   },
   {
    "transition": "super->land",
    "identity": {
-    "total_path_length_m": 31936.4587468401,
+    "total_path_length_m": 31936.45885280621,
     "conflicting_pairs": 817
    },
    "random": {
-    "total_path_length_m": 32219.340241324353,
+    "total_path_length_m": 32219.340346483958,
     "conflicting_pairs": 584
    },
    "greedy": {
-    "total_path_length_m": 31628.138856335212,
+    "total_path_length_m": 31628.13896084415,
     "conflicting_pairs": 561
    },
    "hungarian_len": {
-    "total_path_length_m": 31270.4793664525,
+    "total_path_length_m": 31270.479474272703,
     "conflicting_pairs": 103
    },
    "hungarian_sq": {
-    "total_path_length_m": 31408.845576644468,
+    "total_path_length_m": 31408.845684204774,
     "conflicting_pairs": 0
    },
    "pinned15": {
-    "total_path_length_m": 31530.293127223733,
+    "total_path_length_m": 31530.293234289384,
     "conflicting_pairs": 76
    }
   }
@@ -306,108 +306,108 @@
   {
    "transition": "launch->orb",
    "identity": {
-    "total_path_length_m": 53647.66498642807,
+    "total_path_length_m": 53647.664888346946,
     "conflicting_pairs": 1734
    },
    "random": {
-    "total_path_length_m": 54379.99498510338,
+    "total_path_length_m": 54379.9948908455,
     "conflicting_pairs": 1233
    },
    "greedy": {
-    "total_path_length_m": 52957.15086670451,
+    "total_path_length_m": 52957.15077010951,
     "conflicting_pairs": 1326
    },
    "hungarian_len": {
-    "total_path_length_m": 52148.45118226489,
+    "total_path_length_m": 52148.451081997846,
     "conflicting_pairs": 187
    },
    "hungarian_sq": {
-    "total_path_length_m": 52459.54977437576,
+    "total_path_length_m": 52459.54967515246,
     "conflicting_pairs": 0
    },
    "pinned15": {
-    "total_path_length_m": 52673.39303754429,
+    "total_path_length_m": 52673.39293784101,
     "conflicting_pairs": 157
    }
   },
   {
    "transition": "orb->skyline",
    "identity": {
-    "total_path_length_m": 24695.161161144497,
+    "total_path_length_m": 24695.161172962995,
     "conflicting_pairs": 901
    },
    "random": {
-    "total_path_length_m": 25399.080441477992,
+    "total_path_length_m": 25399.080453694663,
     "conflicting_pairs": 905
    },
    "greedy": {
-    "total_path_length_m": 17752.76307443075,
+    "total_path_length_m": 17752.763094839724,
     "conflicting_pairs": 459
    },
    "hungarian_len": {
-    "total_path_length_m": 16610.02602260303,
+    "total_path_length_m": 16610.026044552887,
     "conflicting_pairs": 97
    },
    "hungarian_sq": {
-    "total_path_length_m": 17056.4977613301,
+    "total_path_length_m": 17056.497779813835,
     "conflicting_pairs": 0
    },
    "pinned15": {
-    "total_path_length_m": 18139.88357506741,
+    "total_path_length_m": 18139.883592879454,
     "conflicting_pairs": 122
    }
   },
   {
    "transition": "skyline->super",
    "identity": {
-    "total_path_length_m": 25630.384778702915,
+    "total_path_length_m": 25630.384799416744,
     "conflicting_pairs": 696
    },
    "random": {
-    "total_path_length_m": 26211.744480399117,
+    "total_path_length_m": 26211.744519749933,
     "conflicting_pairs": 703
    },
    "greedy": {
-    "total_path_length_m": 17329.776724951247,
+    "total_path_length_m": 17329.77674328248,
     "conflicting_pairs": 350
    },
    "hungarian_len": {
-    "total_path_length_m": 16244.370198016266,
+    "total_path_length_m": 16244.370220388726,
     "conflicting_pairs": 42
    },
    "hungarian_sq": {
-    "total_path_length_m": 16836.84911047475,
+    "total_path_length_m": 16836.849131485094,
     "conflicting_pairs": 0
    },
    "pinned15": {
-    "total_path_length_m": 18152.48173229103,
+    "total_path_length_m": 18152.48175789088,
     "conflicting_pairs": 105
    }
   },
   {
    "transition": "super->land",
    "identity": {
-    "total_path_length_m": 53924.55323745004,
+    "total_path_length_m": 53924.553137535884,
     "conflicting_pairs": 1456
    },
    "random": {
-    "total_path_length_m": 54542.93818353075,
+    "total_path_length_m": 54542.938082787485,
     "conflicting_pairs": 975
    },
    "greedy": {
-    "total_path_length_m": 53103.32277181739,
+    "total_path_length_m": 53103.322671675254,
     "conflicting_pairs": 998
    },
    "hungarian_len": {
-    "total_path_length_m": 52156.209030961225,
+    "total_path_length_m": 52156.208924233695,
     "conflicting_pairs": 165
    },
    "hungarian_sq": {
-    "total_path_length_m": 52527.559511100015,
+    "total_path_length_m": 52527.55940571951,
     "conflicting_pairs": 0
    },
    "pinned15": {
-    "total_path_length_m": 52814.637926224896,
+    "total_path_length_m": 52814.63782210657,
     "conflicting_pairs": 154
    }
   }
