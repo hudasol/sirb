@@ -1,0 +1,186 @@
+{
+ "generated_by": "scripts/bench_verify_speed.py",
+ "note": "wall times are machine dependent and were measured while other jobs shared the machine; compare old and new within one row only, interleaved best-of timings (old_cpu_s / new_cpu_s are process CPU times, less sensitive to that load). Fleets: planned baseline fleets of scripts/profile_scale.py (relaxed limits, computational scaling only). `repeats`: best of that many runs of the candidate search; verify.repeats: best of that many runs of verify().",
+ "machine": {
+  "platform": "Windows-11-10.0.26200-SP0",
+  "processor": "AMD64 Family 25 Model 80 Stepping 0, AuthenticAMD",
+  "cpu_count": 16,
+  "python": "3.13.0",
+  "numpy": "2.5.3",
+  "scipy": "1.18.1"
+ },
+ "pair_block": 262144,
+ "repeats": 3,
+ "rows": [
+  {
+   "n": 100,
+   "n_pieces": 900,
+   "search_radius_m": 8.0,
+   "prefilter": {
+    "old_s": 0.07131209992803633,
+    "new_s": 0.04157999996095896,
+    "speedup": 1.715057719937325,
+    "old_cpu_s": 0.0625,
+    "new_cpu_s": 0.015625,
+    "speedup_cpu": 4.0,
+    "n_pairs": 12192,
+    "identical": true
+   },
+   "no_prefilter": {
+    "old_s": 0.02425250003580004,
+    "new_s": 0.007461699889972806,
+    "speedup": 3.2502647377162774,
+    "old_cpu_s": 0.0,
+    "new_cpu_s": 0.0,
+    "speedup_cpu": null,
+    "n_pairs": 44550,
+    "identical": true
+   },
+   "verify": {
+    "old_s": 1.2677762999664992,
+    "new_s": 1.1949018000159413,
+    "speedup": 1.0609878568678914,
+    "old_cpu_s": 1.15625,
+    "new_cpu_s": 1.140625,
+    "speedup_cpu": 1.0136986301369864,
+    "repeats": 1,
+    "reports_equal": true,
+    "ok": true,
+    "n_pairs_checked": 3199,
+    "candidate_old_share_of_verify_old": 0.05624974999920786
+   }
+  },
+  {
+   "n": 250,
+   "n_pieces": 2250,
+   "search_radius_m": 8.0,
+   "prefilter": {
+    "old_s": 0.1902749000582844,
+    "new_s": 0.10049230000004172,
+    "speedup": 1.8934276562304315,
+    "old_cpu_s": 0.15625,
+    "new_cpu_s": 0.09375,
+    "speedup_cpu": 1.6666666666666667,
+    "n_pairs": 47282,
+    "identical": true
+   },
+   "no_prefilter": {
+    "old_s": 0.07828619994688779,
+    "new_s": 0.03164109995122999,
+    "speedup": 2.4741933772073104,
+    "old_cpu_s": 0.078125,
+    "new_cpu_s": 0.03125,
+    "speedup_cpu": 2.5,
+    "n_pairs": 280125,
+    "identical": true
+   },
+   "verify": {
+    "old_s": 4.4024406999815255,
+    "new_s": 4.287843800033443,
+    "speedup": 1.0267259968628495,
+    "old_cpu_s": 4.203125,
+    "new_cpu_s": 4.078125,
+    "speedup_cpu": 1.0306513409961686,
+    "repeats": 1,
+    "reports_equal": true,
+    "ok": true,
+    "n_pairs_checked": 15730,
+    "candidate_old_share_of_verify_old": 0.043220320959481154
+   }
+  },
+  {
+   "n": 500,
+   "n_pieces": 4500,
+   "search_radius_m": 8.0,
+   "prefilter": {
+    "old_s": 0.44250720005948097,
+    "new_s": 0.25587780005298555,
+    "speedup": 1.729369253479002,
+    "old_cpu_s": 0.421875,
+    "new_cpu_s": 0.21875,
+    "speedup_cpu": 1.9285714285714286,
+    "n_pairs": 142232,
+    "identical": true
+   },
+   "no_prefilter": {
+    "old_s": 0.1764517999254167,
+    "new_s": 0.09055740002077073,
+    "speedup": 1.948507795993975,
+    "old_cpu_s": 0.15625,
+    "new_cpu_s": 0.078125,
+    "speedup_cpu": 2.0,
+    "n_pairs": 1122750,
+    "identical": true
+   },
+   "verify": {
+    "old_s": 12.750484100077301,
+    "new_s": 12.413864400004968,
+    "speedup": 1.0271164312115573,
+    "old_cpu_s": 12.1875,
+    "new_cpu_s": 11.703125,
+    "speedup_cpu": 1.041388518024032,
+    "repeats": 1,
+    "reports_equal": true,
+    "ok": true,
+    "n_pairs_checked": 54634,
+    "candidate_old_share_of_verify_old": 0.034705129357151095
+   }
+  },
+  {
+   "n": 1000,
+   "n_pieces": 9000,
+   "search_radius_m": 8.0,
+   "prefilter": {
+    "old_s": 0.9808192999335006,
+    "new_s": 0.7733291999902576,
+    "speedup": 1.268307597780941,
+    "old_cpu_s": 0.96875,
+    "new_cpu_s": 0.671875,
+    "speedup_cpu": 1.441860465116279,
+    "n_pairs": 425629,
+    "identical": true
+   },
+   "verify": {
+    "old_s": 37.195678299991414,
+    "new_s": 35.199821199988946,
+    "speedup": 1.0567007738097003,
+    "old_cpu_s": 34.75,
+    "new_cpu_s": 33.390625,
+    "speedup_cpu": 1.040711277491811,
+    "repeats": 1,
+    "reports_equal": true,
+    "ok": true,
+    "n_pairs_checked": 183238,
+    "candidate_old_share_of_verify_old": 0.026369173644931944
+   }
+  },
+  {
+   "n": 2000,
+   "n_pieces": 18000,
+   "search_radius_m": 8.0,
+   "prefilter": {
+    "old_s": 2.92344799998682,
+    "new_s": 2.269378099939786,
+    "speedup": 1.2882154807365016,
+    "old_cpu_s": 2.75,
+    "new_cpu_s": 2.171875,
+    "speedup_cpu": 1.2661870503597121,
+    "n_pairs": 1467187,
+    "identical": true
+   },
+   "verify": {
+    "old_s": 121.45029060007073,
+    "new_s": 111.31961669994052,
+    "speedup": 1.0910052890986608,
+    "old_cpu_s": 113.234375,
+    "new_cpu_s": 105.703125,
+    "speedup_cpu": 1.071249076127125,
+    "repeats": 1,
+    "reports_equal": true,
+    "ok": true,
+    "n_pairs_checked": 657446,
+    "candidate_old_share_of_verify_old": 0.02407114866125415
+   }
+  }
+ ]
+}
