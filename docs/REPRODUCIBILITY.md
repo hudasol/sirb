@@ -68,8 +68,10 @@ viewer data file is byte identical apart from line endings (Windows writes CRLF 
 | `torus_300` | `d17f2c1a...` | `d17f2c1a...` |
 | `wall_500` | `7283bef4...` | `7283bef4...` |
 
-The CI result is recorded in `docs/CHANGES.md` and in `docs/OVERNIGHT_REPORT.md`. The check in
-`scripts/check_viewer_data.py` keeps the comparison against the committed copy.
+The CI runner (GitHub Actions run 38857921036 on commit `60565d2`, ubuntu-latest) regenerated the
+same three hashes, `dc4aba75...`, `d17f2c1a...` and `7283bef4...`, so three machines agree. The
+check against the committed copy in `scripts/check_viewer_data.py` is therefore now a hard check:
+a future change that reintroduces machine dependence fails CI.
 
 ## What changed in published numbers
 
