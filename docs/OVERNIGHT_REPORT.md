@@ -93,7 +93,7 @@ Done as a hostile read of the phase 6 changes (the review skill was not run, for
 ## What I did not get to
 
 * The full regeneration of the stress results after stream E (`results/stress_*.json`, `results/sensitivity.json`, `results/scaling_profile.json`) unless `docs/CHANGES.md` lists them as regenerated. Until then those files and the README headline lines derived from them come from the pre phase 6 code.
-* New mutmut scores; stream D integration (unless stated above).
+* A fresh mutmut run (needed for `verify.py`, whose candidate search changed).
 
 ## Exact steps for Huda
 

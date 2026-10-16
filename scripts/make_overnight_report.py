@@ -183,7 +183,7 @@ def main() -> None:
           "`results/sensitivity.json`, `results/scaling_profile.json`) unless `docs/CHANGES.md` lists "
           "them as regenerated. Until then those files and the README headline lines derived from them "
           "come from the pre phase 6 code.",
-          "* New mutmut scores; stream D integration (unless stated above).", "",
+          "* A fresh mutmut run (needed for `verify.py`, whose candidate search changed).", "",
           "## Exact steps for Huda", "",
           "1. Read this report, `docs/CHANGES.md` and `docs/REPRODUCIBILITY.md`; review PR "
           "hudasol/sirb#2 (base `phase5-hardening`). Nothing is merged and no tag was pushed.",
