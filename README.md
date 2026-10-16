@@ -88,8 +88,10 @@ Reproduction: `make reproduce` runs install, tests, demo shows, planner benchmar
 | `sirb/verify.py`, `certificate.py` | exact verifier and reproducible certificate |
 | `sirb/disturbance.py`, `stress.py`, `contingency.py` | Monte-Carlo stress model |
 | `sirb/preflight.py`, `export.py`, `cli.py` | consistency validator, file export, command line |
+| `sirb/margin.py` | planning aid: nominal separation for a simulated risk target (`python -m sirb margin`) |
+| `data/` | the one external table used (FAA GPS accuracy statistics, US government work) |
 | `viewer/` | static three.js viewer, English/Arabic |
-| `docs/` | `HAZARDS.md`, `PREDICTIONS.md`, `MUTATION.md`, `PERFORMANCE.md`, `SENSITIVITY.md`, `GNSS_PARAMS.md`, `RESULTS.md`, `REPORT.md`, `PROPOSAL_SEED.md`, `METHODS.md` (assumptions and sim-to-real gap), `VERIFIER.md`, `SHOW_SCHEMA.md`, `RESEARCH.md`, `DATA_SOURCES.md`, `REVIEW_ROUNDS.md` |
+| `docs/` | phase 6: `OVERNIGHT_REPORT.md`, `MARGIN.md`, `GNSS_SOURCED.md`, `REPRODUCIBILITY.md`, `CHANGES.md`, reviewer briefs `BRIEF_*.md` and `SUMMARY_AR.md` (Arabic, needs native review); earlier: `HAZARDS.md`, `PREDICTIONS.md`, `MUTATION.md`, `PERFORMANCE.md`, `SENSITIVITY.md`, `GNSS_PARAMS.md`, `RESULTS.md`, `REPORT.md`, `PROPOSAL_SEED.md`, `METHODS.md` (assumptions and sim-to-real gap), `VERIFIER.md`, `SHOW_SCHEMA.md`, `RESEARCH.md`, `DATA_SOURCES.md`, `REVIEW_ROUNDS.md` |
 
 ## Limitations
 

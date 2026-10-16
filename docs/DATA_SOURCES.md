@@ -14,6 +14,7 @@ Updated as dependencies are added. Python package licenses below were read from 
 | mutmut 3.8.0 | mutation testing of the verifier and planners (dev only, not imported by `sirb`, not redistributed; `docs/MUTATION.md`) | BSD-3-Clause (the `License-Expression` field of the installed package metadata, read 2026-10-12) | package metadata |
 | three.js 0.170.0 (`three.module.min.js`, `addons/OrbitControls.js`) | viewer 3D rendering, vendored in `viewer/vendor/` (no CDN) | MIT ("Copyright 2010-2024 three.js authors") | `license` field of the npm package and its LICENSE file, copied to `viewer/vendor/LICENSE` (2026-10-11) |
 | axe-core 4.14.0 (`axe.min.js`, `LICENSE`, `package.json`) | accessibility test runs only (`scripts/axe_check.py` injects it with Playwright); kept in `scripts/vendor/axe-core/`, not part of the shipped site | MPL-2.0 (`license` field of the npm package metadata and its LICENSE file, copied alongside) | `npm pack axe-core` tarball, 2026-10-12; SHA-256 of `axe.min.js` `20c09fe157a8a34a30e241aaa1fcdade657734f08ab379ecfbeb7d45cc46e878` |
+| pypdf 6.20.1 | optional re-extraction of the FAA accuracy table from the report PDF (`scripts/derive_gnss_faa.py --extract`); dev only, not a declared dependency, not redistributed | BSD-3-Clause (`License-Expression` of the installed package metadata, read 2026-10-16) | package metadata |
 | Playwright (Python) 1.56.0 with its preinstalled Chromium; Pillow 12.3.0 | viewer test, screenshot and benchmark scripts only (dev only, not redistributed, not declared dependencies) | Playwright Apache-2.0 (`License-Expression`); Pillow MIT-CMU (`License-Expression`) | installed package metadata, 2026-10-12 |
 
 Transitive dev-only dependencies (installed by pytest and hypothesis; not imported by `sirb`; licenses from package metadata, review round 6): iniconfig 2.3.1 MIT, packaging 26.3 Apache-2.0 OR BSD-2-Clause, pluggy 1.6.0 MIT, pygments 2.21.0 BSD-2-Clause, sortedcontainers 2.4.0 Apache-2.0. Runtime dependencies are numpy and scipy only (`pip check`: no broken requirements). Exact versions used are in `constraints.txt`. mutmut 3.8.0 pulls in click 8.5.0 BSD-3-Clause, coverage 7.16.2 Apache-2.0, libcst 1.9.0 MIT (its metadata adds that a few files derived from the Python standard library are PSF-licensed), setproctitle 1.3.8 BSD-3-Clause and textual 8.2.8 MIT (all from installed package metadata, 2026-10-12); all are dev-only. `pytest-cov` 7.1.0 was installed ad hoc for the coverage run in review round 6; it is not a declared dependency.
@@ -32,7 +33,15 @@ The viewer has no other JavaScript dependencies (vanilla ES modules and an impor
 
 ## Data
 
-No external datasets. All shapes are procedural or parametric, generated in-repo from seeds. No logos, trademarks or copyrighted designs. Text shapes use a stroke font defined in the repo.
+All shapes are procedural or parametric, generated in-repo from seeds. No logos, trademarks or copyrighted designs. Text shapes use a stroke font defined in the repo.
+
+One external data table is used (phase 6, `docs/GNSS_SOURCED.md`):
+
+| Data | Use | Licence | Retrieved |
+|---|---|---|---|
+| FAA GPS SPS Performance Analysis Report 131 (July to September 2025), Table 5-2, per site 95% horizontal and vertical position error; <https://www.nstb.tc.faa.gov/reports/FAA_SPS_PAN_Report_131_v1.0.pdf> | magnitude of the GNSS bias in `shows/gnss_faa_sps_standalone.json`; the 26 rows are copied to `data/faa_sps_pan131_table5_2.csv` | Produced by the FAA William J. Hughes Technical Center, a US federal agency. The report states no licence; works of the US federal government are not subject to US copyright (17 U.S.C. 105). Outside the US the status may differ; the table is reproduced with attribution. | 2026-10-16, PDF SHA-256 `fd3e66833160c8a4920e9bb9f835a58a6d23cb50baeeeb335e6e247b5ccc3055` |
+
+No other external dataset is used. `hudasol/marsad` and the Tashwish project were not used (`docs/GNSS_PARAMS.md`).
 
 ## Reference material (not redistributed)
 
