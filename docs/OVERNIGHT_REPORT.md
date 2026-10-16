@@ -11,8 +11,30 @@ The work ran on the owner's Windows machine, not the 2 core container described 
 ### A. Evidence debt (mutation survivors)
 
 mutmut does not run on native Windows. Under WSL its single threaded baseline phase did not finish in 40 minutes under the shared load and would have needed hours more, so I stopped it and replaced it with a manual check: each recorded survivor's one line change is applied to a copy of the package and the selected tests are run against it (`scripts/check_survivors.py`, if present).
-**Not finished**: the triage was still running when this report was generated; `results/mutation.json` and the scores in `docs/MUTATION.md` are unchanged from phase 5.
-Prediction P10: pending.
+
+| File | Result of the manual check | Survivors |
+|---|---|---|
+| `sirb/assign.py` | equivalent | 13 |
+| `sirb/assign.py` | killed | 8 |
+| `sirb/assign.py` | not_applicable | 3 |
+| `sirb/planner/baseline.py` | not_checked | 1 |
+| `sirb/planner/baseline.py` | open | 1 |
+| `sirb/planner/common.py` | not_checked | 4 |
+| `sirb/planner/common.py` | open | 8 |
+| `sirb/planner/prioritized.py` | not_applicable | 1 |
+| `sirb/planner/prioritized.py` | not_checked | 36 |
+| `sirb/planner/prioritized.py` | open | 73 |
+| `sirb/planner/waves.py` | not_checked | 17 |
+| `sirb/planner/waves.py` | open | 33 |
+| `sirb/verify.py` | not_applicable | 2 |
+| `sirb/verify.py` | not_checked | 137 |
+| `sirb/verify.py` | open | 11 |
+| `sirb/verify2.py` | equivalent | 38 |
+| `sirb/verify2.py` | equivalent_result_slower | 1 |
+| `sirb/verify2.py` | killed | 277 |
+
+Only `verify2.py` and `assign.py` went through every stage (old selection, new killer tests, slow tests). For `verify.py` and the planners only the slow tests were tried, for part of the survivors; `open` there means it survived the slow tests and has no argument, `not_checked` means it was never run (`coverage` in the file). New mutmut scores were not produced; `docs/MUTATION.md` keeps the phase 5 tables.
+Prediction P10: Hit on the kill count and score; miss on where the remainder sits (not mainly interval bound constants); slow test part hit only for the survivors actually run.
 
 ### B. Real GNSS parameters
 
