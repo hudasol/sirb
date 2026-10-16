@@ -26,6 +26,7 @@ VIOLATION_CAP = 1000     # max listed violations per kind
 _ROOT_IMAG_TOL = 1e-3    # accept roots with |imag| below this (generous: extra candidates are harmless)
 _GRID = 8                # safety-net grid candidates k/8 added to every root search
 _CHUNK = 20000
+_PAIR_BLOCK = 1 << 18      # max index pairs materialised at once by _candidate_pairs
 
 
 @dataclass
@@ -364,7 +365,45 @@ def _build_pieces(good_per_drone, bad) -> _Pieces:
 
 def _candidate_pairs(P: _Pieces, R: float, prefilter: bool):
     """Piece-index pairs (ia, ib) of different drones with overlapping time intervals
-    whose boxes are not farther apart than R (all such pairs if prefilter is False)."""
+    whose boxes are not farther apart than R (all such pairs if prefilter is False).
+    Vectorised over blocks of rows; element for element, in the same order, equal to
+    ``_candidate_pairs_loop`` (rows ascending in start-time order, then columns)."""
+    order = np.argsort(P.lo, kind="stable")
+    lo, hi = P.lo[order], P.hi[order]
+    blo, bhi, dr = P.blo[order], P.bhi[order], P.drone[order]
+    ends = np.searchsorted(lo, hi, side="left")
+    R2 = (R * (1 + 1e-9) + 1e-9) ** 2 if prefilter else np.inf
+    cnt = np.maximum(ends - np.arange(1, P.n + 1), 0)   # time-overlapping partners j > i of row i
+    cum = np.concatenate([[0], np.cumsum(cnt)])
+    A, B = [], []
+    r0 = 0
+    while r0 < P.n:
+        # Rows r0..r1-1 hold at most _PAIR_BLOCK index pairs (a single wider row is its own block).
+        r1 = int(np.searchsorted(cum, cum[r0] + _PAIR_BLOCK, side="right")) - 1
+        r1 = min(max(r1, r0 + 1), P.n)
+        c = cnt[r0:r1]
+        tot = int(cum[r1] - cum[r0])
+        if tot:
+            ii = np.repeat(np.arange(r0, r1), c)
+            jj = ii + 1 + (np.arange(tot) - np.repeat(cum[r0:r1] - cum[r0], c))
+            sel = dr[jj] != dr[ii]
+            ii, jj = ii[sel], jj[sel]
+            if prefilter:
+                gap = np.maximum(np.maximum(blo[jj] - bhi[ii], blo[ii] - bhi[jj]), 0.0)
+                sel = np.einsum("ij,ij->i", gap, gap) <= R2
+                ii, jj = ii[sel], jj[sel]
+            if len(ii):
+                A.append(ii)
+                B.append(jj)
+        r0 = r1
+    if not A:
+        return np.zeros(0, np.int64), np.zeros(0, np.int64)
+    return order[np.concatenate(A)], order[np.concatenate(B)]
+
+
+def _candidate_pairs_loop(P: _Pieces, R: float, prefilter: bool):
+    """Reference implementation of ``_candidate_pairs`` (one Python iteration per piece);
+    kept only so tests can assert that the vectorised version returns identical arrays."""
     order = np.argsort(P.lo, kind="stable")
     lo, hi = P.lo[order], P.hi[order]
     blo, bhi, dr = P.blo[order], P.bhi[order], P.drone[order]
