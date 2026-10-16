@@ -45,13 +45,25 @@ def _profile_scale():
     return mod
 
 
-def _best(fn, repeats):
-    best, out = float("inf"), None
+def _race(f_old, f_new, repeats, before_old=lambda: None, before_new=lambda: None):
+    """Interleaved best-of timing of two callables: minimum wall time and minimum process CPU
+    time of each (CPU time is less sensitive to other jobs sharing the machine)."""
+    best = {"old": [float("inf")] * 2, "new": [float("inf")] * 2}
+    out = {}
     for _ in range(repeats):
-        t = time.perf_counter()
-        out = fn()
-        best = min(best, time.perf_counter() - t)
+        for tag, f, before in (("old", f_old, before_old), ("new", f_new, before_new)):
+            before()
+            w, c = time.perf_counter(), time.process_time()
+            out[tag] = f()
+            best[tag][0] = min(best[tag][0], time.perf_counter() - w)
+            best[tag][1] = min(best[tag][1], time.process_time() - c)
     return best, out
+
+
+def _cmp(best):
+    (ow, oc), (nw, nc) = best["old"], best["new"]
+    return {"old_s": ow, "new_s": nw, "speedup": ow / nw,
+            "old_cpu_s": oc, "new_cpu_s": nc, "speedup_cpu": oc / nc if nc > 0 else None}    # CPU clock tick is ~16 ms on Windows
 
 
 def _same_report(a, b):
@@ -72,31 +84,29 @@ def bench(n, repeats, verify_repeats, ps):
     for prefilter in (True, False):
         if not prefilter and n > 500:
             continue                      # all time-overlapping pairs: memory heavy, not the verify path
-        t_old, (oa, ob) = _best(lambda: V._candidate_pairs_loop(P, R, prefilter), repeats)
-        t_new, (na, nb) = _best(lambda: V._candidate_pairs(P, R, prefilter), repeats)
+        best, o = _race(lambda: V._candidate_pairs_loop(P, R, prefilter),
+                        lambda: V._candidate_pairs(P, R, prefilter), repeats)
+        (oa, ob), (na, nb) = o["old"], o["new"]
         tag = "prefilter" if prefilter else "no_prefilter"
-        row[tag] = {"n_pairs": int(len(na)), "old_s": t_old, "new_s": t_new,
-                    "speedup": t_old / t_new,
-                    "identical": bool(np.array_equal(oa, na) and np.array_equal(ob, nb)
-                                      and oa.dtype == na.dtype and ob.dtype == nb.dtype)}
+        row[tag] = dict(_cmp(best), n_pairs=int(len(na)),
+                        identical=bool(np.array_equal(oa, na) and np.array_equal(ob, nb)
+                                       and oa.dtype == na.dtype and ob.dtype == nb.dtype))
     new_impl, old_impl = V._candidate_pairs, V._candidate_pairs_loop
-    t_new_v, t_old_v, rep_new, rep_old = float("inf"), float("inf"), None, None
+
+    def use(impl):
+        def f():
+            V._candidate_pairs = impl
+        return f
+
     try:
-        for _ in range(verify_repeats):
-            V._candidate_pairs = old_impl
-            t = time.perf_counter()
-            rep_old = V.verify(fleet, limits)
-            t_old_v = min(t_old_v, time.perf_counter() - t)
-            V._candidate_pairs = new_impl
-            t = time.perf_counter()
-            rep_new = V.verify(fleet, limits)
-            t_new_v = min(t_new_v, time.perf_counter() - t)
+        best, o = _race(lambda: V.verify(fleet, limits), lambda: V.verify(fleet, limits),
+                        verify_repeats, use(old_impl), use(new_impl))
     finally:
         V._candidate_pairs = new_impl
-    row["verify"] = {"old_s": t_old_v, "new_s": t_new_v, "speedup": t_old_v / t_new_v,
-                     "repeats": verify_repeats, "reports_equal": _same_report(rep_old, rep_new),
-                     "ok": bool(rep_new.ok), "n_pairs_checked": int(rep_new.n_pairs_checked),
-                     "candidate_old_share_of_verify_old": row["prefilter"]["old_s"] / t_old_v}
+    row["verify"] = dict(_cmp(best), repeats=verify_repeats,
+                         reports_equal=_same_report(o["old"], o["new"]),
+                         ok=bool(o["new"].ok), n_pairs_checked=int(o["new"].n_pairs_checked),
+                         candidate_old_share_of_verify_old=row["prefilter"]["old_s"] / best["old"][0])
     return row
 
 
@@ -109,6 +119,21 @@ def main():
     a = ap.parse_args()
     ps = _profile_scale()
     rows = []
+    out = {
+        "generated_by": "scripts/bench_verify_speed.py",
+        "note": ("wall times are machine dependent and were measured while other jobs shared the "
+                 "machine; compare old and new within one row only, interleaved best-of timings "
+                 "(old_cpu_s / new_cpu_s are process CPU times, less sensitive to that load). "
+                 "Fleets: planned baseline fleets of scripts/profile_scale.py (relaxed limits, "
+                 "computational scaling only). `repeats`: best of that many runs of the "
+                 "candidate search; verify.repeats: best of that many runs of verify()."),
+        "machine": {"platform": platform.platform(), "processor": platform.processor(),
+                    "cpu_count": os.cpu_count(), "python": platform.python_version(),
+                    "numpy": np.__version__, "scipy": scipy.__version__},
+        "pair_block": V._PAIR_BLOCK,
+        "repeats": a.repeats,
+        "rows": rows,
+    }
     for n in a.sizes:
         # The largest size runs verify() fewer times: one call takes about a minute.
         vr = min(a.verify_repeats, 2) if n >= 2000 else a.verify_repeats
@@ -120,21 +145,8 @@ def main():
                           "verify_new_s": row["verify"]["new_s"],
                           "identical": row["prefilter"]["identical"],
                           "reports_equal": row["verify"]["reports_equal"]}), flush=True)
-    out = {
-        "generated_by": "scripts/bench_verify_speed.py",
-        "note": ("wall times are machine dependent (another job may have been running); compare "
-                 "old and new within one row only. Fleets: planned baseline fleets of "
-                 "scripts/profile_scale.py (relaxed limits, computational scaling only). "
-                 "Best of `repeats` for the candidate search, best of verify.repeats for verify()."),
-        "machine": {"platform": platform.platform(), "processor": platform.processor(),
-                    "cpu_count": os.cpu_count(), "python": platform.python_version(),
-                    "numpy": np.__version__, "scipy": scipy.__version__},
-        "pair_block": V._PAIR_BLOCK,
-        "repeats": a.repeats,
-        "rows": rows,
-    }
-    Path(a.out).parent.mkdir(parents=True, exist_ok=True)
-    Path(a.out).write_text(json.dumps(out, indent=1))
+        Path(a.out).parent.mkdir(parents=True, exist_ok=True)
+        Path(a.out).write_text(json.dumps(out, indent=1))      # partial results survive an interrupt
 
 
 if __name__ == "__main__":
