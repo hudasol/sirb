@@ -4,6 +4,12 @@ Every shape returns exactly ``n`` points (n, 3) in metres. Size is set either
 explicitly (``size``) or by ``spacing_m``: the shape is scaled so the *minimum*
 nearest-neighbour distance equals ``spacing_m``. Then it is rotated about z by
 ``rotate_z_deg`` and translated to ``center``. No logos, fonts or external data.
+
+Every returned point is snapped to a binary grid of ``GRID_M`` = 2^-20 m (about 0.95 micrometre).
+Trigonometry, matrix products and nearest neighbour scaling can differ in the last bit between
+CPUs and maths libraries; snapping removes that noise before planning, so the assignment and the
+fleet hash do not depend on the machine (docs/REPRODUCIBILITY.md). Scaling by a power of two and
+rounding are exact, so the grid values are the same on every IEEE 754 machine.
 """
 
 from __future__ import annotations
@@ -12,6 +18,13 @@ import math
 
 import numpy as np
 from scipy.spatial import cKDTree
+
+GRID_M = 2.0 ** -20
+
+
+def snap(pts: np.ndarray) -> np.ndarray:
+    """Round coordinates to the nearest multiple of GRID_M (exact in binary floating point)."""
+    return np.round(np.asarray(pts, float) * 2.0 ** 20) / 2.0 ** 20
 
 # Minimal original stroke font on a unit box (x 0..1, y 0..1). Letters only as needed.
 _FONT: dict[str, list[list[tuple[float, float]]]] = {
@@ -195,7 +208,7 @@ def generate_points(spec: dict, n: int, seed: int = 0) -> np.ndarray:
     """Generate (n, 3) points for a shape spec."""
     if spec["type"] == "launch_grid":
         c = spec.get("center", [0.0, 0.0, 0.0])
-        return launch_grid(n, spec["spacing_m"], (c[0], c[1]))
+        return snap(launch_grid(n, spec["spacing_m"], (c[0], c[1])))
     rng = np.random.default_rng(seed)
     pts = _unit_shape(spec, n, rng)
     if spec.get("size") is not None and spec.get("spacing_m") is not None:
@@ -209,4 +222,4 @@ def generate_points(spec: dict, n: int, seed: int = 0) -> np.ndarray:
     th = math.radians(spec.get("rotate_z_deg", 0.0))
     rot = np.array([[math.cos(th), -math.sin(th), 0], [math.sin(th), math.cos(th), 0], [0, 0, 1]])
     pts = pts @ rot.T
-    return pts + np.array(spec.get("center", [0.0, 0.0, 0.0]), dtype=float)
+    return snap(pts + np.array(spec.get("center", [0.0, 0.0, 0.0]), dtype=float))
