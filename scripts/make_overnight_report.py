@@ -58,7 +58,15 @@ def main() -> None:
          "to a copy of the package and the selected tests are run against it "
          "(`scripts/check_survivors.py`, if present)."]
     if tri:
-        L.append(f"Triage result file: `results/mutation_phase6_triage.json` ({len(tri.get('survivors', tri)) if isinstance(tri, dict) else len(tri)} records).")
+        L += ["", "| File | Result of the manual check | Survivors |", "|---|---|---|"]
+        for k, v in sorted(tri["summary"].items()):
+            fn, cls = k.split("|")
+            L.append(f"| `{fn}` | {cls} | {v} |")
+        L += ["", "Only `verify2.py` and `assign.py` went through every stage (old selection, new "
+              "killer tests, slow tests). For `verify.py` and the planners only the slow tests were "
+              "tried, for part of the survivors; `open` there means it survived the slow tests and has "
+              "no argument, `not_checked` means it was never run (`coverage` in the file). New mutmut "
+              "scores were not produced; `docs/MUTATION.md` keeps the phase 5 tables."]
     else:
         L.append("**Not finished**: the triage was still running when this report was generated; "
                  "`results/mutation.json` and the scores in `docs/MUTATION.md` are unchanged from "
