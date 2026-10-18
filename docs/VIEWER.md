@@ -38,13 +38,13 @@ Fixes: the safety banner lost its landmark because `role="note"` replaced the `a
 
 **Checks** (`results/viewer_checks.json`, 40 of 40 pass): tab order from the skip link through every control without a trap and with a visible focus outline; Space and Enter on buttons; scrubber arrows, Shift+arrows, Home, End; global Space; `prefers-reduced-motion` (no autoplay, no CSS animation or transition; the page has no animation other than user started playback); light theme (stored, OS preference, toggle); `file://` (a classic script, `fileguard.js`, reveals a static bilingual notice, because ES modules cannot load from `file://` and previously the page stayed blank with no message); RTL and overflow checks. Screenshots are in `viewer/screenshots/`.
 
-## Benchmark (prepared, not yet measured)
+## Benchmark (measured; `results/viewer_bench.json`)
 
 ```
 nice -n 10 python scripts/viewer_bench.py
 ```
 
-Builds `results/bench_data/` (git ignored) with `scripts/build_viewer_bench_data.py`: a deterministic 1000 drone synthetic show (launch grid, sphere, landing; enlarged geofence, baseline planner). The planner output passes the exact verifier at 1000 drones (min separation 2.534 m against d_min 2.0 m), so the dataset is a valid verified show, not only a rendering load. The script then loads `index.html?bench=1` (data read from `./bench/`, per frame timings in `window.__bench`), plays the show in a loop and writes `results/viewer_bench.json` with median and p95 of the requestAnimationFrame interval, the JS update step and the render submission separately. Prediction P8's smoothness part is pending, to be measured on an idle machine; a trial run on the shared two CPU machine, under load, was not recorded because it would not be meaningful.
+Builds `results/bench_data/` (git ignored) with `scripts/build_viewer_bench_data.py`: a deterministic 1000 drone synthetic show (launch grid, sphere, landing; enlarged geofence, baseline planner). The planner output passes the exact verifier at 1000 drones (its minimum separation is recorded in `results/viewer_bench.json`), so the dataset is a valid verified show, not only a rendering load. The script then loads `index.html?bench=1` (data read from `./bench/`, per frame timings in `window.__bench`), plays the show in a loop and writes `results/viewer_bench.json` with median and p95 of the requestAnimationFrame interval, the JS update step and the render submission separately. The measurement is recorded and graded in prediction P8. It was made before the phase 6 target change and was not rerun in phase 6, so its dataset predates the snapped targets (`docs/CHANGES.md`); the frame timings do not depend on the exact positions.
 
 ## Limits
 
