@@ -21,7 +21,7 @@ Code: `sirb/gnss_params.py` (`load`, `save`, `validation_errors`, `from_dict`, `
 `from_stress_config`). Machine-readable schema: `sirb/schemas/gnss_params.schema.json` (JSON Schema
 draft 2020-12). The Python validator is the authority; the schema mirrors it for other tools and
 cannot express every rule (ISO date validity, unique region names, `end_s > start_s`, bounding box
-ordering). `jsonschema` is not a dependency of Sirb; a test uses it only if it is installed.
+ordering). `jsonschema` is not a runtime dependency of Sirb; since phase 6 it is a dev dependency, so CI checks every shipped file against the schema.
 
 ## Format
 
