@@ -43,7 +43,8 @@ def plan_baseline(show: dict, *, assign: str = "hungarian_sq", waves: int = 1,
         W = T + (waves - 1) * stagger_s
         for i in range(n):
             if np.linalg.norm(dst[i] - pos[i]) < 1e-9:
-                pieces[i].append(hold_segment(t, W, pos[i]))
+                if W > 0:   # a transition where nobody moves has W = 0: no zero length hold
+                    pieces[i].append(hold_segment(t, W, pos[i]))
                 continue
             delay = (i % waves) * stagger_s
             pieces[i].append(leg_segment(t + delay, T if sync else own[i], pos[i], dst[i]))
@@ -55,6 +56,9 @@ def plan_baseline(show: dict, *, assign: str = "hungarian_sq", waves: int = 1,
         })
         t += W + stages[k + 1].get("hold_s", 0.0)
         pos = dst
+    for i in range(n):
+        if not pieces[i]:   # never moved and no transition took time: one hold for the whole show
+            pieces[i].append(hold_segment(0.0, t, pos[i]))
     trajs = stitch(pieces, t)
     fleet = Fleet(trajs, {"planner": f"baseline(assign={assign},waves={waves},stagger_s={stagger_s},sync={sync})",
                           "show": show["name"], "seed": show["seed"]})
