@@ -32,7 +32,9 @@ def main() -> int:
     res = {"compared": len(a.keys() & b.keys()), "changed": len(changed),
            "only_committed": sorted(a.keys() - b.keys()), "only_rerun": sorted(b.keys() - a.keys()),
            "changes": [{"path": k, "committed": a[k], "rerun": b[k]} for k in changed],
-           "rerun_platform": platform.platform(), "rerun_python": platform.python_version()}
+           "committed_ref": subprocess.run(["git", "rev-parse", "HEAD"], capture_output=True,
+                                           text=True).stdout.strip(),
+           "rerun_environment": new.get("environment"), "compared_on": platform.platform()}
     OUT.write_text(json.dumps(res, indent=1) + "\n")
     print(res["compared"], "compared;", res["changed"], "changed")
     return 0
