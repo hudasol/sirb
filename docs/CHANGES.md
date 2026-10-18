@@ -14,12 +14,12 @@ What changed: `sirb.shapes.generate_points` snaps every target to a 2^-20 m grid
 | `results/stress_spacing.json` | scripts/run_stress.py spacing | regenerated | 107 | 48 | 0.0167 | 2 of 3 | 0.21 |
 | `results/stress_contingency.json` | scripts/run_stress.py contingency | regenerated | 243 | 146 | 0.095 | 10 of 11 | 0.347 |
 | `results/stress_scaling.json` | scripts/run_stress.py scaling | regenerated | 44 | 17 | 0.15 | 0 of 0 | 1.35e-07 |
-| `results/sensitivity.json` | scripts/sensitivity.py | **stale (identical to phase 5)** | 543 | 0 | 0 | 0 of 0 | 0 |
-| `results/scaling_profile.json` | scripts/profile_scale.py | **stale (identical to phase 5)** | 118 | 0 | 0 | 0 of 0 | 0 |
+| `results/sensitivity.json` | scripts/sensitivity.py | regenerated | 543 | 400 | 0.09 | 0 of 0 | 0.122 |
+| `results/scaling_profile.json` | scripts/profile_scale.py | regenerated | 118 | 80 | 0 | 0 of 0 | 2.02e-07 |
 | `results/ground_robots.json` | scripts/ground_robots.py | regenerated; rows were added or removed, so a leaf by leaf comparison is not meaningful (152 new leaves, 35 removed) | | | | | |
 | `viewer/data/index.json` | scripts/build_viewer_data.py | regenerated | 301 | 7 | 0 | 0 of 0 | 1.48 |
-| `results/differential.json` | scripts/differential_report.py (random and adversarial fleets, not planned shows) | unchanged | 713 | 0 | 0 | 0 of 0 | 0 |
+| `results/differential.json` | scripts/differential_report.py (random and adversarial fleets, not planned shows) | regenerated; rows were added or removed, so a leaf by leaf comparison is not meaningful (27 new leaves, 25 removed) | | | | | |
 
-Stale files (fleet derived but identical to phase 5): `results/sensitivity.json`, `results/scaling_profile.json`.
+Stale files (fleet derived but identical to phase 5): none.
 
 Differences in P(violation) come from Monte Carlo runs with the same seeds on plans that changed; the column above counts how many changed estimates still lie inside the 95% Wilson interval reported in phase 5 (only rows that carry an interval are counted).
