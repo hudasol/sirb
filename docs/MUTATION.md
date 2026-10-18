@@ -293,5 +293,4 @@ to the current code and runs the selected tests. Results, per survivor and per f
 `tests/test_mutation_killers_assign.py`. The tables above are still the phase 5 mutmut run and were
 not regenerated; `results/mutation.json` is unchanged. Several phase 5 labels of `equivalent` or
 `no-effect` turned out to be wrong (the mutants are now killed), which is a reason to treat the
-remaining labels as arguments, not proofs. `verify.py` survivors were mostly not re-checked, and its
-`_candidate_pairs` changed in phase 6, so its mutation record needs a fresh mutmut run.
+remaining labels as arguments, not proofs. This manual check is superseded for scores by the fresh mutmut run in the next section.
