@@ -1,0 +1,4 @@
+# Vendored third party files must stay byte identical to the published packages (their SHA-256
+# is pinned in docs/DATA_SOURCES.md), so line ending conversion is disabled for them.
+viewer/vendor/** -text
+scripts/vendor/** -text
