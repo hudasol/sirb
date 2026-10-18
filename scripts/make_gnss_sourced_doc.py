@@ -109,6 +109,28 @@ def main() -> None:
                   f"{f(r['required_nominal_min_separation_m'])} m (formation spacing "
                   f"{f(r['required_spacing_m'], 2)} m), target Wilson upper bound {M['target']} over "
                   f"{M['trials']} trials. {M['model_dependence']}"]
+    R = load("results/gnss_relative_derivation.json")
+    if R:
+        rs = R["statistics"]
+        L += ["", "## Relative error between drones (stream D)", "",
+              f"* Source read: {R['source']['source_name']}, <{R['source']['url']}>, licence "
+              f"{R['source']['licence']}, retrieved {R['source']['retrieval_date']}. The table used is "
+              "kept in `data/carvalho2023_sensors_table1.csv`.",
+              f"* In one 800 s run a low cost receiver on a moving rover had a mean horizontal error of "
+              f"{f(rs['standalone_horizontal_mean_m'])} m standalone and {f(rs['relative_horizontal_mean_m'])} m "
+              f"after pseudorange differencing against a reference station {rs['baseline_km']} km away, "
+              f"which cancels the errors common to both sites (ratio {f(rs['relative_over_standalone'], 2)}).",
+              f"* Mapped to a per axis sigma for a circular Gaussian (mean radius / {f(rs['k_rayleigh_mean'], 4)}): "
+              f"{f(rs['bias_sigma_m'])} m, written to `shows/gnss_relative_literature.json`.",
+              "* This is a **literature value, not a measurement of the target hardware**: one receiver "
+              "type, one run, a high grade reference instead of a second low cost receiver, tree canopy, "
+              "a Kalman filter, GPS L1 only. The mapping and the setting are judgements, so the flag "
+              "stays `assumed: true`. No source was found that measures the error between two nearby "
+              "low cost receivers without corrections, which is the quantity the model uses.",
+              "* Consequence: **the stressed verdict hinges on this single unsourced parameter**. Over "
+              "the values discussed here (the literature anchored value above, the FAA absolute range, "
+              "and the assumed sweep in `docs/SENSITIVITY.md`) the required separation changes by "
+              "metres (`docs/MARGIN.md`)."]
     L += ["", "## Limits", "",
           "The model's GNSS errors are independent between drones; real standalone errors are largely "
           "common to nearby drones, so these sourced runs are expected to overstate relative error. "

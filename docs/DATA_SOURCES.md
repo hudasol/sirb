@@ -41,6 +41,8 @@ One external data table is used (phase 6, `docs/GNSS_SOURCED.md`):
 |---|---|---|---|
 | FAA GPS SPS Performance Analysis Report 131 (July to September 2025), Table 5-2, per site 95% horizontal and vertical position error; <https://www.nstb.tc.faa.gov/reports/FAA_SPS_PAN_Report_131_v1.0.pdf> | magnitude of the GNSS bias in `shows/gnss_faa_sps_standalone.json`; the 26 rows are copied to `data/faa_sps_pan131_table5_2.csv` | Produced by the FAA William J. Hughes Technical Center, a US federal agency. The report states no licence; works of the US federal government are not subject to US copyright (17 U.S.C. 105). Outside the US the status may differ; the table is reproduced with attribution. | 2026-10-16, PDF SHA-256 `fd3e66833160c8a4920e9bb9f835a58a6d23cb50baeeeb335e6e247b5ccc3055` |
 
+| Carvalho, Silva, Pacheco and Campos (2023), Performance Analysis of Relative GPS Positioning for Low-Cost Receiver-Equipped Agricultural Rovers, Sensors 23(21):8835, Table 1; <https://doi.org/10.3390/s23218835> (read on PubMed Central, PMC10650014) | literature anchor for the error left after common mode cancellation, `shows/gnss_relative_literature.json`; the ten table values are copied to `data/carvalho2023_sensors_table1.csv` | CC BY 4.0, as stated on the article page; reproduced with attribution | 2026-10-18 |
+
 No other external dataset is used. `hudasol/marsad` and the Tashwish project were not used (`docs/GNSS_PARAMS.md`).
 
 ## Reference material (not redistributed)
