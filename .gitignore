@@ -12,3 +12,4 @@ htmlcov/
 mutants/
 results/bench_data/
 results/.cache/
+.claude/
