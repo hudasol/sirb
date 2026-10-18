@@ -1,0 +1,987 @@
+{
+ "target": 0.05,
+ "trials": 200,
+ "seed": 20261016,
+ "tol": 0.02,
+ "dt": 0.2,
+ "scenario": {
+  "w20": 6.0,
+  "gnss_deg_fraction": 0.25
+ },
+ "wilson_floor": 0.01884600591832089,
+ "model_dependence": "Simulated, model dependent planning aid. The required separation holds only for the simulated tracking loop, wind model, GNSS error model and parameter values used; GNSS errors are independent between drones in this model. Not a safety case and not flight evidence.",
+ "note": "family_show(4.0, n, big=True) scaled by factor; baseline planner; exact verifier",
+ "rows": [
+  {
+   "status": "ok",
+   "target": 0.05,
+   "factor": 0.7437184335382315,
+   "required_nominal_min_separation_m": 2.1035519065770094,
+   "required_margin_m": 0.10355190657700941,
+   "d_min": 2.0,
+   "evaluations": [
+    {
+     "factor": 0.725413,
+     "verified_ok": true,
+     "nominal_min_separation_m": 2.0517773691670813,
+     "violation_counts": {},
+     "p_violation": 0.6,
+     "p_violation_ci95": [
+      0.5308354385001253,
+      0.6653953603162106
+     ],
+     "trials": 200,
+     "median_min_separation_m": 1.995562070534747
+    },
+    {
+     "factor": 0.734566,
+     "verified_ok": true,
+     "nominal_min_separation_m": 2.077666323745969,
+     "violation_counts": {},
+     "p_violation": 0.125,
+     "p_violation_ci95": [
+      0.0861191515921568,
+      0.1780153528465839
+     ],
+     "trials": 200,
+     "median_min_separation_m": 2.020542588075749
+    },
+    {
+     "factor": 0.743718,
+     "verified_ok": true,
+     "nominal_min_separation_m": 2.1035519065770094,
+     "violation_counts": {},
+     "p_violation": 0.0,
+     "p_violation_ci95": [
+      0.0,
+      0.018846005918320894
+     ],
+     "trials": 200,
+     "median_min_separation_m": 2.0499219436140637
+    },
+    {
+     "factor": 0.758593,
+     "verified_ok": true,
+     "nominal_min_separation_m": 2.1456245766345403,
+     "violation_counts": {},
+     "p_violation": 0.0,
+     "p_violation_ci95": [
+      0.0,
+      0.018846005918320894
+     ],
+     "trials": 200,
+     "median_min_separation_m": 2.0907514971061754
+    },
+    {
+     "factor": 0.78033,
+     "verified_ok": true,
+     "nominal_min_separation_m": 2.2071063761934853,
+     "violation_counts": {},
+     "p_violation": 0.0,
+     "p_violation_ci95": [
+      0.0,
+      0.018846005918320894
+     ],
+     "trials": 200,
+     "median_min_separation_m": 2.1529389638898464
+    },
+    {
+     "factor": 0.853553,
+     "verified_ok": true,
+     "nominal_min_separation_m": 2.4142119436785694,
+     "violation_counts": {},
+     "p_violation": 0.0,
+     "p_violation_ci95": [
+      0.0,
+      0.018846005918320894
+     ],
+     "trials": 200,
+     "median_min_separation_m": 2.3581473885420827
+    },
+    {
+     "factor": 1.0,
+     "verified_ok": true,
+     "nominal_min_separation_m": 2.8284271247461787,
+     "violation_counts": {},
+     "p_violation": 0.0,
+     "p_violation_ci95": [
+      0.0,
+      0.018846005918320894
+     ],
+     "trials": 200,
+     "median_min_separation_m": 2.7678607558424386
+    }
+   ],
+   "model_dependence": "Simulated, model dependent planning aid. The required separation holds only for the simulated tracking loop, wind model, GNSS error model and parameter values used; GNSS errors are independent between drones in this model. Not a safety case and not flight evidence.",
+   "layer": "simulated (planning aid); not guaranteed",
+   "case": {
+    "n": 100,
+    "bias_sigma": 0.0
+   },
+   "base_spacing_m": 4.0,
+   "required_spacing_m": 2.974873734152926,
+   "wall_s": 566.6016271114349
+  },
+  {
+   "status": "ok",
+   "target": 0.05,
+   "factor": 1.015625,
+   "required_nominal_min_separation_m": 2.8726212985703365,
+   "required_margin_m": 0.8726212985703365,
+   "d_min": 2.0,
+   "evaluations": [
+    {
+     "factor": 1.0,
+     "verified_ok": true,
+     "nominal_min_separation_m": 2.8284271247461787,
+     "violation_counts": {},
+     "p_violation": 0.02,
+     "p_violation_ci95": [
+      0.007804300176394188,
+      0.050287865505193874
+     ],
+     "trials": 200,
+     "median_min_separation_m": 2.429470136564439
+    },
+    {
+     "factor": 1.015625,
+     "verified_ok": true,
+     "nominal_min_separation_m": 2.8726212985703365,
+     "violation_counts": {},
+     "p_violation": 0.005,
+     "p_violation_ci95": [
+      0.0008831459893662054,
+      0.02777439986977148
+     ],
+     "trials": 200,
+     "median_min_separation_m": 2.546470067832459
+    },
+    {
+     "factor": 1.03125,
+     "verified_ok": true,
+     "nominal_min_separation_m": 2.9168154723944917,
+     "violation_counts": {},
+     "p_violation": 0.0,
+     "p_violation_ci95": [
+      0.0,
+      0.018846005918320894
+     ],
+     "trials": 200,
+     "median_min_separation_m": 2.5663953408586178
+    },
+    {
+     "factor": 1.035937,
+     "verified_ok": true,
+     "nominal_min_separation_m": 2.9300721735376625,
+     "violation_counts": {},
+     "p_violation": 0.0,
+     "p_violation_ci95": [
+      0.0,
+      0.018846005918320894
+     ],
+     "trials": 200,
+     "median_min_separation_m": 2.5900159682179513
+    },
+    {
+     "factor": 1.0625,
+     "verified_ok": true,
+     "nominal_min_separation_m": 3.0052038200428064,
+     "violation_counts": {},
+     "p_violation": 0.005,
+     "p_violation_ci95": [
+      0.0008831459893662054,
+      0.02777439986977148
+     ],
+     "trials": 200,
+     "median_min_separation_m": 2.6268083683335366
+    },
+    {
+     "factor": 1.125,
+     "verified_ok": true,
+     "nominal_min_separation_m": 3.1819805153394616,
+     "violation_counts": {},
+     "p_violation": 0.0,
+     "p_violation_ci95": [
+      0.0,
+      0.018846005918320894
+     ],
+     "trials": 200,
+     "median_min_separation_m": 2.8421982561159393
+    },
+    {
+     "factor": 1.25,
+     "verified_ok": true,
+     "nominal_min_separation_m": 3.535533905932729,
+     "violation_counts": {},
+     "p_violation": 0.0,
+     "p_violation_ci95": [
+      0.0,
+      0.018846005918320894
+     ],
+     "trials": 200,
+     "median_min_separation_m": 3.121530207995847
+    }
+   ],
+   "model_dependence": "Simulated, model dependent planning aid. The required separation holds only for the simulated tracking loop, wind model, GNSS error model and parameter values used; GNSS errors are independent between drones in this model. Not a safety case and not flight evidence.",
+   "layer": "simulated (planning aid); not guaranteed",
+   "case": {
+    "n": 100,
+    "bias_sigma": 0.25
+   },
+   "base_spacing_m": 4.0,
+   "required_spacing_m": 4.0625,
+   "wall_s": 570.0593457221985
+  },
+  {
+   "status": "ok",
+   "target": 0.05,
+   "factor": 1.26953125,
+   "required_nominal_min_separation_m": 3.5907756116885157,
+   "required_margin_m": 1.5907756116885157,
+   "d_min": 2.0,
+   "evaluations": [
+    {
+     "factor": 1.0,
+     "verified_ok": true,
+     "nominal_min_separation_m": 2.8284271247461787,
+     "violation_counts": {},
+     "p_violation": 0.545,
+     "p_violation_ci95": [
+      0.4757848503696115,
+      0.6125190090977398
+     ],
+     "trials": 200,
+     "median_min_separation_m": 1.9684828585163885
+    },
+    {
+     "factor": 1.25,
+     "verified_ok": true,
+     "nominal_min_separation_m": 3.535533905932729,
+     "violation_counts": {},
+     "p_violation": 0.045,
+     "p_violation_ci95": [
+      0.023852271724704166,
+      0.08329759366096785
+     ],
+     "trials": 200,
+     "median_min_separation_m": 2.674141099198539
+    },
+    {
+     "factor": 1.269531,
+     "verified_ok": true,
+     "nominal_min_separation_m": 3.5907756116885157,
+     "violation_counts": {},
+     "p_violation": 0.005,
+     "p_violation_ci95": [
+      0.0008831459893662054,
+      0.02777439986977148
+     ],
+     "trials": 200,
+     "median_min_separation_m": 2.929055102191967
+    },
+    {
+     "factor": 1.289062,
+     "verified_ok": true,
+     "nominal_min_separation_m": 3.6460179917939795,
+     "violation_counts": {},
+     "p_violation": 0.015,
+     "p_violation_ci95": [
+      0.005114145184492387,
+      0.043166480556278884
+     ],
+     "trials": 200,
+     "median_min_separation_m": 2.8366047914619976
+    },
+    {
+     "factor": 1.294922,
+     "verified_ok": true,
+     "nominal_min_separation_m": 3.662592155677195,
+     "violation_counts": {},
+     "p_violation": 0.0,
+     "p_violation_ci95": [
+      0.0,
+      0.018846005918320894
+     ],
+     "trials": 200,
+     "median_min_separation_m": 2.8876863494430385
+    },
+    {
+     "factor": 1.328125,
+     "verified_ok": true,
+     "nominal_min_separation_m": 3.756504775053513,
+     "violation_counts": {},
+     "p_violation": 0.015,
+     "p_violation_ci95": [
+      0.005114145184492387,
+      0.043166480556278884
+     ],
+     "trials": 200,
+     "median_min_separation_m": 3.0690786156246297
+    },
+    {
+     "factor": 1.40625,
+     "verified_ok": true,
+     "nominal_min_separation_m": 3.9774756441743144,
+     "violation_counts": {},
+     "p_violation": 0.0,
+     "p_violation_ci95": [
+      0.0,
+      0.018846005918320894
+     ],
+     "trials": 200,
+     "median_min_separation_m": 3.205234322684878
+    },
+    {
+     "factor": 1.5625,
+     "verified_ok": true,
+     "nominal_min_separation_m": 4.41941738241591,
+     "violation_counts": {},
+     "p_violation": 0.0,
+     "p_violation_ci95": [
+      0.0,
+      0.018846005918320894
+     ],
+     "trials": 200,
+     "median_min_separation_m": 3.634115583160513
+    }
+   ],
+   "model_dependence": "Simulated, model dependent planning aid. The required separation holds only for the simulated tracking loop, wind model, GNSS error model and parameter values used; GNSS errors are independent between drones in this model. Not a safety case and not flight evidence.",
+   "layer": "simulated (planning aid); not guaranteed",
+   "case": {
+    "n": 100,
+    "bias_sigma": 0.5
+   },
+   "base_spacing_m": 4.0,
+   "required_spacing_m": 5.078125,
+   "wall_s": 491.7647457122803
+  },
+  {
+   "status": "ok",
+   "target": 0.05,
+   "factor": 1.85546875,
+   "required_nominal_min_separation_m": 5.248058815968474,
+   "required_margin_m": 3.2480588159684736,
+   "d_min": 2.0,
+   "evaluations": [
+    {
+     "factor": 1.0,
+     "verified_ok": true,
+     "nominal_min_separation_m": 2.8284271247461787,
+     "violation_counts": {},
+     "p_violation": 1.0,
+     "p_violation_ci95": [
+      0.9811539940816791,
+      1.0
+     ],
+     "trials": 200,
+     "median_min_separation_m": 0.8917328799926094
+    },
+    {
+     "factor": 1.25,
+     "verified_ok": true,
+     "nominal_min_separation_m": 3.535533905932729,
+     "violation_counts": {},
+     "p_violation": 0.875,
+     "p_violation_ci95": [
+      0.8219846471534161,
+      0.9138808484078432
+     ],
+     "trials": 200,
+     "median_min_separation_m": 1.5594372908011356
+    },
+    {
+     "factor": 1.5625,
+     "verified_ok": true,
+     "nominal_min_separation_m": 4.41941738241591,
+     "violation_counts": {},
+     "p_violation": 0.175,
+     "p_violation_ci95": [
+      0.12860441174608936,
+      0.23364549210081922
+     ],
+     "trials": 200,
+     "median_min_separation_m": 2.549191175769202
+    },
+    {
+     "factor": 1.757812,
+     "verified_ok": true,
+     "nominal_min_separation_m": 4.971842869343927,
+     "violation_counts": {},
+     "p_violation": 0.04,
+     "p_violation_ci95": [
+      0.02040538715065641,
+      0.07693293829419882
+     ],
+     "trials": 200,
+     "median_min_separation_m": 3.028492965176439
+    },
+    {
+     "factor": 1.806641,
+     "verified_ok": true,
+     "nominal_min_separation_m": 5.109952022767989,
+     "violation_counts": {},
+     "p_violation": 0.035,
+     "p_violation_ci95": [
+      0.017055324637357105,
+      0.07047146086668134
+     ],
+     "trials": 200,
+     "median_min_separation_m": 3.329290572178049
+    },
+    {
+     "factor": 1.831055,
+     "verified_ok": true,
+     "nominal_min_separation_m": 5.179005419368224,
+     "violation_counts": {},
+     "p_violation": 0.035,
+     "p_violation_ci95": [
+      0.017055324637357105,
+      0.07047146086668134
+     ],
+     "trials": 200,
+     "median_min_separation_m": 3.33096836645721
+    },
+    {
+     "factor": 1.855469,
+     "verified_ok": true,
+     "nominal_min_separation_m": 5.248058815968474,
+     "violation_counts": {},
+     "p_violation": 0.005,
+     "p_violation_ci95": [
+      0.0008831459893662054,
+      0.02777439986977148
+     ],
+     "trials": 200,
+     "median_min_separation_m": 3.4973808335775014
+    },
+    {
+     "factor": 1.892578,
+     "verified_ok": true,
+     "nominal_min_separation_m": 5.353018630101709,
+     "violation_counts": {},
+     "p_violation": 0.01,
+     "p_violation_ci95": [
+      0.0027466006037749346,
+      0.03572248519617954
+     ],
+     "trials": 200,
+     "median_min_separation_m": 3.565616982244519
+    },
+    {
+     "factor": 1.953125,
+     "verified_ok": true,
+     "nominal_min_separation_m": 5.524271728019887,
+     "violation_counts": {},
+     "p_violation": 0.005,
+     "p_violation_ci95": [
+      0.0008831459893662054,
+      0.02777439986977148
+     ],
+     "trials": 200,
+     "median_min_separation_m": 3.9058194644174913
+    }
+   ],
+   "model_dependence": "Simulated, model dependent planning aid. The required separation holds only for the simulated tracking loop, wind model, GNSS error model and parameter values used; GNSS errors are independent between drones in this model. Not a safety case and not flight evidence.",
+   "layer": "simulated (planning aid); not guaranteed",
+   "case": {
+    "n": 100,
+    "bias_sigma": 1.0
+   },
+   "base_spacing_m": 4.0,
+   "required_spacing_m": 7.421875,
+   "wall_s": 3096.0708475112915
+  },
+  {
+   "status": "ok",
+   "target": 0.05,
+   "factor": 1.203125,
+   "required_nominal_min_separation_m": 3.4029513844602604,
+   "required_margin_m": 1.4029513844602604,
+   "d_min": 2.0,
+   "evaluations": [
+    {
+     "factor": 1.0,
+     "verified_ok": true,
+     "nominal_min_separation_m": 2.828427124746176,
+     "violation_counts": {},
+     "p_violation": 0.24,
+     "p_violation_ci95": [
+      0.1860652685202468,
+      0.3037346545572801
+     ],
+     "trials": 200,
+     "median_min_separation_m": 2.2304152384863714
+    },
+    {
+     "factor": 1.125,
+     "verified_ok": true,
+     "nominal_min_separation_m": 3.1819805153394687,
+     "violation_counts": {},
+     "p_violation": 0.065,
+     "p_violation_ci95": [
+      0.03837598764975976,
+      0.10802003749917945
+     ],
+     "trials": 200,
+     "median_min_separation_m": 2.662851643389579
+    },
+    {
+     "factor": 1.1875,
+     "verified_ok": true,
+     "nominal_min_separation_m": 3.3587572106360892,
+     "violation_counts": {},
+     "p_violation": 0.03,
+     "p_violation_ci95": [
+      0.013820125830748327,
+      0.06389511973247333
+     ],
+     "trials": 200,
+     "median_min_separation_m": 2.887446861444882
+    },
+    {
+     "factor": 1.203125,
+     "verified_ok": true,
+     "nominal_min_separation_m": 3.4029513844602604,
+     "violation_counts": {},
+     "p_violation": 0.0,
+     "p_violation_ci95": [
+      0.0,
+      0.018846005918320894
+     ],
+     "trials": 200,
+     "median_min_separation_m": 2.9018553619507843
+    },
+    {
+     "factor": 1.21875,
+     "verified_ok": true,
+     "nominal_min_separation_m": 3.4471455582844186,
+     "violation_counts": {},
+     "p_violation": 0.005,
+     "p_violation_ci95": [
+      0.0008831459893662054,
+      0.02777439986977148
+     ],
+     "trials": 200,
+     "median_min_separation_m": 2.947835621101808
+    },
+    {
+     "factor": 1.227188,
+     "verified_ok": true,
+     "nominal_min_separation_m": 3.471011464134785,
+     "violation_counts": {},
+     "p_violation": 0.01,
+     "p_violation_ci95": [
+      0.0027466006037749346,
+      0.03572248519617954
+     ],
+     "trials": 200,
+     "median_min_separation_m": 2.8922997768794643
+    },
+    {
+     "factor": 1.25,
+     "verified_ok": true,
+     "nominal_min_separation_m": 3.5355339059327378,
+     "violation_counts": {},
+     "p_violation": 0.005,
+     "p_violation_ci95": [
+      0.0008831459893662054,
+      0.02777439986977148
+     ],
+     "trials": 200,
+     "median_min_separation_m": 3.0405804619711625
+    }
+   ],
+   "model_dependence": "Simulated, model dependent planning aid. The required separation holds only for the simulated tracking loop, wind model, GNSS error model and parameter values used; GNSS errors are independent between drones in this model. Not a safety case and not flight evidence.",
+   "layer": "simulated (planning aid); not guaranteed",
+   "case": {
+    "n": 50,
+    "bias_sigma": 0.5
+   },
+   "base_spacing_m": 4.0,
+   "required_spacing_m": 4.8125,
+   "wall_s": 120.7117292881012
+  },
+  {
+   "status": "ok",
+   "target": 0.05,
+   "factor": 1.328125,
+   "required_nominal_min_separation_m": 3.7565047750535134,
+   "required_margin_m": 1.7565047750535134,
+   "d_min": 2.0,
+   "evaluations": [
+    {
+     "factor": 1.0,
+     "verified_ok": true,
+     "nominal_min_separation_m": 2.8284271247461588,
+     "violation_counts": {},
+     "p_violation": 0.715,
+     "p_violation_ci95": [
+      0.648845269187895,
+      0.773050948267227
+     ],
+     "trials": 200,
+     "median_min_separation_m": 1.82600976866786
+    },
+    {
+     "factor": 1.25,
+     "verified_ok": true,
+     "nominal_min_separation_m": 3.535533905932708,
+     "violation_counts": {},
+     "p_violation": 0.035,
+     "p_violation_ci95": [
+      0.017055324637357105,
+      0.07047146086668134
+     ],
+     "trials": 200,
+     "median_min_separation_m": 2.5654255203700425
+    },
+    {
+     "factor": 1.289062,
+     "verified_ok": true,
+     "nominal_min_separation_m": 3.6460176546191376,
+     "violation_counts": {},
+     "p_violation": 0.045,
+     "p_violation_ci95": [
+      0.023852271724704166,
+      0.08329759366096785
+     ],
+     "trials": 200,
+     "median_min_separation_m": 2.670499826100129
+    },
+    {
+     "factor": 1.308594,
+     "verified_ok": true,
+     "nominal_min_separation_m": 3.7012627321228897,
+     "violation_counts": {},
+     "p_violation": 0.02,
+     "p_violation_ci95": [
+      0.007804300176394188,
+      0.050287865505193874
+     ],
+     "trials": 200,
+     "median_min_separation_m": 2.7519287296981663
+    },
+    {
+     "factor": 1.328125,
+     "verified_ok": true,
+     "nominal_min_separation_m": 3.7565047750535134,
+     "violation_counts": {},
+     "p_violation": 0.01,
+     "p_violation_ci95": [
+      0.0027466006037749346,
+      0.03572248519617954
+     ],
+     "trials": 200,
+     "median_min_separation_m": 2.8705700890020736
+    },
+    {
+     "factor": 1.354688,
+     "verified_ok": true,
+     "nominal_min_separation_m": 3.831636084383836,
+     "violation_counts": {},
+     "p_violation": 0.01,
+     "p_violation_ci95": [
+      0.0027466006037749346,
+      0.03572248519617954
+     ],
+     "trials": 200,
+     "median_min_separation_m": 2.943289981326622
+    },
+    {
+     "factor": 1.40625,
+     "verified_ok": true,
+     "nominal_min_separation_m": 3.9774756441743224,
+     "violation_counts": {},
+     "p_violation": 0.0,
+     "p_violation_ci95": [
+      0.0,
+      0.018846005918320894
+     ],
+     "trials": 200,
+     "median_min_separation_m": 3.09331803675775
+    },
+    {
+     "factor": 1.5625,
+     "verified_ok": true,
+     "nominal_min_separation_m": 4.4194173824159035,
+     "violation_counts": {},
+     "p_violation": 0.0,
+     "p_violation_ci95": [
+      0.0,
+      0.018846005918320894
+     ],
+     "trials": 200,
+     "median_min_separation_m": 3.5353210121873246
+    }
+   ],
+   "model_dependence": "Simulated, model dependent planning aid. The required separation holds only for the simulated tracking loop, wind model, GNSS error model and parameter values used; GNSS errors are independent between drones in this model. Not a safety case and not flight evidence.",
+   "layer": "simulated (planning aid); not guaranteed",
+   "case": {
+    "n": 200,
+    "bias_sigma": 0.5
+   },
+   "base_spacing_m": 4.0,
+   "required_spacing_m": 5.3125,
+   "wall_s": 577.081570148468
+  },
+  {
+   "status": "ok",
+   "target": 0.05,
+   "factor": 1.42578125,
+   "required_nominal_min_separation_m": 4.032717012755387,
+   "required_margin_m": 2.032717012755387,
+   "d_min": 2.0,
+   "evaluations": [
+    {
+     "factor": 1.0,
+     "verified_ok": true,
+     "nominal_min_separation_m": 2.828427124746175,
+     "violation_counts": {},
+     "p_violation": 0.885,
+     "p_violation_ci95": [
+      0.8333517476611362,
+      0.9221368277817569
+     ],
+     "trials": 200,
+     "median_min_separation_m": 1.7343148005602897
+    },
+    {
+     "factor": 1.25,
+     "verified_ok": true,
+     "nominal_min_separation_m": 3.535533905932726,
+     "violation_counts": {},
+     "p_violation": 0.115,
+     "p_violation_ci95": [
+      0.07786317221824318,
+      0.16664825233886393
+     ],
+     "trials": 200,
+     "median_min_separation_m": 2.4000952715695507
+    },
+    {
+     "factor": 1.40625,
+     "verified_ok": true,
+     "nominal_min_separation_m": 3.9774756441743095,
+     "violation_counts": {},
+     "p_violation": 0.02,
+     "p_violation_ci95": [
+      0.007804300176394188,
+      0.050287865505193874
+     ],
+     "trials": 200,
+     "median_min_separation_m": 2.8921897419663525
+    },
+    {
+     "factor": 1.425781,
+     "verified_ok": true,
+     "nominal_min_separation_m": 4.032717012755387,
+     "violation_counts": {},
+     "p_violation": 0.015,
+     "p_violation_ci95": [
+      0.005114145184492387,
+      0.043166480556278884
+     ],
+     "trials": 200,
+     "median_min_separation_m": 2.9272181746776793
+    },
+    {
+     "factor": 1.445312,
+     "verified_ok": true,
+     "nominal_min_separation_m": 4.087959055685995,
+     "violation_counts": {},
+     "p_violation": 0.005,
+     "p_violation_ci95": [
+      0.0008831459893662054,
+      0.02777439986977148
+     ],
+     "trials": 200,
+     "median_min_separation_m": 3.0657612144255433
+    },
+    {
+     "factor": 1.454297,
+     "verified_ok": true,
+     "nominal_min_separation_m": 4.113372593813705,
+     "violation_counts": {},
+     "p_violation": 0.005,
+     "p_violation_ci95": [
+      0.0008831459893662054,
+      0.02777439986977148
+     ],
+     "trials": 200,
+     "median_min_separation_m": 3.1011940474357615
+    },
+    {
+     "factor": 1.484375,
+     "verified_ok": true,
+     "nominal_min_separation_m": 4.198446513295092,
+     "violation_counts": {},
+     "p_violation": 0.0,
+     "p_violation_ci95": [
+      0.0,
+      0.018846005918320894
+     ],
+     "trials": 200,
+     "median_min_separation_m": 3.135173109414992
+    },
+    {
+     "factor": 1.5625,
+     "verified_ok": true,
+     "nominal_min_separation_m": 4.419417382415907,
+     "violation_counts": {},
+     "p_violation": 0.0,
+     "p_violation_ci95": [
+      0.0,
+      0.018846005918320894
+     ],
+     "trials": 200,
+     "median_min_separation_m": 3.406980906757748
+    }
+   ],
+   "model_dependence": "Simulated, model dependent planning aid. The required separation holds only for the simulated tracking loop, wind model, GNSS error model and parameter values used; GNSS errors are independent between drones in this model. Not a safety case and not flight evidence.",
+   "layer": "simulated (planning aid); not guaranteed",
+   "case": {
+    "n": 400,
+    "bias_sigma": 0.5
+   },
+   "base_spacing_m": 4.0,
+   "required_spacing_m": 5.703125,
+   "wall_s": 6641.6263864040375
+  },
+  {
+   "status": "ok",
+   "target": 0.05,
+   "factor": 1.904296875,
+   "required_nominal_min_separation_m": 5.386164934819399,
+   "required_margin_m": 3.3861649348193987,
+   "d_min": 2.0,
+   "evaluations": [
+    {
+     "factor": 1.0,
+     "verified_ok": true,
+     "nominal_min_separation_m": 2.8284271247461787,
+     "violation_counts": {},
+     "p_violation": 1.0,
+     "p_violation_ci95": [
+      0.9811539940816791,
+      1.0
+     ],
+     "trials": 200,
+     "median_min_separation_m": 0.7235980455936291
+    },
+    {
+     "factor": 1.25,
+     "verified_ok": true,
+     "nominal_min_separation_m": 3.535533905932729,
+     "violation_counts": {},
+     "p_violation": 0.99,
+     "p_violation_ci95": [
+      0.9642775148038205,
+      0.9972533993962251
+     ],
+     "trials": 200,
+     "median_min_separation_m": 1.318250872769701
+    },
+    {
+     "factor": 1.5625,
+     "verified_ok": true,
+     "nominal_min_separation_m": 4.41941738241591,
+     "violation_counts": {},
+     "p_violation": 0.3,
+     "p_violation_ci95": [
+      0.24074644243406385,
+      0.3667919599332645
+     ],
+     "trials": 200,
+     "median_min_separation_m": 2.2643290290257894
+    },
+    {
+     "factor": 1.757812,
+     "verified_ok": true,
+     "nominal_min_separation_m": 4.971842869343927,
+     "violation_counts": {},
+     "p_violation": 0.13,
+     "p_violation_ci95": [
+      0.09028141365225628,
+      0.18366463072730121
+     ],
+     "trials": 200,
+     "median_min_separation_m": 2.797332222786029
+    },
+    {
+     "factor": 1.855469,
+     "verified_ok": true,
+     "nominal_min_separation_m": 5.248058815968474,
+     "violation_counts": {},
+     "p_violation": 0.02,
+     "p_violation_ci95": [
+      0.007804300176394188,
+      0.050287865505193874
+     ],
+     "trials": 200,
+     "median_min_separation_m": 3.270485814406599
+    },
+    {
+     "factor": 1.879883,
+     "verified_ok": true,
+     "nominal_min_separation_m": 5.317111875393902,
+     "violation_counts": {},
+     "p_violation": 0.06,
+     "p_violation_ci95": [
+      0.0346518499012715,
+      0.10193263530685089
+     ],
+     "trials": 200,
+     "median_min_separation_m": 3.2143820238651815
+    },
+    {
+     "factor": 1.904297,
+     "verified_ok": true,
+     "nominal_min_separation_m": 5.386164934819399,
+     "violation_counts": {},
+     "p_violation": 0.015,
+     "p_violation_ci95": [
+      0.005114145184492387,
+      0.043166480556278884
+     ],
+     "trials": 200,
+     "median_min_separation_m": 3.355988186824846
+    },
+    {
+     "factor": 1.942383,
+     "verified_ok": true,
+     "nominal_min_separation_m": 5.493888570690545,
+     "violation_counts": {},
+     "p_violation": 0.015,
+     "p_violation_ci95": [
+      0.005114145184492387,
+      0.043166480556278884
+     ],
+     "trials": 200,
+     "median_min_separation_m": 3.528112266665638
+    },
+    {
+     "factor": 1.953125,
+     "verified_ok": true,
+     "nominal_min_separation_m": 5.524271728019887,
+     "violation_counts": {},
+     "p_violation": 0.01,
+     "p_violation_ci95": [
+      0.0027466006037749346,
+      0.03572248519617954
+     ],
+     "trials": 200,
+     "median_min_separation_m": 3.6269070463769326
+    }
+   ],
+   "model_dependence": "Simulated, model dependent planning aid. The required separation holds only for the simulated tracking loop, wind model, GNSS error model and parameter values used; GNSS errors are independent between drones in this model. Not a safety case and not flight evidence.",
+   "layer": "simulated (planning aid); not guaranteed",
+   "case": {
+    "n": 100,
+    "gnss_file": "shows/gnss_faa_sps_standalone.json"
+   },
+   "base_spacing_m": 4.0,
+   "required_spacing_m": 7.6171875,
+   "wall_s": 109.50113606452942
+  }
+ ]
+}
