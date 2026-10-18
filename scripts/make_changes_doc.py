@@ -28,6 +28,7 @@ FLEET_DERIVED = {
     "results/scaling_profile.json": "scripts/profile_scale.py",
     "results/ground_robots.json": "scripts/ground_robots.py",
     "viewer/data/index.json": "scripts/build_viewer_data.py",
+    "results/viewer_bench.json": "scripts/viewer_bench.py (needs Playwright and Chromium)",
 }
 OTHER = {"results/differential.json": "scripts/differential_report.py (random and adversarial "
          "fleets, not planned shows)"}
