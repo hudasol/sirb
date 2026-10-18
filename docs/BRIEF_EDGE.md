@@ -14,6 +14,7 @@ A simulation first planner for drone light shows: shape sequences become multi d
 Cross check: a second verifier with a different method agreed on 10856 fleets and 13100 verdict checks; its lower bound never exceeded the exact value (largest excess 0.0e+00 m) (`results/differential.json`). This is evidence, not a proof, and both verifiers have the same author.
 
 **Simulated** (assumed models, no flight data): every probability of a separation violation under wind, GNSS error, tracking error and failures (`docs/METHODS.md`).
+With a GNSS bias magnitude derived from public FAA accuracy statistics (1.107 m per axis, median of 26 sites, applied as an independent error per degraded drone, which overstates relative error): P(violation) stressed_spacing_4.0 0.583 assumed versus 1.000 sourced; benign_spacing_5.0 0.020 assumed versus 0.947 sourced (`docs/GNSS_SOURCED.md`).
 
 **Only planned**: any flight, indoor or outdoor; any hardware; any regulatory work. Nothing has been flown. Sirb has no flight control, radio or MAVLink code.
 
