@@ -55,7 +55,7 @@ def _margin(a) -> int:
             print("error:", e, file=sys.stderr)
         return 1
     cfg = to_stress_config(load(a.gnss), base=StressConfig(dt=0.2, w20=a.w20))
-    r = synthesise(show, cfg, target=a.target, trials=a.trials, seed=a.seed)
+    r = synthesise(show, cfg, target=a.target, trials=a.trials, seed=a.seed, tol=a.tol)
     print(r["model_dependence"])
     if a.report:
         with open(a.report, "w", encoding="utf-8") as f:
@@ -93,6 +93,7 @@ def main(argv: list[str] | None = None) -> int:
     m.add_argument("--target", type=float, default=0.05, help="Wilson upper bound target")
     m.add_argument("--trials", type=int, default=200)
     m.add_argument("--seed", type=int, default=20261016)
+    m.add_argument("--tol", type=float, default=0.02, help="relative tolerance of the scale search")
     m.add_argument("--report", help="write the full search record (.json)")
     m.add_argument("--out", help="export bundle of the plan at the chosen scale (.json)")
     a = ap.parse_args(argv)
