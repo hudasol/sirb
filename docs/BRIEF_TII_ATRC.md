@@ -14,12 +14,26 @@ A simulation first planner for drone light shows: shape sequences become multi d
 Cross check: a second verifier with a different method agreed on 10856 fleets and 13100 verdict checks; its lower bound never exceeded the exact value (largest excess 0.0e+00 m) (`results/differential.json`). This is evidence, not a proof, and both verifiers have the same author.
 
 **Simulated** (assumed models, no flight data): every probability of a separation violation under wind, GNSS error, tracking error and failures (`docs/METHODS.md`).
+With a GNSS bias magnitude derived from public FAA accuracy statistics (1.107 m per axis, median of 26 sites, applied as an independent error per degraded drone, which overstates relative error): P(violation) stressed_spacing_4.0 0.583 assumed versus 1.000 sourced; benign_spacing_5.0 0.020 assumed versus 0.947 sourced (`docs/GNSS_SOURCED.md`).
 
 **Only planned**: any flight, indoor or outdoor; any hardware; any regulatory work. Nothing has been flown. Sirb has no flight control, radio or MAVLink code.
 
 ## Open research question for this audience
 
 Can a separation guarantee be stated for the fleet as flown, not only for the paths as written? The exact verifier bounds the planned paths; the gap is tracking error and GNSS error that is correlated between nearby drones. Public statistics found so far give only the absolute error of one receiver (`docs/GNSS_SOURCED.md`), not the relative error between two drones that the separation depends on. Measuring that relative error, and proving a margin rule from it, is the open question.
+
+## Planning aid: separation for a stated simulated risk
+
+`python -m sirb margin` returns the nominal separation whose simulated Wilson upper bound on P(violation) is at most 5% (200 trials per scale), and the plan scaled to it (`docs/MARGIN.md`). Results (simulated, model dependent):
+
+* n = 100, FAA derived file: ok, required nominal minimum separation 5.386 m.
+* n = 100, bias sigma 0.0 m: ok, required nominal minimum separation 2.104 m.
+* n = 100, bias sigma 0.25 m: ok, required nominal minimum separation 2.873 m.
+* n = 100, bias sigma 0.5 m: ok, required nominal minimum separation 3.591 m.
+* n = 100, bias sigma 1.0 m: ok, required nominal minimum separation 5.248 m.
+* n = 200, bias sigma 0.5 m: ok, required nominal minimum separation 3.757 m.
+* n = 400, bias sigma 0.5 m: ok, required nominal minimum separation 4.033 m.
+* n = 50, bias sigma 0.5 m: ok, required nominal minimum separation 3.403 m.
 
 ## What funded indoor validation with borrowed hardware would test
 
