@@ -18,8 +18,9 @@ What changed: `sirb.shapes.generate_points` snaps every target to a 2^-20 m grid
 | `results/scaling_profile.json` | scripts/profile_scale.py | regenerated | 118 | 80 | 0 | 0 of 0 | 2.02e-07 |
 | `results/ground_robots.json` | scripts/ground_robots.py | regenerated; rows were added or removed, so a leaf by leaf comparison is not meaningful (152 new leaves, 35 removed) | | | | | |
 | `viewer/data/index.json` | scripts/build_viewer_data.py | regenerated | 301 | 7 | 0 | 0 of 0 | 1.48 |
+| `results/viewer_bench.json` | scripts/viewer_bench.py (needs Playwright and Chromium) | **stale (identical to phase 5)** | 26 | 0 | 0 | 0 of 0 | 0 |
 | `results/differential.json` | scripts/differential_report.py (random and adversarial fleets, not planned shows) | regenerated; rows were added or removed, so a leaf by leaf comparison is not meaningful (27 new leaves, 25 removed) | | | | | |
 
-Stale files (fleet derived but identical to phase 5): none.
+Stale files (fleet derived but identical to phase 5): `results/viewer_bench.json`.
 
 Differences in P(violation) come from Monte Carlo runs with the same seeds on plans that changed; the column above counts how many changed estimates still lie inside the 95% Wilson interval reported in phase 5 (only rows that carry an interval are counted).
