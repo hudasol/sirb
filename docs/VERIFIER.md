@@ -149,12 +149,12 @@ adversarial fleets (boundary_min 250, degenerate_collision 250, degenerate_roots
 6 fleets of 100 drones; 51251 drone pairs compared
 and 13100 verdicts checked.
 
-**Largest discrepancies.** `max (e - l)` = 3.92e-08 m; `max (l - e)` =
-0 m (C1 limit 1e-9); `max (e - u)` = 3.92e-08 m;
-largest abs(exact - analytic construction) = 3.92e-08 m;
+**Largest discrepancies.** `max (e - l)` = 7.31e-08 m; `max (l - e)` =
+0 m (C1 limit 1e-9); `max (e - u)` = 7.31e-08 m;
+largest abs(exact - analytic construction) = 7.31e-08 m;
 largest `gap_bound` = 1.29e-09 m. Verdict counts: 4990 PASS,
 5558 FAIL, 2552 UNDECIDED (largest abs(e - d_min) among
-undecided: 8.97e-14 m); PASS with the exact
+undecided: 8.88e-14 m); PASS with the exact
 minimum below the threshold: 0; FAIL with the
 exact minimum at or above the threshold: 6
 (largest margin 0 m: these are
@@ -167,11 +167,11 @@ a reference computation (extended precision grid scan plus zoom), is in
 
 | family | kind | records | largest difference (m) | first seeds |
 |---|---|---|---|---|
-| degenerate_collision | C2_gap_too_wide | 11 | 3.92e-08 | [78, 88, 91, 94, 112] |
-| degenerate_collision | C3_witness_below_exact | 12 | 3.92e-08 | [78, 88, 91, 94, 112] |
-| degenerate_collision | exact_vs_construction | 7 | 3.92e-08 | [94, 112, 116, 132, 150] |
+| degenerate_collision | C2_gap_too_wide | 11 | 7.31e-08 | [88, 91, 94, 112, 116] |
+| degenerate_collision | C3_witness_below_exact | 12 | 7.31e-08 | [88, 91, 94, 112, 116] |
+| degenerate_collision | exact_vs_construction | 7 | 7.31e-08 | [94, 112, 116, 132, 150] |
 
-**Findings.** 12 fleets (all in the families degenerate_collision) produced 30 records of kinds ['C2_gap_too_wide', 'C3_witness_below_exact', 'exact_vs_construction']; 0 records violate C1 or C4, so verify2 never reported a lower bound above the exact value and no verdict contradicted the exact value outside 1e-6 m. Cause (labelled by the extended precision reference): float conditioning in sirb.verify. In these constructed collisions or near collisions, `|D|^2` has a root of high multiplicity at the minimum, so the derivative has a root of multiplicity up to 2m-1; companion matrix eigenvalues of a multiple root carry an error of order `eps^(1/(2m-1))`, Newton polishing converges only linearly there, and the best candidate lands off the flat minimum. `sirb.verify` then reports a minimum that is too large by up to 3.92e-08 m (the reference value is the true minimum of the float64 coefficients). This is above the 'about 1e-9' stated under Guarantees and below the 1e-6 tolerance of the violation policy, so no verdict changes unless a pair sits within that band of the threshold. It is float conditioning of root finding, not a logic error: `sirb/verify.py` was not changed. A remedy, not applied here, would be a bounded local minimisation of `|D|` around the best candidate.
+**Findings.** 12 fleets (all in the families degenerate_collision) produced 30 records of kinds ['C2_gap_too_wide', 'C3_witness_below_exact', 'exact_vs_construction']; 0 records violate C1 or C4, so verify2 never reported a lower bound above the exact value and no verdict contradicted the exact value outside 1e-6 m. Cause (labelled by the extended precision reference): float conditioning in sirb.verify. In these constructed collisions or near collisions, `|D|^2` has a root of high multiplicity at the minimum, so the derivative has a root of multiplicity up to 2m-1; companion matrix eigenvalues of a multiple root carry an error of order `eps^(1/(2m-1))`, Newton polishing converges only linearly there, and the best candidate lands off the flat minimum. `sirb.verify` then reports a minimum that is too large by up to 7.31e-08 m (the reference value is the true minimum of the float64 coefficients). This is above the 'about 1e-9' stated under Guarantees and below the 1e-6 tolerance of the violation policy, so no verdict changes unless a pair sits within that band of the threshold. It is float conditioning of root finding, not a logic error: `sirb/verify.py` was not changed. A remedy, not applied here, would be a bounded local minimisation of `|D|` around the best candidate.
 
 **Brute-force sampling** (`dt = 1e-4` s, windows of +/-0.05 s around the exact argmin and
 around the coarse argmin, plus a coarse 1e-2 s global pass, plus the whole span when it is
@@ -190,9 +190,9 @@ The V shaped minima of 300 near collision passes: largest `sampled - exact`
 verify2's lower bound exceeded a sampled distance by more than 1e-9 in
 0 cases.
 
-**Timing.** 100 drone fleets: verify2 0.0244 to
-0.0713 s, `sirb.verify` 0.0545 to
-0.33 s. Whole report: 343 s.
+**Timing.** 100 drone fleets: verify2 0.0211 to
+0.0764 s, `sirb.verify` 0.0503 to
+0.367 s. Whole report: 377 s.
 
 **Limits.** The lower bound is rigorous in exact arithmetic; in floating point it is
 rigorous up to an explicit allowance (`gamma * eps` times term magnitudes), not directed
