@@ -24,7 +24,7 @@ def _show(n=12):
          "hold_s": 2}], seed=3)
 
 
-# ---- Round 1 (EDGE-style engineer) ---------------------------------------------------------
+# ---- Round 1 (applied systems engineer persona) ---------------------------------------------------------
 
 MALFORMED = {
     "geofence missing x": lambda s: s["limits"]["geofence"].pop("x"),
@@ -111,7 +111,7 @@ def test_round1_cli_validate_plan_check(tmp_path, capsys):
     assert cli.main(["validate", str(tmp_path / "missing.json")]) == 1
 
 
-# ---- Round 2 (TII-style robotics researcher) -------------------------------------------------
+# ---- Round 2 (robotics researcher persona) -------------------------------------------------
 
 def _seg(coeffs, t0, t1):
     from sirb.trajectory import Segment
@@ -200,7 +200,7 @@ def test_round2_candidate_pair_pruning_never_hides_a_violation():
     assert violating > 0     # the test must actually exercise violations
 
 
-# ---- Round 3 (Al Ain University senior: docs-code consistency, claims vs evidence) -----------
+# ---- Round 3 (final year student persona: docs-code consistency, claims vs evidence) -----------
 
 def test_round3_monte_carlo_is_independent_of_worker_count():
     """README/METHODS say results are deterministic given the seed; the runner may use 2 workers."""
@@ -350,7 +350,7 @@ def test_round4_cli_and_export_say_not_an_approval(tmp_path, capsys):
     assert "Regulatory" in " ".join(b["certificate"]["not_guaranteed"])
 
 
-# ---- Round 5 (ATRC-style engineer: boundaries, independence, test quality) -------------------
+# ---- Round 5 (software architecture engineer persona: boundaries, independence, test quality) -------------------
 
 def _import_graph():
     """Module -> set of sirb modules it imports (static, including function-level imports)."""

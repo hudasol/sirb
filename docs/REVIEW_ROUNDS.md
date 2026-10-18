@@ -12,7 +12,10 @@ stress, planner, verifier or disturbance *number* was altered, because that woul
 results disagree with the code. Fixes in those modules are output-neutral (checked by tests) and
 anything numerically significant is listed as "not fixed" for the owner.
 
-## Round 1: EDGE-style engineer (practicality, scale, determinism, spec/format usability)
+
+Note (phase 6): every round below is a self run critique written by the project from the point of view of a generic persona. No person or organisation took part, and the persona names do not refer to any real organisation; earlier versions used organisation names as persona labels, which could be read as implied input, and were renamed.
+
+## Round 1: applied systems engineer persona (practicality, scale, determinism, spec/format usability)
 
 Checked: the show validator against 16 malformed inputs; memory and time scaling of the
 planner/assignment helpers; whether the Monte-Carlo runner works on the owner's platform
@@ -68,7 +71,7 @@ Not fixed (and why)
 - No machine-readable JSON Schema file. Adding one without a validator dependency would create
   a second source of truth that can drift; the validator is the specification.
 
-## Round 2: TII-style robotics researcher (mathematical correctness, unstated assumptions, statistics)
+## Round 2: robotics researcher persona (mathematical correctness, unstated assumptions, statistics)
 
 Checked: the verifier's exactness claim by attack (400 random degree 1..7 polynomial pairs,
 segment lengths 1 to 600 s, forced near-grazing, truth from a 400,001-point grid plus bounded
@@ -127,7 +130,7 @@ Not fixed (and why)
   bytes that reproduce a segment header; not exploitable by accident, and changing the hash
   invalidates every stored hash. A length-prefixed encoding is a v2 item.
 
-## Round 3: Al Ain University senior (clarity, reproducibility, docs-code consistency, claims versus evidence)
+## Round 3: final year student persona (clarity, reproducibility, docs-code consistency, claims versus evidence)
 
 Checked: every statement in README, plan, ARCHITECTURE, METHODS, VERIFIER, VIEWER, SHOW_SCHEMA and
 DATA_SOURCES against the code or `results/*.json`; what a reader following the README would
@@ -242,7 +245,7 @@ Not fixed (and why)
 - `PreflightReport.ok` is true when no FAIL finding exists. The report always carries a
   `NOT_CHECKED` INFO finding naming what was not checked; renaming `ok` would break callers.
 
-## Round 5: ATRC-style engineer (architecture, API boundaries, verifier independence, test quality)
+## Round 5: software architecture engineer persona (architecture, API boundaries, verifier independence, test quality)
 
 Checked: the import graph mechanically (AST of every module in `sirb/`, including function-level
 and relative imports, followed transitively); where state crosses module boundaries; whether
