@@ -186,10 +186,11 @@ def main() -> None:
             "`docs/MUTATION.md`.",
             grid, F),
         "BRIEF_ADEO.md": brief(
-            "Sirb: brief for ADEO reviewers",
-            "Written for reviewers who plan or host public shows. The organisation's remit was not "
-            "verified from a retrieved source and is not described here; the owner should confirm "
-            "this framing.",
+            "Sirb: brief for reviewers at the Abu Dhabi Executive Office (ADEO)",
+            "Written for reviewers at the Abu Dhabi Executive Office. The brief does not describe "
+            "ADEO or its remit, and no relationship of any kind exists between ADEO and this "
+            "project. The question below is the owner's framing for readers who weigh evidence "
+            "about public drone shows.",
             "How much nominal spacing does a show need for a stated simulated risk under local "
             "conditions, and how quickly does that need grow when GNSS degrades? The margin tool "
             "answers this inside the model; whether the model's answer transfers to real shows is the "
