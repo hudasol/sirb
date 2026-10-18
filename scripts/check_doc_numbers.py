@@ -1,10 +1,10 @@
 """Check that every number in the reviewer pack and the README result blocks comes from a file.
 
-For each decimal number in the checked text, the script looks for a numeric value in
-results/**/*.json, viewer/data/index.json or shows/*.json that rounds to it at the printed
-precision (also as a percentage). Integers are matched exactly. The check is a necessary condition only: a number that
-matches some value is not proven to come from the right field, and small integers match easily. Numbers inside file names, code
-spans and the fixed list of identifiers below (years, show names, commit hashes) are skipped.
+For each number in the checked text, the script looks for a numeric value in results/**/*.json,
+viewer/data/index.json or shows/*.json that rounds to it at the printed precision (also as a
+percentage). Numbers inside code spans and URLs are skipped. The check is a necessary condition
+only: a match does not prove that the number comes from the right field, and small integers match
+easily.
 Writes results/doc_number_check.json; exit status 1 if any number is unmatched.
 
     python scripts/check_doc_numbers.py
@@ -53,7 +53,6 @@ def matches(tok: str, pool: set) -> bool:
 def strip(text: str) -> str:
     text = re.sub(r"`[^`]*`", " ", text)                 # code spans: paths, commands, ids
     text = re.sub(r"https?://\S+", " ", text)
-    text = re.sub(r"\b\d+ (drones|trials|fleets|sites)\b", lambda m: m.group(0), text)
     return text
 
 
