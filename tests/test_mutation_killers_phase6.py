@@ -50,8 +50,8 @@ def test_exact_cost_rejects_coordinates_beyond_512_m():
 
 
 def test_exact_cost_of_empty_inputs_is_an_empty_matrix():
-    c = _exact_sq_cost(np.zeros((0, 3)), np.zeros((2, 3)))
-    assert c.shape == (0, 2)
+    assert _exact_sq_cost(np.zeros((0, 3)), np.zeros((2, 3))).shape == (0, 2)
+    assert _exact_sq_cost(np.zeros((2, 3)), np.zeros((0, 3))).shape == (2, 0)
 
 
 def test_hungarian_variants_pick_the_known_optimum():
