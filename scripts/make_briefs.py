@@ -50,7 +50,8 @@ def facts() -> dict:
         F["assumed_p"] = {k: v["baseline"]["p"] for k, v in s0["oat"].items()}
     mg = load("margin.json")
     if mg:
-        F["margin"] = {(r["case"]["n"], r["case"].get("bias_sigma", "faa")): r for r in mg["rows"]}
+        F["margin"] = {(r["case"]["n"], r["case"].get("bias_sigma", r["case"].get("gnss_file"))): r
+                       for r in mg["rows"]}
         F["margin_trials"] = mg["trials"]
     gr = load("ground_robots.json")
     if gr:
@@ -129,7 +130,7 @@ def margin_line(F) -> list[str]:
            f"on P(violation) is at most 5% ({F['margin_trials']} trials per scale), and the plan scaled "
            "to it (`docs/MARGIN.md`). Results (simulated, model dependent):", ""]
     for (n, s), r in sorted(F["margin"].items(), key=lambda kv: str(kv[0])):
-        lab = "FAA derived file" if s == "faa" else f"bias sigma {s} m"
+        lab = f"bias sigma {s} m" if isinstance(s, float) else f"GNSS file `{s}`"
         out.append(f"* n = {n}, {lab}: {r['status']}, required nominal minimum separation "
                    f"{f(r['required_nominal_min_separation_m'])} m.")
     return out + [""]

@@ -4,7 +4,8 @@ GNSS bias sigma. Planning aid study; everything is a property of the simulated m
 Show family: ``run_stress.family_show`` (launch grid, sphere, wall, land) with a widened geofence,
 formation spacing 4.0 m before scaling. Scenario: mean wind 6 m/s at 20 ft, 25% of drones
 degraded, bias sigma as listed; every other value is the StressConfig default (ASSUMED). The last
-row uses the sourced parameter file ``shows/gnss_faa_sps_standalone.json`` (docs/GNSS_SOURCED.md).
+rows use the parameter files ``shows/gnss_faa_sps_standalone.json`` and
+``shows/gnss_relative_literature.json`` (docs/GNSS_SOURCED.md).
 Fixed seeds; each evaluated factor is cached in results/.cache so an interrupted run resumes.
 
     SIRB_WORKERS=8 python scripts/margin_study.py      # writes results/margin.json
@@ -31,7 +32,8 @@ TOL = 0.02
 BASE = {"w20": 6.0, "gnss_deg_fraction": 0.25}
 CASES = ([{"n": 100, "bias_sigma": s} for s in (0.0, 0.25, 0.5, 1.0)]
          + [{"n": n, "bias_sigma": 0.5} for n in (50, 200, 400)]
-         + [{"n": 100, "gnss_file": "shows/gnss_faa_sps_standalone.json"}])
+         + [{"n": 100, "gnss_file": "shows/gnss_faa_sps_standalone.json"},
+            {"n": 100, "gnss_file": "shows/gnss_relative_literature.json"}])
 
 
 def config(case: dict) -> StressConfig:
