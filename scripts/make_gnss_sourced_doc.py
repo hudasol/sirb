@@ -112,7 +112,7 @@ def main() -> None:
     R = load("results/gnss_relative_derivation.json")
     if R:
         rs = R["statistics"]
-        L += ["", "## Relative error between drones (stream D)", "",
+        L += ["", "## Relative error between drones (phase 6 study)", "",
               f"* Source read: {R['source']['source_name']}, <{R['source']['url']}>, licence "
               f"{R['source']['licence']}, retrieved {R['source']['retrieval_date']}. The table used is "
               "kept in `data/carvalho2023_sensors_table1.csv`.",
