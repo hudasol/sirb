@@ -39,6 +39,13 @@ def main() -> None:
                  f"{r['status']} | {f(r['required_spacing_m'], 2)} | "
                  f"{f(r['required_nominal_min_separation_m'])} | {f(r['required_margin_m'])} | "
                  f"{len(r['evaluations'])} |")
+    ck = Path("results/margin_cli_check.json")
+    if ck.exists():
+        c = json.loads(ck.read_text())
+        L += ["", f"Cross check (`scripts/check_margin_cli.py`, `results/margin_cli_check.json`): "
+              f"`{c['command']}` on the case {c['case']} gives a report "
+              + ("identical to the study row in every compared field."
+                 if c["identical"] else f"that differs in {', '.join(c['differing_keys'])}.")]
     by = {(r["case"]["n"], r["case"].get("bias_sigma")): r["required_margin_m"] for r in rows}
     L += ["", "## Scaling against the pre-registered prediction (P11)", ""]
     m5, m10, m0 = by.get((100, 0.5)), by.get((100, 1.0)), by.get((100, 0.0))
