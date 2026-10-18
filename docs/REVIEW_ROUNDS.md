@@ -396,3 +396,47 @@ One row to read with care: the `scaling` row for n = 2000 has `verified_ok: fals
 the original commit (before any review change) gives the same result: the 2000-drone sphere at
 3.2 m spacing extends below the altitude floor (768 altitude violations), so that plan is not a
 verified plan and its stress figures describe an invalid input.
+
+## Phase 6: hostile review by a separate reviewer
+
+A reviewer agent that had not seen the build reasoning read the repository with only the project's
+hard constraints, without changing files. Findings, ranked by the reviewer, and what was done:
+
+| Severity | Finding | Action |
+|---|---|---|
+| High | `docs/OVERNIGHT_REPORT.md` stale (said results missing and predictions pending) | regenerated from the result files at the end of the run |
+| High | README mutation line printed phase 5 scores, including `verify2.py` unchanged | fresh mutmut run on the current code; the README line is generated from it (`docs/MUTATION.md`, phase 6 section) |
+| High | literature GNSS file never run, while a doc said results change by metres | the margin study now includes that file as a case, prediction P16 registered first |
+| High | stale status text in `plan.md`, `docs/VIEWER.md`, `docs/NEXT_STEPS.md` | corrected |
+| High | wind headline could be quoted as a limit; contingency line hid event drone violations | headline now says it is not a wind limit; contingency line reports event drone violations and contacts |
+| Medium | organisation names used as persona labels in review rounds | renamed to generic personas, with a note |
+| Medium | planner outcomes depend on wall clock budgets | README states it; budgets kept (changing them would change published results) |
+| Medium | two figures for the same scenario (coarse spacing grid and margin search) | headline renamed to the coarse grid answer and points to `docs/MARGIN.md` |
+| Medium | timing headline not comparable with the profile | labelled as wall clock on a shared machine |
+| Medium | ADEO name unconfirmed | confirmed by the owner as the Abu Dhabi Executive Office; the brief states no relationship exists |
+| Medium | unsourced show claim in `docs/RESEARCH.md` | removed |
+| Medium | related work wording implied coupling | reworded: no coupling exists |
+| Medium | no direct tests of the GNSS error model; schema test always skipped | `tests/test_gnss_error.py`; jsonschema is now a pinned dev dependency and every shipped GNSS file is checked |
+| Medium | personal wording ("her decision", "the student") and internal brief wording | neutralised |
+| Low | P1 graded through a default for a missing counter; P2 said no extra FAILs | the report always writes the counters and the grades read them strictly; P2 reports the FAILs exactly at the threshold |
+| Low | P14 provenance note | corrected |
+| Low | data sources table broken by a blank line; services and the Python standard library not listed; no hash for the Carvalho article | fixed and listed; the PDF could not be downloaded for hashing, which is recorded |
+| Low | viewer benchmark predates the target change | listed as stale in `docs/CHANGES.md` (Playwright and Chromium were not available; frame timings do not depend on exact positions) |
+| Low | stream letters used inconsistently | the relative error study is named without a letter |
+
+Rejected or not done, with the reason:
+
+* Owner name in `LICENSE` and the overnight report: the owner holds the copyright and must be named in
+  the licence; the report is addressed to the owner.
+* The Federal Register waiver URL that contains a person's name: it is the public address of a cited
+  government document; changing it would break the citation.
+* Replacing "simulation-validated only" with another phrase: the label is fixed in the export
+  format, the certificate statement and the tests; changing it is a format change for the owner to
+  decide. The README explains what a PASS means.
+* Dropping the working conditions from the overnight report: the brief asks for what failed and why,
+  so they stay, in plain terms.
+* All hyphenated compounds in older docs (about 550): fixed in the README; the older documents are
+  left as they are, because rewriting them all is a large text change with risk of altering meaning.
+* Generated document freshness and the number check in CI: not added in this run; listed as a next
+  step.
+* Old commits with co author trailers: history is not rewritten (hard rule).
