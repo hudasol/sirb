@@ -4,434 +4,434 @@
   {
    "n": 10,
    "validate_errors": [],
-   "targets_s": 0.002205293000002939,
-   "hungarian_one_transition_s": 0.0003552580000132366,
-   "plan_total_s": 0.0034737679999921056,
-   "verify_s": 0.04824051500000337,
+   "targets_s": 0.006214301996806171,
+   "hungarian_one_transition_s": 0.00023774500004947186,
+   "plan_total_s": 0.003896605998306768,
+   "verify_s": 0.06701680799960741,
    "verified_ok": true,
    "violation_counts": {},
-   "nominal_min_separation_m": 2.2627416997968886,
+   "nominal_min_separation_m": 2.262741564927042,
    "pairs_checked": 45,
    "n_segments": 70,
    "verify_top_cumulative": [
     {
-     "cum_s": 0.048,
-     "fn": "verify (verify.py:624)"
+     "cum_s": 0.063,
+     "fn": "verify (verify.py:675)"
+    },
+    {
+     "cum_s": 0.027,
+     "fn": "pair_minima (verify.py:536)"
     },
     {
      "cum_s": 0.024,
-     "fn": "pair_minima (verify.py:485)"
+     "fn": "_solve_pairs (verify.py:489)"
     },
     {
      "cum_s": 0.02,
-     "fn": "_solve_pairs (verify.py:438)"
+     "fn": "_critical_points (verify.py:81)"
+    },
+    {
+     "cum_s": 0.017,
+     "fn": "_extremes (verify.py:134)"
+    },
+    {
+     "cum_s": 0.017,
+     "fn": "_dynamics (verify.py:579)"
     },
     {
      "cum_s": 0.014,
-     "fn": "_critical_points (verify.py:79)"
+     "fn": "_refine_minimum (verify.py:447)"
     },
     {
      "cum_s": 0.012,
-     "fn": "_refine_minimum (verify.py:396)"
-    },
-    {
-     "cum_s": 0.011,
-     "fn": "_extremes (verify.py:132)"
-    },
-    {
-     "cum_s": 0.01,
-     "fn": "_dynamics (verify.py:528)"
-    },
-    {
-     "cum_s": 0.01,
-     "fn": "f (verify.py:415)"
+     "fn": "f (verify.py:466)"
     }
    ],
-   "peak_rss_mb": 75.98828125
+   "peak_rss_mb": 76.9296875
   },
   {
    "n": 20,
    "validate_errors": [],
-   "targets_s": 0.0021685690000197155,
-   "hungarian_one_transition_s": 0.00030206899998574954,
-   "plan_total_s": 0.0049259110000150486,
-   "verify_s": 0.10187158099998328,
+   "targets_s": 0.006492200001957826,
+   "hungarian_one_transition_s": 0.00026256300043314695,
+   "plan_total_s": 0.009917200997733744,
+   "verify_s": 0.10755048200007877,
    "verified_ok": true,
    "violation_counts": {},
-   "nominal_min_separation_m": 2.2627416997968686,
+   "nominal_min_separation_m": 2.2627419021017494,
    "pairs_checked": 187,
    "n_segments": 140,
    "verify_top_cumulative": [
     {
-     "cum_s": 0.102,
-     "fn": "verify (verify.py:624)"
+     "cum_s": 0.107,
+     "fn": "verify (verify.py:675)"
     },
     {
-     "cum_s": 0.068,
-     "fn": "pair_minima (verify.py:485)"
+     "cum_s": 0.064,
+     "fn": "pair_minima (verify.py:536)"
     },
     {
-     "cum_s": 0.061,
-     "fn": "_solve_pairs (verify.py:438)"
+     "cum_s": 0.059,
+     "fn": "_solve_pairs (verify.py:489)"
     },
     {
-     "cum_s": 0.035,
-     "fn": "_refine_minimum (verify.py:396)"
+     "cum_s": 0.031,
+     "fn": "_refine_minimum (verify.py:447)"
     },
     {
-     "cum_s": 0.03,
-     "fn": "f (verify.py:415)"
+     "cum_s": 0.027,
+     "fn": "f (verify.py:466)"
     },
     {
-     "cum_s": 0.028,
-     "fn": "_horner_rows (verify.py:177)"
+     "cum_s": 0.027,
+     "fn": "_horner_rows (verify.py:179)"
+    },
+    {
+     "cum_s": 0.025,
+     "fn": "_critical_points (verify.py:81)"
     },
     {
      "cum_s": 0.022,
-     "fn": "_critical_points (verify.py:79)"
-    },
-    {
-     "cum_s": 0.016,
-     "fn": "_structure (verify.py:226)"
+     "fn": "_structure (verify.py:228)"
     }
    ],
-   "peak_rss_mb": 77.3671875
+   "peak_rss_mb": 78.15234375
   },
   {
    "n": 50,
    "validate_errors": [],
-   "targets_s": 0.0039133049999975356,
-   "hungarian_one_transition_s": 0.0008380649999821799,
-   "plan_total_s": 0.012096358999997392,
-   "verify_s": 0.34240432299998247,
+   "targets_s": 0.0034918349992949516,
+   "hungarian_one_transition_s": 0.0007163090012909379,
+   "plan_total_s": 0.015507471998716937,
+   "verify_s": 0.2891847470018547,
    "verified_ok": true,
    "violation_counts": {},
-   "nominal_min_separation_m": 2.2627416997968486,
+   "nominal_min_separation_m": 2.2627415649269764,
    "pairs_checked": 981,
    "n_segments": 350,
    "verify_top_cumulative": [
     {
-     "cum_s": 0.342,
-     "fn": "verify (verify.py:624)"
+     "cum_s": 0.289,
+     "fn": "verify (verify.py:675)"
     },
     {
-     "cum_s": 0.264,
-     "fn": "pair_minima (verify.py:485)"
+     "cum_s": 0.2,
+     "fn": "pair_minima (verify.py:536)"
     },
     {
-     "cum_s": 0.243,
-     "fn": "_solve_pairs (verify.py:438)"
+     "cum_s": 0.179,
+     "fn": "_solve_pairs (verify.py:489)"
     },
     {
-     "cum_s": 0.094,
-     "fn": "_refine_minimum (verify.py:396)"
+     "cum_s": 0.08,
+     "fn": "_critical_points (verify.py:81)"
     },
     {
-     "cum_s": 0.092,
-     "fn": "_horner_rows (verify.py:177)"
+     "cum_s": 0.072,
+     "fn": "_horner_rows (verify.py:179)"
     },
     {
-     "cum_s": 0.091,
-     "fn": "_critical_points (verify.py:79)"
-    },
-    {
-     "cum_s": 0.084,
-     "fn": "f (verify.py:415)"
+     "cum_s": 0.067,
+     "fn": "_refine_minimum (verify.py:447)"
     },
     {
      "cum_s": 0.062,
+     "fn": "f (verify.py:466)"
+    },
+    {
+     "cum_s": 0.051,
      "fn": "eigvals (_linalg.py:1181)"
     }
    ],
-   "peak_rss_mb": 84.3203125
+   "peak_rss_mb": 85.1796875
   },
   {
    "n": 100,
    "validate_errors": [],
-   "targets_s": 0.0038509070000145584,
-   "hungarian_one_transition_s": 0.0017317880000007335,
-   "plan_total_s": 0.025378739000018413,
-   "verify_s": 0.7286205249999966,
+   "targets_s": 0.004582899997330969,
+   "hungarian_one_transition_s": 0.002929062000475824,
+   "plan_total_s": 0.03780094000103418,
+   "verify_s": 0.6588985990019864,
    "verified_ok": true,
    "violation_counts": {},
-   "nominal_min_separation_m": 2.2627416997969525,
-   "pairs_checked": 3199,
+   "nominal_min_separation_m": 2.2627415649270066,
+   "pairs_checked": 3200,
    "n_segments": 700,
    "verify_top_cumulative": [
     {
-     "cum_s": 0.728,
-     "fn": "verify (verify.py:624)"
+     "cum_s": 0.658,
+     "fn": "verify (verify.py:675)"
     },
     {
-     "cum_s": 0.518,
-     "fn": "pair_minima (verify.py:485)"
+     "cum_s": 0.5,
+     "fn": "pair_minima (verify.py:536)"
     },
     {
-     "cum_s": 0.446,
-     "fn": "_solve_pairs (verify.py:438)"
+     "cum_s": 0.461,
+     "fn": "_solve_pairs (verify.py:489)"
     },
     {
-     "cum_s": 0.186,
-     "fn": "_critical_points (verify.py:79)"
+     "cum_s": 0.205,
+     "fn": "_critical_points (verify.py:81)"
     },
     {
-     "cum_s": 0.164,
-     "fn": "_horner_rows (verify.py:177)"
+     "cum_s": 0.15,
+     "fn": "eigvals (_linalg.py:1181)"
     },
     {
-     "cum_s": 0.153,
-     "fn": "_refine_minimum (verify.py:396)"
+     "cum_s": 0.141,
+     "fn": "_horner_rows (verify.py:179)"
     },
     {
-     "cum_s": 0.145,
-     "fn": "_structure (verify.py:226)"
+     "cum_s": 0.14,
+     "fn": "_refine_minimum (verify.py:447)"
     },
     {
-     "cum_s": 0.139,
-     "fn": "f (verify.py:415)"
+     "cum_s": 0.131,
+     "fn": "f (verify.py:466)"
     }
    ],
-   "peak_rss_mb": 104.34375
+   "peak_rss_mb": 105.36328125
   },
   {
    "n": 200,
    "validate_errors": [],
-   "targets_s": 0.0068693249999967065,
-   "hungarian_one_transition_s": 0.008475548000006938,
-   "plan_total_s": 0.07457393300001058,
-   "verify_s": 1.52202955300001,
+   "targets_s": 0.008746495997911552,
+   "hungarian_one_transition_s": 0.01779871200051275,
+   "plan_total_s": 0.1215261110010033,
+   "verify_s": 1.613606790000631,
    "verified_ok": true,
    "violation_counts": {},
-   "nominal_min_separation_m": 2.2627416997968717,
-   "pairs_checked": 10541,
+   "nominal_min_separation_m": 2.2627415649269764,
+   "pairs_checked": 10548,
    "n_segments": 1400,
    "verify_top_cumulative": [
     {
-     "cum_s": 1.521,
-     "fn": "verify (verify.py:624)"
+     "cum_s": 1.612,
+     "fn": "verify (verify.py:675)"
     },
     {
-     "cum_s": 1.279,
-     "fn": "pair_minima (verify.py:485)"
+     "cum_s": 1.304,
+     "fn": "pair_minima (verify.py:536)"
     },
     {
-     "cum_s": 1.18,
-     "fn": "_solve_pairs (verify.py:438)"
+     "cum_s": 1.225,
+     "fn": "_solve_pairs (verify.py:489)"
     },
     {
-     "cum_s": 0.555,
-     "fn": "_critical_points (verify.py:79)"
+     "cum_s": 0.566,
+     "fn": "_critical_points (verify.py:81)"
     },
     {
-     "cum_s": 0.392,
+     "cum_s": 0.457,
      "fn": "eigvals (_linalg.py:1181)"
     },
     {
-     "cum_s": 0.334,
-     "fn": "_horner_rows (verify.py:177)"
+     "cum_s": 0.344,
+     "fn": "_horner_rows (verify.py:179)"
     },
     {
-     "cum_s": 0.29,
-     "fn": "_refine_minimum (verify.py:396)"
+     "cum_s": 0.329,
+     "fn": "_refine_minimum (verify.py:447)"
     },
     {
-     "cum_s": 0.262,
-     "fn": "f (verify.py:415)"
+     "cum_s": 0.305,
+     "fn": "f (verify.py:466)"
     }
    ],
-   "peak_rss_mb": 127.07421875
+   "peak_rss_mb": 127.3203125
   },
   {
    "n": 500,
    "validate_errors": [],
-   "targets_s": 0.019664070000004585,
-   "hungarian_one_transition_s": 0.10350238899999908,
-   "plan_total_s": 0.48936989500001005,
-   "verify_s": 5.950278722000007,
+   "targets_s": 0.027951944000960793,
+   "hungarian_one_transition_s": 0.20038932300303713,
+   "plan_total_s": 0.9142799699984607,
+   "verify_s": 5.840027923997695,
    "verified_ok": true,
    "violation_counts": {},
-   "nominal_min_separation_m": 2.2627416997968637,
+   "nominal_min_separation_m": 2.2627415649270017,
    "pairs_checked": 54634,
    "n_segments": 3500,
    "verify_top_cumulative": [
     {
-     "cum_s": 5.941,
-     "fn": "verify (verify.py:624)"
+     "cum_s": 5.837,
+     "fn": "verify (verify.py:675)"
     },
     {
-     "cum_s": 5.321,
-     "fn": "pair_minima (verify.py:485)"
+     "cum_s": 5.109,
+     "fn": "pair_minima (verify.py:536)"
     },
     {
-     "cum_s": 4.977,
-     "fn": "_solve_pairs (verify.py:438)"
+     "cum_s": 4.93,
+     "fn": "_solve_pairs (verify.py:489)"
     },
     {
-     "cum_s": 2.511,
-     "fn": "_critical_points (verify.py:79)"
+     "cum_s": 2.611,
+     "fn": "_critical_points (verify.py:81)"
     },
     {
-     "cum_s": 1.991,
+     "cum_s": 2.233,
      "fn": "eigvals (_linalg.py:1181)"
     },
     {
-     "cum_s": 1.175,
-     "fn": "_horner_rows (verify.py:177)"
+     "cum_s": 1.111,
+     "fn": "_horner_rows (verify.py:179)"
     },
     {
-     "cum_s": 0.876,
-     "fn": "_refine_minimum (verify.py:396)"
+     "cum_s": 0.847,
+     "fn": "_refine_minimum (verify.py:447)"
     },
     {
-     "cum_s": 0.781,
-     "fn": "f (verify.py:415)"
+     "cum_s": 0.785,
+     "fn": "f (verify.py:466)"
     }
    ],
-   "peak_rss_mb": 163.4140625
+   "peak_rss_mb": 156.5546875
   },
   {
    "n": 1000,
    "validate_errors": [],
-   "targets_s": 0.08252592300001993,
-   "hungarian_one_transition_s": 1.097717297999992,
-   "plan_total_s": 4.290578763000013,
-   "verify_s": 18.355442474,
+   "targets_s": 0.08653845099979662,
+   "hungarian_one_transition_s": 1.3439147539975238,
+   "plan_total_s": 4.575233515999571,
+   "verify_s": 15.362250850997953,
    "verified_ok": true,
    "violation_counts": {},
-   "nominal_min_separation_m": 2.2627416997969036,
-   "pairs_checked": 183238,
+   "nominal_min_separation_m": 2.262741564926951,
+   "pairs_checked": 183191,
    "n_segments": 7000,
    "verify_top_cumulative": [
     {
-     "cum_s": 18.347,
-     "fn": "verify (verify.py:624)"
+     "cum_s": 15.351,
+     "fn": "verify (verify.py:675)"
     },
     {
-     "cum_s": 17.102,
-     "fn": "pair_minima (verify.py:485)"
+     "cum_s": 13.937,
+     "fn": "pair_minima (verify.py:536)"
     },
     {
-     "cum_s": 16.04,
-     "fn": "_solve_pairs (verify.py:438)"
+     "cum_s": 13.468,
+     "fn": "_solve_pairs (verify.py:489)"
     },
     {
-     "cum_s": 9.057,
-     "fn": "_critical_points (verify.py:79)"
+     "cum_s": 7.722,
+     "fn": "_critical_points (verify.py:81)"
     },
     {
-     "cum_s": 7.461,
+     "cum_s": 6.746,
      "fn": "eigvals (_linalg.py:1181)"
     },
     {
-     "cum_s": 3.076,
-     "fn": "_horner_rows (verify.py:177)"
+     "cum_s": 2.548,
+     "fn": "_horner_rows (verify.py:179)"
     },
     {
-     "cum_s": 2.102,
-     "fn": "_shift (verify.py:162)"
+     "cum_s": 1.774,
+     "fn": "_refine_minimum (verify.py:447)"
     },
     {
-     "cum_s": 1.806,
-     "fn": "_refine_minimum (verify.py:396)"
+     "cum_s": 1.638,
+     "fn": "f (verify.py:466)"
     }
    ],
-   "peak_rss_mb": 180.2421875
+   "peak_rss_mb": 176.0234375
   },
   {
    "n": 2000,
    "validate_errors": [],
-   "targets_s": 0.3058501030000116,
-   "hungarian_one_transition_s": 12.406165883,
-   "plan_total_s": 32.00696149999999,
-   "verify_s": 60.68011475899996,
+   "targets_s": 0.3089495860003808,
+   "hungarian_one_transition_s": 11.034578561000671,
+   "plan_total_s": 31.946794555999077,
+   "verify_s": 48.24295838299804,
    "verified_ok": true,
    "violation_counts": {},
-   "nominal_min_separation_m": 2.2627416997968637,
-   "pairs_checked": 657446,
+   "nominal_min_separation_m": 2.2627415649269564,
+   "pairs_checked": 657341,
    "n_segments": 14000,
    "verify_top_cumulative": [
     {
-     "cum_s": 60.644,
-     "fn": "verify (verify.py:624)"
+     "cum_s": 48.23,
+     "fn": "verify (verify.py:675)"
     },
     {
-     "cum_s": 56.809,
-     "fn": "pair_minima (verify.py:485)"
+     "cum_s": 45.361,
+     "fn": "pair_minima (verify.py:536)"
     },
     {
-     "cum_s": 54.152,
-     "fn": "_solve_pairs (verify.py:438)"
+     "cum_s": 43.752,
+     "fn": "_solve_pairs (verify.py:489)"
     },
     {
-     "cum_s": 31.963,
-     "fn": "_critical_points (verify.py:79)"
+     "cum_s": 26.652,
+     "fn": "_critical_points (verify.py:81)"
     },
     {
-     "cum_s": 26.471,
+     "cum_s": 23.746,
      "fn": "eigvals (_linalg.py:1181)"
     },
     {
-     "cum_s": 8.895,
-     "fn": "_horner_rows (verify.py:177)"
+     "cum_s": 6.848,
+     "fn": "_horner_rows (verify.py:179)"
     },
     {
-     "cum_s": 7.451,
-     "fn": "_shift (verify.py:162)"
+     "cum_s": 4.591,
+     "fn": "_shift (verify.py:164)"
     },
     {
-     "cum_s": 4.324,
-     "fn": "_refine_minimum (verify.py:396)"
+     "cum_s": 3.912,
+     "fn": "_refine_minimum (verify.py:447)"
     }
    ],
-   "peak_rss_mb": 261.5234375
+   "peak_rss_mb": 252.296875
   },
   {
    "n": 4000,
    "validate_errors": [],
-   "targets_s": 0.9565738780000288,
-   "hungarian_one_transition_s": 80.22596843600002,
-   "plan_total_s": 225.59288733499994,
-   "verify_s": 205.79492535299994,
+   "targets_s": 1.15369973199995,
+   "hungarian_one_transition_s": 80.42344759300249,
+   "plan_total_s": 233.15576671600138,
+   "verify_s": 164.3580387559996,
    "verified_ok": true,
    "violation_counts": {},
-   "nominal_min_separation_m": 2.262741699796859,
-   "pairs_checked": 2708482,
+   "nominal_min_separation_m": 2.2627415649269365,
+   "pairs_checked": 2708366,
    "n_segments": 28000,
    "verify_top_cumulative": [
     {
-     "cum_s": 205.761,
-     "fn": "verify (verify.py:624)"
+     "cum_s": 164.333,
+     "fn": "verify (verify.py:675)"
     },
     {
-     "cum_s": 199.717,
-     "fn": "pair_minima (verify.py:485)"
+     "cum_s": 158.392,
+     "fn": "pair_minima (verify.py:536)"
     },
     {
-     "cum_s": 190.96,
-     "fn": "_solve_pairs (verify.py:438)"
+     "cum_s": 150.456,
+     "fn": "_solve_pairs (verify.py:489)"
     },
     {
-     "cum_s": 116.56,
-     "fn": "_critical_points (verify.py:79)"
+     "cum_s": 95.407,
+     "fn": "_critical_points (verify.py:81)"
     },
     {
-     "cum_s": 97.801,
+     "cum_s": 85.561,
      "fn": "eigvals (_linalg.py:1181)"
     },
     {
-     "cum_s": 27.695,
-     "fn": "_horner_rows (verify.py:177)"
+     "cum_s": 20.054,
+     "fn": "_horner_rows (verify.py:179)"
     },
     {
-     "cum_s": 26.914,
-     "fn": "_shift (verify.py:162)"
+     "cum_s": 16.373,
+     "fn": "_shift (verify.py:164)"
     },
     {
-     "cum_s": 13.922,
-     "fn": "einsum (einsumfunc.py:1242)"
+     "cum_s": 11.274,
+     "fn": "<method 'reduce' of 'numpy.ufunc' objects> (~:0)"
     }
    ],
-   "peak_rss_mb": 666.01953125
+   "peak_rss_mb": 665.21875
   }
  ]
 }
