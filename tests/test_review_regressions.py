@@ -5,6 +5,7 @@ Each test names the round that found the defect.
 
 import copy
 import json
+import os
 
 import numpy as np
 import pytest
@@ -585,8 +586,6 @@ def test_round6_unreadable_and_malformed_segments_never_crash_the_verifier():
 
 
 def test_round6_bounded_file_reading(tmp_path, monkeypatch):
-    import os
-
     from sirb import export, fileio, spec
 
     big = tmp_path / "big.json"
@@ -598,14 +597,22 @@ def test_round6_bounded_file_reading(tmp_path, monkeypatch):
     monkeypatch.undo()
     with pytest.raises(ValueError, match="regular file"):
         spec.load_show(tmp_path)                         # a directory
+    with pytest.raises(OSError):
+        spec.load_show(tmp_path / "missing.json")
+
+
+@pytest.mark.skipif(not (hasattr(os, "mkfifo") and os.path.exists("/dev/zero")),
+                    reason="needs POSIX special files (/dev/zero and named pipes); they do not "
+                           "exist on Windows, where this branch of the loader cannot be reached")
+def test_round6_bounded_file_reading_special_files(tmp_path):
+    from sirb import export, spec
+
     with pytest.raises(ValueError, match="regular file"):
         export.load_export("/dev/zero")                  # would otherwise read forever
     fifo = tmp_path / "pipe"
     os.mkfifo(fifo)
     with pytest.raises(ValueError, match="regular file"):
         spec.load_show(fifo)                             # would otherwise block
-    with pytest.raises(OSError):
-        spec.load_show(tmp_path / "missing.json")
 
 
 def test_round6_apply_events_dispatches_every_behaviour():
