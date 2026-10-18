@@ -23,6 +23,11 @@ for proposals only.
 10. **Verify the current UAE UAS rules** from the authority's own pages (GCAA CAR-UAS status was not
     verified as current) and keep a dated summary in RESEARCH.md. Never claim compliance.
 
+11. **Generated docs in CI**: run the doc generators and `scripts/check_doc_numbers.py` in CI and fail
+    when a committed generated file differs from a fresh build.
+12. **Measure the relative GNSS error** between nearby low cost receivers (the parameter every stressed
+    verdict hinges on, `docs/GNSS_SOURCED.md`), for example two receivers on a short static baseline.
+
 ## Future robotics proposals (not built)
 - **GNSS-aware show planning**: parameterize the GNSS error model from outputs of a separate
   Gulf-GNSS interference study so separation margins respond to regional interference levels.
