@@ -6,13 +6,13 @@
 
 *Sirb* is Arabic for "flock" or "squadron".
 
-A simulation-first suite that turns shape sequences into multi-drone show trajectories, checks them with an exact separation verifier that shares no logic with the planners, stress-tests them in Monte-Carlo simulation against wind, GNSS degradation, drone failures and comms/battery events, and writes a report with the measured margins.
+A simulation first suite that turns shape sequences into multi drone show trajectories, checks them with an exact separation verifier that shares no logic with the planners, stress-tests them in Monte-Carlo simulation against wind, GNSS degradation, drone failures and comms/battery events, and writes a report with the measured margins.
 
 > **Safety statement.** Sirb is a simulation and planning research tool. It is **not flight-certified** and makes **no claim of regulatory compliance**. It has no flight-control, radio or MAVLink code and cannot command real aircraft; exports are files labeled "simulation-validated only". A PASS verdict means only that the polynomial paths as written satisfy the limits declared in the show file; it is not an approval, a safety case or evidence that a real show is safe. A real drone show needs an operator safety case and approvals from the relevant UAE aviation authorities. There is no real flight data behind any result here.
 
 ## Status
 
-Built, tested and reviewed: show spec and shapes, assignment, three planners, the exact verifier and its verification record, a second independent verifier used for differential testing, the Monte Carlo stress simulator with contingency behaviours, the pre-flight consistency validator, the bilingual viewer, file export, a command line, a hazard analysis, a versioned GNSS parameter file format, and the critique rounds in `docs/REVIEW_ROUNDS.md`. Predictions were written before the later experiments and graded in `docs/PREDICTIONS.md`.
+Built, tested and self reviewed (nobody outside the project has reviewed it): show spec and shapes, assignment, three planners, the exact verifier and its verification record, a second independent verifier used for differential testing, the Monte Carlo stress simulator with contingency behaviours, the pre-flight consistency validator, the bilingual viewer, file export, a command line, a hazard analysis, a versioned GNSS parameter file format, and the critique rounds in `docs/REVIEW_ROUNDS.md`. Predictions were written before the later experiments and graded in `docs/PREDICTIONS.md`.
 
 Live viewer: https://hudasol.github.io/sirb/ (served by GitHub Pages from `viewer/`; it works only after Pages source is set to "GitHub Actions" in the repository settings and the workflow in `.github/workflows/pages.yml` has run). To run it locally: `python -m http.server -d viewer 8000`.
 
@@ -58,9 +58,9 @@ Demo video frame list (about 75 s, script in `docs/DEMO_SCRIPT.md`): 1. title an
 ## What the evidence supports
 
 - The verifier is **independent in code and method** from the planners (exact polynomial root finding versus planner-side sampling; `sirb/verify.py` imports nothing from Sirb). It is **not independent in authorship**: the same people wrote both, and nobody outside the project has reviewed it. Its guarantee is exact minimum separation and limit checks for the trajectories *as written*, under the declared model (drones are points; limits come from the show file, many of which are labeled assumptions).
-- On the four demo shows, Hungarian assignment with synchronous straight-line legs already verifies (`results/planners.json`). The wave scheduler and the prioritized planner match it there, and **neither produced a plan on the deliberately crossed `pinned15` assignment in any of the four shows** (wave scheduling got stuck; prioritized hit its 30 s budget). The benchmark therefore does not show that the stronger planners add capability.
+- On the four demo shows, Hungarian assignment with synchronous straight line legs already verifies (`results/planners.json`). The wave scheduler and the prioritized planner match it there, and **neither produced a plan on the deliberately crossed `pinned15` assignment in any of the four shows** (wave scheduling got stuck; prioritized hit its 30 s budget). The benchmark therefore does not show that the stronger planners add capability.
 - Stress-test probabilities are properties of the simulated model with assumed parameters (`docs/METHODS.md`, sections 5 and 9). They are not real-world risk. Several sweeps go beyond the vehicle's published wind limit and the model has no actuator limit; read the caveats in METHODS section 5 before quoting any row.
-- Limited-search novelty claim: I found no open-source drone-show tool that publishes separation margins under modelled GNSS error or ships a verifier independent of the planner. That search was limited (`docs/RESEARCH.md` section 1.4).
+- Limited search novelty claim: the project found no open source drone show tool that publishes separation margins under modelled GNSS error or ships a verifier independent of the planner. That search was limited (`docs/RESEARCH.md` section 1.4).
 
 Terminology: the "certificate" Sirb writes is a machine-readable verification record of what the exact verifier computed. It is not an airworthiness certificate, an approval or a safety clearance; the viewer calls it a verification record. A verdict is `PASS` only if nothing failed and every limit family was supplied (otherwise `INCOMPLETE`).
 
@@ -79,7 +79,7 @@ python -m http.server -d viewer 8000     # viewer at http://localhost:8000/ (mus
 
 Exit codes: 0 ok, 1 invalid or tampered input, 2 the plan verified but failed a declared limit. The check on an export detects accidental change (hash plus recomputation); it is **not authentication**, because anyone who edits a file can also recompute its hash.
 
-Reproduction: `make reproduce` runs install, tests, demo shows, planner benchmark, viewer data and the stress experiments with fixed seeds. On Windows without `make`, run the `python scripts/...` lines from the `Makefile` in the repository root. Numbers are deterministic given the library versions; wall-clock fields (`*_runtime_s`, `wall_s`, `*_cpu_s`) are machine dependent and will differ between runs. Floating-point results can differ in the last bits across CPUs or BLAS builds.
+Reproduction: `make reproduce` runs install, tests, demo shows, planner benchmark, viewer data and the stress experiments with fixed seeds. On Windows without `make`, run the `python scripts/...` lines from the `Makefile` in the repository root. `make reproduce` covers the core experiments; the phase 6 studies (sensitivity, sourced GNSS, margin, scaling profile, differential report) are run by `scripts/run_phase6_chain.sh`. Planned fleets are identical across machines (`docs/REPRODUCIBILITY.md`). Other numbers are deterministic on one machine given the library versions, with three exceptions: wall clock fields (`*_runtime_s`, `wall_s`, `*_cpu_s`) differ between runs; the prioritized and grid planners stop at a wall clock time budget, so on a much slower machine they may give up where they succeeded here; and the near degenerate verifier cases and Monte Carlo last bits depend on the CPU dispatched LAPACK build (`results/platform_probe/`).
 
 ## Layout
 
@@ -88,7 +88,7 @@ Reproduction: `make reproduce` runs install, tests, demo shows, planner benchmar
 | `sirb/spec.py`, `shapes.py` | show file, validator, procedural shapes |
 | `sirb/assign.py`, `planner/` | assignment methods; baseline, wave and prioritized planners |
 | `sirb/verify.py`, `certificate.py` | exact verifier and reproducible certificate |
-| `sirb/disturbance.py`, `stress.py`, `contingency.py` | Monte-Carlo stress model |
+| `sirb/disturbance.py`, `stress.py`, `contingency.py` | Monte Carlo stress model |
 | `sirb/preflight.py`, `export.py`, `cli.py` | consistency validator, file export, command line |
 | `sirb/margin.py` | planning aid: nominal separation for a simulated risk target (`python -m sirb margin`) |
 | `data/` | the one external table used (FAA GPS accuracy statistics, US government work) |
@@ -101,7 +101,7 @@ Simulated drones follow a simplified vehicle model. Vehicle numbers come from pu
 
 ## Related work
 
-`hudasol/marsad` (GNSS position trust) and the Gulf GNSS interference project are separate repos; Sirb's GNSS model is designed to be parameterizable from their outputs later. They are not modified or imported.
+`hudasol/marsad` (GNSS position trust) and the Gulf GNSS interference project are separate repos. No coupling exists: Sirb reads GNSS parameters from a versioned file (`docs/GNSS_PARAMS.md`), and neither project currently publishes position error statistics in a form that file can use. They are not modified or imported.
 
 ## License
 
