@@ -77,7 +77,7 @@ def main() -> None:
     if mg:
         for r in mg["rows"]:
             c = r["case"]
-            lab = f"bias sigma {c['bias_sigma']} m" if "bias_sigma" in c else "FAA derived file"
+            lab = f"bias sigma {c['bias_sigma']} m" if "bias_sigma" in c else f"`{c['gnss_file']}`"
             L.append(f"* n = {c['n']}, {lab}: required nominal minimum separation "
                      f"{f(r['required_nominal_min_separation_m'])} m ({r['status']}).")
         L.append(f"Target Wilson upper bound {mg['target']}, {mg['trials']} trials per scale, "

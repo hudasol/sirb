@@ -104,7 +104,7 @@ def main() -> None:
     if M:
         rows = [r for r in M["rows"] if "gnss_file" in r["case"]]
         for r in rows:
-            L += ["", "## Separation needed with the sourced file (margin synthesis)", "",
+            L += ["", f"## Separation needed with `{r['case']['gnss_file']}` (margin synthesis)", "",
                   f"Case {r['case']}: status `{r['status']}`, required nominal minimum separation "
                   f"{f(r['required_nominal_min_separation_m'])} m (formation spacing "
                   f"{f(r['required_spacing_m'], 2)} m), target Wilson upper bound {M['target']} over "
