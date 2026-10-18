@@ -60,6 +60,8 @@ pytest_add_cli_args_test_selection = [
     "tests/test_mutation_killers_verify2.py",
     "tests/test_mutation_killers_assign.py",
     "tests/test_verify_candidates.py",
+    "tests/test_mutation_killers_phase6.py",
+    "tests/test_gnss_error.py",
     "--deselect=tests/test_verify.py::test_exact_min_vs_bruteforce",
     "--deselect=tests/test_verify.py::test_prefilter_equals_bruteforce",
     "--deselect=tests/test_verify.py::test_1000_drone_fleet",
