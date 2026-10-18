@@ -16,6 +16,8 @@ Built, tested and reviewed: show spec and shapes, assignment, three planners, th
 
 Live viewer: https://hudasol.github.io/sirb/ (served by GitHub Pages from `viewer/`; it works only after Pages source is set to "GitHub Actions" in the repository settings and the workflow in `.github/workflows/pages.yml` has run). To run it locally: `python -m http.server -d viewer 8000`.
 
+**Sensitivity statement.** Every stressed verdict hinges on a single unsourced parameter: the GNSS bias that is not shared between nearby drones (relative error). Public sources give the absolute error of one receiver, and one literature value for the error left after common mode cancellation on other hardware; none measures it between show drones, so it stays an assumption (`docs/GNSS_SOURCED.md`).
+
 Not done: field or flight validation of any kind, regulatory work, and the exploratory ground robot study is a proposal seed only (`docs/GROUND_ROBOTS.md`). A funded indoor validation is proposed, not started (`docs/PROPOSAL_SEED.md`). See `docs/NEXT_STEPS.md`.
 
 ## Headline numbers (generated from `results/*.json`)
