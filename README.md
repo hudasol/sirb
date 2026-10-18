@@ -26,23 +26,23 @@ Not done: field or flight validation of any kind, regulatory work, and the explo
 - Demo show `sirb_text_100` (100 drones, 156 s): exact verified minimum separation 2.189 m against d_min 2.0 m, verdict PASS (model: drones as points on the planned polynomials).
 - Demo show `torus_300` (300 drones, 107 s): exact verified minimum separation 2.196 m against d_min 2.0 m, verdict PASS (model: drones as points on the planned polynomials).
 - Demo show `wall_500` (500 drones, 132 s): exact verified minimum separation 2.448 m against d_min 2.0 m, verdict PASS (model: drones as points on the planned polynomials).
-- Simulated wind (ASSUMED models), 100 drone show: highest tested wind with a Wilson upper bound at most 5%: 9 m/s at 20 ft; first tested wind with an observed violation: 12 m/s.
-- Simulated GNSS bias (25% of drones degraded, ASSUMED): P(violation) exceeds 5% already at bias sigma 0.1 m (36.0%); the nominal margin over d_min is only 0.189 m.
+- Simulated wind (ASSUMED models), 100 drone show: highest tested wind with a Wilson upper bound at most 5%: 12 m/s at 20 ft; first tested wind with an observed violation: 15 m/s.
+- Simulated GNSS bias (25% of drones degraded, ASSUMED): P(violation) exceeds 5% already at bias sigma 0.1 m (35.5%); the nominal margin over d_min is only 0.189 m.
 - Nominal separation needed in the stated scenario for a 5% Wilson upper bound: 3.54 m (formation spacing 5.0 m, 300 trials).
 - Contingency runs: largest bystander to bystander violation rate over all rows: 0.0%; violations involved the drone that had the event.
-- Stress study scaling: largest verified size n = 1000: plan 3.3 s + exact verification 14.6 s. Sizes [2000] did not verify because the shapes exceed the altitude band (a limit of the test shapes, not a timing result).
+- Stress study scaling: largest verified size n = 1000: plan 7.9 s + exact verification 98.1 s. Sizes [2000] did not verify because the shapes exceed the altitude band (a limit of the test shapes, not a timing result).
 <!-- HEADLINES:END -->
 
 ## Verification evidence (generated from `results/*.json`)
 
 <!-- ASSURANCE:START -->
-- Second, independent verifier (interval branch and bound, `sirb/verify2.py`): 10856 fleets (8000 random, 2750 adversarial in 11 families), 13100 verdict checks: lower bound above the exact value in 0 cases (max l minus e = 0.0e+00 m), FAIL verdicts with the exact value at or above the threshold: 6 (max margin 0.0e+00 m); 30 disagreement records, all in the high multiplicity root family, largest exact minus lower bound 3.9e-08 m (`docs/VERIFIER.md`). Brute force sampling at dt = 1e-4 s against the exact value: 3034 comparisons, largest sampled minus exact 1.1e-08 m (grid plus breakpoints), largest negative gap 3.6e-15 m.
+- Second, independent verifier (interval branch and bound, `sirb/verify2.py`): 10856 fleets (8000 random, 2750 adversarial in 11 families), 13100 verdict checks: lower bound above the exact value in 0 cases (max l minus e = 0.0e+00 m), FAIL verdicts with the exact value at or above the threshold: 6 (max margin 0.0e+00 m); 30 disagreement records, all in the high multiplicity root family, largest exact minus lower bound 7.3e-08 m (`docs/VERIFIER.md`). Brute force sampling at dt = 1e-4 s against the exact value: 3034 comparisons, largest sampled minus exact 1.1e-08 m (grid plus breakpoints), largest negative gap 3.6e-15 m.
 - Mutation testing (mutmut, killed over total, before to after added tests): `assign.py` 70.9% to 90.9%; `planner/baseline.py` 60.8% to 98.9%; `planner/common.py` 59.7% to 93.5%; `planner/prioritized.py` 54.4% to 82.8%; `planner/waves.py` 68.2% to 88.9%; `verify.py` 74.6% to 93.1%; `verify2.py` 67.6% to 67.6% (`docs/MUTATION.md`).
 - Viewer accessibility (axe-core 4.14.0, 8 page runs): 18 violated rules before, 0 after; this is an automated check and does not replace manual testing.
 - Viewer behaviour checks (keyboard, reduced motion, light theme, file protocol, RTL, overflow): 40 passed, 0 failed.
-- Scale (computational study): n = 4000: plan 226 s, exact verification 206 s, peak memory 666 MB (`docs/PERFORMANCE.md`).
+- Scale (computational study): n = 4000: plan 233 s, exact verification 164 s, peak memory 665 MB (`docs/PERFORMANCE.md`).
 - Viewer, 1000 drones, two panes, software WebGL: median frame interval 317 ms (3.2 fps), JavaScript update p95 1.2 ms; smoothness on a GPU is not measured.
-- Largest one at a time swings of the median minimum separation (stressed baseline): gnss_bias_sigma (1.57 m), gnss_deg_fraction (0.45 m), gnss_bias_tau (0.10 m) (`docs/SENSITIVITY.md`).
+- Largest one at a time swings of the median minimum separation (stressed baseline): gnss_bias_sigma (1.57 m), gnss_deg_fraction (0.43 m), gnss_bias_tau (0.09 m) (`docs/SENSITIVITY.md`).
 <!-- ASSURANCE:END -->
 
 What these checks are and are not: they show that two implementations with different methods agree on large random and adversarial sets, that the test suite detects most small code changes, and that the viewer passes an automated accessibility scan. They do not prove the verifier correct, and the first two are statements about the plan as written, not about aircraft.
