@@ -1,0 +1,1579 @@
+{
+ "compared": 685,
+ "changed": 302,
+ "only_committed": [
+  ".disagreements[10].meta.offset[0]",
+  ".disagreements[10].meta.offset[1]",
+  ".disagreements[10].meta.offset[2]",
+  ".disagreements[11].d_true",
+  ".disagreements[11].meta.offset[0]",
+  ".disagreements[11].meta.offset[1]",
+  ".disagreements[11].meta.offset[2]",
+  ".disagreements[12].gap_bound",
+  ".disagreements[13].meta.bystander",
+  ".disagreements[14].d_true",
+  ".disagreements[14].meta.bystander",
+  ".disagreements[15].gap_bound",
+  ".disagreements[17].d_true",
+  ".disagreements[18].gap_bound",
+  ".disagreements[20].d_true",
+  ".disagreements[21].meta.offset[0]",
+  ".disagreements[21].meta.offset[1]",
+  ".disagreements[21].meta.offset[2]",
+  ".disagreements[22].gap_bound",
+  ".disagreements[24].d_true",
+  ".disagreements[27].gap_bound",
+  ".disagreements[29].d_true",
+  ".disagreements[6].gap_bound",
+  ".disagreements[8].d_true",
+  ".disagreements[9].gap_bound"
+ ],
+ "only_rerun": [
+  ".disagreements[10].gap_bound",
+  ".disagreements[12].d_true",
+  ".disagreements[13].gap_bound",
+  ".disagreements[15].d_true",
+  ".disagreements[16].gap_bound",
+  ".disagreements[18].d_true",
+  ".disagreements[19].meta.offset[0]",
+  ".disagreements[19].meta.offset[1]",
+  ".disagreements[19].meta.offset[2]",
+  ".disagreements[20].gap_bound",
+  ".disagreements[22].d_true",
+  ".disagreements[23].gap_bound",
+  ".disagreements[23].meta.bystander",
+  ".disagreements[24].meta.bystander",
+  ".disagreements[27].d_true",
+  ".disagreements[28].gap_bound",
+  ".disagreements[6].d_true",
+  ".disagreements[7].gap_bound",
+  ".disagreements[7].meta.bystander",
+  ".disagreements[7].meta.offset[0]",
+  ".disagreements[7].meta.offset[1]",
+  ".disagreements[7].meta.offset[2]",
+  ".disagreements[8].meta.bystander",
+  ".disagreements[8].meta.offset[0]",
+  ".disagreements[8].meta.offset[1]",
+  ".disagreements[8].meta.offset[2]",
+  ".disagreements[9].d_true"
+ ],
+ "changes": [
+  {
+   "path": ".disagreements[0].diagnosis.e_minus_reference",
+   "committed": 1.14357398948892e-09,
+   "rerun": 6.482772985094698e-09
+  },
+  {
+   "path": ".disagreements[0].diagnosis.l_minus_reference",
+   "committed": -9.999999997851405e-10,
+   "rerun": 0.0
+  },
+  {
+   "path": ".disagreements[0].diagnosis.reference_argmin_t",
+   "committed": 1.1614627273446911,
+   "rerun": 1.275958644999408
+  },
+  {
+   "path": ".disagreements[0].diagnosis.reference_min_longdouble",
+   "committed": 1.000000000139778e-06,
+   "rerun": 0.0
+  },
+  {
+   "path": ".disagreements[0].diagnosis.u_minus_reference",
+   "committed": 2.149346103657787e-19,
+   "rerun": 3.169020601490047e-12
+  },
+  {
+   "path": ".disagreements[0].diff",
+   "committed": 2.1435739892740606e-09,
+   "rerun": 6.482772985094698e-09
+  },
+  {
+   "path": ".disagreements[0].e",
+   "committed": 1.0011435741292669e-06,
+   "rerun": 6.482772985094698e-09
+  },
+  {
+   "path": ".disagreements[0].gap_bound",
+   "committed": 2.0773208584563785e-09,
+   "rerun": 2.032582030715178e-09
+  },
+  {
+   "path": ".disagreements[0].index",
+   "committed": 78,
+   "rerun": 88
+  },
+  {
+   "path": ".disagreements[0].l",
+   "committed": 9.990000001399928e-07,
+   "rerun": 0.0
+  },
+  {
+   "path": ".disagreements[0].meta.delta",
+   "committed": -1e-06,
+   "rerun": 1e-06
+  },
+  {
+   "path": ".disagreements[0].seed",
+   "committed": 78,
+   "rerun": 88
+  },
+  {
+   "path": ".disagreements[0].t_e",
+   "committed": 1.1920677886486226,
+   "rerun": 1.2525061429815783
+  },
+  {
+   "path": ".disagreements[0].u",
+   "committed": 1.000000000139993e-06,
+   "rerun": 3.169020601490047e-12
+  },
+  {
+   "path": ".disagreements[10].diagnosis.e_minus_reference",
+   "committed": 2.1263717897568313e-08,
+   "rerun": 3.9208085667041814e-08
+  },
+  {
+   "path": ".disagreements[10].diagnosis.reference_argmin_t",
+   "committed": 1.3553406582807226,
+   "rerun": 1.4701502485112878
+  },
+  {
+   "path": ".disagreements[10].diagnosis.u_minus_reference",
+   "committed": 2.1241675085548195e-11,
+   "rerun": 2.842170943040401e-14
+  },
+  {
+   "path": ".disagreements[10].diff",
+   "committed": 2.1242476222482765e-08,
+   "rerun": 3.9208085667041814e-08
+  },
+  {
+   "path": ".disagreements[10].e",
+   "committed": 2.1263717897568313e-08,
+   "rerun": 3.9208085667041814e-08
+  },
+  {
+   "path": ".disagreements[10].index",
+   "committed": 112,
+   "rerun": 116
+  },
+  {
+   "path": ".disagreements[10].kind",
+   "committed": "C3_witness_below_exact",
+   "rerun": "C2_gap_too_wide"
+  },
+  {
+   "path": ".disagreements[10].seed",
+   "committed": 112,
+   "rerun": 116
+  },
+  {
+   "path": ".disagreements[10].t_e",
+   "committed": 1.3317693819194591,
+   "rerun": 1.4394838911924532
+  },
+  {
+   "path": ".disagreements[10].u",
+   "committed": 2.1241675085548195e-11,
+   "rerun": 2.842170943040401e-14
+  },
+  {
+   "path": ".disagreements[11].diagnosis.e_minus_reference",
+   "committed": 2.1263717897568313e-08,
+   "rerun": 3.9208085667041814e-08
+  },
+  {
+   "path": ".disagreements[11].diagnosis.reference_argmin_t",
+   "committed": 1.3553406582807226,
+   "rerun": 1.4701502485112878
+  },
+  {
+   "path": ".disagreements[11].diagnosis.u_minus_reference",
+   "committed": 2.1241675085548195e-11,
+   "rerun": 2.842170943040401e-14
+  },
+  {
+   "path": ".disagreements[11].diff",
+   "committed": 2.1263717897568313e-08,
+   "rerun": 3.9208057245332384e-08
+  },
+  {
+   "path": ".disagreements[11].e",
+   "committed": 2.1263717897568313e-08,
+   "rerun": 3.9208085667041814e-08
+  },
+  {
+   "path": ".disagreements[11].index",
+   "committed": 112,
+   "rerun": 116
+  },
+  {
+   "path": ".disagreements[11].kind",
+   "committed": "exact_vs_construction",
+   "rerun": "C3_witness_below_exact"
+  },
+  {
+   "path": ".disagreements[11].seed",
+   "committed": 112,
+   "rerun": 116
+  },
+  {
+   "path": ".disagreements[11].t_e",
+   "committed": 1.3317693819194591,
+   "rerun": 1.4394838911924532
+  },
+  {
+   "path": ".disagreements[11].u",
+   "committed": 2.1241675085548195e-11,
+   "rerun": 2.842170943040401e-14
+  },
+  {
+   "path": ".disagreements[12].kind",
+   "committed": "C2_gap_too_wide",
+   "rerun": "exact_vs_construction"
+  },
+  {
+   "path": ".disagreements[13].diagnosis.e_minus_reference",
+   "committed": 3.9208085667041814e-08,
+   "rerun": 1.662076254405065e-08
+  },
+  {
+   "path": ".disagreements[13].diagnosis.reference_argmin_t",
+   "committed": 1.4701502485112878,
+   "rerun": 1.3237513627228656
+  },
+  {
+   "path": ".disagreements[13].diagnosis.u_minus_reference",
+   "committed": 2.842170943040401e-14,
+   "rerun": 1.509903313490213e-14
+  },
+  {
+   "path": ".disagreements[13].diff",
+   "committed": 3.9208057245332384e-08,
+   "rerun": 1.662076254405065e-08
+  },
+  {
+   "path": ".disagreements[13].e",
+   "committed": 3.9208085667041814e-08,
+   "rerun": 1.662076254405065e-08
+  },
+  {
+   "path": ".disagreements[13].index",
+   "committed": 116,
+   "rerun": 132
+  },
+  {
+   "path": ".disagreements[13].kind",
+   "committed": "C3_witness_below_exact",
+   "rerun": "C2_gap_too_wide"
+  },
+  {
+   "path": ".disagreements[13].meta.delta",
+   "committed": -1e-06,
+   "rerun": -0.0001
+  },
+  {
+   "path": ".disagreements[13].seed",
+   "committed": 116,
+   "rerun": 132
+  },
+  {
+   "path": ".disagreements[13].t_e",
+   "committed": 1.4394838911924532,
+   "rerun": 1.2954942198407713
+  },
+  {
+   "path": ".disagreements[13].u",
+   "committed": 2.842170943040401e-14,
+   "rerun": 1.509903313490213e-14
+  },
+  {
+   "path": ".disagreements[14].diagnosis.e_minus_reference",
+   "committed": 3.9208085667041814e-08,
+   "rerun": 1.662076254405065e-08
+  },
+  {
+   "path": ".disagreements[14].diagnosis.reference_argmin_t",
+   "committed": 1.4701502485112878,
+   "rerun": 1.3237513627228656
+  },
+  {
+   "path": ".disagreements[14].diagnosis.u_minus_reference",
+   "committed": 2.842170943040401e-14,
+   "rerun": 1.509903313490213e-14
+  },
+  {
+   "path": ".disagreements[14].diff",
+   "committed": 3.9208085667041814e-08,
+   "rerun": 1.6620747445017514e-08
+  },
+  {
+   "path": ".disagreements[14].e",
+   "committed": 3.9208085667041814e-08,
+   "rerun": 1.662076254405065e-08
+  },
+  {
+   "path": ".disagreements[14].index",
+   "committed": 116,
+   "rerun": 132
+  },
+  {
+   "path": ".disagreements[14].kind",
+   "committed": "exact_vs_construction",
+   "rerun": "C3_witness_below_exact"
+  },
+  {
+   "path": ".disagreements[14].meta.delta",
+   "committed": -1e-06,
+   "rerun": -0.0001
+  },
+  {
+   "path": ".disagreements[14].seed",
+   "committed": 116,
+   "rerun": 132
+  },
+  {
+   "path": ".disagreements[14].t_e",
+   "committed": 1.4394838911924532,
+   "rerun": 1.2954942198407713
+  },
+  {
+   "path": ".disagreements[14].u",
+   "committed": 2.842170943040401e-14,
+   "rerun": 1.509903313490213e-14
+  },
+  {
+   "path": ".disagreements[15].kind",
+   "committed": "C2_gap_too_wide",
+   "rerun": "exact_vs_construction"
+  },
+  {
+   "path": ".disagreements[16].diagnosis.e_minus_reference",
+   "committed": 1.662076254405065e-08,
+   "rerun": 1.3184582314806903e-08
+  },
+  {
+   "path": ".disagreements[16].diagnosis.reference_argmin_t",
+   "committed": 1.3237513627228656,
+   "rerun": 1.347992616268583
+  },
+  {
+   "path": ".disagreements[16].diagnosis.u_minus_reference",
+   "committed": 1.509903313490213e-14,
+   "rerun": 7.248157629646812e-11
+  },
+  {
+   "path": ".disagreements[16].diff",
+   "committed": 1.6620747445017514e-08,
+   "rerun": 1.3184582314806903e-08
+  },
+  {
+   "path": ".disagreements[16].e",
+   "committed": 1.662076254405065e-08,
+   "rerun": 1.3184582314806903e-08
+  },
+  {
+   "path": ".disagreements[16].index",
+   "committed": 132,
+   "rerun": 150
+  },
+  {
+   "path": ".disagreements[16].kind",
+   "committed": "C3_witness_below_exact",
+   "rerun": "C2_gap_too_wide"
+  },
+  {
+   "path": ".disagreements[16].meta.delta",
+   "committed": -0.0001,
+   "rerun": 0.0
+  },
+  {
+   "path": ".disagreements[16].seed",
+   "committed": 132,
+   "rerun": 150
+  },
+  {
+   "path": ".disagreements[16].t_e",
+   "committed": 1.2954942198407713,
+   "rerun": 1.3239551485380043
+  },
+  {
+   "path": ".disagreements[16].u",
+   "committed": 1.509903313490213e-14,
+   "rerun": 7.248157629646812e-11
+  },
+  {
+   "path": ".disagreements[17].diagnosis.e_minus_reference",
+   "committed": 1.662076254405065e-08,
+   "rerun": 1.3184582314806903e-08
+  },
+  {
+   "path": ".disagreements[17].diagnosis.reference_argmin_t",
+   "committed": 1.3237513627228656,
+   "rerun": 1.347992616268583
+  },
+  {
+   "path": ".disagreements[17].diagnosis.u_minus_reference",
+   "committed": 1.509903313490213e-14,
+   "rerun": 7.248157629646812e-11
+  },
+  {
+   "path": ".disagreements[17].diff",
+   "committed": 1.662076254405065e-08,
+   "rerun": 1.3112100738510435e-08
+  },
+  {
+   "path": ".disagreements[17].e",
+   "committed": 1.662076254405065e-08,
+   "rerun": 1.3184582314806903e-08
+  },
+  {
+   "path": ".disagreements[17].index",
+   "committed": 132,
+   "rerun": 150
+  },
+  {
+   "path": ".disagreements[17].kind",
+   "committed": "exact_vs_construction",
+   "rerun": "C3_witness_below_exact"
+  },
+  {
+   "path": ".disagreements[17].meta.delta",
+   "committed": -0.0001,
+   "rerun": 0.0
+  },
+  {
+   "path": ".disagreements[17].seed",
+   "committed": 132,
+   "rerun": 150
+  },
+  {
+   "path": ".disagreements[17].t_e",
+   "committed": 1.2954942198407713,
+   "rerun": 1.3239551485380043
+  },
+  {
+   "path": ".disagreements[17].u",
+   "committed": 1.509903313490213e-14,
+   "rerun": 7.248157629646812e-11
+  },
+  {
+   "path": ".disagreements[18].kind",
+   "committed": "C2_gap_too_wide",
+   "rerun": "exact_vs_construction"
+  },
+  {
+   "path": ".disagreements[19].diagnosis.e_minus_reference",
+   "committed": 1.3184582314806903e-08,
+   "rerun": 1.179623509983685e-09
+  },
+  {
+   "path": ".disagreements[19].diagnosis.reference_argmin_t",
+   "committed": 1.347992616268583,
+   "rerun": 1.209431994907326
+  },
+  {
+   "path": ".disagreements[19].diagnosis.u_minus_reference",
+   "committed": 7.248157629646812e-11,
+   "rerun": 1.2434497875801753e-14
+  },
+  {
+   "path": ".disagreements[19].diff",
+   "committed": 1.3112100738510435e-08,
+   "rerun": 1.1796110754858091e-09
+  },
+  {
+   "path": ".disagreements[19].e",
+   "committed": 1.3184582314806903e-08,
+   "rerun": 1.179623509983685e-09
+  },
+  {
+   "path": ".disagreements[19].index",
+   "committed": 150,
+   "rerun": 172
+  },
+  {
+   "path": ".disagreements[19].meta.delta",
+   "committed": 0.0,
+   "rerun": 0.0001
+  },
+  {
+   "path": ".disagreements[19].seed",
+   "committed": 150,
+   "rerun": 172
+  },
+  {
+   "path": ".disagreements[19].t_e",
+   "committed": 1.3239551485380043,
+   "rerun": 1.1979027119759913
+  },
+  {
+   "path": ".disagreements[19].u",
+   "committed": 7.248157629646812e-11,
+   "rerun": 1.2434497875801753e-14
+  },
+  {
+   "path": ".disagreements[1].diagnosis.e_minus_reference",
+   "committed": 1.14357398948892e-09,
+   "rerun": 6.482772985094698e-09
+  },
+  {
+   "path": ".disagreements[1].diagnosis.l_minus_reference",
+   "committed": -9.999999997851405e-10,
+   "rerun": 0.0
+  },
+  {
+   "path": ".disagreements[1].diagnosis.reference_argmin_t",
+   "committed": 1.1614627273446911,
+   "rerun": 1.275958644999408
+  },
+  {
+   "path": ".disagreements[1].diagnosis.reference_min_longdouble",
+   "committed": 1.000000000139778e-06,
+   "rerun": 0.0
+  },
+  {
+   "path": ".disagreements[1].diagnosis.u_minus_reference",
+   "committed": 2.149346103657787e-19,
+   "rerun": 3.169020601490047e-12
+  },
+  {
+   "path": ".disagreements[1].diff",
+   "committed": 1.1435739892739854e-09,
+   "rerun": 6.479603964493208e-09
+  },
+  {
+   "path": ".disagreements[1].e",
+   "committed": 1.0011435741292669e-06,
+   "rerun": 6.482772985094698e-09
+  },
+  {
+   "path": ".disagreements[1].index",
+   "committed": 78,
+   "rerun": 88
+  },
+  {
+   "path": ".disagreements[1].l",
+   "committed": 9.990000001399928e-07,
+   "rerun": 0.0
+  },
+  {
+   "path": ".disagreements[1].meta.delta",
+   "committed": -1e-06,
+   "rerun": 1e-06
+  },
+  {
+   "path": ".disagreements[1].seed",
+   "committed": 78,
+   "rerun": 88
+  },
+  {
+   "path": ".disagreements[1].t_e",
+   "committed": 1.1920677886486226,
+   "rerun": 1.2525061429815783
+  },
+  {
+   "path": ".disagreements[1].u",
+   "committed": 1.000000000139993e-06,
+   "rerun": 3.169020601490047e-12
+  },
+  {
+   "path": ".disagreements[20].diagnosis.e_minus_reference",
+   "committed": 1.3184582314806903e-08,
+   "rerun": 1.216847600460369e-08
+  },
+  {
+   "path": ".disagreements[20].diagnosis.reference_argmin_t",
+   "committed": 1.347992616268583,
+   "rerun": 1.3875859188960682
+  },
+  {
+   "path": ".disagreements[20].diagnosis.u_minus_reference",
+   "committed": 7.248157629646812e-11,
+   "rerun": 2.872191373626265e-11
+  },
+  {
+   "path": ".disagreements[20].diff",
+   "committed": 1.3184582314806903e-08,
+   "rerun": 1.216847600460369e-08
+  },
+  {
+   "path": ".disagreements[20].e",
+   "committed": 1.3184582314806903e-08,
+   "rerun": 1.216847600460369e-08
+  },
+  {
+   "path": ".disagreements[20].index",
+   "committed": 150,
+   "rerun": 188
+  },
+  {
+   "path": ".disagreements[20].kind",
+   "committed": "exact_vs_construction",
+   "rerun": "C2_gap_too_wide"
+  },
+  {
+   "path": ".disagreements[20].meta.delta",
+   "committed": 0.0,
+   "rerun": 0.0001
+  },
+  {
+   "path": ".disagreements[20].seed",
+   "committed": 150,
+   "rerun": 188
+  },
+  {
+   "path": ".disagreements[20].t_e",
+   "committed": 1.3239551485380043,
+   "rerun": 1.4091085700253163
+  },
+  {
+   "path": ".disagreements[20].u",
+   "committed": 7.248157629646812e-11,
+   "rerun": 2.872191373626265e-11
+  },
+  {
+   "path": ".disagreements[21].diagnosis.e_minus_reference",
+   "committed": 1.179623509983685e-09,
+   "rerun": 1.216847600460369e-08
+  },
+  {
+   "path": ".disagreements[21].diagnosis.reference_argmin_t",
+   "committed": 1.209431994907326,
+   "rerun": 1.3875859188960682
+  },
+  {
+   "path": ".disagreements[21].diagnosis.u_minus_reference",
+   "committed": 1.2434497875801753e-14,
+   "rerun": 2.872191373626265e-11
+  },
+  {
+   "path": ".disagreements[21].diff",
+   "committed": 1.1796110754858091e-09,
+   "rerun": 1.2139754090867427e-08
+  },
+  {
+   "path": ".disagreements[21].e",
+   "committed": 1.179623509983685e-09,
+   "rerun": 1.216847600460369e-08
+  },
+  {
+   "path": ".disagreements[21].index",
+   "committed": 172,
+   "rerun": 188
+  },
+  {
+   "path": ".disagreements[21].seed",
+   "committed": 172,
+   "rerun": 188
+  },
+  {
+   "path": ".disagreements[21].t_e",
+   "committed": 1.1979027119759913,
+   "rerun": 1.4091085700253163
+  },
+  {
+   "path": ".disagreements[21].u",
+   "committed": 1.2434497875801753e-14,
+   "rerun": 2.872191373626265e-11
+  },
+  {
+   "path": ".disagreements[22].kind",
+   "committed": "C2_gap_too_wide",
+   "rerun": "exact_vs_construction"
+  },
+  {
+   "path": ".disagreements[23].diagnosis.e_minus_reference",
+   "committed": 1.216847600460369e-08,
+   "rerun": 3.007856015289292e-09
+  },
+  {
+   "path": ".disagreements[23].diagnosis.l_minus_reference",
+   "committed": 0.0,
+   "rerun": -9.999999999882167e-10
+  },
+  {
+   "path": ".disagreements[23].diagnosis.reference_argmin_t",
+   "committed": 1.3875859188960682,
+   "rerun": 1.4657094093949177
+  },
+  {
+   "path": ".disagreements[23].diagnosis.reference_min_longdouble",
+   "committed": 0.0,
+   "rerun": 1.000000000139778e-06
+  },
+  {
+   "path": ".disagreements[23].diagnosis.u_minus_reference",
+   "committed": 2.872191373626265e-11,
+   "rerun": 1.1858461261560205e-20
+  },
+  {
+   "path": ".disagreements[23].diff",
+   "committed": 1.2139754090867427e-08,
+   "rerun": 4.007856015277509e-09
+  },
+  {
+   "path": ".disagreements[23].e",
+   "committed": 1.216847600460369e-08,
+   "rerun": 1.0030078561550673e-06
+  },
+  {
+   "path": ".disagreements[23].index",
+   "committed": 188,
+   "rerun": 238
+  },
+  {
+   "path": ".disagreements[23].kind",
+   "committed": "C3_witness_below_exact",
+   "rerun": "C2_gap_too_wide"
+  },
+  {
+   "path": ".disagreements[23].l",
+   "committed": 0.0,
+   "rerun": 9.990000001397898e-07
+  },
+  {
+   "path": ".disagreements[23].meta.delta",
+   "committed": 0.0001,
+   "rerun": -0.0001
+  },
+  {
+   "path": ".disagreements[23].seed",
+   "committed": 188,
+   "rerun": 238
+  },
+  {
+   "path": ".disagreements[23].t_e",
+   "committed": 1.4091085700253163,
+   "rerun": 1.5019324415065072
+  },
+  {
+   "path": ".disagreements[23].u",
+   "committed": 2.872191373626265e-11,
+   "rerun": 1.0000000001397898e-06
+  },
+  {
+   "path": ".disagreements[24].diagnosis.e_minus_reference",
+   "committed": 1.216847600460369e-08,
+   "rerun": 3.007856015289292e-09
+  },
+  {
+   "path": ".disagreements[24].diagnosis.l_minus_reference",
+   "committed": 0.0,
+   "rerun": -9.999999999882167e-10
+  },
+  {
+   "path": ".disagreements[24].diagnosis.reference_argmin_t",
+   "committed": 1.3875859188960682,
+   "rerun": 1.4657094093949177
+  },
+  {
+   "path": ".disagreements[24].diagnosis.reference_min_longdouble",
+   "committed": 0.0,
+   "rerun": 1.000000000139778e-06
+  },
+  {
+   "path": ".disagreements[24].diagnosis.u_minus_reference",
+   "committed": 2.872191373626265e-11,
+   "rerun": 1.1858461261560205e-20
+  },
+  {
+   "path": ".disagreements[24].diff",
+   "committed": 1.216847600460369e-08,
+   "rerun": 3.0078560152774336e-09
+  },
+  {
+   "path": ".disagreements[24].e",
+   "committed": 1.216847600460369e-08,
+   "rerun": 1.0030078561550673e-06
+  },
+  {
+   "path": ".disagreements[24].index",
+   "committed": 188,
+   "rerun": 238
+  },
+  {
+   "path": ".disagreements[24].kind",
+   "committed": "exact_vs_construction",
+   "rerun": "C3_witness_below_exact"
+  },
+  {
+   "path": ".disagreements[24].l",
+   "committed": 0.0,
+   "rerun": 9.990000001397898e-07
+  },
+  {
+   "path": ".disagreements[24].meta.delta",
+   "committed": 0.0001,
+   "rerun": -0.0001
+  },
+  {
+   "path": ".disagreements[24].seed",
+   "committed": 188,
+   "rerun": 238
+  },
+  {
+   "path": ".disagreements[24].t_e",
+   "committed": 1.4091085700253163,
+   "rerun": 1.5019324415065072
+  },
+  {
+   "path": ".disagreements[24].u",
+   "committed": 2.872191373626265e-11,
+   "rerun": 1.0000000001397898e-06
+  },
+  {
+   "path": ".disagreements[25].diagnosis.e_minus_reference",
+   "committed": 3.007856015289292e-09,
+   "rerun": 1.9356135361192628e-08
+  },
+  {
+   "path": ".disagreements[25].diagnosis.l_minus_reference",
+   "committed": -9.999999999882167e-10,
+   "rerun": 0.0
+  },
+  {
+   "path": ".disagreements[25].diagnosis.reference_argmin_t",
+   "committed": 1.4657094093949177,
+   "rerun": 1.0957380058964743
+  },
+  {
+   "path": ".disagreements[25].diagnosis.reference_min_longdouble",
+   "committed": 1.000000000139778e-06,
+   "rerun": 0.0
+  },
+  {
+   "path": ".disagreements[25].diagnosis.u_minus_reference",
+   "committed": 1.1858461261560205e-20,
+   "rerun": 3.8191672047105385e-14
+  },
+  {
+   "path": ".disagreements[25].diff",
+   "committed": 4.007856015277509e-09,
+   "rerun": 1.9356135361192628e-08
+  },
+  {
+   "path": ".disagreements[25].e",
+   "committed": 1.0030078561550673e-06,
+   "rerun": 1.9356135361192628e-08
+  },
+  {
+   "path": ".disagreements[25].gap_bound",
+   "committed": 2.1304330751916886e-09,
+   "rerun": 2.0984207091773854e-09
+  },
+  {
+   "path": ".disagreements[25].index",
+   "committed": 238,
+   "rerun": 242
+  },
+  {
+   "path": ".disagreements[25].l",
+   "committed": 9.990000001397898e-07,
+   "rerun": 0.0
+  },
+  {
+   "path": ".disagreements[25].meta.delta",
+   "committed": -0.0001,
+   "rerun": -1e-06
+  },
+  {
+   "path": ".disagreements[25].seed",
+   "committed": 238,
+   "rerun": 242
+  },
+  {
+   "path": ".disagreements[25].t_e",
+   "committed": 1.5019324415065072,
+   "rerun": 1.11787668022028
+  },
+  {
+   "path": ".disagreements[25].u",
+   "committed": 1.0000000001397898e-06,
+   "rerun": 3.8191672047105385e-14
+  },
+  {
+   "path": ".disagreements[26].diagnosis.e_minus_reference",
+   "committed": 3.007856015289292e-09,
+   "rerun": 1.9356135361192628e-08
+  },
+  {
+   "path": ".disagreements[26].diagnosis.l_minus_reference",
+   "committed": -9.999999999882167e-10,
+   "rerun": 0.0
+  },
+  {
+   "path": ".disagreements[26].diagnosis.reference_argmin_t",
+   "committed": 1.4657094093949177,
+   "rerun": 1.0957380058964743
+  },
+  {
+   "path": ".disagreements[26].diagnosis.reference_min_longdouble",
+   "committed": 1.000000000139778e-06,
+   "rerun": 0.0
+  },
+  {
+   "path": ".disagreements[26].diagnosis.u_minus_reference",
+   "committed": 1.1858461261560205e-20,
+   "rerun": 3.8191672047105385e-14
+  },
+  {
+   "path": ".disagreements[26].diff",
+   "committed": 3.0078560152774336e-09,
+   "rerun": 1.935609716952058e-08
+  },
+  {
+   "path": ".disagreements[26].e",
+   "committed": 1.0030078561550673e-06,
+   "rerun": 1.9356135361192628e-08
+  },
+  {
+   "path": ".disagreements[26].index",
+   "committed": 238,
+   "rerun": 242
+  },
+  {
+   "path": ".disagreements[26].l",
+   "committed": 9.990000001397898e-07,
+   "rerun": 0.0
+  },
+  {
+   "path": ".disagreements[26].meta.delta",
+   "committed": -0.0001,
+   "rerun": -1e-06
+  },
+  {
+   "path": ".disagreements[26].seed",
+   "committed": 238,
+   "rerun": 242
+  },
+  {
+   "path": ".disagreements[26].t_e",
+   "committed": 1.5019324415065072,
+   "rerun": 1.11787668022028
+  },
+  {
+   "path": ".disagreements[26].u",
+   "committed": 1.0000000001397898e-06,
+   "rerun": 3.8191672047105385e-14
+  },
+  {
+   "path": ".disagreements[27].diagnosis.e_minus_reference",
+   "committed": 2.9742450280423327e-08,
+   "rerun": 1.9356135361192628e-08
+  },
+  {
+   "path": ".disagreements[27].diagnosis.reference_argmin_t",
+   "committed": 1.0957141457492774,
+   "rerun": 1.0957380058964743
+  },
+  {
+   "path": ".disagreements[27].diagnosis.u_minus_reference",
+   "committed": 3.375077994860476e-14,
+   "rerun": 3.8191672047105385e-14
+  },
+  {
+   "path": ".disagreements[27].diff",
+   "committed": 2.9742450280423327e-08,
+   "rerun": 1.9356135361192628e-08
+  },
+  {
+   "path": ".disagreements[27].e",
+   "committed": 2.9742450280423327e-08,
+   "rerun": 1.9356135361192628e-08
+  },
+  {
+   "path": ".disagreements[27].kind",
+   "committed": "C2_gap_too_wide",
+   "rerun": "exact_vs_construction"
+  },
+  {
+   "path": ".disagreements[27].t_e",
+   "committed": 1.067807007058427,
+   "rerun": 1.11787668022028
+  },
+  {
+   "path": ".disagreements[27].u",
+   "committed": 3.375077994860476e-14,
+   "rerun": 3.8191672047105385e-14
+  },
+  {
+   "path": ".disagreements[28].diagnosis.e_minus_reference",
+   "committed": 2.9742450280423327e-08,
+   "rerun": 2.0940458930453088e-09
+  },
+  {
+   "path": ".disagreements[28].diagnosis.l_minus_reference",
+   "committed": 0.0,
+   "rerun": -9.999999998598912e-10
+  },
+  {
+   "path": ".disagreements[28].diagnosis.reference_argmin_t",
+   "committed": 1.0957141457492774,
+   "rerun": 1.375777276378391
+  },
+  {
+   "path": ".disagreements[28].diagnosis.reference_min_longdouble",
+   "committed": 0.0,
+   "rerun": 1.000000000139778e-06
+  },
+  {
+   "path": ".disagreements[28].diagnosis.u_minus_reference",
+   "committed": 3.375077994860476e-14,
+   "rerun": 1.401839527705867e-19
+  },
+  {
+   "path": ".disagreements[28].diff",
+   "committed": 2.974241652964338e-08,
+   "rerun": 3.0940458929052e-09
+  },
+  {
+   "path": ".disagreements[28].e",
+   "committed": 2.9742450280423327e-08,
+   "rerun": 1.0020940460328233e-06
+  },
+  {
+   "path": ".disagreements[28].index",
+   "committed": 242,
+   "rerun": 243
+  },
+  {
+   "path": ".disagreements[28].kind",
+   "committed": "C3_witness_below_exact",
+   "rerun": "C2_gap_too_wide"
+  },
+  {
+   "path": ".disagreements[28].l",
+   "committed": 0.0,
+   "rerun": 9.99000000139918e-07
+  },
+  {
+   "path": ".disagreements[28].meta.delta",
+   "committed": -1e-06,
+   "rerun": 0.0001
+  },
+  {
+   "path": ".disagreements[28].seed",
+   "committed": 242,
+   "rerun": 243
+  },
+  {
+   "path": ".disagreements[28].t_e",
+   "committed": 1.067807007058427,
+   "rerun": 1.3465726316333242
+  },
+  {
+   "path": ".disagreements[28].u",
+   "committed": 3.375077994860476e-14,
+   "rerun": 1.0000000001399182e-06
+  },
+  {
+   "path": ".disagreements[29].diagnosis.e_minus_reference",
+   "committed": 2.9742450280423327e-08,
+   "rerun": 2.0940458930453088e-09
+  },
+  {
+   "path": ".disagreements[29].diagnosis.l_minus_reference",
+   "committed": 0.0,
+   "rerun": -9.999999998598912e-10
+  },
+  {
+   "path": ".disagreements[29].diagnosis.reference_argmin_t",
+   "committed": 1.0957141457492774,
+   "rerun": 1.375777276378391
+  },
+  {
+   "path": ".disagreements[29].diagnosis.reference_min_longdouble",
+   "committed": 0.0,
+   "rerun": 1.000000000139778e-06
+  },
+  {
+   "path": ".disagreements[29].diagnosis.u_minus_reference",
+   "committed": 3.375077994860476e-14,
+   "rerun": 1.401839527705867e-19
+  },
+  {
+   "path": ".disagreements[29].diff",
+   "committed": 2.9742450280423327e-08,
+   "rerun": 2.094045892905125e-09
+  },
+  {
+   "path": ".disagreements[29].e",
+   "committed": 2.9742450280423327e-08,
+   "rerun": 1.0020940460328233e-06
+  },
+  {
+   "path": ".disagreements[29].index",
+   "committed": 242,
+   "rerun": 243
+  },
+  {
+   "path": ".disagreements[29].kind",
+   "committed": "exact_vs_construction",
+   "rerun": "C3_witness_below_exact"
+  },
+  {
+   "path": ".disagreements[29].l",
+   "committed": 0.0,
+   "rerun": 9.99000000139918e-07
+  },
+  {
+   "path": ".disagreements[29].meta.delta",
+   "committed": -1e-06,
+   "rerun": 0.0001
+  },
+  {
+   "path": ".disagreements[29].seed",
+   "committed": 242,
+   "rerun": 243
+  },
+  {
+   "path": ".disagreements[29].t_e",
+   "committed": 1.067807007058427,
+   "rerun": 1.3465726316333242
+  },
+  {
+   "path": ".disagreements[29].u",
+   "committed": 3.375077994860476e-14,
+   "rerun": 1.0000000001399182e-06
+  },
+  {
+   "path": ".disagreements[2].diagnosis.e_minus_reference",
+   "committed": 6.482772985094698e-09,
+   "rerun": 1.6746310172003853e-09
+  },
+  {
+   "path": ".disagreements[2].diagnosis.l_minus_reference",
+   "committed": 0.0,
+   "rerun": -1.0000000000000751e-09
+  },
+  {
+   "path": ".disagreements[2].diagnosis.reference_argmin_t",
+   "committed": 1.275958644999408,
+   "rerun": 1.3801309320590809
+  },
+  {
+   "path": ".disagreements[2].diagnosis.reference_min_longdouble",
+   "committed": 0.0,
+   "rerun": 1.000000000139778e-06
+  },
+  {
+   "path": ".disagreements[2].diagnosis.u_minus_reference",
+   "committed": 3.169020601490047e-12,
+   "rerun": 0.0
+  },
+  {
+   "path": ".disagreements[2].diff",
+   "committed": 6.482772985094698e-09,
+   "rerun": 2.6746310172004605e-09
+  },
+  {
+   "path": ".disagreements[2].e",
+   "committed": 6.482772985094698e-09,
+   "rerun": 1.0016746311569784e-06
+  },
+  {
+   "path": ".disagreements[2].gap_bound",
+   "committed": 2.032582030715178e-09,
+   "rerun": 2.1253121673000026e-09
+  },
+  {
+   "path": ".disagreements[2].index",
+   "committed": 88,
+   "rerun": 91
+  },
+  {
+   "path": ".disagreements[2].l",
+   "committed": 0.0,
+   "rerun": 9.990000001397779e-07
+  },
+  {
+   "path": ".disagreements[2].meta.delta",
+   "committed": 1e-06,
+   "rerun": 0.0
+  },
+  {
+   "path": ".disagreements[2].seed",
+   "committed": 88,
+   "rerun": 91
+  },
+  {
+   "path": ".disagreements[2].t_e",
+   "committed": 1.2525061429815783,
+   "rerun": 1.34503031644246
+  },
+  {
+   "path": ".disagreements[2].u",
+   "committed": 3.169020601490047e-12,
+   "rerun": 1.000000000139778e-06
+  },
+  {
+   "path": ".disagreements[3].diagnosis.e_minus_reference",
+   "committed": 6.482772985094698e-09,
+   "rerun": 1.6746310172003853e-09
+  },
+  {
+   "path": ".disagreements[3].diagnosis.l_minus_reference",
+   "committed": 0.0,
+   "rerun": -1.0000000000000751e-09
+  },
+  {
+   "path": ".disagreements[3].diagnosis.reference_argmin_t",
+   "committed": 1.275958644999408,
+   "rerun": 1.3801309320590809
+  },
+  {
+   "path": ".disagreements[3].diagnosis.reference_min_longdouble",
+   "committed": 0.0,
+   "rerun": 1.000000000139778e-06
+  },
+  {
+   "path": ".disagreements[3].diagnosis.u_minus_reference",
+   "committed": 3.169020601490047e-12,
+   "rerun": 0.0
+  },
+  {
+   "path": ".disagreements[3].diff",
+   "committed": 6.479603964493208e-09,
+   "rerun": 1.6746310172003853e-09
+  },
+  {
+   "path": ".disagreements[3].e",
+   "committed": 6.482772985094698e-09,
+   "rerun": 1.0016746311569784e-06
+  },
+  {
+   "path": ".disagreements[3].index",
+   "committed": 88,
+   "rerun": 91
+  },
+  {
+   "path": ".disagreements[3].l",
+   "committed": 0.0,
+   "rerun": 9.990000001397779e-07
+  },
+  {
+   "path": ".disagreements[3].meta.delta",
+   "committed": 1e-06,
+   "rerun": 0.0
+  },
+  {
+   "path": ".disagreements[3].seed",
+   "committed": 88,
+   "rerun": 91
+  },
+  {
+   "path": ".disagreements[3].t_e",
+   "committed": 1.2525061429815783,
+   "rerun": 1.34503031644246
+  },
+  {
+   "path": ".disagreements[3].u",
+   "committed": 3.169020601490047e-12,
+   "rerun": 1.000000000139778e-06
+  },
+  {
+   "path": ".disagreements[4].diagnosis.e_minus_reference",
+   "committed": 1.6746310172003853e-09,
+   "rerun": 2.8845050792369875e-08
+  },
+  {
+   "path": ".disagreements[4].diagnosis.l_minus_reference",
+   "committed": -1.0000000000000751e-09,
+   "rerun": 0.0
+  },
+  {
+   "path": ".disagreements[4].diagnosis.reference_argmin_t",
+   "committed": 1.3801309320590809,
+   "rerun": 1.3040623202694275
+  },
+  {
+   "path": ".disagreements[4].diagnosis.reference_min_longdouble",
+   "committed": 1.000000000139778e-06,
+   "rerun": 0.0
+  },
+  {
+   "path": ".disagreements[4].diagnosis.u_minus_reference",
+   "committed": 0.0,
+   "rerun": 1.3944934096343786e-10
+  },
+  {
+   "path": ".disagreements[4].diff",
+   "committed": 2.6746310172004605e-09,
+   "rerun": 2.8845050792369875e-08
+  },
+  {
+   "path": ".disagreements[4].e",
+   "committed": 1.0016746311569784e-06,
+   "rerun": 2.8845050792369875e-08
+  },
+  {
+   "path": ".disagreements[4].gap_bound",
+   "committed": 2.1253121673000026e-09,
+   "rerun": 2.1567737229121557e-09
+  },
+  {
+   "path": ".disagreements[4].index",
+   "committed": 91,
+   "rerun": 94
+  },
+  {
+   "path": ".disagreements[4].l",
+   "committed": 9.990000001397779e-07,
+   "rerun": 0.0
+  },
+  {
+   "path": ".disagreements[4].meta.delta",
+   "committed": 0.0,
+   "rerun": 1e-06
+  },
+  {
+   "path": ".disagreements[4].seed",
+   "committed": 91,
+   "rerun": 94
+  },
+  {
+   "path": ".disagreements[4].t_e",
+   "committed": 1.34503031644246,
+   "rerun": 1.330465039778991
+  },
+  {
+   "path": ".disagreements[4].u",
+   "committed": 1.000000000139778e-06,
+   "rerun": 1.3944934096343786e-10
+  },
+  {
+   "path": ".disagreements[5].diagnosis.e_minus_reference",
+   "committed": 1.6746310172003853e-09,
+   "rerun": 2.8845050792369875e-08
+  },
+  {
+   "path": ".disagreements[5].diagnosis.l_minus_reference",
+   "committed": -1.0000000000000751e-09,
+   "rerun": 0.0
+  },
+  {
+   "path": ".disagreements[5].diagnosis.reference_argmin_t",
+   "committed": 1.3801309320590809,
+   "rerun": 1.3040623202694275
+  },
+  {
+   "path": ".disagreements[5].diagnosis.reference_min_longdouble",
+   "committed": 1.000000000139778e-06,
+   "rerun": 0.0
+  },
+  {
+   "path": ".disagreements[5].diagnosis.u_minus_reference",
+   "committed": 0.0,
+   "rerun": 1.3944934096343786e-10
+  },
+  {
+   "path": ".disagreements[5].diff",
+   "committed": 1.6746310172003853e-09,
+   "rerun": 2.8705601451406437e-08
+  },
+  {
+   "path": ".disagreements[5].e",
+   "committed": 1.0016746311569784e-06,
+   "rerun": 2.8845050792369875e-08
+  },
+  {
+   "path": ".disagreements[5].index",
+   "committed": 91,
+   "rerun": 94
+  },
+  {
+   "path": ".disagreements[5].l",
+   "committed": 9.990000001397779e-07,
+   "rerun": 0.0
+  },
+  {
+   "path": ".disagreements[5].meta.delta",
+   "committed": 0.0,
+   "rerun": 1e-06
+  },
+  {
+   "path": ".disagreements[5].seed",
+   "committed": 91,
+   "rerun": 94
+  },
+  {
+   "path": ".disagreements[5].t_e",
+   "committed": 1.34503031644246,
+   "rerun": 1.330465039778991
+  },
+  {
+   "path": ".disagreements[5].u",
+   "committed": 1.000000000139778e-06,
+   "rerun": 1.3944934096343786e-10
+  },
+  {
+   "path": ".disagreements[6].kind",
+   "committed": "C2_gap_too_wide",
+   "rerun": "exact_vs_construction"
+  },
+  {
+   "path": ".disagreements[7].diagnosis.e_minus_reference",
+   "committed": 2.8845050792369875e-08,
+   "rerun": 7.309511751429909e-08
+  },
+  {
+   "path": ".disagreements[7].diagnosis.reference_argmin_t",
+   "committed": 1.3040623202694275,
+   "rerun": 1.3553406582807226
+  },
+  {
+   "path": ".disagreements[7].diagnosis.u_minus_reference",
+   "committed": 1.3944934096343786e-10,
+   "rerun": 2.1241675085548195e-11
+  },
+  {
+   "path": ".disagreements[7].diff",
+   "committed": 2.8705601451406437e-08,
+   "rerun": 7.309511751429909e-08
+  },
+  {
+   "path": ".disagreements[7].e",
+   "committed": 2.8845050792369875e-08,
+   "rerun": 7.309511751429909e-08
+  },
+  {
+   "path": ".disagreements[7].index",
+   "committed": 94,
+   "rerun": 112
+  },
+  {
+   "path": ".disagreements[7].kind",
+   "committed": "C3_witness_below_exact",
+   "rerun": "C2_gap_too_wide"
+  },
+  {
+   "path": ".disagreements[7].meta.delta",
+   "committed": 1e-06,
+   "rerun": -1e-06
+  },
+  {
+   "path": ".disagreements[7].seed",
+   "committed": 94,
+   "rerun": 112
+  },
+  {
+   "path": ".disagreements[7].t_e",
+   "committed": 1.330465039778991,
+   "rerun": 1.3890468336199944
+  },
+  {
+   "path": ".disagreements[7].u",
+   "committed": 1.3944934096343786e-10,
+   "rerun": 2.1241675085548195e-11
+  },
+  {
+   "path": ".disagreements[8].diagnosis.e_minus_reference",
+   "committed": 2.8845050792369875e-08,
+   "rerun": 7.309511751429909e-08
+  },
+  {
+   "path": ".disagreements[8].diagnosis.reference_argmin_t",
+   "committed": 1.3040623202694275,
+   "rerun": 1.3553406582807226
+  },
+  {
+   "path": ".disagreements[8].diagnosis.u_minus_reference",
+   "committed": 1.3944934096343786e-10,
+   "rerun": 2.1241675085548195e-11
+  },
+  {
+   "path": ".disagreements[8].diff",
+   "committed": 2.8845050792369875e-08,
+   "rerun": 7.307387583921354e-08
+  },
+  {
+   "path": ".disagreements[8].e",
+   "committed": 2.8845050792369875e-08,
+   "rerun": 7.309511751429909e-08
+  },
+  {
+   "path": ".disagreements[8].index",
+   "committed": 94,
+   "rerun": 112
+  },
+  {
+   "path": ".disagreements[8].kind",
+   "committed": "exact_vs_construction",
+   "rerun": "C3_witness_below_exact"
+  },
+  {
+   "path": ".disagreements[8].meta.delta",
+   "committed": 1e-06,
+   "rerun": -1e-06
+  },
+  {
+   "path": ".disagreements[8].seed",
+   "committed": 94,
+   "rerun": 112
+  },
+  {
+   "path": ".disagreements[8].t_e",
+   "committed": 1.330465039778991,
+   "rerun": 1.3890468336199944
+  },
+  {
+   "path": ".disagreements[8].u",
+   "committed": 1.3944934096343786e-10,
+   "rerun": 2.1241675085548195e-11
+  },
+  {
+   "path": ".disagreements[9].diagnosis.e_minus_reference",
+   "committed": 2.1263717897568313e-08,
+   "rerun": 7.309511751429909e-08
+  },
+  {
+   "path": ".disagreements[9].diff",
+   "committed": 2.1263717897568313e-08,
+   "rerun": 7.309511751429909e-08
+  },
+  {
+   "path": ".disagreements[9].e",
+   "committed": 2.1263717897568313e-08,
+   "rerun": 7.309511751429909e-08
+  },
+  {
+   "path": ".disagreements[9].kind",
+   "committed": "C2_gap_too_wide",
+   "rerun": "exact_vs_construction"
+  },
+  {
+   "path": ".disagreements[9].t_e",
+   "committed": 1.3317693819194591,
+   "rerun": 1.3890468336199944
+  },
+  {
+   "path": ".max_discrepancies.max_abs_e_minus_construction",
+   "committed": 3.9208085667041814e-08,
+   "rerun": 7.309511751429909e-08
+  },
+  {
+   "path": ".max_discrepancies.max_e_minus_l",
+   "committed": 3.9208085667041814e-08,
+   "rerun": 7.309511751429909e-08
+  },
+  {
+   "path": ".max_discrepancies.max_e_minus_u_witness",
+   "committed": 3.9208057245332384e-08,
+   "rerun": 7.307387583921354e-08
+  },
+  {
+   "path": ".verdicts.undecided_max_abs_e_minus_threshold",
+   "committed": 8.970602038971265e-14,
+   "rerun": 8.881784197001252e-14
+  }
+ ],
+ "committed_ref": "1d89dbbe32445b6353db27c389371be9fdd428bb",
+ "rerun_environment": {
+  "python": "3.13.16",
+  "numpy": "2.5.3",
+  "scipy": "1.18.1"
+ },
+ "compared_on": "Windows-11-10.0.26200-SP0"
+}
