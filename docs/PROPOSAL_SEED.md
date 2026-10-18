@@ -42,7 +42,7 @@ assumes.
 ## 5. Resources needed (no costs stated)
 Borrowed access to an indoor flight space with motion capture and a safety net, a small number of
 multirotors with documented limits, and a supervising lab member who owns the safety case and
-procedures. Funding scope, if any, is for the student's time and consumables; the amount is not
+procedures. Funding scope, if any, is for the researcher's time and consumables; the amount is not
 estimated here.
 
 ## 6. Safety and ethics

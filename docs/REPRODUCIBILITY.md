@@ -53,7 +53,7 @@ Remove the noise at its source, then make the assignment input exact.
    when building a leg; it uses products and `math.sqrt`, which are correctly rounded. The cube
    root in `min_leg_time` still uses `pow`; it matters only when the jerk limit sets the leg time.
 
-The tie break is "lexicographic" in the sense the brief asked for only implicitly: the primary
+A lexicographic secondary cost was considered as the tie break and is not needed: the primary
 cost is exact, and among exact ties the solver's index order decides. A separate secondary cost was
 not added, because once the primary cost is exact no further rule is needed for agreement.
 
