@@ -72,10 +72,34 @@ def main() -> None:
         L.append("Parameters whose range moves P(violation) across 0.05 (so any statement that "
                  "the configuration is safe or unsafe depends on them): "
                  + (", ".join(flips) if flips else "none") + ".")
+    fa = Path("results/sensitivity_faa.json")
+    if fa.exists():
+        S = json.loads(fa.read_text())
+        L += ["", "## With the sourced GNSS bias (phase 6)", "",
+              f"Rerun with the bias sigma derived from FAA accuracy statistics "
+              f"({S['scenario']['gnss_bias_sigma']} m; range {f(S['ranges']['gnss_bias_sigma'][0])} to "
+              f"{f(S['ranges']['gnss_bias_sigma'][2])} m over the reference sites), "
+              f"`results/sensitivity_faa.json`, `docs/GNSS_SOURCED.md`. That value is an absolute "
+              "error of one receiver used as if it were the error between drones, so it is still an "
+              "assumption.", "",
+              "| Baseline | Rank | Assumed scenario | Sourced scenario |", "|---|---|---|---|"]
+        changed = []
+        for name in R["ranking_by_swing"]:
+            a = [r["param"] for r in R["ranking_by_swing"][name]]
+            b = [r["param"] for r in S["ranking_by_swing"][name]]
+            for k in range(3):
+                L.append(f"| {name} | {k + 1} | {a[k]} | {b[k]} |")
+            if a[:3] != b[:3]:
+                changed.append(f"{name} (top three {', '.join(a[:3])} become {', '.join(b[:3])})")
+        L += ["", "Which assumptions matter most: "
+              + ("the top three change for " + "; ".join(changed) + ". " if changed else
+                 "the top three are unchanged. ")
+              + "Baseline P(violation) with the sourced value: "
+              + ", ".join(f"{k} {f(v['baseline']['p'])}" for k, v in S["oat"].items()) + "."]
     L += ["", "Conclusions that do not survive the tested ranges are listed above and must not be "
           "quoted without the parameter range. Any single wind speed threshold is a function of "
           "the tracking loop, GNSS and spacing assumptions, and has no meaning on its own.", ""]
-    Path("docs/SENSITIVITY.md").write_text("\n".join(L))
+    Path("docs/SENSITIVITY.md").write_text("\n".join(L), encoding="utf-8")
 
 
 if __name__ == "__main__":
