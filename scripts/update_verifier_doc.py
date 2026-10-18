@@ -107,9 +107,9 @@ largest `gap_bound` = {g(m['max_gap_bound'])} m. Verdict counts: {vd.get('PASS',
 undecided: {g(vd.get('undecided_max_abs_e_minus_threshold', 0.0))} m); PASS with the exact
 minimum below the threshold: {vd.get('pass_with_exact_below_threshold', 0)}; FAIL with the
 exact minimum at or above the threshold: {vd.get('fail_with_exact_at_or_above_threshold', 0)}
-(largest margin {g(vd.get('fail_with_exact_above_threshold_max_margin', 0.0))} m: these are
-thresholds placed exactly at the exact minimum, where the witnessed distance can sit a few
-rounding units below it).
+(largest margin {g(vd.get('fail_with_exact_above_threshold_max_margin', 0.0))} m; a margin of 0
+means the threshold equals the exact minimum, where the witnessed distance can sit a few rounding
+units below it).
 
 **Disagreements ({c['n_disagreement_records']} records).** Every record, with seed, values and
 a reference computation (extended precision grid scan plus zoom), is in
@@ -166,17 +166,19 @@ def predictions(d: dict) -> dict:
     return {
         "P1": (f"{c['total_fleets']} fleets, {c['verdict_checks']} verdict checks: "
                f"{n4} PASS/FAIL contradictions outside 1e-6 m; "
-               f"{vd.get('pass_with_exact_below_threshold', 0)} PASS with exact below threshold "
+               f"{vd['pass_with_exact_below_threshold']} PASS with exact below threshold "
                f"(results/differential.json)",
-               "Hit" if n4 == 0 and vd.get("pass_with_exact_below_threshold", 0) == 0
-               else "Miss"),
-        "P2": (f"verify2 never reports extra FAILs (FAIL needs a witnessed distance below the "
-               f"threshold); near threshold it returns UNDECIDED: {vd.get('UNDECIDED', 0)} cases, "
-               f"all with abs(e - d_min) <= "
-               f"{g(vd.get('undecided_max_abs_e_minus_threshold', 0.0))} m; "
-               f"FAIL with exact at or above threshold: "
-               f"{vd.get('fail_with_exact_at_or_above_threshold', 0)}",
-               "Hit (conservatism appears as UNDECIDED, not as extra violations)"),
+               "Hit" if n4 == 0 and vd["pass_with_exact_below_threshold"] == 0 else "Miss"),
+        "P2": (f"verify2 reports FAIL only with a witnessed distance below the threshold; FAIL with "
+               f"the exact value at or above the threshold: "
+               f"{vd['fail_with_exact_at_or_above_threshold']}, largest exact minus threshold "
+               f"{g(vd['fail_with_exact_above_threshold_max_margin'])} m (a margin of 0 means the "
+               f"threshold equals the exact minimum); near threshold it returns UNDECIDED: "
+               f"{vd.get('UNDECIDED', 0)} cases, all with abs(e - d_min) <= "
+               f"{g(vd.get('undecided_max_abs_e_minus_threshold', 0.0))} m",
+               "Hit (conservatism appears as UNDECIDED; the only extra FAILs sit exactly at the "
+               "threshold)" if vd["fail_with_exact_above_threshold_max_margin"] <= 1e-9 else
+               "Miss (verify2 reported FAIL with the exact value above the threshold)"),
         "P3": (f"sampled minus exact: max {g(bf['max_sampled_minus_exact'])} m on the plain "
                f"grid ({bf['n_above_1e-6_argmin_at_breakpoint']} of "
                f"{bf['n_sampled_above_exact_by_more_than_1e-6']} cases above 1e-6 have the argmin "

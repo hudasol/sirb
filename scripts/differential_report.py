@@ -207,7 +207,12 @@ def main():
     counts = {"random_fleets": 0, "adversarial_fleets": 0, "adversarial_by_family": {},
               "larger_fleets_12_drones": 0, "verdict_checks": 0}
     runtimes = {}
-    vc: dict = {}
+    # every counter is written even when zero, so a reader can tell zero from a missing key
+    vc: dict = {"PASS": 0, "FAIL": 0, "UNDECIDED": 0, "pass_with_exact_below_threshold": 0,
+                "pass_with_exact_below_threshold_max_margin": 0.0,
+                "fail_with_exact_at_or_above_threshold": 0,
+                "fail_with_exact_above_threshold_max_margin": 0.0,
+                "undecided_max_abs_e_minus_threshold": 0.0}
 
     def absorb(stats, dis, family, seed, idx, tag):
         counts["verdict_checks"] += len(stats.get("verdicts", []))
