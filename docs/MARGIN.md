@@ -21,6 +21,8 @@ Show family: family_show(4.0, n, big=True) scaled by factor; baseline planner; e
 | 400 | 0.5 |  | ok | 5.70 | 4.033 | 2.033 | 8 |
 | 100 | from file | shows/gnss_faa_sps_standalone.json | ok | 7.62 | 5.386 | 3.386 | 9 |
 
+Cross check (`scripts/check_margin_cli.py`, `results/margin_cli_check.json`): `python -m sirb margin <show> --gnss shows/gnss_faa_sps_standalone.json --w20 6.0 --target 0.05 --trials 200 --seed 20261016 --tol 0.02` on the case {'n': 100, 'gnss_file': 'shows/gnss_faa_sps_standalone.json'} gives a report identical to the study row in every compared field.
+
 ## Scaling against the pre-registered prediction (P11)
 
 * Bias sigma 1.0 m versus 0.5 m at n = 100: margin ratio 2.04 (predicted between 1.6 and 2.4).
