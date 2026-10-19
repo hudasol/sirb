@@ -10091,5 +10091,2446 @@
   }
  },
  "formula": "score = killed / (total - skipped); score_detected = (killed + timeout) / (total - skipped)",
+ "phase6": {
+  "sirb/assign.py": {
+   "killed": 292,
+   "no_tests": 0,
+   "not_checked": 0,
+   "other_undetected": [],
+   "score": 0.9299,
+   "score_detected": 0.9299,
+   "skipped": 0,
+   "survived": 22,
+   "survivors": [
+    {
+     "change": "_exact_sq_cost: b = np.rint(np.asarray(dst, float) * 2.0 ** 20).astype(np.int64)  ->  b = np.rint(np.asarray(dst, None) * 2.0 ** 20).astype(np.int64)",
+     "class": "open",
+     "mutant": "sirb.assign.x__exact_sq_cost__mutmut_17",
+     "reason": "planner internals not pinned by a known-answer test"
+    },
+    {
+     "change": "_exact_sq_cost: b = np.rint(np.asarray(dst, float) * 2.0 ** 20).astype(np.int64)  ->  b = np.rint(np.asarray(dst, ) * 2.0 ** 20).astype(np.int64)",
+     "class": "open",
+     "mutant": "sirb.assign.x__exact_sq_cost__mutmut_19",
+     "reason": "planner internals not pinned by a known-answer test"
+    },
+    {
+     "change": "_exact_sq_cost: if max(np.abs(a).max(initial=0), np.abs(b).max(initial=0)) >= 2 ** 29:  ->  if max(np.abs(a).max(initial=1), np.abs(b).max(initial=0)) >= 2 ** 29:",
+     "class": "constant",
+     "mutant": "sirb.assign.x__exact_sq_cost__mutmut_29",
+     "reason": "numeric constant changed; no input in the tests distinguishes it"
+    },
+    {
+     "change": "_exact_sq_cost: if max(np.abs(a).max(initial=0), np.abs(b).max(initial=0)) >= 2 ** 29:  ->  if max(np.abs(a).max(initial=0), np.abs(b).max(initial=None)) >= 2 ** 29:",
+     "class": "open",
+     "mutant": "sirb.assign.x__exact_sq_cost__mutmut_30",
+     "reason": "planner internals not pinned by a known-answer test"
+    },
+    {
+     "change": "_exact_sq_cost: if max(np.abs(a).max(initial=0), np.abs(b).max(initial=0)) >= 2 ** 29:  ->  if max(np.abs(a).max(initial=0), np.abs(b).max(initial=1)) >= 2 ** 29:",
+     "class": "constant",
+     "mutant": "sirb.assign.x__exact_sq_cost__mutmut_32",
+     "reason": "numeric constant changed; no input in the tests distinguishes it"
+    },
+    {
+     "change": "_exact_sq_cost: raise ValueError(\"coordinates beyond 512 m; exact assignment cost would overflow\")  ->  raise ValueError(\"XXcoordinates beyond 512 m; exact assignment cost would overflowXX\")",
+     "class": "message",
+     "mutant": "sirb.assign.x__exact_sq_cost__mutmut_38",
+     "reason": "message or report text"
+    },
+    {
+     "change": "_exact_sq_cost: return cost.astype(float) / 2.0 ** 40  ->  return cost.astype(None) / 2.0 ** 40",
+     "class": "open",
+     "mutant": "sirb.assign.x__exact_sq_cost__mutmut_53",
+     "reason": "planner internals not pinned by a known-answer test"
+    },
+    {
+     "change": "_exact_sq_cost: a = np.rint(np.asarray(src, float) * 2.0 ** 20).astype(np.int64)  ->  a = np.rint(np.asarray(src, None) * 2.0 ** 20).astype(np.int64)",
+     "class": "open",
+     "mutant": "sirb.assign.x__exact_sq_cost__mutmut_6",
+     "reason": "planner internals not pinned by a known-answer test"
+    },
+    {
+     "change": "_exact_sq_cost: a = np.rint(np.asarray(src, float) * 2.0 ** 20).astype(np.int64)  ->  a = np.rint(np.asarray(src, ) * 2.0 ** 20).astype(np.int64)",
+     "class": "open",
+     "mutant": "sirb.assign.x__exact_sq_cost__mutmut_8",
+     "reason": "planner internals not pinned by a known-answer test"
+    },
+    {
+     "change": "assign_greedy: used_t = np.zeros(n, bool)  ->  used_t = np.zeros(n, None)",
+     "class": "open",
+     "mutant": "sirb.assign.x_assign_greedy__mutmut_23",
+     "reason": "planner internals not pinned by a known-answer test"
+    },
+    {
+     "change": "assign_greedy: used_t = np.zeros(n, bool)  ->  used_t = np.zeros(n, )",
+     "class": "open",
+     "mutant": "sirb.assign.x_assign_greedy__mutmut_25",
+     "reason": "planner internals not pinned by a known-answer test"
+    },
+    {
+     "change": "assign_greedy: done += 1  ->  done = 1",
+     "class": "open",
+     "mutant": "sirb.assign.x_assign_greedy__mutmut_41",
+     "reason": "planner internals not pinned by a known-answer test"
+    },
+    {
+     "change": "assign_greedy: done += 1  ->  done -= 1",
+     "class": "open",
+     "mutant": "sirb.assign.x_assign_greedy__mutmut_42",
+     "reason": "planner internals not pinned by a known-answer test"
+    },
+    {
+     "change": "assign_greedy: d = cdist(src, dst, \"euclidean\")  ->  d = cdist(src, dst, )",
+     "class": "open",
+     "mutant": "sirb.assign.x_assign_greedy__mutmut_7",
+     "reason": "planner internals not pinned by a known-answer test"
+    },
+    {
+     "change": "assign_greedy: d = cdist(src, dst, \"euclidean\")  ->  d = cdist(src, dst, \"EUCLIDEAN\")",
+     "class": "equivalent",
+     "mutant": "sirb.assign.x_assign_greedy__mutmut_9",
+     "reason": "case-insensitive argument (scipy/numpy/einsum/float parsing)"
+    },
+    {
+     "change": "assign_pinned: pick = rng.choice(len(src), size=k, replace=False)  ->  pick = rng.choice(len(src), size=k, replace=None)",
+     "class": "open",
+     "mutant": "sirb.assign.x_assign_pinned__mutmut_25",
+     "reason": "planner internals not pinned by a known-answer test"
+    },
+    {
+     "change": "linear_conflicts: block: int = 256) -> int:  ->  block: int = 257) -> int:",
+     "class": "constant",
+     "mutant": "sirb.assign.x_linear_conflicts__mutmut_1",
+     "reason": "numeric constant changed; no input in the tests distinguishes it"
+    },
+    {
+     "change": "linear_conflicts: with np.errstate(divide=\"ignore\", invalid=\"ignore\"):  ->  with np.errstate(divide=None, invalid=\"ignore\"):",
+     "class": "no-effect",
+     "mutant": "sirb.assign.x_linear_conflicts__mutmut_40",
+     "reason": "floating-point warning filter; changes warnings, not values"
+    },
+    {
+     "change": "linear_conflicts: with np.errstate(divide=\"ignore\", invalid=\"ignore\"):  ->  with np.errstate(invalid=\"ignore\"):",
+     "class": "no-effect",
+     "mutant": "sirb.assign.x_linear_conflicts__mutmut_42",
+     "reason": "floating-point warning filter; changes warnings, not values"
+    },
+    {
+     "change": "linear_conflicts: u = np.where(a > 1e-18, np.clip(-b / np.where(a > 1e-18, a, 1.0), 0.0, 1.0), 0.0)  ->  u = np.where(a >= 1e-18, np.clip(-b / np.where(a > 1e-18, a, 1.0), 0.0, 1.0), 0.0)",
+     "class": "tolerance",
+     "mutant": "sirb.assign.x_linear_conflicts__mutmut_55",
+     "reason": "strict vs non-strict comparison; differs only when the two sides are exactly equal"
+    },
+    {
+     "change": "linear_conflicts: u = np.where(a > 1e-18, np.clip(-b / np.where(a > 1e-18, a, 1.0), 0.0, 1.0), 0.0)  ->  u = np.where(a > 1e-18, np.clip(-b / np.where(a >= 1e-18, a, 1.0), 0.0, 1.0), 0.0)",
+     "class": "tolerance",
+     "mutant": "sirb.assign.x_linear_conflicts__mutmut_71",
+     "reason": "strict vs non-strict comparison; differs only when the two sides are exactly equal"
+    },
+    {
+     "change": "linear_conflicts: u = np.where(a > 1e-18, np.clip(-b / np.where(a > 1e-18, a, 1.0), 0.0, 1.0), 0.0)  ->  u = np.where(a > 1e-18, np.clip(-b / np.where(a > 1e-18, a, 2.0), 0.0, 1.0), 0.0)",
+     "class": "constant",
+     "mutant": "sirb.assign.x_linear_conflicts__mutmut_73",
+     "reason": "numeric constant changed; no input in the tests distinguishes it"
+    }
+   ],
+   "suspicious": 0,
+   "timeout": 0,
+   "total": 314
+  },
+  "sirb/planner/baseline.py": {
+   "killed": 185,
+   "no_tests": 0,
+   "not_checked": 0,
+   "other_undetected": [],
+   "score": 0.984,
+   "score_detected": 0.984,
+   "skipped": 0,
+   "survived": 3,
+   "survivors": [
+    {
+     "change": "plan_baseline: pieces[i].append(hold_segment(0.0, t, pos[i]))  ->  pieces[i].append(hold_segment(1.0, t, pos[i]))",
+     "class": "constant",
+     "mutant": "sirb.planner.baseline.x_plan_baseline__mutmut_143",
+     "reason": "numeric constant changed; no input in the tests distinguishes it"
+    },
+    {
+     "change": "plan_baseline: if np.linalg.norm(dst[i] - pos[i]) < 1e-9:  ->  if np.linalg.norm(dst[i] - pos[i]) <= 1e-9:",
+     "class": "tolerance",
+     "mutant": "sirb.planner.baseline.x_plan_baseline__mutmut_67",
+     "reason": "strict vs non-strict comparison; differs only when the two sides are exactly equal"
+    },
+    {
+     "change": "plan_baseline: if W > 0:   # a transition where nobody moves has W = 0: no zero length hold  ->  if W > 1:   # a transition where nobody moves has W = 0: no zero length hold",
+     "class": "constant",
+     "mutant": "sirb.planner.baseline.x_plan_baseline__mutmut_70",
+     "reason": "numeric constant changed; no input in the tests distinguishes it"
+    }
+   ],
+   "suspicious": 0,
+   "timeout": 0,
+   "total": 188
+  },
+  "sirb/planner/common.py": {
+   "killed": 187,
+   "no_tests": 0,
+   "not_checked": 0,
+   "other_undetected": [],
+   "score": 0.9541,
+   "score_detected": 0.9541,
+   "skipped": 0,
+   "survived": 9,
+   "survivors": [
+    {
+     "change": "leg_segment: d = np.asarray(p1, float) - np.asarray(p0, float)  ->  d = np.asarray(p1, float) - np.asarray(p0, )",
+     "class": "open",
+     "mutant": "sirb.planner.common.x_leg_segment__mutmut_10",
+     "reason": "planner internals not pinned by a known-answer test"
+    },
+    {
+     "change": "leg_segment: d = np.asarray(p1, float) - np.asarray(p0, float)  ->  d = np.asarray(p1, None) - np.asarray(p0, float)",
+     "class": "open",
+     "mutant": "sirb.planner.common.x_leg_segment__mutmut_4",
+     "reason": "planner internals not pinned by a known-answer test"
+    },
+    {
+     "change": "leg_segment: d = np.asarray(p1, float) - np.asarray(p0, float)  ->  d = np.asarray(p1, ) - np.asarray(p0, float)",
+     "class": "open",
+     "mutant": "sirb.planner.common.x_leg_segment__mutmut_6",
+     "reason": "planner internals not pinned by a known-answer test"
+    },
+    {
+     "change": "leg_segment: d = np.asarray(p1, float) - np.asarray(p0, float)  ->  d = np.asarray(p1, float) - np.asarray(p0, None)",
+     "class": "open",
+     "mutant": "sirb.planner.common.x_leg_segment__mutmut_8",
+     "reason": "planner internals not pinned by a known-answer test"
+    },
+    {
+     "change": "min_leg_time: vz = lim[\"vmax_up\"] if dz >= 0 else lim[\"vmax_down\"]  ->  vz = lim[\"vmax_up\"] if dz > 0 else lim[\"vmax_down\"]",
+     "class": "tolerance",
+     "mutant": "sirb.planner.common.x_min_leg_time__mutmut_32",
+     "reason": "strict vs non-strict comparison; differs only when the two sides are exactly equal"
+    },
+    {
+     "change": "path_duration: return sum(min_leg_time(b - a, lim) for a, b in zip(waypoints[:-1], waypoints[1:]))  ->  return sum(min_leg_time(b - a, lim) for a, b in zip(waypoints[:-1], waypoints[2:]))",
+     "class": "constant",
+     "mutant": "sirb.planner.common.x_path_duration__mutmut_13",
+     "reason": "numeric constant changed; no input in the tests distinguishes it"
+    },
+    {
+     "change": "path_segments: if T <= 0:  ->  if T <= 1:",
+     "class": "constant",
+     "mutant": "sirb.planner.common.x_path_segments__mutmut_16",
+     "reason": "numeric constant changed; no input in the tests distinguishes it"
+    },
+    {
+     "change": "stitch: if t < t_end - 1e-12:  ->  if t <= t_end - 1e-12:",
+     "class": "tolerance",
+     "mutant": "sirb.planner.common.x_stitch__mutmut_21",
+     "reason": "strict vs non-strict comparison; differs only when the two sides are exactly equal"
+    },
+    {
+     "change": "stitch: if s.t0 > t + 1e-12:  ->  if s.t0 >= t + 1e-12:",
+     "class": "tolerance",
+     "mutant": "sirb.planner.common.x_stitch__mutmut_7",
+     "reason": "strict vs non-strict comparison; differs only when the two sides are exactly equal"
+    }
+   ],
+   "suspicious": 0,
+   "timeout": 0,
+   "total": 196
+  },
+  "sirb/planner/prioritized.py": {
+   "killed": 565,
+   "no_tests": 0,
+   "not_checked": 0,
+   "other_undetected": [
+    "sirb.planner.prioritized.x__plan_window__mutmut_130",
+    "sirb.planner.prioritized.x__plan_window__mutmut_63",
+    "sirb.planner.prioritized.x_plan_prioritized__mutmut_123",
+    "sirb.planner.prioritized.x_plan_prioritized__mutmut_124",
+    "sirb.planner.prioritized.x_plan_prioritized__mutmut_127",
+    "sirb.planner.prioritized.x_plan_prioritized__mutmut_128",
+    "sirb.planner.prioritized.x_plan_prioritized__mutmut_3"
+   ],
+   "score": 0.8284,
+   "score_detected": 0.8387,
+   "skipped": 0,
+   "survived": 110,
+   "survivors": [
+    {
+     "change": "_plan_window: zip(zip(r[:-1], r[1:]), durs) if T > 0] or [0.0])  ->  zip(zip(r[:+1], r[1:]), durs) if T > 0] or [0.0])",
+     "class": "heuristic",
+     "mutant": "sirb.planner.prioritized.x__plan_window__mutmut_104",
+     "reason": "search-heuristic or schedule parameter; any variant still yields a plan the verifier judges"
+    },
+    {
+     "change": "_plan_window: zip(zip(r[:-1], r[1:]), durs) if T > 0] or [0.0])  ->  zip(zip(r[:-2], r[1:]), durs) if T > 0] or [0.0])",
+     "class": "constant",
+     "mutant": "sirb.planner.prioritized.x__plan_window__mutmut_105",
+     "reason": "numeric constant changed; no input in the tests distinguishes it"
+    },
+    {
+     "change": "_plan_window: zip(zip(r[:-1], r[1:]), durs) if T > 0] or [0.0])  ->  zip(zip(r[:-1], r[2:]), durs) if T > 0] or [0.0])",
+     "class": "constant",
+     "mutant": "sirb.planner.prioritized.x__plan_window__mutmut_106",
+     "reason": "numeric constant changed; no input in the tests distinguishes it"
+    },
+    {
+     "change": "_plan_window: zip(zip(r[:-1], r[1:]), durs) if T > 0] or [0.0])  ->  zip(zip(r[:-1], r[1:]), durs) if T > 1] or [0.0])",
+     "class": "constant",
+     "mutant": "sirb.planner.prioritized.x__plan_window__mutmut_108",
+     "reason": "numeric constant changed; no input in the tests distinguishes it"
+    },
+    {
+     "change": "_plan_window: zip(zip(r[:-1], r[1:]), durs) if T > 0] or [0.0])  ->  zip(zip(r[:-1], r[1:]), durs) if T > 0] or [1.0])",
+     "class": "constant",
+     "mutant": "sirb.planner.prioritized.x__plan_window__mutmut_109",
+     "reason": "numeric constant changed; no input in the tests distinguishes it"
+    },
+    {
+     "change": "_plan_window: if dl + dur <= W + 1e-9:  ->  if dl - dur <= W + 1e-9:",
+     "class": "heuristic",
+     "mutant": "sirb.planner.prioritized.x__plan_window__mutmut_114",
+     "reason": "search-heuristic or schedule parameter; any variant still yields a plan the verifier judges"
+    },
+    {
+     "change": "_plan_window: if dl + dur <= W + 1e-9:  ->  if dl + dur < W + 1e-9:",
+     "class": "tolerance",
+     "mutant": "sirb.planner.prioritized.x__plan_window__mutmut_115",
+     "reason": "strict vs non-strict comparison; differs only when the two sides are exactly equal"
+    },
+    {
+     "change": "_plan_window: if dl + dur <= W + 1e-9:  ->  if dl + dur <= W - 1e-9:",
+     "class": "heuristic",
+     "mutant": "sirb.planner.prioritized.x__plan_window__mutmut_116",
+     "reason": "search-heuristic or schedule parameter; any variant still yields a plan the verifier judges"
+    },
+    {
+     "change": "_plan_window: if dl + dur <= W + 1e-9:  ->  if dl + dur <= W + 1.000000001:",
+     "class": "constant",
+     "mutant": "sirb.planner.prioritized.x__plan_window__mutmut_117",
+     "reason": "numeric constant changed; no input in the tests distinguishes it"
+    },
+    {
+     "change": "_plan_window: times = np.arange(0.0, W + dt / 2, dt)  ->  times = np.arange(1.0, W + dt / 2, dt)",
+     "class": "constant",
+     "mutant": "sirb.planner.prioritized.x__plan_window__mutmut_12",
+     "reason": "numeric constant changed; no input in the tests distinguishes it"
+    },
+    {
+     "change": "_plan_window: cands.sort(key=lambda c: (c[0], c[1]))  ->  cands.sort(key=lambda c: (c[1], c[1]))",
+     "class": "constant",
+     "mutant": "sirb.planner.prioritized.x__plan_window__mutmut_122",
+     "reason": "numeric constant changed; no input in the tests distinguishes it"
+    },
+    {
+     "change": "_plan_window: req = d_min + 0.5 * dt * (vp + vpk[idx])  ->  req = d_min - 0.5 * dt * (vp + vpk[idx])",
+     "class": "heuristic",
+     "mutant": "sirb.planner.prioritized.x__plan_window__mutmut_128",
+     "reason": "search-heuristic or schedule parameter; any variant still yields a plan the verifier judges"
+    },
+    {
+     "change": "_plan_window: req = d_min + 0.5 * dt * (vp + vpk[idx])  ->  req = d_min + 0.5 * dt / (vp + vpk[idx])",
+     "class": "heuristic",
+     "mutant": "sirb.planner.prioritized.x__plan_window__mutmut_129",
+     "reason": "search-heuristic or schedule parameter; any variant still yields a plan the verifier judges"
+    },
+    {
+     "change": "_plan_window: times = np.arange(0.0, W + dt / 2, dt)  ->  times = np.arange(0.0, W - dt / 2, dt)",
+     "class": "heuristic",
+     "mutant": "sirb.planner.prioritized.x__plan_window__mutmut_13",
+     "reason": "search-heuristic or schedule parameter; any variant still yields a plan the verifier judges"
+    },
+    {
+     "change": "_plan_window: req = d_min + 0.5 * dt * (vp + vpk[idx])  ->  req = d_min + 1.5 * dt * (vp + vpk[idx])",
+     "class": "constant",
+     "mutant": "sirb.planner.prioritized.x__plan_window__mutmut_131",
+     "reason": "numeric constant changed; no input in the tests distinguishes it"
+    },
+    {
+     "change": "_plan_window: req = d_min + 0.5 * dt * (vp + vpk[idx])  ->  req = d_min + 0.5 * dt * (vp - vpk[idx])",
+     "class": "heuristic",
+     "mutant": "sirb.planner.prioritized.x__plan_window__mutmut_132",
+     "reason": "search-heuristic or schedule parameter; any variant still yields a plan the verifier judges"
+    },
+    {
+     "change": "_plan_window: times = np.arange(0.0, W + dt / 2, dt)  ->  times = np.arange(0.0, W + dt * 2, dt)",
+     "class": "heuristic",
+     "mutant": "sirb.planner.prioritized.x__plan_window__mutmut_14",
+     "reason": "search-heuristic or schedule parameter; any variant still yields a plan the verifier judges"
+    },
+    {
+     "change": "_plan_window: gap = np.maximum(np.maximum(bb_lo[idx] - hi, lo - bb_hi[idx]), 0.0)  ->  gap = np.maximum(np.maximum(bb_lo[idx] - hi, lo - bb_hi[idx]), 1.0)",
+     "class": "constant",
+     "mutant": "sirb.planner.prioritized.x__plan_window__mutmut_144",
+     "reason": "numeric constant changed; no input in the tests distinguishes it"
+    },
+    {
+     "change": "_plan_window: near = np.linalg.norm(gap, axis=1) < req  ->  near = np.linalg.norm(gap, axis=None) < req",
+     "class": "heuristic",
+     "mutant": "sirb.planner.prioritized.x__plan_window__mutmut_147",
+     "reason": "search-heuristic or schedule parameter; any variant still yields a plan the verifier judges"
+    },
+    {
+     "change": "_plan_window: near = np.linalg.norm(gap, axis=1) < req  ->  near = np.linalg.norm(gap, ) < req",
+     "class": "heuristic",
+     "mutant": "sirb.planner.prioritized.x__plan_window__mutmut_149",
+     "reason": "search-heuristic or schedule parameter; any variant still yields a plan the verifier judges"
+    },
+    {
+     "change": "_plan_window: times = np.arange(0.0, W + dt / 2, dt)  ->  times = np.arange(0.0, W + dt / 3, dt)",
+     "class": "constant",
+     "mutant": "sirb.planner.prioritized.x__plan_window__mutmut_15",
+     "reason": "numeric constant changed; no input in the tests distinguishes it"
+    },
+    {
+     "change": "_plan_window: near = np.linalg.norm(gap, axis=1) < req  ->  near = np.linalg.norm(gap, axis=1) <= req",
+     "class": "tolerance",
+     "mutant": "sirb.planner.prioritized.x__plan_window__mutmut_151",
+     "reason": "strict vs non-strict comparison; differs only when the two sides are exactly equal"
+    },
+    {
+     "change": "_plan_window: bad = False  ->  bad = None",
+     "class": "heuristic",
+     "mutant": "sirb.planner.prioritized.x__plan_window__mutmut_170",
+     "reason": "search-heuristic or schedule parameter; any variant still yields a plan the verifier judges"
+    },
+    {
+     "change": "_plan_window: viol = np.where(dd[:, col] < reqn[col])[0]  ->  viol = np.where(dd[:, col] <= reqn[col])[0]",
+     "class": "tolerance",
+     "mutant": "sirb.planner.prioritized.x__plan_window__mutmut_175",
+     "reason": "strict vs non-strict comparison; differs only when the two sides are exactly equal"
+    },
+    {
+     "change": "_plan_window: continue  ->  break",
+     "class": "heuristic",
+     "mutant": "sirb.planner.prioritized.x__plan_window__mutmut_179",
+     "reason": "search-heuristic or schedule parameter; any variant still yields a plan the verifier judges"
+    },
+    {
+     "change": "_plan_window: if dd[:, col].min() < d_min:  ->  if dd[:, col].min() <= d_min:",
+     "class": "tolerance",
+     "mutant": "sirb.planner.prioritized.x__plan_window__mutmut_180",
+     "reason": "strict vs non-strict comparison; differs only when the two sides are exactly equal"
+    },
+    {
+     "change": "_plan_window: lo_t = max(times[viol[0]] - dt, 0.0)  ->  lo_t = max(times[viol[0]] + dt, 0.0)",
+     "class": "heuristic",
+     "mutant": "sirb.planner.prioritized.x__plan_window__mutmut_189",
+     "reason": "search-heuristic or schedule parameter; any variant still yields a plan the verifier judges"
+    },
+    {
+     "change": "_plan_window: lo_t = max(times[viol[0]] - dt, 0.0)  ->  lo_t = max(times[viol[1]] - dt, 0.0)",
+     "class": "constant",
+     "mutant": "sirb.planner.prioritized.x__plan_window__mutmut_190",
+     "reason": "numeric constant changed; no input in the tests distinguishes it"
+    },
+    {
+     "change": "_plan_window: lo_t = max(times[viol[0]] - dt, 0.0)  ->  lo_t = max(times[viol[0]] - dt, 1.0)",
+     "class": "constant",
+     "mutant": "sirb.planner.prioritized.x__plan_window__mutmut_191",
+     "reason": "numeric constant changed; no input in the tests distinguishes it"
+    },
+    {
+     "change": "_plan_window: hi_t = min(times[viol[-1]] + dt, times[-1])  ->  hi_t = min(times[viol[-1]] - dt, times[-1])",
+     "class": "heuristic",
+     "mutant": "sirb.planner.prioritized.x__plan_window__mutmut_197",
+     "reason": "search-heuristic or schedule parameter; any variant still yields a plan the verifier judges"
+    },
+    {
+     "change": "_plan_window: hi_t = min(times[viol[-1]] + dt, times[-1])  ->  hi_t = min(times[viol[+1]] + dt, times[-1])",
+     "class": "heuristic",
+     "mutant": "sirb.planner.prioritized.x__plan_window__mutmut_198",
+     "reason": "search-heuristic or schedule parameter; any variant still yields a plan the verifier judges"
+    },
+    {
+     "change": "_plan_window: hi_t = min(times[viol[-1]] + dt, times[-1])  ->  hi_t = min(times[viol[-2]] + dt, times[-1])",
+     "class": "constant",
+     "mutant": "sirb.planner.prioritized.x__plan_window__mutmut_199",
+     "reason": "numeric constant changed; no input in the tests distinguishes it"
+    },
+    {
+     "change": "_plan_window: hi_t = min(times[viol[-1]] + dt, times[-1])  ->  hi_t = min(times[viol[-1]] + dt, times[-2])",
+     "class": "constant",
+     "mutant": "sirb.planner.prioritized.x__plan_window__mutmut_201",
+     "reason": "numeric constant changed; no input in the tests distinguishes it"
+    },
+    {
+     "change": "_plan_window: dtf = dt / 16  ->  dtf = dt * 16",
+     "class": "heuristic",
+     "mutant": "sirb.planner.prioritized.x__plan_window__mutmut_203",
+     "reason": "search-heuristic or schedule parameter; any variant still yields a plan the verifier judges"
+    },
+    {
+     "change": "_plan_window: dtf = dt / 16  ->  dtf = dt / 17",
+     "class": "constant",
+     "mutant": "sirb.planner.prioritized.x__plan_window__mutmut_204",
+     "reason": "numeric constant changed; no input in the tests distinguishes it"
+    },
+    {
+     "change": "_plan_window: tf = np.arange(lo_t, hi_t + dtf / 2, dtf)  ->  tf = np.arange(lo_t, None, dtf)",
+     "class": "heuristic",
+     "mutant": "sirb.planner.prioritized.x__plan_window__mutmut_207",
+     "reason": "search-heuristic or schedule parameter; any variant still yields a plan the verifier judges"
+    },
+    {
+     "change": "_plan_window: tf = np.arange(lo_t, hi_t + dtf / 2, dtf)  ->  tf = np.arange(lo_t, hi_t + dtf / 2, None)",
+     "class": "heuristic",
+     "mutant": "sirb.planner.prioritized.x__plan_window__mutmut_208",
+     "reason": "search-heuristic or schedule parameter; any variant still yields a plan the verifier judges"
+    },
+    {
+     "change": "_plan_window: tf = np.arange(lo_t, hi_t + dtf / 2, dtf)  ->  tf = np.arange(lo_t, hi_t + dtf / 2, )",
+     "class": "heuristic",
+     "mutant": "sirb.planner.prioritized.x__plan_window__mutmut_211",
+     "reason": "search-heuristic or schedule parameter; any variant still yields a plan the verifier judges"
+    },
+    {
+     "change": "_plan_window: tf = np.arange(lo_t, hi_t + dtf / 2, dtf)  ->  tf = np.arange(lo_t, hi_t - dtf / 2, dtf)",
+     "class": "heuristic",
+     "mutant": "sirb.planner.prioritized.x__plan_window__mutmut_212",
+     "reason": "search-heuristic or schedule parameter; any variant still yields a plan the verifier judges"
+    },
+    {
+     "change": "_plan_window: tf = np.arange(lo_t, hi_t + dtf / 2, dtf)  ->  tf = np.arange(lo_t, hi_t + dtf * 2, dtf)",
+     "class": "heuristic",
+     "mutant": "sirb.planner.prioritized.x__plan_window__mutmut_213",
+     "reason": "search-heuristic or schedule parameter; any variant still yields a plan the verifier judges"
+    },
+    {
+     "change": "_plan_window: tf = np.arange(lo_t, hi_t + dtf / 2, dtf)  ->  tf = np.arange(lo_t, hi_t + dtf / 3, dtf)",
+     "class": "constant",
+     "mutant": "sirb.planner.prioritized.x__plan_window__mutmut_214",
+     "reason": "numeric constant changed; no input in the tests distinguishes it"
+    },
+    {
+     "change": "_plan_window: dmin_f = np.linalg.norm(pj - pc, axis=1).min()  ->  dmin_f = np.linalg.norm(pj - pc, axis=None).min()",
+     "class": "heuristic",
+     "mutant": "sirb.planner.prioritized.x__plan_window__mutmut_237",
+     "reason": "search-heuristic or schedule parameter; any variant still yields a plan the verifier judges"
+    },
+    {
+     "change": "_plan_window: dmin_f = np.linalg.norm(pj - pc, axis=1).min()  ->  dmin_f = np.linalg.norm(pj - pc, ).min()",
+     "class": "heuristic",
+     "mutant": "sirb.planner.prioritized.x__plan_window__mutmut_239",
+     "reason": "search-heuristic or schedule parameter; any variant still yields a plan the verifier judges"
+    },
+    {
+     "change": "_plan_window: dmin_f = np.linalg.norm(pj - pc, axis=1).min()  ->  dmin_f = np.linalg.norm(pj + pc, axis=1).min()",
+     "class": "heuristic",
+     "mutant": "sirb.planner.prioritized.x__plan_window__mutmut_240",
+     "reason": "search-heuristic or schedule parameter; any variant still yields a plan the verifier judges"
+    },
+    {
+     "change": "_plan_window: if dmin_f < d_min + 0.5 * dtf * (vp + vpk[j]):  ->  if dmin_f <= d_min + 0.5 * dtf * (vp + vpk[j]):",
+     "class": "tolerance",
+     "mutant": "sirb.planner.prioritized.x__plan_window__mutmut_242",
+     "reason": "strict vs non-strict comparison; differs only when the two sides are exactly equal"
+    },
+    {
+     "change": "_plan_window: if dmin_f < d_min + 0.5 * dtf * (vp + vpk[j]):  ->  if dmin_f < d_min - 0.5 * dtf * (vp + vpk[j]):",
+     "class": "heuristic",
+     "mutant": "sirb.planner.prioritized.x__plan_window__mutmut_243",
+     "reason": "search-heuristic or schedule parameter; any variant still yields a plan the verifier judges"
+    },
+    {
+     "change": "_plan_window: if dmin_f < d_min + 0.5 * dtf * (vp + vpk[j]):  ->  if dmin_f < d_min + 0.5 * dtf / (vp + vpk[j]):",
+     "class": "heuristic",
+     "mutant": "sirb.planner.prioritized.x__plan_window__mutmut_244",
+     "reason": "search-heuristic or schedule parameter; any variant still yields a plan the verifier judges"
+    },
+    {
+     "change": "_plan_window: if dmin_f < d_min + 0.5 * dtf * (vp + vpk[j]):  ->  if dmin_f < d_min + 0.5 / dtf * (vp + vpk[j]):",
+     "class": "heuristic",
+     "mutant": "sirb.planner.prioritized.x__plan_window__mutmut_245",
+     "reason": "search-heuristic or schedule parameter; any variant still yields a plan the verifier judges"
+    },
+    {
+     "change": "_plan_window: if dmin_f < d_min + 0.5 * dtf * (vp + vpk[j]):  ->  if dmin_f < d_min + 1.5 * dtf * (vp + vpk[j]):",
+     "class": "constant",
+     "mutant": "sirb.planner.prioritized.x__plan_window__mutmut_246",
+     "reason": "numeric constant changed; no input in the tests distinguishes it"
+    },
+    {
+     "change": "_plan_window: if dmin_f < d_min + 0.5 * dtf * (vp + vpk[j]):  ->  if dmin_f < d_min + 0.5 * dtf * (vp - vpk[j]):",
+     "class": "heuristic",
+     "mutant": "sirb.planner.prioritized.x__plan_window__mutmut_247",
+     "reason": "search-heuristic or schedule parameter; any variant still yields a plan the verifier judges"
+    },
+    {
+     "change": "_plan_window: bad = True  ->  bad = None",
+     "class": "heuristic",
+     "mutant": "sirb.planner.prioritized.x__plan_window__mutmut_248",
+     "reason": "search-heuristic or schedule parameter; any variant still yields a plan the verifier judges"
+    },
+    {
+     "change": "_plan_window: bad = True  ->  bad = False",
+     "class": "heuristic",
+     "mutant": "sirb.planner.prioritized.x__plan_window__mutmut_249",
+     "reason": "search-heuristic or schedule parameter; any variant still yields a plan the verifier judges"
+    },
+    {
+     "change": "_plan_window: break  ->  return",
+     "class": "heuristic",
+     "mutant": "sirb.planner.prioritized.x__plan_window__mutmut_250",
+     "reason": "search-heuristic or schedule parameter; any variant still yields a plan the verifier judges"
+    },
+    {
+     "change": "_plan_window: delays = np.arange(0.0, delay_max + 1e-9, step_s)  ->  delays = np.arange(0.0, delay_max + 1e-9, None)",
+     "class": "heuristic",
+     "mutant": "sirb.planner.prioritized.x__plan_window__mutmut_33",
+     "reason": "search-heuristic or schedule parameter; any variant still yields a plan the verifier judges"
+    },
+    {
+     "change": "_plan_window: delays = np.arange(0.0, delay_max + 1e-9, step_s)  ->  delays = np.arange(0.0, step_s)",
+     "class": "heuristic",
+     "mutant": "sirb.planner.prioritized.x__plan_window__mutmut_35",
+     "reason": "search-heuristic or schedule parameter; any variant still yields a plan the verifier judges"
+    },
+    {
+     "change": "_plan_window: delays = np.arange(0.0, delay_max + 1e-9, step_s)  ->  delays = np.arange(0.0, delay_max + 1e-9, )",
+     "class": "heuristic",
+     "mutant": "sirb.planner.prioritized.x__plan_window__mutmut_36",
+     "reason": "search-heuristic or schedule parameter; any variant still yields a plan the verifier judges"
+    },
+    {
+     "change": "_plan_window: delays = np.arange(0.0, delay_max + 1e-9, step_s)  ->  delays = np.arange(1.0, delay_max + 1e-9, step_s)",
+     "class": "constant",
+     "mutant": "sirb.planner.prioritized.x__plan_window__mutmut_37",
+     "reason": "numeric constant changed; no input in the tests distinguishes it"
+    },
+    {
+     "change": "_plan_window: delays = np.arange(0.0, delay_max + 1e-9, step_s)  ->  delays = np.arange(0.0, delay_max - 1e-9, step_s)",
+     "class": "heuristic",
+     "mutant": "sirb.planner.prioritized.x__plan_window__mutmut_38",
+     "reason": "search-heuristic or schedule parameter; any variant still yields a plan the verifier judges"
+    },
+    {
+     "change": "_plan_window: delays = np.arange(0.0, delay_max + 1e-9, step_s)  ->  delays = np.arange(0.0, delay_max + 1.000000001, step_s)",
+     "class": "constant",
+     "mutant": "sirb.planner.prioritized.x__plan_window__mutmut_39",
+     "reason": "numeric constant changed; no input in the tests distinguishes it"
+    },
+    {
+     "change": "_plan_window: if time.perf_counter() > deadline:  ->  if time.perf_counter() >= deadline:",
+     "class": "tolerance",
+     "mutant": "sirb.planner.prioritized.x__plan_window__mutmut_40",
+     "reason": "strict vs non-strict comparison; differs only when the two sides are exactly equal"
+    },
+    {
+     "change": "_plan_window: raise RuntimeError(\"planning time budget exceeded\")  ->  raise RuntimeError(\"XXplanning time budget exceededXX\")",
+     "class": "message",
+     "mutant": "sirb.planner.prioritized.x__plan_window__mutmut_42",
+     "reason": "message or report text"
+    },
+    {
+     "change": "_plan_window: if np.linalg.norm(dst[i] - src[i]) > 1e-9:  ->  if np.linalg.norm(dst[i] - src[i]) >= 1e-9:",
+     "class": "tolerance",
+     "mutant": "sirb.planner.prioritized.x__plan_window__mutmut_58",
+     "reason": "strict vs non-strict comparison; differs only when the two sides are exactly equal"
+    },
+    {
+     "change": "_plan_window: if np.linalg.norm(dst[i] - src[i]) > 1e-9:  ->  if np.linalg.norm(dst[i] - src[i]) > 1.000000001:",
+     "class": "constant",
+     "mutant": "sirb.planner.prioritized.x__plan_window__mutmut_59",
+     "reason": "numeric constant changed; no input in the tests distinguishes it"
+    },
+    {
+     "change": "_plan_window: vp = K_V * float(np.linalg.norm(dst[i] - src[i])) / t_sync  ->  vp = K_V / float(np.linalg.norm(dst[i] - src[i])) / t_sync",
+     "class": "heuristic",
+     "mutant": "sirb.planner.prioritized.x__plan_window__mutmut_64",
+     "reason": "search-heuristic or schedule parameter; any variant still yields a plan the verifier judges"
+    },
+    {
+     "change": "_plan_window: vp = K_V * float(np.linalg.norm(dst[i] - src[i])) / t_sync  ->  vp = K_V * float(np.linalg.norm(dst[i] + src[i])) / t_sync",
+     "class": "heuristic",
+     "mutant": "sirb.planner.prioritized.x__plan_window__mutmut_67",
+     "reason": "search-heuristic or schedule parameter; any variant still yields a plan the verifier judges"
+    },
+    {
+     "change": "_plan_window: cands.append((-1.0, 0.0, r, [t_sync], vp, np.minimum.reduce(r), np.maximum.reduce(r)))  ->  cands.append((+1.0, 0.0, r, [t_sync], vp, np.minimum.reduce(r), np.maximum.reduce(r)))",
+     "class": "heuristic",
+     "mutant": "sirb.planner.prioritized.x__plan_window__mutmut_69",
+     "reason": "search-heuristic or schedule parameter; any variant still yields a plan the verifier judges"
+    },
+    {
+     "change": "_plan_window: cands.append((-1.0, 0.0, r, [t_sync], vp, np.minimum.reduce(r), np.maximum.reduce(r)))  ->  cands.append((-2.0, 0.0, r, [t_sync], vp, np.minimum.reduce(r), np.maximum.reduce(r)))",
+     "class": "constant",
+     "mutant": "sirb.planner.prioritized.x__plan_window__mutmut_70",
+     "reason": "numeric constant changed; no input in the tests distinguishes it"
+    },
+    {
+     "change": "_plan_window: vp = max([K_V * np.linalg.norm(b - a) / T for (a, b), T in  ->  vp = max([K_V * np.linalg.norm(b - a) * T for (a, b), T in",
+     "class": "heuristic",
+     "mutant": "sirb.planner.prioritized.x__plan_window__mutmut_92",
+     "reason": "search-heuristic or schedule parameter; any variant still yields a plan the verifier judges"
+    },
+    {
+     "change": "_plan_window: vp = max([K_V * np.linalg.norm(b - a) / T for (a, b), T in  ->  vp = max([K_V / np.linalg.norm(b - a) / T for (a, b), T in",
+     "class": "heuristic",
+     "mutant": "sirb.planner.prioritized.x__plan_window__mutmut_93",
+     "reason": "search-heuristic or schedule parameter; any variant still yields a plan the verifier judges"
+    },
+    {
+     "change": "_plan_window: vp = max([K_V * np.linalg.norm(b - a) / T for (a, b), T in  ->  vp = max([K_V * np.linalg.norm(b + a) / T for (a, b), T in",
+     "class": "heuristic",
+     "mutant": "sirb.planner.prioritized.x__plan_window__mutmut_95",
+     "reason": "search-heuristic or schedule parameter; any variant still yields a plan the verifier judges"
+    },
+    {
+     "change": "_sample_path: if T <= 0:  ->  if T < 0:",
+     "class": "tolerance",
+     "mutant": "sirb.planner.prioritized.x__sample_path__mutmut_20",
+     "reason": "strict vs non-strict comparison; differs only when the two sides are exactly equal"
+    },
+    {
+     "change": "_sample_path: m = (times >= t) & (times < t + T)  ->  m = (times >= t) & (times <= t + T)",
+     "class": "tolerance",
+     "mutant": "sirb.planner.prioritized.x__sample_path__mutmut_26",
+     "reason": "strict vs non-strict comparison; differs only when the two sides are exactly equal"
+    },
+    {
+     "change": "_sample_path: out[times < delay] = wps[0]  ->  out[times <= delay] = wps[0]",
+     "class": "tolerance",
+     "mutant": "sirb.planner.prioritized.x__sample_path__mutmut_8",
+     "reason": "strict vs non-strict comparison; differs only when the two sides are exactly equal"
+    },
+    {
+     "change": "plan_prioritized: if promotions < promote_retries * (widenings + 1):  ->  if promotions <= promote_retries * (widenings + 1):",
+     "class": "tolerance",
+     "mutant": "sirb.planner.prioritized.x_plan_prioritized__mutmut_113",
+     "reason": "strict vs non-strict comparison; differs only when the two sides are exactly equal"
+    },
+    {
+     "change": "plan_prioritized: if promotions < promote_retries * (widenings + 1):  ->  if promotions < promote_retries / (widenings + 1):",
+     "class": "heuristic",
+     "mutant": "sirb.planner.prioritized.x_plan_prioritized__mutmut_114",
+     "reason": "search-heuristic or schedule parameter; any variant still yields a plan the verifier judges"
+    },
+    {
+     "change": "plan_prioritized: if promotions < promote_retries * (widenings + 1):  ->  if promotions < promote_retries * (widenings - 1):",
+     "class": "heuristic",
+     "mutant": "sirb.planner.prioritized.x_plan_prioritized__mutmut_115",
+     "reason": "search-heuristic or schedule parameter; any variant still yields a plan the verifier judges"
+    },
+    {
+     "change": "plan_prioritized: if promotions < promote_retries * (widenings + 1):  ->  if promotions < promote_retries * (widenings + 2):",
+     "class": "constant",
+     "mutant": "sirb.planner.prioritized.x_plan_prioritized__mutmut_116",
+     "reason": "numeric constant changed; no input in the tests distinguishes it"
+    },
+    {
+     "change": "plan_prioritized: order.insert(0, f.drone)  ->  order.insert(1, f.drone)",
+     "class": "constant",
+     "mutant": "sirb.planner.prioritized.x_plan_prioritized__mutmut_122",
+     "reason": "numeric constant changed; no input in the tests distinguishes it"
+    },
+    {
+     "change": "plan_prioritized: promotions += 1  ->  promotions += 2",
+     "class": "constant",
+     "mutant": "sirb.planner.prioritized.x_plan_prioritized__mutmut_125",
+     "reason": "numeric constant changed; no input in the tests distinguishes it"
+    },
+    {
+     "change": "plan_prioritized: widenings += 1  ->  widenings += 2",
+     "class": "constant",
+     "mutant": "sirb.planner.prioritized.x_plan_prioritized__mutmut_129",
+     "reason": "numeric constant changed; no input in the tests distinguishes it"
+    },
+    {
+     "change": "plan_prioritized: if widenings > max_widen:  ->  if widenings >= max_widen:",
+     "class": "tolerance",
+     "mutant": "sirb.planner.prioritized.x_plan_prioritized__mutmut_130",
+     "reason": "strict vs non-strict comparison; differs only when the two sides are exactly equal"
+    },
+    {
+     "change": "plan_prioritized: W *= widen  ->  W /= widen",
+     "class": "heuristic",
+     "mutant": "sirb.planner.prioritized.x_plan_prioritized__mutmut_133",
+     "reason": "search-heuristic or schedule parameter; any variant still yields a plan the verifier judges"
+    },
+    {
+     "change": "plan_prioritized: W_plan, W = W, max(W_used, 1e-6)  ->  W_plan, W = W, max(W_used, 1.000001)",
+     "class": "constant",
+     "mutant": "sirb.planner.prioritized.x_plan_prioritized__mutmut_146",
+     "reason": "numeric constant changed; no input in the tests distinguishes it"
+    },
+    {
+     "change": "plan_prioritized: tt = t + dl  ->  tt = t - dl",
+     "class": "heuristic",
+     "mutant": "sirb.planner.prioritized.x_plan_prioritized__mutmut_152",
+     "reason": "search-heuristic or schedule parameter; any variant still yields a plan the verifier judges"
+    },
+    {
+     "change": "plan_prioritized: added = False  ->  added = None",
+     "class": "heuristic",
+     "mutant": "sirb.planner.prioritized.x_plan_prioritized__mutmut_153",
+     "reason": "search-heuristic or schedule parameter; any variant still yields a plan the verifier judges"
+    },
+    {
+     "change": "plan_prioritized: if T > 0:  ->  if T > 1:",
+     "class": "constant",
+     "mutant": "sirb.planner.prioritized.x_plan_prioritized__mutmut_165",
+     "reason": "numeric constant changed; no input in the tests distinguishes it"
+    },
+    {
+     "change": "plan_prioritized: tt += T  ->  tt = T",
+     "class": "heuristic",
+     "mutant": "sirb.planner.prioritized.x_plan_prioritized__mutmut_175",
+     "reason": "search-heuristic or schedule parameter; any variant still yields a plan the verifier judges"
+    },
+    {
+     "change": "plan_prioritized: detours += len(r) > 2  ->  detours = len(r) > 2",
+     "class": "heuristic",
+     "mutant": "sirb.planner.prioritized.x_plan_prioritized__mutmut_187",
+     "reason": "search-heuristic or schedule parameter; any variant still yields a plan the verifier judges"
+    },
+    {
+     "change": "plan_prioritized: t += W + stages[k + 1].get(\"hold_s\", 0.0)  ->  t += W + stages[k + 1].get(\"hold_s\", None)",
+     "class": "heuristic",
+     "mutant": "sirb.planner.prioritized.x_plan_prioritized__mutmut_230",
+     "reason": "search-heuristic or schedule parameter; any variant still yields a plan the verifier judges"
+    },
+    {
+     "change": "plan_prioritized: t += W + stages[k + 1].get(\"hold_s\", 0.0)  ->  t += W + stages[k + 1].get(\"hold_s\", )",
+     "class": "heuristic",
+     "mutant": "sirb.planner.prioritized.x_plan_prioritized__mutmut_232",
+     "reason": "search-heuristic or schedule parameter; any variant still yields a plan the verifier judges"
+    },
+    {
+     "change": "plan_prioritized: t += W + stages[k + 1].get(\"hold_s\", 0.0)  ->  t += W + stages[k - 1].get(\"hold_s\", 0.0)",
+     "class": "heuristic",
+     "mutant": "sirb.planner.prioritized.x_plan_prioritized__mutmut_233",
+     "reason": "search-heuristic or schedule parameter; any variant still yields a plan the verifier judges"
+    },
+    {
+     "change": "plan_prioritized: t += W + stages[k + 1].get(\"hold_s\", 0.0)  ->  t += W + stages[k + 1].get(\"hold_s\", 1.0)",
+     "class": "constant",
+     "mutant": "sirb.planner.prioritized.x_plan_prioritized__mutmut_237",
+     "reason": "numeric constant changed; no input in the tests distinguishes it"
+    },
+    {
+     "change": "plan_prioritized: \"plan_runtime_s\": time.perf_counter() - t_wall}  ->  \"plan_runtime_s\": time.perf_counter() + t_wall}",
+     "class": "heuristic",
+     "mutant": "sirb.planner.prioritized.x_plan_prioritized__mutmut_265",
+     "reason": "search-heuristic or schedule parameter; any variant still yields a plan the verifier judges"
+    },
+    {
+     "change": "plan_prioritized: t = stages[0].get(\"hold_s\", 0.0)  ->  t = stages[0].get(\"hold_s\", None)",
+     "class": "heuristic",
+     "mutant": "sirb.planner.prioritized.x_plan_prioritized__mutmut_28",
+     "reason": "search-heuristic or schedule parameter; any variant still yields a plan the verifier judges"
+    },
+    {
+     "change": "plan_prioritized: t = stages[0].get(\"hold_s\", 0.0)  ->  t = stages[0].get(\"hold_s\", )",
+     "class": "heuristic",
+     "mutant": "sirb.planner.prioritized.x_plan_prioritized__mutmut_30",
+     "reason": "search-heuristic or schedule parameter; any variant still yields a plan the verifier judges"
+    },
+    {
+     "change": "plan_prioritized: t = stages[0].get(\"hold_s\", 0.0)  ->  t = stages[0].get(\"hold_s\", 1.0)",
+     "class": "constant",
+     "mutant": "sirb.planner.prioritized.x_plan_prioritized__mutmut_34",
+     "reason": "numeric constant changed; no input in the tests distinguishes it"
+    },
+    {
+     "change": "plan_prioritized: step_s: float = 0.5, delay_frac: float = 0.6,  ->  step_s: float = 1.5, delay_frac: float = 0.6,",
+     "class": "constant",
+     "mutant": "sirb.planner.prioritized.x_plan_prioritized__mutmut_4",
+     "reason": "numeric constant changed; no input in the tests distinguishes it"
+    },
+    {
+     "change": "plan_prioritized: step_s: float = 0.5, delay_frac: float = 0.6,  ->  step_s: float = 0.5, delay_frac: float = 1.6,",
+     "class": "constant",
+     "mutant": "sirb.planner.prioritized.x_plan_prioritized__mutmut_5",
+     "reason": "numeric constant changed; no input in the tests distinguishes it"
+    },
+    {
+     "change": "plan_prioritized: promote_retries: int = 3, widen: float = 1.25,  ->  promote_retries: int = 4, widen: float = 1.25,",
+     "class": "constant",
+     "mutant": "sirb.planner.prioritized.x_plan_prioritized__mutmut_6",
+     "reason": "numeric constant changed; no input in the tests distinguishes it"
+    },
+    {
+     "change": "plan_prioritized: order = list(np.argsort(-direct, kind=\"stable\"))  ->  order = list(np.argsort(-direct, kind=None))",
+     "class": "equivalent",
+     "mutant": "sirb.planner.prioritized.x_plan_prioritized__mutmut_67",
+     "reason": "sort kind only matters for exact ties (argument set to None = default)"
+    },
+    {
+     "change": "plan_prioritized: order = list(np.argsort(-direct, kind=\"stable\"))  ->  order = list(np.argsort(-direct, ))",
+     "class": "equivalent",
+     "mutant": "sirb.planner.prioritized.x_plan_prioritized__mutmut_69",
+     "reason": "sort kind only matters for exact ties (argument removed)"
+    },
+    {
+     "change": "plan_prioritized: promote_retries: int = 3, widen: float = 1.25,  ->  promote_retries: int = 3, widen: float = 2.25,",
+     "class": "constant",
+     "mutant": "sirb.planner.prioritized.x_plan_prioritized__mutmut_7",
+     "reason": "numeric constant changed; no input in the tests distinguishes it"
+    },
+    {
+     "change": "plan_prioritized: order = list(np.argsort(-direct, kind=\"stable\"))  ->  order = list(np.argsort(-direct, kind=\"STABLE\"))",
+     "class": "equivalent",
+     "mutant": "sirb.planner.prioritized.x_plan_prioritized__mutmut_72",
+     "reason": "case-insensitive argument (scipy/numpy/einsum/float parsing)"
+    },
+    {
+     "change": "plan_prioritized: max_widen: int = 5, time_budget_s: float = 60.0) -> tuple[Fleet, dict]:  ->  max_widen: int = 6, time_budget_s: float = 60.0) -> tuple[Fleet, dict]:",
+     "class": "constant",
+     "mutant": "sirb.planner.prioritized.x_plan_prioritized__mutmut_8",
+     "reason": "numeric constant changed; no input in the tests distinguishes it"
+    },
+    {
+     "change": "plan_prioritized: dmax = delay_frac * T0 * (1.25 ** widenings)  ->  dmax = delay_frac * T0 / (1.25 ** widenings)",
+     "class": "heuristic",
+     "mutant": "sirb.planner.prioritized.x_plan_prioritized__mutmut_82",
+     "reason": "search-heuristic or schedule parameter; any variant still yields a plan the verifier judges"
+    },
+    {
+     "change": "plan_prioritized: dmax = delay_frac * T0 * (1.25 ** widenings)  ->  dmax = delay_frac / T0 * (1.25 ** widenings)",
+     "class": "heuristic",
+     "mutant": "sirb.planner.prioritized.x_plan_prioritized__mutmut_83",
+     "reason": "search-heuristic or schedule parameter; any variant still yields a plan the verifier judges"
+    },
+    {
+     "change": "plan_prioritized: dmax = delay_frac * T0 * (1.25 ** widenings)  ->  dmax = delay_frac * T0 * (1.25 * widenings)",
+     "class": "heuristic",
+     "mutant": "sirb.planner.prioritized.x_plan_prioritized__mutmut_84",
+     "reason": "search-heuristic or schedule parameter; any variant still yields a plan the verifier judges"
+    },
+    {
+     "change": "plan_prioritized: dmax = delay_frac * T0 * (1.25 ** widenings)  ->  dmax = delay_frac * T0 * (2.25 ** widenings)",
+     "class": "constant",
+     "mutant": "sirb.planner.prioritized.x_plan_prioritized__mutmut_85",
+     "reason": "numeric constant changed; no input in the tests distinguishes it"
+    },
+    {
+     "change": "plan_prioritized: max_widen: int = 5, time_budget_s: float = 60.0) -> tuple[Fleet, dict]:  ->  max_widen: int = 5, time_budget_s: float = 61.0) -> tuple[Fleet, dict]:",
+     "class": "constant",
+     "mutant": "sirb.planner.prioritized.x_plan_prioritized__mutmut_9",
+     "reason": "numeric constant changed; no input in the tests distinguishes it"
+    },
+    {
+     "change": "plan_prioritized: chosen = _plan_window(pos, dst, lim, W, dt, step_s, dmax, lane_dz, lane_dh, order,  ->  chosen = _plan_window(pos, dst, lim, W, dt, None, dmax, lane_dz, lane_dh, order,",
+     "class": "heuristic",
+     "mutant": "sirb.planner.prioritized.x_plan_prioritized__mutmut_92",
+     "reason": "search-heuristic or schedule parameter; any variant still yields a plan the verifier judges"
+    }
+   ],
+   "suspicious": 0,
+   "timeout": 7,
+   "total": 682
+  },
+  "sirb/planner/waves.py": {
+   "killed": 405,
+   "no_tests": 0,
+   "not_checked": 0,
+   "other_undetected": [],
+   "score": 0.9,
+   "score_detected": 0.9,
+   "skipped": 0,
+   "survived": 45,
+   "survivors": [
+    {
+     "change": "_point_seg_dist: with np.errstate(divide=\"ignore\", invalid=\"ignore\"):  ->  with np.errstate(divide=\"ignore\", invalid=None):",
+     "class": "no-effect",
+     "mutant": "sirb.planner.waves.x__point_seg_dist__mutmut_10",
+     "reason": "floating-point warning filter; changes warnings, not values"
+    },
+    {
+     "change": "_point_seg_dist: with np.errstate(divide=\"ignore\", invalid=\"ignore\"):  ->  with np.errstate(invalid=\"ignore\"):",
+     "class": "no-effect",
+     "mutant": "sirb.planner.waves.x__point_seg_dist__mutmut_11",
+     "reason": "floating-point warning filter; changes warnings, not values"
+    },
+    {
+     "change": "_point_seg_dist: with np.errstate(divide=\"ignore\", invalid=\"ignore\"):  ->  with np.errstate(divide=\"ignore\", ):",
+     "class": "no-effect",
+     "mutant": "sirb.planner.waves.x__point_seg_dist__mutmut_12",
+     "reason": "floating-point warning filter; changes warnings, not values"
+    },
+    {
+     "change": "_point_seg_dist: t = np.where(L2[:, None] > 1e-18, (ap * ab[:, None, :]).sum(2) / np.where(  ->  t = np.where(L2[:, None] >= 1e-18, (ap * ab[:, None, :]).sum(2) / np.where(",
+     "class": "tolerance",
+     "mutant": "sirb.planner.waves.x__point_seg_dist__mutmut_24",
+     "reason": "strict vs non-strict comparison; differs only when the two sides are exactly equal"
+    },
+    {
+     "change": "_point_seg_dist: L2[:, None] > 1e-18, L2[:, None], 1.0), 0.0)  ->  L2[:, None] >= 1e-18, L2[:, None], 1.0), 0.0)",
+     "class": "tolerance",
+     "mutant": "sirb.planner.waves.x__point_seg_dist__mutmut_36",
+     "reason": "strict vs non-strict comparison; differs only when the two sides are exactly equal"
+    },
+    {
+     "change": "_point_seg_dist: L2[:, None] > 1e-18, L2[:, None], 1.0), 0.0)  ->  L2[:, None] > 1e-18, L2[:, None], 2.0), 0.0)",
+     "class": "constant",
+     "mutant": "sirb.planner.waves.x__point_seg_dist__mutmut_38",
+     "reason": "numeric constant changed; no input in the tests distinguishes it"
+    },
+    {
+     "change": "_point_seg_dist: L2[:, None] > 1e-18, L2[:, None], 1.0), 0.0)  ->  L2[:, None] > 1e-18, L2[:, None], 1.0), 1.0)",
+     "class": "constant",
+     "mutant": "sirb.planner.waves.x__point_seg_dist__mutmut_39",
+     "reason": "numeric constant changed; no input in the tests distinguishes it"
+    },
+    {
+     "change": "_point_seg_dist: with np.errstate(divide=\"ignore\", invalid=\"ignore\"):  ->  with np.errstate(divide=None, invalid=\"ignore\"):",
+     "class": "no-effect",
+     "mutant": "sirb.planner.waves.x__point_seg_dist__mutmut_9",
+     "reason": "floating-point warning filter; changes warnings, not values"
+    },
+    {
+     "change": "_sync_min_dist: with np.errstate(divide=\"ignore\", invalid=\"ignore\"):  ->  with np.errstate(divide=None, invalid=\"ignore\"):",
+     "class": "no-effect",
+     "mutant": "sirb.planner.waves.x__sync_min_dist__mutmut_22",
+     "reason": "floating-point warning filter; changes warnings, not values"
+    },
+    {
+     "change": "_sync_min_dist: with np.errstate(divide=\"ignore\", invalid=\"ignore\"):  ->  with np.errstate(divide=\"ignore\", invalid=None):",
+     "class": "no-effect",
+     "mutant": "sirb.planner.waves.x__sync_min_dist__mutmut_23",
+     "reason": "floating-point warning filter; changes warnings, not values"
+    },
+    {
+     "change": "_sync_min_dist: with np.errstate(divide=\"ignore\", invalid=\"ignore\"):  ->  with np.errstate(invalid=\"ignore\"):",
+     "class": "no-effect",
+     "mutant": "sirb.planner.waves.x__sync_min_dist__mutmut_24",
+     "reason": "floating-point warning filter; changes warnings, not values"
+    },
+    {
+     "change": "_sync_min_dist: with np.errstate(divide=\"ignore\", invalid=\"ignore\"):  ->  with np.errstate(divide=\"ignore\", ):",
+     "class": "no-effect",
+     "mutant": "sirb.planner.waves.x__sync_min_dist__mutmut_25",
+     "reason": "floating-point warning filter; changes warnings, not values"
+    },
+    {
+     "change": "_sync_min_dist: u = np.where(a > 1e-18, np.clip(-b / np.where(a > 1e-18, a, 1.0), 0.0, 1.0), 0.0)  ->  u = np.where(a >= 1e-18, np.clip(-b / np.where(a > 1e-18, a, 1.0), 0.0, 1.0), 0.0)",
+     "class": "tolerance",
+     "mutant": "sirb.planner.waves.x__sync_min_dist__mutmut_37",
+     "reason": "strict vs non-strict comparison; differs only when the two sides are exactly equal"
+    },
+    {
+     "change": "_sync_min_dist: u = np.where(a > 1e-18, np.clip(-b / np.where(a > 1e-18, a, 1.0), 0.0, 1.0), 0.0)  ->  u = np.where(a > 1e-18, np.clip(-b / np.where(a >= 1e-18, a, 1.0), 0.0, 1.0), 0.0)",
+     "class": "tolerance",
+     "mutant": "sirb.planner.waves.x__sync_min_dist__mutmut_53",
+     "reason": "strict vs non-strict comparison; differs only when the two sides are exactly equal"
+    },
+    {
+     "change": "_sync_min_dist: u = np.where(a > 1e-18, np.clip(-b / np.where(a > 1e-18, a, 1.0), 0.0, 1.0), 0.0)  ->  u = np.where(a > 1e-18, np.clip(-b / np.where(a > 1.0, a, 1.0), 0.0, 1.0), 0.0)",
+     "class": "constant",
+     "mutant": "sirb.planner.waves.x__sync_min_dist__mutmut_54",
+     "reason": "numeric constant changed; no input in the tests distinguishes it"
+    },
+    {
+     "change": "_sync_min_dist: u = np.where(a > 1e-18, np.clip(-b / np.where(a > 1e-18, a, 1.0), 0.0, 1.0), 0.0)  ->  u = np.where(a > 1e-18, np.clip(-b / np.where(a > 1e-18, a, 2.0), 0.0, 1.0), 0.0)",
+     "class": "constant",
+     "mutant": "sirb.planner.waves.x__sync_min_dist__mutmut_55",
+     "reason": "numeric constant changed; no input in the tests distinguishes it"
+    },
+    {
+     "change": "_sync_min_dist: u = np.where(a > 1e-18, np.clip(-b / np.where(a > 1e-18, a, 1.0), 0.0, 1.0), 0.0)  ->  u = np.where(a > 1e-18, np.clip(-b / np.where(a > 1e-18, a, 1.0), 0.0, 1.0), 1.0)",
+     "class": "constant",
+     "mutant": "sirb.planner.waves.x__sync_min_dist__mutmut_58",
+     "reason": "numeric constant changed; no input in the tests distinguishes it"
+    },
+    {
+     "change": "plan_waves: if not pieces[i] or pieces[i][-1].t1 <= t:  ->  if not pieces[i] or pieces[i][-1].t1 < t:",
+     "class": "tolerance",
+     "mutant": "sirb.planner.waves.x_plan_waves__mutmut_101",
+     "reason": "strict vs non-strict comparison; differs only when the two sides are exactly equal"
+    },
+    {
+     "change": "plan_waves: pieces[i].append(hold_segment(t, max(t_w - t, 1e-6), pos[i]))  ->  pieces[i].append(hold_segment(t, max(t_w - t, 1.000001), pos[i]))",
+     "class": "constant",
+     "mutant": "sirb.planner.waves.x_plan_waves__mutmut_114",
+     "reason": "numeric constant changed; no input in the tests distinguishes it"
+    },
+    {
+     "change": "plan_waves: t = t_w + stages[k + 1].get(\"hold_s\", 0.0)  ->  t = t_w + stages[k + 1].get(\"hold_s\", 1.0)",
+     "class": "constant",
+     "mutant": "sirb.planner.waves.x_plan_waves__mutmut_155",
+     "reason": "numeric constant changed; no input in the tests distinguishes it"
+    },
+    {
+     "change": "plan_waves: t = stages[0].get(\"hold_s\", 0.0)  ->  t = stages[0].get(\"hold_s\", 1.0)",
+     "class": "constant",
+     "mutant": "sirb.planner.waves.x_plan_waves__mutmut_32",
+     "reason": "numeric constant changed; no input in the tests distinguishes it"
+    },
+    {
+     "change": "plan_waves: if np.linalg.norm(dst[i] - pos[i]) < 1e-9:  ->  if np.linalg.norm(dst[i] - pos[i]) <= 1e-9:",
+     "class": "tolerance",
+     "mutant": "sirb.planner.waves.x_plan_waves__mutmut_82",
+     "reason": "strict vs non-strict comparison; differs only when the two sides are exactly equal"
+    },
+    {
+     "change": "plan_waves: if np.linalg.norm(dst[i] - pos[i]) < 1e-9:  ->  if np.linalg.norm(dst[i] - pos[i]) < 1.000000001:",
+     "class": "constant",
+     "mutant": "sirb.planner.waves.x_plan_waves__mutmut_83",
+     "reason": "numeric constant changed; no input in the tests distinguishes it"
+    },
+    {
+     "change": "schedule_waves: cands += list(mids) + [levels[0] - 1.0, levels[-1] + 1.0]  ->  cands += list(mids) + [levels[0] - 1.0, levels[-1] + 2.0]",
+     "class": "constant",
+     "mutant": "sirb.planner.waves.x_schedule_waves__mutmut_102",
+     "reason": "numeric constant changed; no input in the tests distinguishes it"
+    },
+    {
+     "change": "schedule_waves: seg_src = _point_seg_dist(src, src, dst) >= d_plan   # [i, j]: seg_i vs src_j  ->  seg_src = _point_seg_dist(src, src, dst) > d_plan   # [i, j]: seg_i vs src_j",
+     "class": "tolerance",
+     "mutant": "sirb.planner.waves.x_schedule_waves__mutmut_15",
+     "reason": "strict vs non-strict comparison; differs only when the two sides are exactly equal"
+    },
+    {
+     "change": "schedule_waves: seg_dst = _point_seg_dist(dst, src, dst) >= d_plan   # [i, j]: seg_i vs dst_j  ->  seg_dst = _point_seg_dist(dst, src, dst) > d_plan   # [i, j]: seg_i vs dst_j",
+     "class": "tolerance",
+     "mutant": "sirb.planner.waves.x_schedule_waves__mutmut_23",
+     "reason": "strict vs non-strict comparison; differs only when the two sides are exactly equal"
+    },
+    {
+     "change": "schedule_waves: np.fill_diagonal(sync_ok, True)  ->  np.fill_diagonal(sync_ok, None)",
+     "class": "open",
+     "mutant": "sirb.planner.waves.x_schedule_waves__mutmut_25",
+     "reason": "planner internals not pinned by a known-answer test"
+    },
+    {
+     "change": "schedule_waves: np.fill_diagonal(sync_ok, True)  ->  np.fill_diagonal(sync_ok, False)",
+     "class": "open",
+     "mutant": "sirb.planner.waves.x_schedule_waves__mutmut_28",
+     "reason": "planner internals not pinned by a known-answer test"
+    },
+    {
+     "change": "schedule_waves: np.fill_diagonal(seg_src, True)  ->  np.fill_diagonal(seg_src, None)",
+     "class": "open",
+     "mutant": "sirb.planner.waves.x_schedule_waves__mutmut_30",
+     "reason": "planner internals not pinned by a known-answer test"
+    },
+    {
+     "change": "schedule_waves: np.fill_diagonal(seg_src, True)  ->  np.fill_diagonal(seg_src, False)",
+     "class": "open",
+     "mutant": "sirb.planner.waves.x_schedule_waves__mutmut_33",
+     "reason": "planner internals not pinned by a known-answer test"
+    },
+    {
+     "change": "schedule_waves: np.fill_diagonal(seg_dst, True)  ->  np.fill_diagonal(seg_dst, None)",
+     "class": "open",
+     "mutant": "sirb.planner.waves.x_schedule_waves__mutmut_35",
+     "reason": "planner internals not pinned by a known-answer test"
+    },
+    {
+     "change": "schedule_waves: np.fill_diagonal(seg_dst, True)  ->  np.fill_diagonal(seg_dst, False)",
+     "class": "open",
+     "mutant": "sirb.planner.waves.x_schedule_waves__mutmut_38",
+     "reason": "planner internals not pinned by a known-answer test"
+    },
+    {
+     "change": "schedule_waves: order = np.argsort(-degree, kind=\"stable\")  ->  order = np.argsort(-degree, kind=None)",
+     "class": "equivalent",
+     "mutant": "sirb.planner.waves.x_schedule_waves__mutmut_45",
+     "reason": "sort kind only matters for exact ties (argument set to None = default)"
+    },
+    {
+     "change": "schedule_waves: order = np.argsort(-degree, kind=\"stable\")  ->  order = np.argsort(-degree, )",
+     "class": "equivalent",
+     "mutant": "sirb.planner.waves.x_schedule_waves__mutmut_47",
+     "reason": "sort kind only matters for exact ties (argument removed)"
+    },
+    {
+     "change": "schedule_waves: order = np.argsort(-degree, kind=\"stable\")  ->  order = np.argsort(-degree, kind=\"STABLE\")",
+     "class": "equivalent",
+     "mutant": "sirb.planner.waves.x_schedule_waves__mutmut_50",
+     "reason": "case-insensitive argument (scipy/numpy/einsum/float parsing)"
+    },
+    {
+     "change": "schedule_waves: pos = np.full(n, np.nan)  # float wave position  ->  pos = np.full(n, None)  # float wave position",
+     "class": "open",
+     "mutant": "sirb.planner.waves.x_schedule_waves__mutmut_53",
+     "reason": "planner internals not pinned by a known-answer test"
+    },
+    {
+     "change": "schedule_waves: cands = [0.0]  ->  cands = [1.0]",
+     "class": "constant",
+     "mutant": "sirb.planner.waves.x_schedule_waves__mutmut_84",
+     "reason": "numeric constant changed; no input in the tests distinguishes it"
+    },
+    {
+     "change": "schedule_waves: mids = (levels[:-1] + levels[1:]) / 2  ->  mids = (levels[:-1] + levels[1:]) * 2",
+     "class": "open",
+     "mutant": "sirb.planner.waves.x_schedule_waves__mutmut_86",
+     "reason": "planner internals not pinned by a known-answer test"
+    },
+    {
+     "change": "schedule_waves: mids = (levels[:-1] + levels[1:]) / 2  ->  mids = (levels[:-1] - levels[1:]) / 2",
+     "class": "open",
+     "mutant": "sirb.planner.waves.x_schedule_waves__mutmut_87",
+     "reason": "planner internals not pinned by a known-answer test"
+    },
+    {
+     "change": "schedule_waves: mids = (levels[:-1] + levels[1:]) / 2  ->  mids = (levels[:+1] + levels[1:]) / 2",
+     "class": "open",
+     "mutant": "sirb.planner.waves.x_schedule_waves__mutmut_88",
+     "reason": "planner internals not pinned by a known-answer test"
+    },
+    {
+     "change": "schedule_waves: mids = (levels[:-1] + levels[1:]) / 2  ->  mids = (levels[:-2] + levels[1:]) / 2",
+     "class": "constant",
+     "mutant": "sirb.planner.waves.x_schedule_waves__mutmut_89",
+     "reason": "numeric constant changed; no input in the tests distinguishes it"
+    },
+    {
+     "change": "schedule_waves: mids = (levels[:-1] + levels[1:]) / 2  ->  mids = (levels[:-1] + levels[2:]) / 2",
+     "class": "constant",
+     "mutant": "sirb.planner.waves.x_schedule_waves__mutmut_90",
+     "reason": "numeric constant changed; no input in the tests distinguishes it"
+    },
+    {
+     "change": "schedule_waves: mids = (levels[:-1] + levels[1:]) / 2  ->  mids = (levels[:-1] + levels[1:]) / 3",
+     "class": "constant",
+     "mutant": "sirb.planner.waves.x_schedule_waves__mutmut_91",
+     "reason": "numeric constant changed; no input in the tests distinguishes it"
+    },
+    {
+     "change": "schedule_waves: cands += list(mids) + [levels[0] - 1.0, levels[-1] + 1.0]  ->  cands += list(mids) + [levels[0] - 2.0, levels[-1] + 1.0]",
+     "class": "constant",
+     "mutant": "sirb.planner.waves.x_schedule_waves__mutmut_98",
+     "reason": "numeric constant changed; no input in the tests distinguishes it"
+    },
+    {
+     "change": "schedule_waves: cands += list(mids) + [levels[0] - 1.0, levels[-1] + 1.0]  ->  cands += list(mids) + [levels[0] - 1.0, levels[-1] - 1.0]",
+     "class": "open",
+     "mutant": "sirb.planner.waves.x_schedule_waves__mutmut_99",
+     "reason": "planner internals not pinned by a known-answer test"
+    }
+   ],
+   "suspicious": 0,
+   "timeout": 0,
+   "total": 450
+  },
+  "sirb/verify.py": {
+   "killed": 2214,
+   "no_tests": 0,
+   "not_checked": 0,
+   "other_undetected": [
+    "sirb.verify.x__build_pieces__mutmut_119",
+    "sirb.verify.x__candidate_pairs__mutmut_109",
+    "sirb.verify.x__candidate_pairs__mutmut_111",
+    "sirb.verify.x__candidate_pairs__mutmut_113",
+    "sirb.verify.x__candidate_pairs__mutmut_114",
+    "sirb.verify.x__candidate_pairs__mutmut_16",
+    "sirb.verify.x__candidate_pairs__mutmut_21",
+    "sirb.verify.x__candidate_pairs__mutmut_23",
+    "sirb.verify.x__candidate_pairs__mutmut_7",
+    "sirb.verify.x__candidate_pairs__mutmut_87",
+    "sirb.verify.x__candidate_pairs__mutmut_88",
+    "sirb.verify.x__candidate_pairs__mutmut_89",
+    "sirb.verify.x__solve_pairs__mutmut_14"
+   ],
+   "score": 0.9291,
+   "score_detected": 0.9345,
+   "skipped": 0,
+   "survived": 156,
+   "survivors": [
+    {
+     "change": "_build_pieces: for s in range(0, len(real), _CHUNK):  ->  for s in range(0, len(real), ):",
+     "class": "equivalent",
+     "mutant": "sirb.verify.x__build_pieces__mutmut_120",
+     "reason": "chunk size only changes memory use"
+    },
+    {
+     "change": "_build_pieces: sh = _shift(P.coef[idx], P.lo[idx] - P.t0r[idx], P.hi[idx] - P.lo[idx])  ->  sh = _shift(P.coef[idx], P.lo[idx] - P.t0r[idx], P.hi[idx] + P.lo[idx])",
+     "class": "no-effect",
+     "mutant": "sirb.verify.x__build_pieces__mutmut_132",
+     "reason": "box over a wider span is a superset; prefilter is only less selective"
+    },
+    {
+     "change": "_build_pieces: drone.append(i); lo.append(-np.inf); hi.append(first[1]); t0r.append(0.0)  ->  drone.append(i); lo.append(-np.inf); hi.append(first[1]); t0r.append(1.0)",
+     "class": "equivalent",
+     "mutant": "sirb.verify.x__build_pieces__mutmut_15",
+     "reason": "constant (hold) piece: the time origin does not enter a degree-0 polynomial"
+    },
+    {
+     "change": "_build_pieces: last_pos = first[3][0].copy()  ->  last_pos = None",
+     "class": "equivalent",
+     "mutant": "sirb.verify.x__build_pieces__mutmut_21",
+     "reason": "overwritten by the first segment of the loop before any use"
+    },
+    {
+     "change": "_build_pieces: if t0 > cursor:   # gap: hold position  ->  if t0 >= cursor:   # gap: hold position",
+     "class": "tolerance",
+     "mutant": "sirb.verify.x__build_pieces__mutmut_26",
+     "reason": "strict vs non-strict comparison; differs only when the two sides are exactly equal"
+    },
+    {
+     "change": "_build_pieces: drone.append(i); lo.append(cursor); hi.append(t0); t0r.append(0.0)  ->  drone.append(i); lo.append(cursor); hi.append(t0); t0r.append(1.0)",
+     "class": "equivalent",
+     "mutant": "sirb.verify.x__build_pieces__mutmut_31",
+     "reason": "constant (hold) piece: the time origin does not enter a degree-0 polynomial"
+    },
+    {
+     "change": "_build_pieces: drone.append(i); lo.append(cursor); hi.append(np.inf); t0r.append(0.0)  ->  drone.append(i); lo.append(cursor); hi.append(np.inf); t0r.append(1.0)",
+     "class": "equivalent",
+     "mutant": "sirb.verify.x__build_pieces__mutmut_55",
+     "reason": "constant (hold) piece: the time origin does not enter a degree-0 polynomial"
+    },
+    {
+     "change": "_build_pieces: P.drone = np.array(drone, dtype=np.int64)  ->  P.drone = np.array(drone, dtype=None)",
+     "class": "equivalent",
+     "mutant": "sirb.verify.x__build_pieces__mutmut_61",
+     "reason": "default dtype of the values involved is the same (argument set to None = default)"
+    },
+    {
+     "change": "_build_pieces: P.drone = np.array(drone, dtype=np.int64)  ->  P.drone = np.array(drone, )",
+     "class": "equivalent",
+     "mutant": "sirb.verify.x__build_pieces__mutmut_63",
+     "reason": "default dtype of the values involved is the same (argument removed)"
+    },
+    {
+     "change": "_build_pieces: P.lo = np.array(lo, dtype=float)  ->  P.lo = np.array(lo, dtype=None)",
+     "class": "equivalent",
+     "mutant": "sirb.verify.x__build_pieces__mutmut_66",
+     "reason": "default dtype of the values involved is the same (argument set to None = default)"
+    },
+    {
+     "change": "_build_pieces: P.lo = np.array(lo, dtype=float)  ->  P.lo = np.array(lo, )",
+     "class": "equivalent",
+     "mutant": "sirb.verify.x__build_pieces__mutmut_68",
+     "reason": "default dtype of the values involved is the same (argument removed)"
+    },
+    {
+     "change": "_build_pieces: P.hi = np.array(hi, dtype=float)  ->  P.hi = np.array(hi, dtype=None)",
+     "class": "equivalent",
+     "mutant": "sirb.verify.x__build_pieces__mutmut_71",
+     "reason": "default dtype of the values involved is the same (argument set to None = default)"
+    },
+    {
+     "change": "_build_pieces: P.hi = np.array(hi, dtype=float)  ->  P.hi = np.array(hi, )",
+     "class": "equivalent",
+     "mutant": "sirb.verify.x__build_pieces__mutmut_73",
+     "reason": "default dtype of the values involved is the same (argument removed)"
+    },
+    {
+     "change": "_build_pieces: P.t0r = np.array(t0r, dtype=float)  ->  P.t0r = np.array(t0r, dtype=None)",
+     "class": "equivalent",
+     "mutant": "sirb.verify.x__build_pieces__mutmut_76",
+     "reason": "default dtype of the values involved is the same (argument set to None = default)"
+    },
+    {
+     "change": "_build_pieces: P.t0r = np.array(t0r, dtype=float)  ->  P.t0r = np.array(t0r, )",
+     "class": "equivalent",
+     "mutant": "sirb.verify.x__build_pieces__mutmut_78",
+     "reason": "default dtype of the values involved is the same (argument removed)"
+    },
+    {
+     "change": "_build_pieces: P.K = max((c.shape[0] for c in coefs), default=1)  ->  P.K = max((c.shape[0] for c in coefs), default=2)",
+     "class": "equivalent",
+     "mutant": "sirb.verify.x__build_pieces__mutmut_85",
+     "reason": "only reached with no pieces, which pair_minima handles before using K"
+    },
+    {
+     "change": "_candidate_pairs: k = (jj > ii) & (jj < ends[ii]) & (dr[jj] != dr[ii])  ->  k = (jj >= ii) & (jj < ends[ii]) & (dr[jj] != dr[ii])",
+     "class": "tolerance",
+     "mutant": "sirb.verify.x__candidate_pairs__mutmut_117",
+     "reason": "strict vs non-strict comparison; differs only when the two sides are exactly equal"
+    },
+    {
+     "change": "_candidate_pairs: k = np.einsum(\"ij,ij->i\", gap, gap) <= R2  ->  k = np.einsum(\"IJ,IJ->I\", gap, gap) <= R2",
+     "class": "equivalent",
+     "mutant": "sirb.verify.x__candidate_pairs__mutmut_141",
+     "reason": "case-insensitive argument (scipy/numpy/einsum/float parsing)"
+    },
+    {
+     "change": "_candidate_pairs: k = np.einsum(\"ij,ij->i\", gap, gap) <= R2  ->  k = np.einsum(\"ij,ij->i\", gap, gap) < R2",
+     "class": "tolerance",
+     "mutant": "sirb.verify.x__candidate_pairs__mutmut_142",
+     "reason": "strict vs non-strict comparison; differs only when the two sides are exactly equal"
+    },
+    {
+     "change": "_candidate_pairs: ii, jj = np.nonzero((j_ > i_) & (j_ < ends[r0:r1, None])  ->  ii, jj = np.nonzero((j_ >= i_) & (j_ < ends[r0:r1, None])",
+     "class": "tolerance",
+     "mutant": "sirb.verify.x__candidate_pairs__mutmut_157",
+     "reason": "strict vs non-strict comparison; differs only when the two sides are exactly equal"
+    },
+    {
+     "change": "_candidate_pairs: cells = np.arange(1, nb + 1) * np.maximum(e - r0 - 1, 0)  ->  cells = np.arange(1, nb + 1) / np.maximum(e - r0 - 1, 0)",
+     "class": "open",
+     "mutant": "sirb.verify.x__candidate_pairs__mutmut_44",
+     "reason": "not shown to be equivalent; no test distinguishes it"
+    },
+    {
+     "change": "_candidate_pairs: cells = np.arange(1, nb + 1) * np.maximum(e - r0 - 1, 0)  ->  cells = np.arange(1, None) * np.maximum(e - r0 - 1, 0)",
+     "class": "open",
+     "mutant": "sirb.verify.x__candidate_pairs__mutmut_46",
+     "reason": "not shown to be equivalent; no test distinguishes it"
+    },
+    {
+     "change": "_candidate_pairs: cells = np.arange(1, nb + 1) * np.maximum(e - r0 - 1, 0)  ->  cells = np.arange(1, ) * np.maximum(e - r0 - 1, 0)",
+     "class": "open",
+     "mutant": "sirb.verify.x__candidate_pairs__mutmut_48",
+     "reason": "not shown to be equivalent; no test distinguishes it"
+    },
+    {
+     "change": "_candidate_pairs: cells = np.arange(1, nb + 1) * np.maximum(e - r0 - 1, 0)  ->  cells = np.arange(1, nb + 1) * np.maximum(e - r0 + 1, 0)",
+     "class": "open",
+     "mutant": "sirb.verify.x__candidate_pairs__mutmut_56",
+     "reason": "not shown to be equivalent; no test distinguishes it"
+    },
+    {
+     "change": "_candidate_pairs: cells = np.arange(1, nb + 1) * np.maximum(e - r0 - 1, 0)  ->  cells = np.arange(1, nb + 1) * np.maximum(e + r0 - 1, 0)",
+     "class": "open",
+     "mutant": "sirb.verify.x__candidate_pairs__mutmut_57",
+     "reason": "not shown to be equivalent; no test distinguishes it"
+    },
+    {
+     "change": "_candidate_pairs: cells = np.arange(1, nb + 1) * np.maximum(e - r0 - 1, 0)  ->  cells = np.arange(1, nb + 1) * np.maximum(e - r0 - 2, 0)",
+     "class": "constant",
+     "mutant": "sirb.verify.x__candidate_pairs__mutmut_58",
+     "reason": "numeric constant changed; no input in the tests distinguishes it"
+    },
+    {
+     "change": "_candidate_pairs: cells = np.arange(1, nb + 1) * np.maximum(e - r0 - 1, 0)  ->  cells = np.arange(1, nb + 1) * np.maximum(e - r0 - 1, 1)",
+     "class": "constant",
+     "mutant": "sirb.verify.x__candidate_pairs__mutmut_59",
+     "reason": "numeric constant changed; no input in the tests distinguishes it"
+    },
+    {
+     "change": "_candidate_pairs: r1 = r0 + max(int(np.searchsorted(cells, _PAIR_BLOCK, side=\"right\")), 1)  ->  r1 = r0 + max(int(np.searchsorted(cells, _PAIR_BLOCK, )), 1)",
+     "class": "equivalent",
+     "mutant": "sirb.verify.x__candidate_pairs__mutmut_72",
+     "reason": "searchsorted default side is 'left' (argument removed)"
+    },
+    {
+     "change": "_candidate_pairs_loop: ends = np.searchsorted(lo, hi, side=\"left\")  ->  ends = np.searchsorted(lo, hi, )",
+     "class": "equivalent",
+     "mutant": "sirb.verify.x__candidate_pairs_loop__mutmut_16",
+     "reason": "searchsorted default side is 'left' (argument removed)"
+    },
+    {
+     "change": "_candidate_pairs_loop: R2 = (R * (1 + 1e-9) + 1e-9) ** 2 if prefilter else np.inf  ->  R2 = (R * (1 + 1e-9) + 1e-9) ** 2 if (prefilter) or True else np.inf",
+     "class": "equivalent",
+     "mutant": "sirb.verify.x__candidate_pairs_loop__mutmut_21",
+     "reason": "prefilter/cap switch only widens an optional pre-selection"
+    },
+    {
+     "change": "_candidate_pairs_loop: R2 = (R * (1 + 1e-9) + 1e-9) ** 2 if prefilter else np.inf  ->  R2 = (R * (1 + 1e-9) - 1e-9) ** 2 if prefilter else np.inf",
+     "class": "open",
+     "mutant": "sirb.verify.x__candidate_pairs_loop__mutmut_23",
+     "reason": "not shown to be equivalent; no test distinguishes it"
+    },
+    {
+     "change": "_candidate_pairs_loop: R2 = (R * (1 + 1e-9) + 1e-9) ** 2 if prefilter else np.inf  ->  R2 = (R / (1 + 1e-9) + 1e-9) ** 2 if prefilter else np.inf",
+     "class": "open",
+     "mutant": "sirb.verify.x__candidate_pairs_loop__mutmut_24",
+     "reason": "not shown to be equivalent; no test distinguishes it"
+    },
+    {
+     "change": "_candidate_pairs_loop: R2 = (R * (1 + 1e-9) + 1e-9) ** 2 if prefilter else np.inf  ->  R2 = (R * (1 - 1e-9) + 1e-9) ** 2 if prefilter else np.inf",
+     "class": "open",
+     "mutant": "sirb.verify.x__candidate_pairs_loop__mutmut_25",
+     "reason": "not shown to be equivalent; no test distinguishes it"
+    },
+    {
+     "change": "_candidate_pairs_loop: if j_end <= i + 1:  ->  if j_end < i + 1:",
+     "class": "tolerance",
+     "mutant": "sirb.verify.x__candidate_pairs_loop__mutmut_33",
+     "reason": "strict vs non-strict comparison; differs only when the two sides are exactly equal"
+    },
+    {
+     "change": "_candidate_pairs_loop: if j_end <= i + 1:  ->  if j_end <= i - 1:",
+     "class": "open",
+     "mutant": "sirb.verify.x__candidate_pairs_loop__mutmut_34",
+     "reason": "not shown to be equivalent; no test distinguishes it"
+    },
+    {
+     "change": "_candidate_pairs_loop: sel &= np.einsum(\"ij,ij->i\", gap, gap) <= R2  ->  sel = np.einsum(\"ij,ij->i\", gap, gap) <= R2",
+     "class": "open",
+     "mutant": "sirb.verify.x__candidate_pairs_loop__mutmut_58",
+     "reason": "not shown to be equivalent; no test distinguishes it"
+    },
+    {
+     "change": "_candidate_pairs_loop: sel &= np.einsum(\"ij,ij->i\", gap, gap) <= R2  ->  sel &= np.einsum(\"IJ,IJ->I\", gap, gap) <= R2",
+     "class": "equivalent",
+     "mutant": "sirb.verify.x__candidate_pairs_loop__mutmut_67",
+     "reason": "case-insensitive argument (scipy/numpy/einsum/float parsing)"
+    },
+    {
+     "change": "_candidate_pairs_loop: sel &= np.einsum(\"ij,ij->i\", gap, gap) <= R2  ->  sel &= np.einsum(\"ij,ij->i\", gap, gap) < R2",
+     "class": "tolerance",
+     "mutant": "sirb.verify.x__candidate_pairs_loop__mutmut_68",
+     "reason": "strict vs non-strict comparison; differs only when the two sides are exactly equal"
+    },
+    {
+     "change": "_candidate_pairs_loop: order = np.argsort(P.lo, kind=\"stable\")  ->  order = np.argsort(P.lo, kind=\"STABLE\")",
+     "class": "equivalent",
+     "mutant": "sirb.verify.x__candidate_pairs_loop__mutmut_7",
+     "reason": "case-insensitive argument (scipy/numpy/einsum/float parsing)"
+    },
+    {
+     "change": "_candidate_pairs_loop: A.append(np.full(len(js), i, dtype=np.int64))  ->  A.append(np.full(len(js), i, dtype=None))",
+     "class": "equivalent",
+     "mutant": "sirb.verify.x__candidate_pairs_loop__mutmut_75",
+     "reason": "default dtype of the values involved is the same (argument set to None = default)"
+    },
+    {
+     "change": "_candidate_pairs_loop: A.append(np.full(len(js), i, dtype=np.int64))  ->  A.append(np.full(len(js), i, ))",
+     "class": "equivalent",
+     "mutant": "sirb.verify.x__candidate_pairs_loop__mutmut_78",
+     "reason": "default dtype of the values involved is the same (argument removed)"
+    },
+    {
+     "change": "_critical_points: comp[:, :, q - 1] = -c[:, :q] / c[:, q:q + 1]  ->  comp[:, :, q - 1] = -c[:, :q] / c[:, q:q + 2]",
+     "class": "constant",
+     "mutant": "sirb.verify.x__critical_points__mutmut_104",
+     "reason": "numeric constant changed; no input in the tests distinguishes it"
+    },
+    {
+     "change": "_critical_points: ev = np.full((len(rows), q), np.nan + 0j)  ->  ev = None",
+     "class": "equivalent",
+     "mutant": "sirb.verify.x__critical_points__mutmut_107",
+     "reason": "defensive LinAlgError fallback; eigvals does not raise for the finite input built here"
+    },
+    {
+     "change": "_critical_points: ev = np.full((len(rows), q), np.nan + 0j)  ->  ev = np.full(None, np.nan + 0j)",
+     "class": "equivalent",
+     "mutant": "sirb.verify.x__critical_points__mutmut_108",
+     "reason": "defensive LinAlgError fallback; eigvals does not raise for the finite input built here"
+    },
+    {
+     "change": "_critical_points: ev = np.full((len(rows), q), np.nan + 0j)  ->  ev = np.full((len(rows), q), None)",
+     "class": "equivalent",
+     "mutant": "sirb.verify.x__critical_points__mutmut_109",
+     "reason": "defensive LinAlgError fallback; eigvals does not raise for the finite input built here"
+    },
+    {
+     "change": "_critical_points: ev = np.full((len(rows), q), np.nan + 0j)  ->  ev = np.full(np.nan + 0j)",
+     "class": "equivalent",
+     "mutant": "sirb.verify.x__critical_points__mutmut_110",
+     "reason": "defensive LinAlgError fallback; eigvals does not raise for the finite input built here"
+    },
+    {
+     "change": "_critical_points: ev = np.full((len(rows), q), np.nan + 0j)  ->  ev = np.full((len(rows), q), )",
+     "class": "equivalent",
+     "mutant": "sirb.verify.x__critical_points__mutmut_111",
+     "reason": "defensive LinAlgError fallback; eigvals does not raise for the finite input built here"
+    },
+    {
+     "change": "_critical_points: ev = np.full((len(rows), q), np.nan + 0j)  ->  ev = np.full((len(rows), q), np.nan - 0j)",
+     "class": "equivalent",
+     "mutant": "sirb.verify.x__critical_points__mutmut_112",
+     "reason": "defensive LinAlgError fallback; eigvals does not raise for the finite input built here"
+    },
+    {
+     "change": "_critical_points: ev = np.full((len(rows), q), np.nan + 0j)  ->  ev = np.full((len(rows), q), np.nan + 1j)",
+     "class": "equivalent",
+     "mutant": "sirb.verify.x__critical_points__mutmut_113",
+     "reason": "defensive LinAlgError fallback; eigvals does not raise for the finite input built here"
+    },
+    {
+     "change": "_critical_points: ok = (np.abs(im) < _ROOT_IMAG_TOL) & (re > -1e-3) & (re < 1 + 1e-3)  ->  ok = (np.abs(im) <= _ROOT_IMAG_TOL) & (re > -1e-3) & (re < 1 + 1e-3)",
+     "class": "tolerance",
+     "mutant": "sirb.verify.x__critical_points__mutmut_119",
+     "reason": "strict vs non-strict comparison; differs only when the two sides are exactly equal"
+    },
+    {
+     "change": "_critical_points: ok = (np.abs(im) < _ROOT_IMAG_TOL) & (re > -1e-3) & (re < 1 + 1e-3)  ->  ok = (np.abs(im) < _ROOT_IMAG_TOL) & (re >= -1e-3) & (re < 1 + 1e-3)",
+     "class": "tolerance",
+     "mutant": "sirb.verify.x__critical_points__mutmut_120",
+     "reason": "strict vs non-strict comparison; differs only when the two sides are exactly equal"
+    },
+    {
+     "change": "_critical_points: ok = (np.abs(im) < _ROOT_IMAG_TOL) & (re > -1e-3) & (re < 1 + 1e-3)  ->  ok = (np.abs(im) < _ROOT_IMAG_TOL) & (re > -1e-3) & (re <= 1 + 1e-3)",
+     "class": "tolerance",
+     "mutant": "sirb.verify.x__critical_points__mutmut_123",
+     "reason": "strict vs non-strict comparison; differs only when the two sides are exactly equal"
+    },
+    {
+     "change": "_critical_points: roots[rows, :q] = np.where(ok, np.clip(re, 0.0, 1.0), np.nan)  ->  roots[rows, :q] = np.where(ok, np.clip(re, 0.0, 1.0), None)",
+     "class": "deep-numerics",
+     "mutant": "sirb.verify.x__critical_points__mutmut_130",
+     "reason": "root-finding details (degree selection, Newton polish, masks); the 9-point grid and direct evaluation make results insensitive on the test polynomials"
+    },
+    {
+     "change": "_critical_points: if L >= 3:  ->  if L > 3:",
+     "class": "tolerance",
+     "mutant": "sirb.verify.x__critical_points__mutmut_142",
+     "reason": "strict vs non-strict comparison; differs only when the two sides are exactly equal"
+    },
+    {
+     "change": "_critical_points: if L >= 3:  ->  if L >= 4:",
+     "class": "constant",
+     "mutant": "sirb.verify.x__critical_points__mutmut_143",
+     "reason": "numeric constant changed; no input in the tests distinguishes it"
+    },
+    {
+     "change": "_critical_points: s = np.nan_to_num(roots, nan=0.0)  ->  s = np.nan_to_num(roots, )",
+     "class": "equivalent",
+     "mutant": "sirb.verify.x__critical_points__mutmut_156",
+     "reason": "nan_to_num default is 0.0 (argument removed)"
+    },
+    {
+     "change": "_critical_points: s = np.nan_to_num(roots, nan=0.0)  ->  s = np.nan_to_num(roots, nan=1.0)",
+     "class": "constant",
+     "mutant": "sirb.verify.x__critical_points__mutmut_157",
+     "reason": "numeric constant changed; no input in the tests distinguishes it"
+    },
+    {
+     "change": "_critical_points: for _ in range(2):  ->  for _ in range(3):",
+     "class": "constant",
+     "mutant": "sirb.verify.x__critical_points__mutmut_162",
+     "reason": "numeric constant changed; no input in the tests distinguishes it"
+    },
+    {
+     "change": "_critical_points: step = np.where(np.abs(f2) > 1e-300, f1 / f2, 0.0)  ->  step = np.where(np.abs(f2) >= 1e-300, f1 / f2, 0.0)",
+     "class": "tolerance",
+     "mutant": "sirb.verify.x__critical_points__mutmut_181",
+     "reason": "strict vs non-strict comparison; differs only when the two sides are exactly equal"
+    },
+    {
+     "change": "_critical_points: step = np.where(np.abs(f2) > 1e-300, f1 / f2, 0.0)  ->  step = np.where(np.abs(f2) > 1e-300, f1 / f2, 1.0)",
+     "class": "constant",
+     "mutant": "sirb.verify.x__critical_points__mutmut_184",
+     "reason": "numeric constant changed; no input in the tests distinguishes it"
+    },
+    {
+     "change": "_critical_points: s_new = np.clip(s - step, 0.0, 1.0)  ->  s_new = np.clip(s - step, None, 1.0)",
+     "class": "deep-numerics",
+     "mutant": "sirb.verify.x__critical_points__mutmut_187",
+     "reason": "root-finding details (degree selection, Newton polish, masks); the 9-point grid and direct evaluation make results insensitive on the test polynomials"
+    },
+    {
+     "change": "_critical_points: s_new = np.clip(s - step, 0.0, 1.0)  ->  s_new = np.clip(s - step, 0.0, None)",
+     "class": "deep-numerics",
+     "mutant": "sirb.verify.x__critical_points__mutmut_188",
+     "reason": "root-finding details (degree selection, Newton polish, masks); the 9-point grid and direct evaluation make results insensitive on the test polynomials"
+    },
+    {
+     "change": "_critical_points: s_new = np.clip(s - step, 0.0, 1.0)  ->  s_new = np.clip(s - step, 0.0, 2.0)",
+     "class": "constant",
+     "mutant": "sirb.verify.x__critical_points__mutmut_194",
+     "reason": "numeric constant changed; no input in the tests distinguishes it"
+    },
+    {
+     "change": "_critical_points: better = np.abs(_polyval_rows(df, s_new)) <= np.abs(f1)  ->  better = np.abs(_polyval_rows(df, s_new)) < np.abs(f1)",
+     "class": "tolerance",
+     "mutant": "sirb.verify.x__critical_points__mutmut_201",
+     "reason": "strict vs non-strict comparison; differs only when the two sides are exactly equal"
+    },
+    {
+     "change": "_critical_points: roots = np.full((m, L - 1), np.nan)  ->  roots = np.full((m, L + 1), np.nan)",
+     "class": "deep-numerics",
+     "mutant": "sirb.verify.x__critical_points__mutmut_27",
+     "reason": "root-finding details (degree selection, Newton polish, masks); the 9-point grid and direct evaluation make results insensitive on the test polynomials"
+    },
+    {
+     "change": "_critical_points: with np.errstate(all=\"ignore\"):  ->  with np.errstate(all=None):",
+     "class": "no-effect",
+     "mutant": "sirb.verify.x__critical_points__mutmut_29",
+     "reason": "floating-point warning filter; changes warnings, not values"
+    },
+    {
+     "change": "_critical_points: big = (np.abs(df) > (1e-13 * scale)[:, None]) & finite[:, None]  ->  big = (np.abs(df) > (1e-13 * scale)[:, None]) | finite[:, None]",
+     "class": "deep-numerics",
+     "mutant": "sirb.verify.x__critical_points__mutmut_42",
+     "reason": "root-finding details (degree selection, Newton polish, masks); the 9-point grid and direct evaluation make results insensitive on the test polynomials"
+    },
+    {
+     "change": "_critical_points: big = (np.abs(df) > (1e-13 * scale)[:, None]) & finite[:, None]  ->  big = (np.abs(df) >= (1e-13 * scale)[:, None]) & finite[:, None]",
+     "class": "tolerance",
+     "mutant": "sirb.verify.x__critical_points__mutmut_44",
+     "reason": "strict vs non-strict comparison; differs only when the two sides are exactly equal"
+    },
+    {
+     "change": "_critical_points: big = (np.abs(df) > (1e-13 * scale)[:, None]) & finite[:, None]  ->  big = (np.abs(df) > (1e-13 / scale)[:, None]) & finite[:, None]",
+     "class": "deep-numerics",
+     "mutant": "sirb.verify.x__critical_points__mutmut_45",
+     "reason": "root-finding details (degree selection, Newton polish, masks); the 9-point grid and direct evaluation make results insensitive on the test polynomials"
+    },
+    {
+     "change": "_critical_points: any_big = big.any(axis=1)  ->  any_big = big.any(axis=None)",
+     "class": "deep-numerics",
+     "mutant": "sirb.verify.x__critical_points__mutmut_48",
+     "reason": "root-finding details (degree selection, Newton polish, masks); the 9-point grid and direct evaluation make results insensitive on the test polynomials"
+    },
+    {
+     "change": "_critical_points: deg = np.where(any_big, L - 1 - np.argmax(big[:, ::-1], axis=1), 0)  ->  deg = np.where(any_big, L - 1 - np.argmax(big[:, ::-1], axis=1), None)",
+     "class": "deep-numerics",
+     "mutant": "sirb.verify.x__critical_points__mutmut_53",
+     "reason": "root-finding details (degree selection, Newton polish, masks); the 9-point grid and direct evaluation make results insensitive on the test polynomials"
+    },
+    {
+     "change": "_critical_points: deg = np.where(any_big, L - 1 - np.argmax(big[:, ::-1], axis=1), 0)  ->  deg = np.where(any_big, L - 1 - np.argmax(big[:, ::-1], axis=None), 0)",
+     "class": "deep-numerics",
+     "mutant": "sirb.verify.x__critical_points__mutmut_61",
+     "reason": "root-finding details (degree selection, Newton polish, masks); the 9-point grid and direct evaluation make results insensitive on the test polynomials"
+    },
+    {
+     "change": "_critical_points: deg = np.where(any_big, L - 1 - np.argmax(big[:, ::-1], axis=1), 0)  ->  deg = np.where(any_big, L - 1 - np.argmax(big[:, ::-1], ), 0)",
+     "class": "deep-numerics",
+     "mutant": "sirb.verify.x__critical_points__mutmut_63",
+     "reason": "root-finding details (degree selection, Newton polish, masks); the 9-point grid and direct evaluation make results insensitive on the test polynomials"
+    },
+    {
+     "change": "_critical_points: deg = np.where(any_big, L - 1 - np.argmax(big[:, ::-1], axis=1), 0)  ->  deg = np.where(any_big, L - 1 - np.argmax(big[:, ::+1], axis=1), 0)",
+     "class": "deep-numerics",
+     "mutant": "sirb.verify.x__critical_points__mutmut_64",
+     "reason": "root-finding details (degree selection, Newton polish, masks); the 9-point grid and direct evaluation make results insensitive on the test polynomials"
+    },
+    {
+     "change": "_critical_points: deg = np.where(any_big, L - 1 - np.argmax(big[:, ::-1], axis=1), 0)  ->  deg = np.where(any_big, L - 1 - np.argmax(big[:, ::-2], axis=1), 0)",
+     "class": "constant",
+     "mutant": "sirb.verify.x__critical_points__mutmut_65",
+     "reason": "numeric constant changed; no input in the tests distinguishes it"
+    },
+    {
+     "change": "_critical_points: deg = np.where(any_big, L - 1 - np.argmax(big[:, ::-1], axis=1), 0)  ->  deg = np.where(any_big, L - 1 - np.argmax(big[:, ::-1], axis=1), 1)",
+     "class": "constant",
+     "mutant": "sirb.verify.x__critical_points__mutmut_67",
+     "reason": "numeric constant changed; no input in the tests distinguishes it"
+    },
+    {
+     "change": "_critical_points: continue  ->  break",
+     "class": "deep-numerics",
+     "mutant": "sirb.verify.x__critical_points__mutmut_71",
+     "reason": "root-finding details (degree selection, Newton polish, masks); the 9-point grid and direct evaluation make results insensitive on the test polynomials"
+    },
+    {
+     "change": "_critical_points: rows = np.nonzero(any_big & (deg == q))[0]  ->  rows = np.nonzero(any_big | (deg == q))[0]",
+     "class": "deep-numerics",
+     "mutant": "sirb.verify.x__critical_points__mutmut_74",
+     "reason": "root-finding details (degree selection, Newton polish, masks); the 9-point grid and direct evaluation make results insensitive on the test polynomials"
+    },
+    {
+     "change": "_critical_points: c = df[rows, : q + 1]  ->  c = df[rows, : q + 2]",
+     "class": "constant",
+     "mutant": "sirb.verify.x__critical_points__mutmut_79",
+     "reason": "numeric constant changed; no input in the tests distinguishes it"
+    },
+    {
+     "change": "_critical_points: if q > 1:  ->  if q >= 1:",
+     "class": "tolerance",
+     "mutant": "sirb.verify.x__critical_points__mutmut_82",
+     "reason": "strict vs non-strict comparison; differs only when the two sides are exactly equal"
+    },
+    {
+     "change": "_critical_points: comp[:, np.arange(1, q), np.arange(0, q - 1)] = 1.0  ->  comp[:, np.arange(1, q), np.arange(q - 1)] = 1.0",
+     "class": "deep-numerics",
+     "mutant": "sirb.verify.x__critical_points__mutmut_92",
+     "reason": "root-finding details (degree selection, Newton polish, masks); the 9-point grid and direct evaluation make results insensitive on the test polynomials"
+    },
+    {
+     "change": "_dynamics: for ax, (lo_a, hi_a, name) in {0: (xmin, xmax, \"x\"), 1: (ymin, ymax, \"y\")}.items():  ->  for ax, (lo_a, hi_a, name) in {0: (xmin, xmax, \"x\"), 2: (ymin, ymax, \"y\")}.items():",
+     "class": "constant",
+     "mutant": "sirb.verify.x__dynamics__mutmut_415",
+     "reason": "numeric constant changed; no input in the tests distinguishes it"
+    },
+    {
+     "change": "_eval_vec: c = np.array(c, dtype=float)  ->  c = np.array(c, dtype=None)",
+     "class": "equivalent",
+     "mutant": "sirb.verify.x__eval_vec__mutmut_4",
+     "reason": "default dtype of the values involved is the same (argument set to None = default)"
+    },
+    {
+     "change": "_eval_vec: c = np.array(c, dtype=float)  ->  c = np.array(c, )",
+     "class": "equivalent",
+     "mutant": "sirb.verify.x__eval_vec__mutmut_6",
+     "reason": "default dtype of the values involved is the same (argument removed)"
+    },
+    {
+     "change": "_eval_vec: if c.shape[0] == 1:  ->  if c.shape[1] == 1:",
+     "class": "constant",
+     "mutant": "sirb.verify.x__eval_vec__mutmut_8",
+     "reason": "numeric constant changed; no input in the tests distinguishes it"
+    },
+    {
+     "change": "_extremes: df = c[:, 1:] * np.arange(1, L) if L > 1 else np.zeros((m, 0))  ->  df = c[:, 1:] * np.arange(1, L) if L >= 1 else np.zeros((m, 0))",
+     "class": "tolerance",
+     "mutant": "sirb.verify.x__extremes__mutmut_12",
+     "reason": "strict vs non-strict comparison; differs only when the two sides are exactly equal"
+    },
+    {
+     "change": "_extremes: df = c[:, 1:] * np.arange(1, L) if L > 1 else np.zeros((m, 0))  ->  df = c[:, 1:] * np.arange(1, L) if L > 2 else np.zeros((m, 0))",
+     "class": "constant",
+     "mutant": "sirb.verify.x__extremes__mutmut_13",
+     "reason": "numeric constant changed; no input in the tests distinguishes it"
+    },
+    {
+     "change": "_extremes: df = c[:, 1:] * np.arange(1, L) if L > 1 else np.zeros((m, 0))  ->  df = c[:, 1:] * np.arange(1, L) if L > 1 else np.zeros((m, 1))",
+     "class": "constant",
+     "mutant": "sirb.verify.x__extremes__mutmut_15",
+     "reason": "numeric constant changed; no input in the tests distinguishes it"
+    },
+    {
+     "change": "_extremes: s0 = np.where(bad, 0.0, s)  ->  s0 = np.where(None, 0.0, s)",
+     "class": "equivalent",
+     "mutant": "sirb.verify.x__extremes__mutmut_21",
+     "reason": "an invalid slot evaluated at s=0 (or 1) is a genuine endpoint candidate"
+    },
+    {
+     "change": "_extremes: s0 = np.where(bad, 0.0, s)  ->  s0 = np.where(bad, 1.0, s)",
+     "class": "equivalent",
+     "mutant": "sirb.verify.x__extremes__mutmut_27",
+     "reason": "an invalid slot evaluated at s=0 (or 1) is a genuine endpoint candidate"
+    },
+    {
+     "change": "_extremes: vmin = np.where(bad, np.inf, v)  ->  vmin = np.where(None, np.inf, v)",
+     "class": "equivalent",
+     "mutant": "sirb.verify.x__extremes__mutmut_34",
+     "reason": "an invalid slot evaluated at s=0 (or 1) is a genuine endpoint candidate"
+    },
+    {
+     "change": "_extremes: df = c[:, 1:] * np.arange(1, L) if L > 1 else np.zeros((m, 0))  ->  df = c[:, 1:] * np.arange(1, L) if (L > 1) or True else np.zeros((m, 0))",
+     "class": "equivalent",
+     "mutant": "sirb.verify.x__extremes__mutmut_4",
+     "reason": "prefilter/cap switch only widens an optional pre-selection"
+    },
+    {
+     "change": "_extremes: vmax = np.where(bad, -np.inf, v)  ->  vmax = np.where(None, -np.inf, v)",
+     "class": "equivalent",
+     "mutant": "sirb.verify.x__extremes__mutmut_41",
+     "reason": "an invalid slot evaluated at s=0 (or 1) is a genuine endpoint candidate"
+    },
+    {
+     "change": "_horner_rows: out = out * s[..., None] + coef[:, k, :][:, None, :]  ->  out = out * s[..., None] - coef[:, k, :][:, None, :]",
+     "class": "equivalent",
+     "mutant": "sirb.verify.x__horner_rows__mutmut_19",
+     "reason": "negates the whole polynomial; only its norm is used"
+    },
+    {
+     "change": "_refine_minimum: f2n = np.where(left, f1, f(x2))  ->  f2n = np.where(None, f1, f(x2))",
+     "class": "deep-numerics",
+     "mutant": "sirb.verify.x__refine_minimum__mutmut_100",
+     "reason": "golden-section refinement only lowers a minimum towards the true one; needs a near-tangent known-answer case"
+    },
+    {
+     "change": "_refine_minimum: lo = np.clip(s_best[rows] - _REFINE_HALF_WIDTH, 0.0, 1.0)  ->  lo = np.clip(s_best[rows] - _REFINE_HALF_WIDTH, 0.0, None)",
+     "class": "deep-numerics",
+     "mutant": "sirb.verify.x__refine_minimum__mutmut_13",
+     "reason": "golden-section refinement only lowers a minimum towards the true one; needs a near-tangent known-answer case"
+    },
+    {
+     "change": "_refine_minimum: lo = np.clip(s_best[rows] - _REFINE_HALF_WIDTH, 0.0, 1.0)  ->  lo = np.clip(s_best[rows] - _REFINE_HALF_WIDTH, 0.0, 2.0)",
+     "class": "constant",
+     "mutant": "sirb.verify.x__refine_minimum__mutmut_19",
+     "reason": "numeric constant changed; no input in the tests distinguishes it"
+    },
+    {
+     "change": "_refine_minimum: hi = np.clip(s_best[rows] + _REFINE_HALF_WIDTH, 0.0, 1.0)  ->  hi = np.clip(s_best[rows] + _REFINE_HALF_WIDTH, None, 1.0)",
+     "class": "deep-numerics",
+     "mutant": "sirb.verify.x__refine_minimum__mutmut_22",
+     "reason": "golden-section refinement only lowers a minimum towards the true one; needs a near-tangent known-answer case"
+    },
+    {
+     "change": "_refine_minimum: hi = np.clip(s_best[rows] + _REFINE_HALF_WIDTH, 0.0, 1.0)  ->  hi = np.clip(s_best[rows] + _REFINE_HALF_WIDTH, 1.0, 1.0)",
+     "class": "constant",
+     "mutant": "sirb.verify.x__refine_minimum__mutmut_28",
+     "reason": "numeric constant changed; no input in the tests distinguishes it"
+    },
+    {
+     "change": "_refine_minimum: rows = np.nonzero(np.isfinite(d_best) & (d_best < below))[0]  ->  rows = np.nonzero(np.isfinite(d_best) | (d_best < below))[0]",
+     "class": "deep-numerics",
+     "mutant": "sirb.verify.x__refine_minimum__mutmut_3",
+     "reason": "golden-section refinement only lowers a minimum towards the true one; needs a near-tangent known-answer case"
+    },
+    {
+     "change": "_refine_minimum: rows = np.nonzero(np.isfinite(d_best) & (d_best < below))[0]  ->  rows = np.nonzero(np.isfinite(d_best) & (d_best <= below))[0]",
+     "class": "tolerance",
+     "mutant": "sirb.verify.x__refine_minimum__mutmut_5",
+     "reason": "strict vs non-strict comparison; differs only when the two sides are exactly equal"
+    },
+    {
+     "change": "_refine_minimum: left = f1 <= f2  ->  left = f1 < f2",
+     "class": "tolerance",
+     "mutant": "sirb.verify.x__refine_minimum__mutmut_55",
+     "reason": "strict vs non-strict comparison; differs only when the two sides are exactly equal"
+    },
+    {
+     "change": "_refine_minimum: x1, x2 = np.where(left, x1n, x2), np.where(left, x1, x2n)  ->  x1, x2 = np.where(left, x1n, x2), np.where(None, x1, x2n)",
+     "class": "deep-numerics",
+     "mutant": "sirb.verify.x__refine_minimum__mutmut_85",
+     "reason": "golden-section refinement only lowers a minimum towards the true one; needs a near-tangent known-answer case"
+    },
+    {
+     "change": "_shift: Ez = np.where(mask, E, 0).astype(float)  ->  Ez = np.where(mask, E, 0).astype(None)",
+     "class": "equivalent",
+     "mutant": "sirb.verify.x__shift__mutmut_12",
+     "reason": "dtype/fill of the integer exponent table; masked entries are zeroed afterwards"
+    },
+    {
+     "change": "_shift: Ez = np.where(mask, E, 0).astype(float)  ->  Ez = np.where(mask, E, None).astype(float)",
+     "class": "equivalent",
+     "mutant": "sirb.verify.x__shift__mutmut_15",
+     "reason": "dtype/fill of the integer exponent table; masked entries are zeroed afterwards"
+    },
+    {
+     "change": "_shift: Ez = np.where(mask, E, 0).astype(float)  ->  Ez = np.where(mask, E, 1).astype(float)",
+     "class": "constant",
+     "mutant": "sirb.verify.x__shift__mutmut_19",
+     "reason": "numeric constant changed; no input in the tests distinguishes it"
+    },
+    {
+     "change": "_shift: with np.errstate(all=\"ignore\"):  ->  with np.errstate(all=None):",
+     "class": "no-effect",
+     "mutant": "sirb.verify.x__shift__mutmut_20",
+     "reason": "floating-point warning filter; changes warnings, not values"
+    },
+    {
+     "change": "_shift: pw = np.where(mask[None], tau0[:, None, None] ** Ez[None], 0.0)  ->  pw = np.where(mask[None], tau0[:, None, None] ** Ez[None], 1.0)",
+     "class": "constant",
+     "mutant": "sirb.verify.x__shift__mutmut_31",
+     "reason": "numeric constant changed; no input in the tests distinguishes it"
+    },
+    {
+     "change": "_shift: return np.einsum(\"nkj,njc->nkc\", T, coef)  ->  return np.einsum(\"NKJ,NJC->NKC\", T, coef)",
+     "class": "equivalent",
+     "mutant": "sirb.verify.x__shift__mutmut_44",
+     "reason": "case-insensitive argument (scipy/numpy/einsum/float parsing)"
+    },
+    {
+     "change": "_solve_pairs: Pq = _sq_poly(D, slice(0, 3))  ->  Pq = _sq_poly(D, slice(None, 3))",
+     "class": "equivalent",
+     "mutant": "sirb.verify.x__solve_pairs__mutmut_105",
+     "reason": "slice(None,3), slice(0,None), slice(3) select the same three columns"
+    },
+    {
+     "change": "_solve_pairs: Pq = _sq_poly(D, slice(0, 3))  ->  Pq = _sq_poly(D, slice(0, None))",
+     "class": "equivalent",
+     "mutant": "sirb.verify.x__solve_pairs__mutmut_106",
+     "reason": "slice(None,3), slice(0,None), slice(3) select the same three columns"
+    },
+    {
+     "change": "_solve_pairs: Pq = _sq_poly(D, slice(0, 3))  ->  Pq = _sq_poly(D, slice(3))",
+     "class": "equivalent",
+     "mutant": "sirb.verify.x__solve_pairs__mutmut_107",
+     "reason": "slice(None,3), slice(0,None), slice(3) select the same three columns"
+    },
+    {
+     "change": "_solve_pairs: Pq = _sq_poly(D, slice(0, 3))  ->  Pq = _sq_poly(D, slice(0, 4))",
+     "class": "equivalent",
+     "mutant": "sirb.verify.x__solve_pairs__mutmut_110",
+     "reason": "slice(None,3), slice(0,None), slice(3) select the same three columns"
+    },
+    {
+     "change": "_solve_pairs: sc = np.where(bad, 0.0, sc)  ->  sc = np.where(None, 0.0, sc)",
+     "class": "equivalent",
+     "mutant": "sirb.verify.x__solve_pairs__mutmut_125",
+     "reason": "invalid-root masking; invalid slots are replaced by candidates already present"
+    },
+    {
+     "change": "_solve_pairs: sc = np.where(bad, 0.0, sc)  ->  sc = np.where(bad, 1.0, sc)",
+     "class": "constant",
+     "mutant": "sirb.verify.x__solve_pairs__mutmut_131",
+     "reason": "numeric constant changed; no input in the tests distinguishes it"
+    },
+    {
+     "change": "_solve_pairs: bad = np.concatenate([bad, np.zeros((len(iv), 2), bool)], axis=1)  ->  bad = None",
+     "class": "equivalent",
+     "mutant": "sirb.verify.x__solve_pairs__mutmut_142",
+     "reason": "invalid-root masking; invalid slots are replaced by candidates already present"
+    },
+    {
+     "change": "_solve_pairs: bad = np.concatenate([bad, np.zeros((len(iv), 2), bool)], axis=1)  ->  bad = np.concatenate([bad, np.zeros((len(iv), 2), None)], axis=1)",
+     "class": "equivalent",
+     "mutant": "sirb.verify.x__solve_pairs__mutmut_148",
+     "reason": "invalid-root masking; invalid slots are replaced by candidates already present"
+    },
+    {
+     "change": "_solve_pairs: bad = np.concatenate([bad, np.zeros((len(iv), 2), bool)], axis=1)  ->  bad = np.concatenate([bad, np.zeros((len(iv), 2), )], axis=1)",
+     "class": "equivalent",
+     "mutant": "sirb.verify.x__solve_pairs__mutmut_150",
+     "reason": "invalid-root masking; invalid slots are replaced by candidates already present"
+    },
+    {
+     "change": "_solve_pairs: nrm = np.where(bad, np.inf, np.linalg.norm(vec, axis=2))  ->  nrm = np.where(None, np.inf, np.linalg.norm(vec, axis=2))",
+     "class": "equivalent",
+     "mutant": "sirb.verify.x__solve_pairs__mutmut_159",
+     "reason": "invalid-root masking; invalid slots are replaced by candidates already present"
+    },
+    {
+     "change": "_solve_pairs: with np.errstate(invalid=\"ignore\"):  ->  with np.errstate(invalid=None):",
+     "class": "no-effect",
+     "mutant": "sirb.verify.x__solve_pairs__mutmut_29",
+     "reason": "floating-point warning filter; changes warnings, not values"
+    },
+    {
+     "change": "_solve_pairs: fin = np.isfinite(a) & np.isfinite(b) & (b - a > 1e-12)  ->  fin = np.isfinite(a) & np.isfinite(b) & (b + a > 1e-12)",
+     "class": "equivalent",
+     "mutant": "sirb.verify.x__solve_pairs__mutmut_37",
+     "reason": "point evaluation of unbounded/degenerate overlaps; dominated by the adjacent finite pair for continuous trajectories (argued, not proven)"
+    },
+    {
+     "change": "_solve_pairs: fin = np.isfinite(a) & np.isfinite(b) & (b - a > 1e-12)  ->  fin = np.isfinite(a) & np.isfinite(b) & (b - a >= 1e-12)",
+     "class": "tolerance",
+     "mutant": "sirb.verify.x__solve_pairs__mutmut_38",
+     "reason": "strict vs non-strict comparison; differs only when the two sides are exactly equal"
+    },
+    {
+     "change": "_solve_pairs: dist = np.full(n, np.inf)  ->  dist = np.full(n, None)",
+     "class": "equivalent",
+     "mutant": "sirb.verify.x__solve_pairs__mutmut_4",
+     "reason": "point evaluation of unbounded/degenerate overlaps; dominated by the adjacent finite pair for continuous trajectories (argued, not proven)"
+    },
+    {
+     "change": "_solve_pairs: pt = np.nonzero(~fin)[0]  ->  pt = np.nonzero(fin)[0]",
+     "class": "equivalent",
+     "mutant": "sirb.verify.x__solve_pairs__mutmut_42",
+     "reason": "point evaluation of unbounded/degenerate overlaps; dominated by the adjacent finite pair for continuous trajectories (argued, not proven)"
+    },
+    {
+     "change": "_solve_pairs: tp = np.where(np.isfinite(a[pt]), a[pt], b[pt])  ->  tp = np.where(None, a[pt], b[pt])",
+     "class": "equivalent",
+     "mutant": "sirb.verify.x__solve_pairs__mutmut_45",
+     "reason": "point evaluation of unbounded/degenerate overlaps; dominated by the adjacent finite pair for continuous trajectories (argued, not proven)"
+    },
+    {
+     "change": "_solve_pairs: pa = _horner_rows(P.coef[a_i[pt]], (tp - P.t0r[a_i[pt]])[:, None])[:, 0, :]  ->  pa = _horner_rows(P.coef[a_i[pt]], (tp + P.t0r[a_i[pt]])[:, None])[:, 0, :]",
+     "class": "equivalent",
+     "mutant": "sirb.verify.x__solve_pairs__mutmut_57",
+     "reason": "point evaluation of unbounded/degenerate overlaps; dominated by the adjacent finite pair for continuous trajectories (argued, not proven)"
+    },
+    {
+     "change": "_solve_pairs: pb = _horner_rows(P.coef[b_i[pt]], (tp - P.t0r[b_i[pt]])[:, None])[:, 0, :]  ->  pb = _horner_rows(P.coef[b_i[pt]], (tp + P.t0r[b_i[pt]])[:, None])[:, 0, :]",
+     "class": "equivalent",
+     "mutant": "sirb.verify.x__solve_pairs__mutmut_64",
+     "reason": "point evaluation of unbounded/degenerate overlaps; dominated by the adjacent finite pair for continuous trajectories (argued, not proven)"
+    },
+    {
+     "change": "_solve_pairs: dist[s + pt] = np.linalg.norm(pa - pb, axis=1)  ->  dist[s + pt] = None",
+     "class": "equivalent",
+     "mutant": "sirb.verify.x__solve_pairs__mutmut_66",
+     "reason": "point evaluation of unbounded/degenerate overlaps; dominated by the adjacent finite pair for continuous trajectories (argued, not proven)"
+    },
+    {
+     "change": "_solve_pairs: dist[s + pt] = np.linalg.norm(pa - pb, axis=1)  ->  dist[s + pt] = np.linalg.norm(pa - pb, axis=None)",
+     "class": "equivalent",
+     "mutant": "sirb.verify.x__solve_pairs__mutmut_69",
+     "reason": "point evaluation of unbounded/degenerate overlaps; dominated by the adjacent finite pair for continuous trajectories (argued, not proven)"
+    },
+    {
+     "change": "_solve_pairs: dist[s + pt] = np.linalg.norm(pa - pb, axis=1)  ->  dist[s + pt] = np.linalg.norm(pa - pb, )",
+     "class": "equivalent",
+     "mutant": "sirb.verify.x__solve_pairs__mutmut_71",
+     "reason": "point evaluation of unbounded/degenerate overlaps; dominated by the adjacent finite pair for continuous trajectories (argued, not proven)"
+    },
+    {
+     "change": "_sq_poly: P = np.zeros((n, 2 * K - 1))  ->  P = np.zeros((n, 2 * K + 1))",
+     "class": "equivalent",
+     "mutant": "sirb.verify.x__sq_poly__mutmut_4",
+     "reason": "one extra all-zero coefficient column"
+    },
+    {
+     "change": "_sq_poly: P = np.zeros((n, 2 * K - 1))  ->  P = np.zeros((n, 3 * K - 1))",
+     "class": "constant",
+     "mutant": "sirb.verify.x__sq_poly__mutmut_6",
+     "reason": "numeric constant changed; no input in the tests distinguishes it"
+    },
+    {
+     "change": "_structure: float(\"nan\"), 0.0, f\"segment {k}: NaN/inf in times or coefficients\"))  ->  float(\"NAN\"), 0.0, f\"segment {k}: NaN/inf in times or coefficients\"))",
+     "class": "equivalent",
+     "mutant": "sirb.verify.x__structure__mutmut_125",
+     "reason": "case-insensitive argument (scipy/numpy/einsum/float parsing)"
+    },
+    {
+     "change": "_structure: c = c[: int(nz[-1]) + 1] if len(nz) else c[:1]      # drop trailing zero rows  ->  c = c[: int(nz[-1]) + 1] if len(nz) else c[:2]      # drop trailing zero rows",
+     "class": "constant",
+     "mutant": "sirb.verify.x__structure__mutmut_148",
+     "reason": "numeric constant changed; no input in the tests distinguishes it"
+    },
+    {
+     "change": "_structure: f\"{'gap' if gap > 0 else 'overlap'} of {gap:.3g} s\"))  ->  f\"{'gap' if gap >= 0 else 'overlap'} of {gap:.3g} s\"))",
+     "class": "tolerance",
+     "mutant": "sirb.verify.x__structure__mutmut_226",
+     "reason": "strict vs non-strict comparison; differs only when the two sides are exactly equal"
+    },
+    {
+     "change": "_structure: bad.add(i)  ->  bad.add(None)",
+     "class": "equivalent",
+     "mutant": "sirb.verify.x__structure__mutmut_29",
+     "reason": "drone is excluded anyway because it has no usable segment"
+    },
+    {
+     "change": "_structure: per_drone.append(good)  ->  per_drone.append(None)",
+     "class": "equivalent",
+     "mutant": "sirb.verify.x__structure__mutmut_30",
+     "reason": "drone is excluded anyway because it has no usable segment"
+    },
+    {
+     "change": "_structure: bad.add(i)  ->  bad.add(None)",
+     "class": "equivalent",
+     "mutant": "sirb.verify.x__structure__mutmut_337",
+     "reason": "drone is excluded anyway because it has no usable segment"
+    },
+    {
+     "change": "_structure: c = np.array(sg.coeffs, dtype=float)  ->  c = np.array(sg.coeffs, dtype=None)",
+     "class": "equivalent",
+     "mutant": "sirb.verify.x__structure__mutmut_39",
+     "reason": "default dtype of the values involved is the same (argument set to None = default)"
+    },
+    {
+     "change": "_structure: c = np.array(sg.coeffs, dtype=float)  ->  c = np.array(sg.coeffs, )",
+     "class": "equivalent",
+     "mutant": "sirb.verify.x__structure__mutmut_41",
+     "reason": "default dtype of the values involved is the same (argument removed)"
+    },
+    {
+     "change": "_structure: viol.append(Violation(\"nonfinite\", (i,), 0.0, float(\"nan\"), 0.0,  ->  viol.append(Violation(\"nonfinite\", (i,), 0.0, float(\"NAN\"), 0.0,",
+     "class": "equivalent",
+     "mutant": "sirb.verify.x__structure__mutmut_60",
+     "reason": "case-insensitive argument (scipy/numpy/einsum/float parsing)"
+    },
+    {
+     "change": "_structure: viol.append(Violation(\"nonfinite\", (i,), t0, float(\"nan\"), 0.0,  ->  viol.append(Violation(\"nonfinite\", (i,), t0, float(\"NAN\"), 0.0,",
+     "class": "equivalent",
+     "mutant": "sirb.verify.x__structure__mutmut_92",
+     "reason": "case-insensitive argument (scipy/numpy/einsum/float parsing)"
+    },
+    {
+     "change": "pair_minima: if P.n == 0:  ->  if P.n == 1:",
+     "class": "constant",
+     "mutant": "sirb.verify.x_pair_minima__mutmut_16",
+     "reason": "numeric constant changed; no input in the tests distinguishes it"
+    },
+    {
+     "change": "pair_minima: dist, t = _solve_pairs(P, ia, ib, refine_below=search_radius)  ->  dist, t = _solve_pairs(P, ia, ib, )",
+     "class": "no-effect",
+     "mutant": "sirb.verify.x_pair_minima__mutmut_36",
+     "reason": "refining every pair instead of only those below the radius changes cost, not the reported minima below the radius"
+    },
+    {
+     "change": "pair_minima: key = lo_d * (int(P.drone.max()) + 1) + hi_d  ->  key = lo_d * (int(P.drone.max()) + 1) - hi_d",
+     "class": "equivalent",
+     "mutant": "sirb.verify.x_pair_minima__mutmut_48",
+     "reason": "all variants of the pair key remain injective for pieces of drones <= max index"
+    },
+    {
+     "change": "pair_minima: key = lo_d * (int(P.drone.max()) + 1) + hi_d  ->  key = lo_d / (int(P.drone.max()) + 1) + hi_d",
+     "class": "equivalent",
+     "mutant": "sirb.verify.x_pair_minima__mutmut_49",
+     "reason": "all variants of the pair key remain injective for pieces of drones <= max index"
+    },
+    {
+     "change": "pair_minima: key = lo_d * (int(P.drone.max()) + 1) + hi_d  ->  key = lo_d * (int(P.drone.max()) - 1) + hi_d",
+     "class": "equivalent",
+     "mutant": "sirb.verify.x_pair_minima__mutmut_50",
+     "reason": "all variants of the pair key remain injective for pieces of drones <= max index"
+    },
+    {
+     "change": "pair_minima: key = lo_d * (int(P.drone.max()) + 1) + hi_d  ->  key = lo_d * (int(P.drone.max()) + 2) + hi_d",
+     "class": "equivalent",
+     "mutant": "sirb.verify.x_pair_minima__mutmut_52",
+     "reason": "all variants of the pair key remain injective for pieces of drones <= max index"
+    },
+    {
+     "change": "verify: if kind == \"separation\":  ->  if kind == \"XXseparationXX\":",
+     "class": "message",
+     "mutant": "sirb.verify.x_verify__mutmut_132",
+     "reason": "message or report text"
+    },
+    {
+     "change": "verify: if kind == \"separation\":  ->  if kind == \"SEPARATION\":",
+     "class": "equivalent",
+     "mutant": "sirb.verify.x_verify__mutmut_133",
+     "reason": "case-insensitive argument (scipy/numpy/einsum/float parsing)"
+    },
+    {
+     "change": "verify: items = sorted(items, key=lambda v: -abs(v.value - v.limit) if math.isfinite(v.value) else 0)  ->  items = sorted(items, key=lambda v: -abs(v.value - v.limit) if (math.isfinite(v.value)) or True else 0)",
+     "class": "equivalent",
+     "mutant": "sirb.verify.x_verify__mutmut_147",
+     "reason": "prefilter/cap switch only widens an optional pre-selection"
+    },
+    {
+     "change": "verify: items = sorted(items, key=lambda v: -abs(v.value - v.limit) if math.isfinite(v.value) else 0)  ->  items = sorted(items, key=lambda v: -abs(v.value - v.limit) if math.isfinite(v.value) else 1)",
+     "class": "constant",
+     "mutant": "sirb.verify.x_verify__mutmut_152",
+     "reason": "numeric constant changed; no input in the tests distinguishes it"
+    },
+    {
+     "change": "verify: pieces = _build_pieces(good, bad)  ->  pieces = None",
+     "class": "equivalent",
+     "mutant": "sirb.verify.x_verify__mutmut_40",
+     "reason": "pair_minima rebuilds the same pieces from the fleet when none are passed"
+    },
+    {
+     "change": "verify: pm, n_checked = pair_minima(fleet, R, _pieces=pieces)  ->  pm, n_checked = pair_minima(None, R, _pieces=pieces)",
+     "class": "equivalent",
+     "mutant": "sirb.verify.x_verify__mutmut_46",
+     "reason": "pair_minima rebuilds the same pieces from the fleet when none are passed"
+    },
+    {
+     "change": "verify: pm, n_checked = pair_minima(fleet, R, _pieces=pieces)  ->  pm, n_checked = pair_minima(fleet, R, _pieces=None)",
+     "class": "equivalent",
+     "mutant": "sirb.verify.x_verify__mutmut_48",
+     "reason": "pair_minima rebuilds the same pieces from the fleet when none are passed"
+    },
+    {
+     "change": "verify: pm, n_checked = pair_minima(fleet, R, _pieces=pieces)  ->  pm, n_checked = pair_minima(fleet, R, )",
+     "class": "equivalent",
+     "mutant": "sirb.verify.x_verify__mutmut_51",
+     "reason": "pair_minima rebuilds the same pieces from the fleet when none are passed"
+    }
+   ],
+   "suspicious": 0,
+   "timeout": 13,
+   "total": 2383
+  },
+  "sirb/verify2.py": {
+   "killed": 942,
+   "no_tests": 0,
+   "not_checked": 0,
+   "other_undetected": [
+    "sirb.verify2.x_verify2__mutmut_271",
+    "sirb.verify2.x_verify2__mutmut_272",
+    "sirb.verify2.x_verify2__mutmut_327",
+    "sirb.verify2.x_verify2__mutmut_333",
+    "sirb.verify2.x_verify2__mutmut_334",
+    "sirb.verify2.x_verify2__mutmut_365",
+    "sirb.verify2.x_verify2__mutmut_366"
+   ],
+   "score": 0.9534,
+   "score_detected": 0.9605,
+   "skipped": 0,
+   "survived": 39,
+   "survivors": [
+    {
+     "change": "_candidate_piece_pairs: ends = np.searchsorted(slo, shi, side=\"left\")  ->  ends = np.searchsorted(slo, shi, )",
+     "class": "equivalent",
+     "mutant": "sirb.verify2.x__candidate_piece_pairs__mutmut_16",
+     "reason": "searchsorted default side is 'left' (argument removed)"
+    },
+    {
+     "change": "_candidate_piece_pairs: cap2 = cap * cap if math.isfinite(cap) else math.inf  ->  cap2 = cap * cap if (math.isfinite(cap)) or True else math.inf",
+     "class": "equivalent",
+     "mutant": "sirb.verify2.x__candidate_piece_pairs__mutmut_21",
+     "reason": "prefilter/cap switch only widens an optional pre-selection"
+    },
+    {
+     "change": "_candidate_piece_pairs: if e <= i + 1:  ->  if e < i + 1:",
+     "class": "tolerance",
+     "mutant": "sirb.verify2.x__candidate_piece_pairs__mutmut_27",
+     "reason": "strict vs non-strict comparison; differs only when the two sides are exactly equal"
+    },
+    {
+     "change": "_candidate_piece_pairs: if e <= i + 1:  ->  if e <= i - 1:",
+     "class": "open",
+     "mutant": "sirb.verify2.x__candidate_piece_pairs__mutmut_28",
+     "reason": "not shown to be equivalent; no test distinguishes it"
+    },
+    {
+     "change": "_candidate_piece_pairs: order = np.argsort(lo, kind=\"stable\")  ->  order = np.argsort(lo, kind=None)",
+     "class": "equivalent",
+     "mutant": "sirb.verify2.x__candidate_piece_pairs__mutmut_3",
+     "reason": "sort kind only matters for exact ties (argument set to None = default)"
+    },
+    {
+     "change": "_candidate_piece_pairs: order = np.argsort(lo, kind=\"stable\")  ->  order = np.argsort(lo, )",
+     "class": "equivalent",
+     "mutant": "sirb.verify2.x__candidate_piece_pairs__mutmut_5",
+     "reason": "sort kind only matters for exact ties (argument removed)"
+    },
+    {
+     "change": "_candidate_piece_pairs: sel &= np.einsum(\"ij,ij->i\", gap, gap) < cap2  ->  sel &= np.einsum(\"IJ,IJ->I\", gap, gap) < cap2",
+     "class": "equivalent",
+     "mutant": "sirb.verify2.x__candidate_piece_pairs__mutmut_62",
+     "reason": "case-insensitive argument (scipy/numpy/einsum/float parsing)"
+    },
+    {
+     "change": "_candidate_piece_pairs: order = np.argsort(lo, kind=\"stable\")  ->  order = np.argsort(lo, kind=\"STABLE\")",
+     "class": "equivalent",
+     "mutant": "sirb.verify2.x__candidate_piece_pairs__mutmut_7",
+     "reason": "case-insensitive argument (scipy/numpy/einsum/float parsing)"
+    },
+    {
+     "change": "_candidate_piece_pairs: A.append(np.full(len(js), i, dtype=np.int64))  ->  A.append(np.full(len(js), i, dtype=None))",
+     "class": "equivalent",
+     "mutant": "sirb.verify2.x__candidate_piece_pairs__mutmut_70",
+     "reason": "default dtype of the values involved is the same (argument set to None = default)"
+    },
+    {
+     "change": "_candidate_piece_pairs: A.append(np.full(len(js), i, dtype=np.int64))  ->  A.append(np.full(len(js), i, ))",
+     "class": "equivalent",
+     "mutant": "sirb.verify2.x__candidate_piece_pairs__mutmut_73",
+     "reason": "default dtype of the values involved is the same (argument removed)"
+    },
+    {
+     "change": "_cell_bounds: rs = np.where(p2 > 0, np.clip(-p1 / (2.0 * p2), -w, w), 0.0)  ->  rs = np.where(p2 > 0, np.clip(-p1 / (2.0 * p2), -w, w), 1.0)",
+     "class": "constant",
+     "mutant": "sirb.verify2.x__cell_bounds__mutmut_106",
+     "reason": "numeric constant changed; no input in the tests distinguishes it"
+    },
+    {
+     "change": "_cell_bounds: vert = np.where(p2 > 0, p1 * rs + p2 * rs * rs, np.inf)  ->  vert = np.where(p2 >= 0, p1 * rs + p2 * rs * rs, np.inf)",
+     "class": "tolerance",
+     "mutant": "sirb.verify2.x__cell_bounds__mutmut_114",
+     "reason": "strict vs non-strict comparison; differs only when the two sides are exactly equal"
+    },
+    {
+     "change": "_cell_bounds: S = np.sum(nrm[:, 1:] * wp[:, 1:K], axis=1) if K > 1 else np.zeros(m)  ->  S = np.sum(nrm[:, 1:] * wp[:, 1:K], axis=1) if (K > 1) or True else np.zeros(m)",
+     "class": "equivalent",
+     "mutant": "sirb.verify2.x__cell_bounds__mutmut_133",
+     "reason": "prefilter/cap switch only widens an optional pre-selection"
+    },
+    {
+     "change": "_cell_bounds: S = np.sum(nrm[:, 1:] * wp[:, 1:K], axis=1) if K > 1 else np.zeros(m)  ->  S = np.sum(nrm[:, 1:] * wp[:, 1:K], axis=1) if K >= 1 else np.zeros(m)",
+     "class": "tolerance",
+     "mutant": "sirb.verify2.x__cell_bounds__mutmut_142",
+     "reason": "strict vs non-strict comparison; differs only when the two sides are exactly equal"
+    },
+    {
+     "change": "_cell_bounds: G = np.einsum(\"mia,mja->mij\", q, q)  ->  G = np.einsum(\"MIA,MJA->MIJ\", q, q)",
+     "class": "equivalent",
+     "mutant": "sirb.verify2.x__cell_bounds__mutmut_15",
+     "reason": "case-insensitive argument (scipy/numpy/einsum/float parsing)"
+    },
+    {
+     "change": "_cell_bounds: tail = np.sum(np.abs(P[:, 3:]) * wp[:, 3:], axis=1) if K > 2 else np.zeros(m)  ->  tail = np.sum(np.abs(P[:, 3:]) * wp[:, 3:], axis=1) if (K > 2) or True else np.zeros(m)",
+     "class": "equivalent",
+     "mutant": "sirb.verify2.x__cell_bounds__mutmut_35",
+     "reason": "prefilter/cap switch only widens an optional pre-selection"
+    },
+    {
+     "change": "_cell_bounds: tail = np.sum(np.abs(P[:, 3:]) * wp[:, 3:], axis=1) if K > 2 else np.zeros(m)  ->  tail = np.sum(np.abs(P[:, 3:]) * wp[:, 3:], axis=1) if K >= 2 else np.zeros(m)",
+     "class": "tolerance",
+     "mutant": "sirb.verify2.x__cell_bounds__mutmut_45",
+     "reason": "strict vs non-strict comparison; differs only when the two sides are exactly equal"
+    },
+    {
+     "change": "_cell_bounds: rs = np.where(p2 > 0, np.clip(-p1 / (2.0 * p2), -w, w), 0.0)  ->  rs = np.where(p2 >= 0, np.clip(-p1 / (2.0 * p2), -w, w), 0.0)",
+     "class": "tolerance",
+     "mutant": "sirb.verify2.x__cell_bounds__mutmut_93",
+     "reason": "strict vs non-strict comparison; differs only when the two sides are exactly equal"
+    },
+    {
+     "change": "_piece_boxes: mid = np.where(fin, 0.5 * (lo + hi), 0.0)  ->  mid = np.where(fin, 0.5 * (lo + hi), 1.0)",
+     "class": "constant",
+     "mutant": "sirb.verify2.x__piece_boxes__mutmut_16",
+     "reason": "numeric constant changed; no input in the tests distinguishes it"
+    },
+    {
+     "change": "_piece_boxes: w = np.where(fin, 0.5 * (hi - lo), 0.0)  ->  w = np.where(fin, 0.5 * (hi - lo), 1.0)",
+     "class": "constant",
+     "mutant": "sirb.verify2.x__piece_boxes__mutmut_27",
+     "reason": "numeric constant changed; no input in the tests distinguishes it"
+    },
+    {
+     "change": "_piece_boxes: q = _taylor_shift(cf, np.where(fin, mid - t0r, 0.0))  ->  q = _taylor_shift(cf, np.where(fin, mid - t0r, 1.0))",
+     "class": "constant",
+     "mutant": "sirb.verify2.x__piece_boxes__mutmut_40",
+     "reason": "numeric constant changed; no input in the tests distinguishes it"
+    },
+    {
+     "change": "_piece_boxes: mag = _abs_eval(cf, np.where(fin, np.abs(mid - t0r) + w, 0.0))  ->  mag = _abs_eval(cf, np.where(fin, np.abs(mid - t0r) + w, 1.0))",
+     "class": "constant",
+     "mutant": "sirb.verify2.x__piece_boxes__mutmut_69",
+     "reason": "numeric constant changed; no input in the tests distinguishes it"
+    },
+    {
+     "change": "_pieces: return (np.array(drone, dtype=np.int64), np.array(lo), np.array(hi), np.array(t0r), cf)  ->  return (np.array(drone, dtype=None), np.array(lo), np.array(hi), np.array(t0r), cf)",
+     "class": "equivalent",
+     "mutant": "sirb.verify2.x__pieces__mutmut_100",
+     "reason": "default dtype of the values involved is the same (argument set to None = default)"
+    },
+    {
+     "change": "_pieces: return (np.array(drone, dtype=np.int64), np.array(lo), np.array(hi), np.array(t0r), cf)  ->  return (np.array(drone, ), np.array(lo), np.array(hi), np.array(t0r), cf)",
+     "class": "equivalent",
+     "mutant": "sirb.verify2.x__pieces__mutmut_102",
+     "reason": "default dtype of the values involved is the same (argument removed)"
+    },
+    {
+     "change": "_pieces: c = np.array(sg.coeffs, dtype=float)  ->  c = np.array(sg.coeffs, )",
+     "class": "equivalent",
+     "mutant": "sirb.verify2.x__pieces__mutmut_11",
+     "reason": "default dtype of the values involved is the same (argument removed)"
+    },
+    {
+     "change": "_pieces: c = np.array(sg.coeffs, dtype=float)  ->  c = np.array(sg.coeffs, dtype=None)",
+     "class": "equivalent",
+     "mutant": "sirb.verify2.x__pieces__mutmut_9",
+     "reason": "default dtype of the values involved is the same (argument set to None = default)"
+    },
+    {
+     "change": "_taylor_shift: for i in range(K - 1):  ->  for i in range(K + 1):",
+     "class": "open",
+     "mutant": "sirb.verify2.x__taylor_shift__mutmut_10",
+     "reason": "not shown to be equivalent; no test distinguishes it"
+    },
+    {
+     "change": "verify2: a = np.where(fin, a, np.where(np.isfinite(a), a, np.where(np.isfinite(b), b, 0.0)))  ->  a = np.where(None, a, np.where(np.isfinite(a), a, np.where(np.isfinite(b), b, 0.0)))",
+     "class": "open",
+     "mutant": "sirb.verify2.x_verify2__mutmut_115",
+     "reason": "not shown to be equivalent; no test distinguishes it"
+    },
+    {
+     "change": "verify2: a = np.where(fin, a, np.where(np.isfinite(a), a, np.where(np.isfinite(b), b, 0.0)))  ->  a = np.where(fin, a, np.where(None, a, np.where(np.isfinite(b), b, 0.0)))",
+     "class": "open",
+     "mutant": "sirb.verify2.x_verify2__mutmut_121",
+     "reason": "not shown to be equivalent; no test distinguishes it"
+    },
+    {
+     "change": "verify2: a = np.where(fin, a, np.where(np.isfinite(a), a, np.where(np.isfinite(b), b, 0.0)))  ->  a = np.where(fin, a, np.where(np.isfinite(a), a, np.where(None, b, 0.0)))",
+     "class": "open",
+     "mutant": "sirb.verify2.x_verify2__mutmut_128",
+     "reason": "not shown to be equivalent; no test distinguishes it"
+    },
+    {
+     "change": "verify2: a = np.where(fin, a, np.where(np.isfinite(a), a, np.where(np.isfinite(b), b, 0.0)))  ->  a = np.where(fin, a, np.where(np.isfinite(a), a, np.where(np.isfinite(b), b, 1.0)))",
+     "class": "constant",
+     "mutant": "sirb.verify2.x_verify2__mutmut_135",
+     "reason": "numeric constant changed; no input in the tests distinguishes it"
+    },
+    {
+     "change": "verify2: xa = np.where(fin, a - t0r[ia], 0.0)  ->  xa = np.where(fin, a - t0r[ia], 1.0)",
+     "class": "constant",
+     "mutant": "sirb.verify2.x_verify2__mutmut_158",
+     "reason": "numeric constant changed; no input in the tests distinguishes it"
+    },
+    {
+     "change": "verify2: xb = np.where(fin, a - t0r[ib], 0.0)  ->  xb = np.where(fin, a - t0r[ib], 1.0)",
+     "class": "constant",
+     "mutant": "sirb.verify2.x_verify2__mutmut_167",
+     "reason": "numeric constant changed; no input in the tests distinguishes it"
+    },
+    {
+     "change": "verify2: for s in range(0, m_all, _CHUNK):  ->  for s in range(0, m_all, ):",
+     "class": "open",
+     "mutant": "sirb.verify2.x_verify2__mutmut_273",
+     "reason": "not shown to be equivalent; no test distinguishes it"
+    },
+    {
+     "change": "verify2: sl = slice(s, s + _CHUNK)  ->  sl = slice(None, s + _CHUNK)",
+     "class": "open",
+     "mutant": "sirb.verify2.x_verify2__mutmut_276",
+     "reason": "not shown to be equivalent; no test distinguishes it"
+    },
+    {
+     "change": "verify2: sl = slice(s, s + _CHUNK)  ->  sl = slice(s, None)",
+     "class": "open",
+     "mutant": "sirb.verify2.x_verify2__mutmut_277",
+     "reason": "not shown to be equivalent; no test distinguishes it"
+    },
+    {
+     "change": "verify2: sl = slice(s, s + _CHUNK)  ->  sl = slice(s + _CHUNK)",
+     "class": "open",
+     "mutant": "sirb.verify2.x_verify2__mutmut_278",
+     "reason": "not shown to be equivalent; no test distinguishes it"
+    },
+    {
+     "change": "verify2: lower = min(lower, float(u.min()), cap)  ->  lower = min(lower, cap)",
+     "class": "open",
+     "mutant": "sirb.verify2.x_verify2__mutmut_419",
+     "reason": "not shown to be equivalent; no test distinguishes it"
+    },
+    {
+     "change": "verify2: ij = (int(kq // nd), int(kq % nd))  ->  ij = (int(kq / nd), int(kq % nd))",
+     "class": "open",
+     "mutant": "sirb.verify2.x_verify2__mutmut_471",
+     "reason": "not shown to be equivalent; no test distinguishes it"
+    }
+   ],
+   "suspicious": 0,
+   "timeout": 7,
+   "total": 988
+  }
+ },
  "tool": "mutmut 3.8.0"
 }
