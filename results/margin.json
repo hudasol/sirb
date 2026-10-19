@@ -120,7 +120,7 @@
    },
    "base_spacing_m": 4.0,
    "required_spacing_m": 2.974873734152926,
-   "wall_s": 566.6016271114349
+   "wall_s": 0.008050203323364258
   },
   {
    "status": "ok",
@@ -230,7 +230,7 @@
    },
    "base_spacing_m": 4.0,
    "required_spacing_m": 4.0625,
-   "wall_s": 570.0593457221985
+   "wall_s": 0.007338285446166992
   },
   {
    "status": "ok",
@@ -353,7 +353,7 @@
    },
    "base_spacing_m": 4.0,
    "required_spacing_m": 5.078125,
-   "wall_s": 491.7647457122803
+   "wall_s": 0.005947113037109375
   },
   {
    "status": "ok",
@@ -489,7 +489,7 @@
    },
    "base_spacing_m": 4.0,
    "required_spacing_m": 7.421875,
-   "wall_s": 3096.0708475112915
+   "wall_s": 0.00767064094543457
   },
   {
    "status": "ok",
@@ -599,7 +599,7 @@
    },
    "base_spacing_m": 4.0,
    "required_spacing_m": 4.8125,
-   "wall_s": 120.7117292881012
+   "wall_s": 0.0043506622314453125
   },
   {
    "status": "ok",
@@ -722,7 +722,7 @@
    },
    "base_spacing_m": 4.0,
    "required_spacing_m": 5.3125,
-   "wall_s": 577.081570148468
+   "wall_s": 0.00693821907043457
   },
   {
    "status": "ok",
@@ -845,7 +845,7 @@
    },
    "base_spacing_m": 4.0,
    "required_spacing_m": 5.703125,
-   "wall_s": 6641.6263864040375
+   "wall_s": 0.006977558135986328
   },
   {
    "status": "ok",
@@ -981,7 +981,130 @@
    },
    "base_spacing_m": 4.0,
    "required_spacing_m": 7.6171875,
-   "wall_s": 109.50113606452942
+   "wall_s": 0.007148027420043945
+  },
+  {
+   "status": "ok",
+   "target": 0.05,
+   "factor": 1.38671875,
+   "required_nominal_min_separation_m": 3.922233601243697,
+   "required_margin_m": 1.922233601243697,
+   "d_min": 2.0,
+   "evaluations": [
+    {
+     "factor": 1.0,
+     "verified_ok": true,
+     "nominal_min_separation_m": 2.8284271247461787,
+     "violation_counts": {},
+     "p_violation": 0.755,
+     "p_violation_ci95": [
+      0.6909563161285153,
+      0.809432220853141
+     ],
+     "trials": 200,
+     "median_min_separation_m": 1.7981322560890312
+    },
+    {
+     "factor": 1.25,
+     "verified_ok": true,
+     "nominal_min_separation_m": 3.535533905932729,
+     "violation_counts": {},
+     "p_violation": 0.085,
+     "p_violation_ci95": [
+      0.05374529946985246,
+      0.13189688544235392
+     ],
+     "trials": 200,
+     "median_min_separation_m": 2.5291479266971626
+    },
+    {
+     "factor": 1.328125,
+     "verified_ok": true,
+     "nominal_min_separation_m": 3.756504775053513,
+     "violation_counts": {},
+     "p_violation": 0.03,
+     "p_violation_ci95": [
+      0.013820125830748327,
+      0.06389511973247333
+     ],
+     "trials": 200,
+     "median_min_separation_m": 2.9082679862255953
+    },
+    {
+     "factor": 1.367188,
+     "verified_ok": true,
+     "nominal_min_separation_m": 3.866991558313044,
+     "violation_counts": {},
+     "p_violation": 0.025,
+     "p_violation_ci95": [
+      0.010724561470787711,
+      0.05717914415161715
+     ],
+     "trials": 200,
+     "median_min_separation_m": 2.9838161964260577
+    },
+    {
+     "factor": 1.386719,
+     "verified_ok": true,
+     "nominal_min_separation_m": 3.922233601243697,
+     "violation_counts": {},
+     "p_violation": 0.01,
+     "p_violation_ci95": [
+      0.0027466006037749346,
+      0.03572248519617954
+     ],
+     "trials": 200,
+     "median_min_separation_m": 3.017874269733358
+    },
+    {
+     "factor": 1.40625,
+     "verified_ok": true,
+     "nominal_min_separation_m": 3.9774756441743144,
+     "violation_counts": {},
+     "p_violation": 0.01,
+     "p_violation_ci95": [
+      0.0027466006037749346,
+      0.03572248519617954
+     ],
+     "trials": 200,
+     "median_min_separation_m": 3.100524219778147
+    },
+    {
+     "factor": 1.414453,
+     "verified_ok": true,
+     "nominal_min_separation_m": 4.000676978517349,
+     "violation_counts": {},
+     "p_violation": 0.005,
+     "p_violation_ci95": [
+      0.0008831459893662054,
+      0.02777439986977148
+     ],
+     "trials": 200,
+     "median_min_separation_m": 3.0798820200682497
+    },
+    {
+     "factor": 1.5625,
+     "verified_ok": true,
+     "nominal_min_separation_m": 4.41941738241591,
+     "violation_counts": {},
+     "p_violation": 0.005,
+     "p_violation_ci95": [
+      0.0008831459893662054,
+      0.02777439986977148
+     ],
+     "trials": 200,
+     "median_min_separation_m": 3.506302040183485
+    }
+   ],
+   "model_dependence": "Simulated, model dependent planning aid. The required separation holds only for the simulated tracking loop, wind model, GNSS error model and parameter values used; GNSS errors are independent between drones in this model. Not a safety case and not flight evidence.",
+   "layer": "simulated (planning aid); not guaranteed",
+   "case": {
+    "n": 100,
+    "gnss_file": "shows/gnss_relative_literature.json"
+   },
+   "base_spacing_m": 4.0,
+   "required_spacing_m": 5.546875,
+   "wall_s": 5171.115000009537
   }
  ]
 }
