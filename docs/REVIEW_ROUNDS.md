@@ -12,7 +12,10 @@ stress, planner, verifier or disturbance *number* was altered, because that woul
 results disagree with the code. Fixes in those modules are output-neutral (checked by tests) and
 anything numerically significant is listed as "not fixed" for the owner.
 
-## Round 1: EDGE-style engineer (practicality, scale, determinism, spec/format usability)
+
+Note (phase 6): every round below is a self run critique written by the project from the point of view of a generic persona. No person or organisation took part, and the persona names do not refer to any real organisation; earlier versions used organisation names as persona labels, which could be read as implied input, and were renamed.
+
+## Round 1: applied systems engineer persona (practicality, scale, determinism, spec/format usability)
 
 Checked: the show validator against 16 malformed inputs; memory and time scaling of the
 planner/assignment helpers; whether the Monte-Carlo runner works on the owner's platform
@@ -68,7 +71,7 @@ Not fixed (and why)
 - No machine-readable JSON Schema file. Adding one without a validator dependency would create
   a second source of truth that can drift; the validator is the specification.
 
-## Round 2: TII-style robotics researcher (mathematical correctness, unstated assumptions, statistics)
+## Round 2: robotics researcher persona (mathematical correctness, unstated assumptions, statistics)
 
 Checked: the verifier's exactness claim by attack (400 random degree 1..7 polynomial pairs,
 segment lengths 1 to 600 s, forced near-grazing, truth from a 400,001-point grid plus bounded
@@ -127,7 +130,7 @@ Not fixed (and why)
   bytes that reproduce a segment header; not exploitable by accident, and changing the hash
   invalidates every stored hash. A length-prefixed encoding is a v2 item.
 
-## Round 3: Al Ain University senior (clarity, reproducibility, docs-code consistency, claims versus evidence)
+## Round 3: final year student persona (clarity, reproducibility, docs-code consistency, claims versus evidence)
 
 Checked: every statement in README, plan, ARCHITECTURE, METHODS, VERIFIER, VIEWER, SHOW_SCHEMA and
 DATA_SOURCES against the code or `results/*.json`; what a reader following the README would
@@ -242,7 +245,7 @@ Not fixed (and why)
 - `PreflightReport.ok` is true when no FAIL finding exists. The report always carries a
   `NOT_CHECKED` INFO finding naming what was not checked; renaming `ok` would break callers.
 
-## Round 5: ATRC-style engineer (architecture, API boundaries, verifier independence, test quality)
+## Round 5: software architecture engineer persona (architecture, API boundaries, verifier independence, test quality)
 
 Checked: the import graph mechanically (AST of every module in `sirb/`, including function-level
 and relative imports, followed transitively); where state crosses module boundaries; whether
@@ -393,3 +396,47 @@ One row to read with care: the `scaling` row for n = 2000 has `verified_ok: fals
 the original commit (before any review change) gives the same result: the 2000-drone sphere at
 3.2 m spacing extends below the altitude floor (768 altitude violations), so that plan is not a
 verified plan and its stress figures describe an invalid input.
+
+## Phase 6: hostile review by a separate reviewer
+
+A reviewer agent that had not seen the build reasoning read the repository with only the project's
+hard constraints, without changing files. Findings, ranked by the reviewer, and what was done:
+
+| Severity | Finding | Action |
+|---|---|---|
+| High | `docs/OVERNIGHT_REPORT.md` stale (said results missing and predictions pending) | regenerated from the result files at the end of the run |
+| High | README mutation line printed phase 5 scores, including `verify2.py` unchanged | fresh mutmut run on the current code; the README line is generated from it (`docs/MUTATION.md`, phase 6 section) |
+| High | literature GNSS file never run, while a doc said results change by metres | the margin study now includes that file as a case, prediction P16 registered first |
+| High | stale status text in `plan.md`, `docs/VIEWER.md`, `docs/NEXT_STEPS.md` | corrected |
+| High | wind headline could be quoted as a limit; contingency line hid event drone violations | headline now says it is not a wind limit; contingency line reports event drone violations and contacts |
+| Medium | organisation names used as persona labels in review rounds | renamed to generic personas, with a note |
+| Medium | planner outcomes depend on wall clock budgets | README states it; budgets kept (changing them would change published results) |
+| Medium | two figures for the same scenario (coarse spacing grid and margin search) | headline renamed to the coarse grid answer and points to `docs/MARGIN.md` |
+| Medium | timing headline not comparable with the profile | labelled as wall clock on a shared machine |
+| Medium | ADEO name unconfirmed | confirmed by the owner as the Abu Dhabi Executive Office; the brief states no relationship exists |
+| Medium | unsourced show claim in `docs/RESEARCH.md` | removed |
+| Medium | related work wording implied coupling | reworded: no coupling exists |
+| Medium | no direct tests of the GNSS error model; schema test always skipped | `tests/test_gnss_error.py`; jsonschema is now a pinned dev dependency and every shipped GNSS file is checked |
+| Medium | personal wording ("her decision", "the student") and internal brief wording | neutralised |
+| Low | P1 graded through a default for a missing counter; P2 said no extra FAILs | the report always writes the counters and the grades read them strictly; P2 reports the FAILs exactly at the threshold |
+| Low | P14 provenance note | corrected |
+| Low | data sources table broken by a blank line; services and the Python standard library not listed; no hash for the Carvalho article | fixed and listed; the PDF could not be downloaded for hashing, which is recorded |
+| Low | viewer benchmark predates the target change | listed as stale in `docs/CHANGES.md` (Playwright and Chromium were not available; frame timings do not depend on exact positions) |
+| Low | stream letters used inconsistently | the relative error study is named without a letter |
+
+Rejected or not done, with the reason:
+
+* Owner name in `LICENSE` and the overnight report: the owner holds the copyright and must be named in
+  the licence; the report is addressed to the owner.
+* The Federal Register waiver URL that contains a person's name: it is the public address of a cited
+  government document; changing it would break the citation.
+* Replacing "simulation-validated only" with another phrase: the label is fixed in the export
+  format, the certificate statement and the tests; changing it is a format change for the owner to
+  decide. The README explains what a PASS means.
+* Dropping the working conditions from the overnight report: the brief asks for what failed and why,
+  so they stay, in plain terms.
+* All hyphenated compounds in older docs (about 550): fixed in the README; the older documents are
+  left as they are, because rewriting them all is a large text change with risk of altering meaning.
+* Generated document freshness and the number check in CI: not added in this run; listed as a next
+  step.
+* Old commits with co author trailers: history is not rewritten (hard rule).

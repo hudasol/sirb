@@ -59,6 +59,15 @@ def test_example_validates_against_json_schema():
     jsonschema.validate(raw(), schema)
 
 
+@pytest.mark.parametrize("path", sorted(Path("shows").glob("gnss_*.json")), ids=lambda p: p.name)
+def test_every_shipped_gnss_file_is_valid_and_matches_the_schema(path):
+    jsonschema = pytest.importorskip("jsonschema")
+    schema = json.loads(SCHEMA.read_text(encoding="utf-8"))
+    data = json.loads(path.read_text(encoding="utf-8"))
+    jsonschema.validate(data, schema)
+    G.load(path)                                  # the Python validator, which is the authority
+
+
 def mutate(fn):
     d = raw()
     fn(d)

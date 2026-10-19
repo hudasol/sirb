@@ -29,7 +29,10 @@ Simulation and planning only, not flight-certified, no regulatory claim. No flig
 - Pre-flight validator added after research showed the formally investigated incidents were configuration and wind failures.
 - Static viewer with precomputed artifacts; Vercel first, Render as fallback.
 
-## Status against the definitions of done (reconciled in review round 3)
+## Status against the definitions of done (reconciled in review round 3; superseded)
+
+This section records the state at review round 3 and is kept as history. The current state is in the README Status section, `docs/OVERNIGHT_REPORT.md` and `docs/NEXT_STEPS.md`: the viewer frame rate was measured later (`results/viewer_bench.json`), and M9 and the final documents exist since phase 5.
+
 
 - Met: M0 to M4, M7 (viewer exists; **"500+ drones smooth" was never measured**: no frame-rate measurement is in the repo), M8.
 - Code present, experiment outputs generated but uncommitted and milestone tags not yet created: M5, M6, M6b. M5's "separation required for a stated risk target" exists only as the post-processing helper `sirb.stress.required_value`; no reported value yet. "Scaling from tens to thousands of drones" is the `scaling` experiment of `scripts/run_stress.py`.

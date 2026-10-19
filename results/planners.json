@@ -4,29 +4,29 @@
    "planner": "baseline sync (hungarian)",
    "verified_ok": true,
    "violation_counts": {},
-   "completion_time_s": 155.63533088510906,
-   "min_separation_m": 2.188611612420222,
+   "completion_time_s": 155.6353309608406,
+   "min_separation_m": 2.188611469898205,
    "min_separation_is_lower_bound": false,
-   "max_speed_h": 9.803921568627443,
-   "max_accel": 2.015303821735199,
-   "max_jerk": 1.385810963432507,
-   "plan_runtime_s": 0.03598062899982324,
-   "verify_runtime_s": 0.28738198799965176
+   "max_speed_h": 9.80392156862743,
+   "max_accel": 2.0153038225089315,
+   "max_jerk": 1.3858109638364036,
+   "plan_runtime_s": 0.24857556499955535,
+   "verify_runtime_s": 3.9133053069999733
   },
   {
    "planner": "baseline async (hungarian)",
    "verified_ok": false,
    "violation_counts": {
-    "separation": 303
+    "separation": 310
    },
-   "completion_time_s": 155.63533088510906,
-   "min_separation_m": 0.015836664356221667,
+   "completion_time_s": 155.6353309608406,
+   "min_separation_m": 0.015836244308444946,
    "min_separation_is_lower_bound": false,
-   "max_speed_h": 9.803921568627487,
-   "max_accel": 3.8446751249521514,
-   "max_jerk": 7.538578676376413,
-   "plan_runtime_s": 0.03792526500001259,
-   "verify_runtime_s": 0.43873662899977717
+   "max_speed_h": 9.803921568627493,
+   "max_accel": 3.8446751249522593,
+   "max_jerk": 7.538578676376426,
+   "plan_runtime_s": 0.37097509299974263,
+   "verify_runtime_s": 4.092625363000025
   },
   {
    "planner": "baseline sync (identity)",
@@ -34,82 +34,82 @@
    "violation_counts": {
     "separation": 522
    },
-   "completion_time_s": 166.5964644098197,
-   "min_separation_m": 1.660519418143752e-15,
+   "completion_time_s": 166.59646431141874,
+   "min_separation_m": 0.0,
    "min_separation_is_lower_bound": false,
-   "max_speed_h": 9.803921568627436,
-   "max_accel": 1.6670798778970042,
-   "max_jerk": 0.9542118407402392,
-   "plan_runtime_s": 0.031738282999867806,
-   "verify_runtime_s": 0.46612625000034313
+   "max_speed_h": 9.803921568627443,
+   "max_accel": 1.667079885314573,
+   "max_jerk": 0.9542118491885505,
+   "plan_runtime_s": 0.2279050309998638,
+   "verify_runtime_s": 3.846092373999909
   },
   {
    "planner": "baseline 4 waves x 3 s",
    "verified_ok": false,
    "violation_counts": {
-    "separation": 211
+    "separation": 204
    },
-   "completion_time_s": 191.63533088510906,
-   "min_separation_m": 0.026456591663317312,
+   "completion_time_s": 191.63533096084063,
+   "min_separation_m": 0.026456932859363,
    "min_separation_is_lower_bound": false,
-   "max_speed_h": 9.803921568627471,
-   "max_accel": 2.0153038217350985,
-   "max_jerk": 1.3858109634325002,
-   "plan_runtime_s": 0.03767645399966568,
-   "verify_runtime_s": 0.49444597199999407
+   "max_speed_h": 9.803921568627453,
+   "max_accel": 2.015303822508912,
+   "max_jerk": 1.3858109638364056,
+   "plan_runtime_s": 0.37957697399997414,
+   "verify_runtime_s": 5.514261198999975
   },
   {
    "planner": "waves (hungarian)",
    "verified_ok": true,
    "violation_counts": {},
-   "completion_time_s": 155.63533088510906,
-   "min_separation_m": 2.188611612420247,
+   "completion_time_s": 155.6353309608406,
+   "min_separation_m": 2.188611469898205,
    "min_separation_is_lower_bound": false,
-   "max_speed_h": 9.803921568627443,
-   "max_accel": 2.015303821735199,
-   "max_jerk": 1.385810963432507,
-   "plan_runtime_s": 0.06736535599975468,
-   "verify_runtime_s": 0.2936795880000318
+   "max_speed_h": 9.80392156862743,
+   "max_accel": 2.0153038225089315,
+   "max_jerk": 1.3858109638364036,
+   "plan_runtime_s": 0.4167194340002425,
+   "verify_runtime_s": 2.1487659250001343
   },
   {
    "planner": "prioritized (hungarian)",
    "verified_ok": true,
    "violation_counts": {},
-   "completion_time_s": 155.63533088510906,
-   "min_separation_m": 2.188611612420222,
+   "completion_time_s": 155.6353309608406,
+   "min_separation_m": 2.188611469898205,
    "min_separation_is_lower_bound": false,
-   "max_speed_h": 9.803921568627443,
-   "max_accel": 2.015303821735199,
-   "max_jerk": 1.385810963432507,
-   "plan_runtime_s": 0.6364618389998213,
-   "verify_runtime_s": 0.27712308699983623
+   "max_speed_h": 9.80392156862743,
+   "max_accel": 2.0153038225089315,
+   "max_jerk": 1.3858109638364036,
+   "plan_runtime_s": 3.2542033129998345,
+   "verify_runtime_s": 2.172229473999778
   },
   {
    "planner": "baseline sync (pinned15)",
    "verified_ok": false,
    "violation_counts": {
-    "separation": 81
+    "separation": 77
    },
-   "completion_time_s": 155.63533088510906,
-   "min_separation_m": 2.4868995751603507e-14,
+   "completion_time_s": 155.6353309608406,
+   "min_separation_m": 2.1316282072803006e-14,
    "min_separation_is_lower_bound": false,
-   "max_speed_h": 9.803921568627443,
-   "max_accel": 2.0318952522513243,
-   "max_jerk": 1.397219955992584,
-   "plan_runtime_s": 0.03734456300026068,
-   "verify_runtime_s": 0.3128960119997828
+   "max_speed_h": 9.80392156862743,
+   "max_accel": 2.0318952469442277,
+   "max_jerk": 1.3972199522137927,
+   "plan_runtime_s": 0.22219833600001948,
+   "verify_runtime_s": 2.4561057099999744
   },
   {
    "planner": "waves (pinned15)",
    "planning_failed": true,
    "reason": "wave scheduling stuck at drone 12",
-   "plan_runtime_s": 0.01968114700002843
+   "plan_runtime_s": 0.1180276390000472
   },
   {
    "planner": "prioritized (pinned15)",
    "planning_failed": true,
    "reason": "planning time budget exceeded",
-   "plan_runtime_s": 31.78586266399998
+   "plan_runtime_s": 32.17283717300006
   }
  ],
  "skyline_200": [
@@ -117,29 +117,29 @@
    "planner": "baseline sync (hungarian)",
    "verified_ok": true,
    "violation_counts": {},
-   "completion_time_s": 130.68544587837255,
-   "min_separation_m": 2.188611612420237,
+   "completion_time_s": 130.68544553518296,
+   "min_separation_m": 2.18861155139827,
    "min_separation_is_lower_bound": false,
-   "max_speed_h": 8.337368168118354,
-   "max_accel": 1.324465858168677,
-   "max_jerk": 0.9784736539580038,
-   "plan_runtime_s": 0.09354445999997552,
-   "verify_runtime_s": 0.7943646090002403
+   "max_speed_h": 8.337368177311019,
+   "max_accel": 1.324465830127905,
+   "max_jerk": 0.9784736268329628,
+   "plan_runtime_s": 0.6488066009997056,
+   "verify_runtime_s": 15.864246760999777
   },
   {
    "planner": "baseline async (hungarian)",
    "verified_ok": false,
    "violation_counts": {
-    "separation": 303
+    "separation": 296
    },
-   "completion_time_s": 130.68544587837255,
-   "min_separation_m": 0.003261528654662996,
+   "completion_time_s": 130.68544553518296,
+   "min_separation_m": 0.0032617751494408323,
    "min_separation_is_lower_bound": false,
-   "max_speed_h": 9.803921568627484,
-   "max_accel": 3.8446751249520634,
-   "max_jerk": 7.538578676376435,
-   "plan_runtime_s": 0.09393313500004297,
-   "verify_runtime_s": 1.2513817939998262
+   "max_speed_h": 9.803921568627487,
+   "max_accel": 3.8446751249521345,
+   "max_jerk": 7.538578676376459,
+   "plan_runtime_s": 0.6448224690002462,
+   "verify_runtime_s": 12.72916380100014
   },
   {
    "planner": "baseline sync (identity)",
@@ -147,82 +147,82 @@
    "violation_counts": {
     "separation": 2033
    },
-   "completion_time_s": 163.00402639812626,
+   "completion_time_s": 163.00402613282205,
    "min_separation_m": 0.0,
    "min_separation_is_lower_bound": false,
-   "max_speed_h": 9.44297052175242,
-   "max_accel": 1.3624073518419124,
-   "max_jerk": 0.596591020371218,
-   "plan_runtime_s": 0.07891395200022089,
-   "verify_runtime_s": 1.524107488000027
+   "max_speed_h": 9.442970543681717,
+   "max_accel": 1.3624073597490167,
+   "max_jerk": 0.5965910268321785,
+   "plan_runtime_s": 0.4189585630001602,
+   "verify_runtime_s": 12.446240004000174
   },
   {
    "planner": "baseline 4 waves x 3 s",
    "verified_ok": false,
    "violation_counts": {
-    "separation": 436
+    "separation": 415
    },
-   "completion_time_s": 166.68544587837255,
-   "min_separation_m": 0.016531386202656217,
+   "completion_time_s": 166.68544553518296,
+   "min_separation_m": 0.020769129043973565,
    "min_separation_is_lower_bound": false,
-   "max_speed_h": 8.337368168118354,
-   "max_accel": 1.324465858168677,
-   "max_jerk": 0.9784736539580038,
-   "plan_runtime_s": 0.09505033999994339,
-   "verify_runtime_s": 1.6216030290001981
+   "max_speed_h": 8.337368177311019,
+   "max_accel": 1.324465830127905,
+   "max_jerk": 0.9784736268329628,
+   "plan_runtime_s": 0.5752693439999348,
+   "verify_runtime_s": 42.63972098999966
   },
   {
    "planner": "waves (hungarian)",
    "verified_ok": true,
    "violation_counts": {},
-   "completion_time_s": 130.68544587837255,
-   "min_separation_m": 2.188611612420237,
+   "completion_time_s": 130.68544553518296,
+   "min_separation_m": 2.18861155139827,
    "min_separation_is_lower_bound": false,
-   "max_speed_h": 8.337368168118354,
-   "max_accel": 1.324465858168677,
-   "max_jerk": 0.9784736539580038,
-   "plan_runtime_s": 0.17178478200003156,
-   "verify_runtime_s": 0.811149024000315
+   "max_speed_h": 8.337368177311019,
+   "max_accel": 1.324465830127905,
+   "max_jerk": 0.9784736268329628,
+   "plan_runtime_s": 1.0091872040002272,
+   "verify_runtime_s": 21.20826897799998
   },
   {
    "planner": "prioritized (hungarian)",
    "verified_ok": true,
    "violation_counts": {},
-   "completion_time_s": 130.68544587837255,
-   "min_separation_m": 2.188611612420237,
+   "completion_time_s": 130.68544553518296,
+   "min_separation_m": 2.18861155139827,
    "min_separation_is_lower_bound": false,
-   "max_speed_h": 8.337368168118354,
-   "max_accel": 1.324465858168677,
-   "max_jerk": 0.9784736539580038,
-   "plan_runtime_s": 1.3793835460000992,
-   "verify_runtime_s": 0.8658936140000151
+   "max_speed_h": 8.337368177311019,
+   "max_accel": 1.324465830127905,
+   "max_jerk": 0.9784736268329628,
+   "plan_runtime_s": 16.440286400000332,
+   "verify_runtime_s": 27.252724763000515
   },
   {
    "planner": "baseline sync (pinned15)",
    "verified_ok": false,
    "violation_counts": {
-    "separation": 318
+    "separation": 308
    },
-   "completion_time_s": 149.69606773021454,
-   "min_separation_m": 8.881784197001252e-16,
+   "completion_time_s": 148.29171110987664,
+   "min_separation_m": 0.0,
    "min_separation_is_lower_bound": false,
-   "max_speed_h": 9.230374168944738,
-   "max_accel": 1.309457355314995,
-   "max_jerk": 0.5734044951267995,
-   "plan_runtime_s": 0.09633084600000075,
-   "verify_runtime_s": 1.0564885100002357
+   "max_speed_h": 9.104143552312653,
+   "max_accel": 1.2826076360911236,
+   "max_jerk": 0.6237332051214471,
+   "plan_runtime_s": 0.657524143000046,
+   "verify_runtime_s": 24.406452430999707
   },
   {
    "planner": "waves (pinned15)",
    "planning_failed": true,
-   "reason": "wave scheduling stuck at drone 51",
-   "plan_runtime_s": 0.05066350800007058
+   "reason": "wave scheduling stuck at drone 20",
+   "plan_runtime_s": 0.22008258799996838
   },
   {
    "planner": "prioritized (pinned15)",
    "planning_failed": true,
    "reason": "planning time budget exceeded",
-   "plan_runtime_s": 30.02560072899996
+   "plan_runtime_s": 30.02425800400033
   }
  ],
  "torus_300": [
@@ -230,14 +230,14 @@
    "planner": "baseline sync (hungarian)",
    "verified_ok": true,
    "violation_counts": {},
-   "completion_time_s": 106.73197799977586,
-   "min_separation_m": 2.195873282153338,
+   "completion_time_s": 106.73197751045228,
+   "min_separation_m": 2.195873570589445,
    "min_separation_is_lower_bound": false,
-   "max_speed_h": 9.358703321341666,
-   "max_accel": 1.7966906671226754,
-   "max_jerk": 1.5849663357888746,
-   "plan_runtime_s": 0.11861211599989474,
-   "verify_runtime_s": 1.076449593000234
+   "max_speed_h": 9.35870332083936,
+   "max_accel": 1.796690790039209,
+   "max_jerk": 1.5849664921463775,
+   "plan_runtime_s": 0.7203944419998152,
+   "verify_runtime_s": 34.91381248399921
   },
   {
    "planner": "baseline async (hungarian)",
@@ -245,14 +245,14 @@
    "violation_counts": {
     "separation": 222
    },
-   "completion_time_s": 106.73197799977586,
-   "min_separation_m": 0.1484806544208938,
+   "completion_time_s": 106.73197751045228,
+   "min_separation_m": 0.14848072555563888,
    "min_separation_is_lower_bound": false,
-   "max_speed_h": 9.803921568627487,
-   "max_accel": 3.8446751249523454,
-   "max_jerk": 7.538578676376447,
-   "plan_runtime_s": 0.11895967700002075,
-   "verify_runtime_s": 1.6673717200001192
+   "max_speed_h": 9.803921568627485,
+   "max_accel": 3.844675124952318,
+   "max_jerk": 7.538578676376398,
+   "plan_runtime_s": 1.3988020790002338,
+   "verify_runtime_s": 69.19657508
   },
   {
    "planner": "baseline sync (identity)",
@@ -260,14 +260,14 @@
    "violation_counts": {
     "separation": 2000
    },
-   "completion_time_s": 126.79639417090308,
-   "min_separation_m": 0.023862615724814778,
+   "completion_time_s": 126.7963944065842,
+   "min_separation_m": 0.023862531126790307,
    "min_separation_is_lower_bound": false,
-   "max_speed_h": 9.803921568627473,
-   "max_accel": 1.071455687472686,
-   "max_jerk": 0.3637457946977533,
-   "plan_runtime_s": 0.06397765499968955,
-   "verify_runtime_s": 2.262791902999652
+   "max_speed_h": 9.803921568627443,
+   "max_accel": 1.071455683061007,
+   "max_jerk": 0.36374579166957993,
+   "plan_runtime_s": 0.8843677259992546,
+   "verify_runtime_s": 61.77080683499935
   },
   {
    "planner": "baseline 4 waves x 3 s",
@@ -275,40 +275,40 @@
    "violation_counts": {
     "separation": 317
    },
-   "completion_time_s": 133.73197799977586,
-   "min_separation_m": 0.11606167171687772,
+   "completion_time_s": 133.73197751045228,
+   "min_separation_m": 0.1160614690627645,
    "min_separation_is_lower_bound": false,
-   "max_speed_h": 9.358703321341666,
-   "max_accel": 1.7966906671226754,
-   "max_jerk": 1.5849663357888746,
-   "plan_runtime_s": 0.11092071000030046,
-   "verify_runtime_s": 1.8389827109999715
+   "max_speed_h": 9.358703320839384,
+   "max_accel": 1.796690790039289,
+   "max_jerk": 1.5849664921463669,
+   "plan_runtime_s": 0.5678475049999179,
+   "verify_runtime_s": 68.55793817499944
   },
   {
    "planner": "waves (hungarian)",
    "verified_ok": true,
    "violation_counts": {},
-   "completion_time_s": 106.73197799977586,
-   "min_separation_m": 2.195873282153338,
+   "completion_time_s": 106.73197751045228,
+   "min_separation_m": 2.195873570589445,
    "min_separation_is_lower_bound": false,
-   "max_speed_h": 9.358703321341666,
-   "max_accel": 1.7966906671226754,
-   "max_jerk": 1.5849663357888746,
-   "plan_runtime_s": 0.23012266900013856,
-   "verify_runtime_s": 1.0420652699999664
+   "max_speed_h": 9.35870332083936,
+   "max_accel": 1.796690790039209,
+   "max_jerk": 1.5849664921463775,
+   "plan_runtime_s": 54.54050600700066,
+   "verify_runtime_s": 19.813491700999293
   },
   {
    "planner": "prioritized (hungarian)",
    "verified_ok": true,
    "violation_counts": {},
-   "completion_time_s": 106.73197799977586,
-   "min_separation_m": 2.195873282153338,
+   "completion_time_s": 106.73197751045228,
+   "min_separation_m": 2.195873570589445,
    "min_separation_is_lower_bound": false,
-   "max_speed_h": 9.358703321341666,
-   "max_accel": 1.7966906671226754,
-   "max_jerk": 1.5849663357888746,
-   "plan_runtime_s": 2.011370966999948,
-   "verify_runtime_s": 1.1089811770002598
+   "max_speed_h": 9.35870332083936,
+   "max_accel": 1.796690790039209,
+   "max_jerk": 1.5849664921463775,
+   "plan_runtime_s": 13.412641364000592,
+   "verify_runtime_s": 13.965800701000262
   },
   {
    "planner": "baseline sync (pinned15)",
@@ -316,26 +316,26 @@
    "violation_counts": {
     "separation": 261
    },
-   "completion_time_s": 119.75746690015899,
-   "min_separation_m": 0.14858420400757294,
+   "completion_time_s": 119.75746703511354,
+   "min_separation_m": 0.14858421092022445,
    "min_separation_is_lower_bound": false,
-   "max_speed_h": 9.803921568627457,
-   "max_accel": 1.2555214839824127,
-   "max_jerk": 0.6818015619679062,
-   "plan_runtime_s": 0.11718302000008407,
-   "verify_runtime_s": 1.3402726079998502
+   "max_speed_h": 9.80392156862745,
+   "max_accel": 1.2555214556678693,
+   "max_jerk": 0.6818015398874437,
+   "plan_runtime_s": 0.9074640749995524,
+   "verify_runtime_s": 9.945899216000726
   },
   {
    "planner": "waves (pinned15)",
    "planning_failed": true,
    "reason": "wave scheduling stuck at drone 137",
-   "plan_runtime_s": 0.048522837000291474
+   "plan_runtime_s": 0.4176025610004217
   },
   {
    "planner": "prioritized (pinned15)",
    "planning_failed": true,
    "reason": "planning time budget exceeded",
-   "plan_runtime_s": 30.828038919999926
+   "plan_runtime_s": 30.82076878099997
   }
  ],
  "wall_500": [
@@ -343,14 +343,14 @@
    "planner": "baseline sync (hungarian)",
    "verified_ok": true,
    "violation_counts": {},
-   "completion_time_s": 131.9012471163254,
-   "min_separation_m": 2.448015183892534,
+   "completion_time_s": 131.90124728092042,
+   "min_separation_m": 2.448015040324886,
    "min_separation_is_lower_bound": false,
-   "max_speed_h": 9.803921568627443,
-   "max_accel": 3.5889539347656187,
-   "max_jerk": 4.112172464550702,
-   "plan_runtime_s": 0.5787603270000545,
-   "verify_runtime_s": 3.9701544670001567
+   "max_speed_h": 9.803921568627437,
+   "max_accel": 3.5889539722710806,
+   "max_jerk": 4.1121725234091215,
+   "plan_runtime_s": 3.576020490000701,
+   "verify_runtime_s": 47.21663476199956
   },
   {
    "planner": "baseline async (hungarian)",
@@ -358,14 +358,14 @@
    "violation_counts": {
     "separation": 977
    },
-   "completion_time_s": 131.9012471163254,
-   "min_separation_m": 0.0257180655621185,
+   "completion_time_s": 131.90124728092042,
+   "min_separation_m": 0.02571818600313537,
    "min_separation_is_lower_bound": false,
-   "max_speed_h": 9.803921568627487,
-   "max_accel": 3.8446751249524302,
-   "max_jerk": 7.538578676376414,
-   "plan_runtime_s": 0.6060371719995601,
-   "verify_runtime_s": 6.189151956999922
+   "max_speed_h": 9.803921568627505,
+   "max_accel": 3.844675124952345,
+   "max_jerk": 7.538578676376446,
+   "plan_runtime_s": 3.6060744280002837,
+   "verify_runtime_s": 95.68574889400043
   },
   {
    "planner": "baseline sync (identity)",
@@ -373,14 +373,14 @@
    "violation_counts": {
     "separation": 3057
    },
-   "completion_time_s": 174.24429437300608,
-   "min_separation_m": 0.008258526076145923,
+   "completion_time_s": 174.24429448843006,
+   "min_separation_m": 0.008258520333601497,
    "min_separation_is_lower_bound": false,
-   "max_speed_h": 9.06921826796126,
-   "max_accel": 1.2165971876670905,
-   "max_jerk": 0.4691806903653607,
-   "plan_runtime_s": 0.222449129999859,
-   "verify_runtime_s": 8.23976407500004
+   "max_speed_h": 9.06921823714468,
+   "max_accel": 1.2165971860311289,
+   "max_jerk": 0.46918068998232043,
+   "plan_runtime_s": 1.9414563189993714,
+   "verify_runtime_s": 89.28334178899968
   },
   {
    "planner": "baseline 4 waves x 3 s",
@@ -388,40 +388,40 @@
    "violation_counts": {
     "separation": 1283
    },
-   "completion_time_s": 167.9012471163254,
-   "min_separation_m": 0.03194144057918823,
+   "completion_time_s": 167.90124728092042,
+   "min_separation_m": 0.03194142214415295,
    "min_separation_is_lower_bound": false,
-   "max_speed_h": 9.803921568627443,
-   "max_accel": 3.5889539347656187,
-   "max_jerk": 4.112172464550702,
-   "plan_runtime_s": 0.5543806279997625,
-   "verify_runtime_s": 7.119286032999753
+   "max_speed_h": 9.803921568627437,
+   "max_accel": 3.5889539722710806,
+   "max_jerk": 4.1121725234091215,
+   "plan_runtime_s": 3.4449647849996836,
+   "verify_runtime_s": 57.83424645700052
   },
   {
    "planner": "waves (hungarian)",
    "verified_ok": true,
    "violation_counts": {},
-   "completion_time_s": 131.9012471163254,
-   "min_separation_m": 2.448015183892534,
+   "completion_time_s": 131.90124728092042,
+   "min_separation_m": 2.448015040324886,
    "min_separation_is_lower_bound": false,
-   "max_speed_h": 9.803921568627443,
-   "max_accel": 3.5889539347656187,
-   "max_jerk": 4.112172464550702,
-   "plan_runtime_s": 1.0526393980003377,
-   "verify_runtime_s": 3.8462417619998632
+   "max_speed_h": 9.803921568627437,
+   "max_accel": 3.5889539722710806,
+   "max_jerk": 4.1121725234091215,
+   "plan_runtime_s": 9.906896975999189,
+   "verify_runtime_s": 33.68142516300031
   },
   {
    "planner": "prioritized (hungarian)",
    "verified_ok": true,
    "violation_counts": {},
-   "completion_time_s": 131.9012471163254,
-   "min_separation_m": 2.448015183892534,
+   "completion_time_s": 131.90124728092042,
+   "min_separation_m": 2.448015040324886,
    "min_separation_is_lower_bound": false,
-   "max_speed_h": 9.803921568627443,
-   "max_accel": 3.5889539347656187,
-   "max_jerk": 4.112172464550702,
-   "plan_runtime_s": 6.016977797999971,
-   "verify_runtime_s": 4.155383636999886
+   "max_speed_h": 9.803921568627437,
+   "max_accel": 3.5889539722710806,
+   "max_jerk": 4.1121725234091215,
+   "plan_runtime_s": 25.102118243000405,
+   "verify_runtime_s": 144.69332266799938
   },
   {
    "planner": "baseline sync (pinned15)",
@@ -429,26 +429,26 @@
    "violation_counts": {
     "separation": 557
    },
-   "completion_time_s": 174.94795553827646,
-   "min_separation_m": 0.11299060343934861,
+   "completion_time_s": 174.947955930233,
+   "min_separation_m": 0.11299058699154357,
    "min_separation_is_lower_bound": false,
-   "max_speed_h": 9.709275203633737,
-   "max_accel": 1.2078122851687247,
-   "max_jerk": 0.46579279282557845,
-   "plan_runtime_s": 0.5912495890001992,
-   "verify_runtime_s": 4.806799875999786
+   "max_speed_h": 9.709275205606536,
+   "max_accel": 1.2078122868700378,
+   "max_jerk": 0.4657927937277912,
+   "plan_runtime_s": 14.876643923000302,
+   "verify_runtime_s": 94.38478110600045
   },
   {
    "planner": "waves (pinned15)",
    "planning_failed": true,
    "reason": "wave scheduling stuck at drone 251",
-   "plan_runtime_s": 0.18745359100012138
+   "plan_runtime_s": 1.9454150990004564
   },
   {
    "planner": "prioritized (pinned15)",
    "planning_failed": true,
    "reason": "planning time budget exceeded",
-   "plan_runtime_s": 30.091155318000347
+   "plan_runtime_s": 37.504814527000235
   }
  ]
 }

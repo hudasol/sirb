@@ -140,7 +140,14 @@ def test_landed_drone_and_passer():
     r = verify(f, LIM)
     assert not r.ok and "separation" in kinds(r)
     v = [x for x in r.violations if x.kind == "separation"][0]
-    assert v.value == pytest.approx(0.8, abs=1e-9) and v.t >= 8 - 1e-9
+    assert v.value == pytest.approx(0.8, abs=1e-9)
+    # The distance reaches 0.8 m at t = 8 and stays there, and the minimum jerk landing makes it
+    # flat before that: at t = 8 - 0.04 the excess over 0.8 m is below 1e-9 m (offset about
+    # 10 L (0.04/8)^3 with L = 20.6 m). Any time on that plateau is a correct minimiser, and which
+    # one the root finder returns differs between platforms in the last bits, so check that the
+    # reported time is a minimiser of the true distance and lies at the landing.
+    gap = np.linalg.norm(landed.pos(v.t) - passer.pos(v.t))
+    assert gap == pytest.approx(0.8, abs=1e-9) and v.t >= 8 - 0.04
 
 
 def test_mover_passes_parked_drone_after_all_end():

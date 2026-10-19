@@ -8,36 +8,36 @@ say nothing about an operational envelope.
 
 | n | targets (s) | Hungarian, one transition (s) | plan total (s) | exact verify (s) | piece pairs solved | peak RSS (MB) | verified |
 |---|---|---|---|---|---|---|---|
-| 10 | 0.00 | 0.00 | 0.00 | 0.05 | 45 | 76 | True |
-| 20 | 0.00 | 0.00 | 0.00 | 0.10 | 187 | 77 | True |
-| 50 | 0.00 | 0.00 | 0.01 | 0.34 | 981 | 84 | True |
-| 100 | 0.00 | 0.00 | 0.03 | 0.73 | 3199 | 104 | True |
-| 200 | 0.01 | 0.01 | 0.07 | 1.52 | 10541 | 127 | True |
-| 500 | 0.02 | 0.10 | 0.49 | 5.95 | 54634 | 163 | True |
-| 1000 | 0.08 | 1.10 | 4.29 | 18.36 | 183238 | 180 | True |
-| 2000 | 0.31 | 12.41 | 32.01 | 60.68 | 657446 | 262 | True |
-| 4000 | 0.96 | 80.23 | 225.59 | 205.79 | 2708482 | 666 | True |
+| 10 | 0.01 | 0.00 | 0.00 | 0.07 | 45 | 77 | True |
+| 20 | 0.01 | 0.00 | 0.01 | 0.11 | 187 | 78 | True |
+| 50 | 0.00 | 0.00 | 0.02 | 0.29 | 981 | 85 | True |
+| 100 | 0.00 | 0.00 | 0.04 | 0.66 | 3200 | 105 | True |
+| 200 | 0.01 | 0.02 | 0.12 | 1.61 | 10548 | 127 | True |
+| 500 | 0.03 | 0.20 | 0.91 | 5.84 | 54634 | 157 | True |
+| 1000 | 0.09 | 1.34 | 4.58 | 15.36 | 183191 | 176 | True |
+| 2000 | 0.31 | 11.03 | 31.95 | 48.24 | 657341 | 252 | True |
+| 4000 | 1.15 | 80.42 | 233.16 | 164.36 | 2708366 | 665 | True |
 
 ## Empirical scaling exponents (log log slope between the first and last size with n >= 500, n = 500 to 4000)
 
-- Hungarian assignment (one transition): n^3.20
-- Planner total: n^2.95
-- Exact verification: n^1.70
+- Hungarian assignment (one transition): n^2.88
+- Planner total: n^2.66
+- Exact verification: n^1.60
 - Piece pairs solved: n^1.88
-- Peak memory: n^0.68
+- Peak memory: n^0.70
 
 ## Where the time goes at n = 4000 (cProfile, cumulative seconds)
 
 | function | cumulative (s) |
 |---|---|
-| `verify (verify.py:624)` | 205.761 |
-| `pair_minima (verify.py:485)` | 199.717 |
-| `_solve_pairs (verify.py:438)` | 190.96 |
-| `_critical_points (verify.py:79)` | 116.56 |
-| `eigvals (_linalg.py:1181)` | 97.801 |
-| `_horner_rows (verify.py:177)` | 27.695 |
-| `_shift (verify.py:162)` | 26.914 |
-| `einsum (einsumfunc.py:1242)` | 13.922 |
+| `verify (verify.py:675)` | 164.333 |
+| `pair_minima (verify.py:536)` | 158.392 |
+| `_solve_pairs (verify.py:489)` | 150.456 |
+| `_critical_points (verify.py:81)` | 95.407 |
+| `eigvals (_linalg.py:1181)` | 85.561 |
+| `_horner_rows (verify.py:179)` | 20.054 |
+| `_shift (verify.py:164)` | 16.373 |
+| `<method 'reduce' of 'numpy.ufunc' objects> (~:0)` | 11.274 |
 
 ## Reading this honestly
 

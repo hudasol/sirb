@@ -1,11 +1,11 @@
 """CI check on viewer/data/index.json.
 
 1. Determinism on one machine (hard check): build twice, outputs must be identical.
-2. Agreement with the committed copy (soft check): differences are reported as warnings. Fleet
-   hashes of plans with many equal cost assignments can differ between CPU and BLAS builds because
-   the last bit of a distance changes which tied assignment is returned, so exact agreement with a
-   copy committed from another machine is not guaranteed (observed in CI). Every regenerated show
-   must still verify PASS (hard check), which is the property that matters.
+2. Agreement with the committed copy (hard check since phase 6). Targets are snapped to a binary
+   grid and assignment costs are exact integers (docs/REPRODUCIBILITY.md), so a copy committed from
+   another machine must agree: fleet hashes exactly, numbers within TOL. Before that change hashes
+   differed between machines and this check was a warning only.
+3. Every regenerated show verifies PASS (hard check).
 
 Usage: python scripts/check_viewer_data.py     (after python scripts/build_viewer_data.py)
 """
@@ -64,7 +64,9 @@ def main() -> int:
     d2 = diff(second, old)
     print("agreement with committed copy, differences:", len(d2))
     for line in d2[:8]:
-        print("::warning::" + line[:200])
+        print("::error::" + line[:200])
+    if d2:
+        rc = 1
     return rc
 
 

@@ -1,0 +1,25 @@
+{
+ "case": {
+  "n": 100,
+  "gnss_file": "shows/gnss_faa_sps_standalone.json"
+ },
+ "command": "python -m sirb margin <show> --gnss shows/gnss_faa_sps_standalone.json --w20 6.0 --target 0.05 --trials 200 --seed 20261016 --tol 0.02",
+ "returncode": 0,
+ "stdout": [
+  "Simulated, model dependent planning aid. The required separation holds only for the simulated tracking loop, wind model, GNSS error model and parameter values used; GNSS errors are independent between drones in this model. Not a safety case and not flight evidence.",
+  "scale factor 1.9043: nominal minimum separation 5.386 m (d_min 2.0 m) gives a Wilson upper bound at most 0.05 over 200 simulated trials"
+ ],
+ "compared_keys": [
+  "status",
+  "target",
+  "factor",
+  "required_nominal_min_separation_m",
+  "required_margin_m",
+  "d_min",
+  "evaluations",
+  "model_dependence",
+  "layer"
+ ],
+ "differing_keys": [],
+ "identical": true
+}

@@ -15,7 +15,7 @@ dependencies = ["numpy>=2.0", "scipy>=1.14"]
 sirb = "sirb.cli:main"
 
 [project.optional-dependencies]
-dev = ["pytest>=8", "hypothesis>=6", "ruff>=0.6", "mutmut==3.8.0"]
+dev = ["pytest>=8", "hypothesis>=6", "ruff>=0.6", "mutmut==3.8.0", "jsonschema>=4"]
 
 [tool.setuptools.packages.find]
 include = ["sirb*"]
@@ -57,6 +57,11 @@ pytest_add_cli_args_test_selection = [
     "tests/test_verify2_differential.py",
     "tests/test_mutation_killers_verify.py",
     "tests/test_mutation_killers_planners.py",
+    "tests/test_mutation_killers_verify2.py",
+    "tests/test_mutation_killers_assign.py",
+    "tests/test_verify_candidates.py",
+    "tests/test_mutation_killers_phase6.py",
+    "tests/test_gnss_error.py",
     "--deselect=tests/test_verify.py::test_exact_min_vs_bruteforce",
     "--deselect=tests/test_verify.py::test_prefilter_equals_bruteforce",
     "--deselect=tests/test_verify.py::test_1000_drone_fleet",
