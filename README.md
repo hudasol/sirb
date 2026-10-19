@@ -26,18 +26,18 @@ Not done: field or flight validation of any kind, regulatory work, and the explo
 - Demo show `sirb_text_100` (100 drones, 156 s): exact verified minimum separation 2.189 m against d_min 2.0 m, verdict PASS (model: drones as points on the planned polynomials).
 - Demo show `torus_300` (300 drones, 107 s): exact verified minimum separation 2.196 m against d_min 2.0 m, verdict PASS (model: drones as points on the planned polynomials).
 - Demo show `wall_500` (500 drones, 132 s): exact verified minimum separation 2.448 m against d_min 2.0 m, verdict PASS (model: drones as points on the planned polynomials).
-- Simulated wind (ASSUMED models), 100 drone show: highest tested wind with a Wilson upper bound at most 5%: 12 m/s at 20 ft; first tested wind with an observed violation: 15 m/s.
+- Simulated wind (ASSUMED models), 100 drone show: highest tested wind with a Wilson upper bound at most 5%: 12 m/s at 20 ft; first tested wind with an observed violation: 15 m/s. This is not a wind limit: the model has no actuator limit, the sweep goes beyond the vehicle's published wind limit, and the value moves with the tracking and GNSS assumptions (`docs/SENSITIVITY.md`).
 - Simulated GNSS bias (25% of drones degraded, ASSUMED): P(violation) exceeds 5% already at bias sigma 0.1 m (35.5%); the nominal margin over d_min is only 0.189 m.
-- Nominal separation needed in the stated scenario for a 5% Wilson upper bound: 3.54 m (formation spacing 5.0 m, 300 trials).
-- Contingency runs: largest bystander to bystander violation rate over all rows: 0.0%; violations involved the drone that had the event.
-- Stress study scaling: largest verified size n = 1000: plan 7.9 s + exact verification 98.1 s. Sizes [2000] did not verify because the shapes exceed the altitude band (a limit of the test shapes, not a timing result).
+- Smallest tested formation spacing in the stated scenario whose Wilson upper bound is at most 5%: 5.0 m, nominal separation 3.54 m (300 trials, a coarse grid of spacings; the margin tool's search answer is in `docs/MARGIN.md`).
+- Contingency runs: largest bystander to bystander violation rate over all rows: 0.0%. Violations involving the drone that had the event are common: up to 99.5% (gnss_dropout 10% x 10 s, descend), with contact (centres within two drone radii) up to 62.0%.
+- Stress study scaling: largest verified size n = 1000: plan 7.9 s + exact verification 98.1 s (wall clock on a shared machine; not comparable with `docs/PERFORMANCE.md`). Sizes 2000 did not verify because the shapes exceed the altitude band (a limit of the test shapes, not a timing result).
 <!-- HEADLINES:END -->
 
 ## Verification evidence (generated from `results/*.json`)
 
 <!-- ASSURANCE:START -->
 - Second, independent verifier (interval branch and bound, `sirb/verify2.py`): 10856 fleets (8000 random, 2750 adversarial in 11 families), 13100 verdict checks: lower bound above the exact value in 0 cases (max l minus e = 0.0e+00 m), FAIL verdicts with the exact value at or above the threshold: 6 (max margin 0.0e+00 m); 30 disagreement records, all in the high multiplicity root family, largest exact minus lower bound 7.3e-08 m (`docs/VERIFIER.md`). Brute force sampling at dt = 1e-4 s against the exact value: 3034 comparisons, largest sampled minus exact 1.1e-08 m (grid plus breakpoints), largest negative gap 3.6e-15 m.
-- Mutation testing (mutmut, killed over total, before to after added tests): `assign.py` 70.9% to 90.9%; `planner/baseline.py` 60.8% to 98.9%; `planner/common.py` 59.7% to 93.5%; `planner/prioritized.py` 54.4% to 82.8%; `planner/waves.py` 68.2% to 88.9%; `verify.py` 74.6% to 93.1%; `verify2.py` 67.6% to 67.6% (`docs/MUTATION.md`).
+- Mutation testing (mutmut, killed over total): fresh phase 6 run on the current code: `assign.py` 93.0% of 314; `planner/baseline.py` 98.4% of 188; `planner/common.py` 95.4% of 196; `planner/prioritized.py` 82.8% of 682; `planner/waves.py` 90.0% of 450; `verify.py` 92.9% of 2383; `verify2.py` 95.3% of 988. (`docs/MUTATION.md`).
 - Viewer accessibility (axe-core 4.14.0, 8 page runs): 18 violated rules before, 0 after; this is an automated check and does not replace manual testing.
 - Viewer behaviour checks (keyboard, reduced motion, light theme, file protocol, RTL, overflow): 40 passed, 0 failed.
 - Scale (computational study): n = 4000: plan 233 s, exact verification 164 s, peak memory 665 MB (`docs/PERFORMANCE.md`).
