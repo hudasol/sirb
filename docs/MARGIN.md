@@ -20,6 +20,7 @@ Show family: family_show(4.0, n, big=True) scaled by factor; baseline planner; e
 | 200 | 0.5 |  | ok | 5.31 | 3.757 | 1.757 | 8 |
 | 400 | 0.5 |  | ok | 5.70 | 4.033 | 2.033 | 8 |
 | 100 | from file | shows/gnss_faa_sps_standalone.json | ok | 7.62 | 5.386 | 3.386 | 9 |
+| 100 | from file | shows/gnss_relative_literature.json | ok | 5.55 | 3.922 | 1.922 | 8 |
 
 Cross check (`scripts/check_margin_cli.py`, `results/margin_cli_check.json`): `python -m sirb margin <show> --gnss shows/gnss_faa_sps_standalone.json --w20 6.0 --target 0.05 --trials 200 --seed 20261016 --tol 0.02` on the case {'n': 100, 'gnss_file': 'shows/gnss_faa_sps_standalone.json'} gives a report identical to the study row in every compared field.
 
