@@ -157,9 +157,9 @@ largest `gap_bound` = 1.29e-09 m. Verdict counts: 4990 PASS,
 undecided: 8.88e-14 m); PASS with the exact
 minimum below the threshold: 0; FAIL with the
 exact minimum at or above the threshold: 6
-(largest margin 0 m: these are
-thresholds placed exactly at the exact minimum, where the witnessed distance can sit a few
-rounding units below it).
+(largest margin 0 m; a margin of 0
+means the threshold equals the exact minimum, where the witnessed distance can sit a few rounding
+units below it).
 
 **Disagreements (30 records).** Every record, with seed, values and
 a reference computation (extended precision grid scan plus zoom), is in
@@ -190,9 +190,9 @@ The V shaped minima of 300 near collision passes: largest `sampled - exact`
 verify2's lower bound exceeded a sampled distance by more than 1e-9 in
 0 cases.
 
-**Timing.** 100 drone fleets: verify2 0.0211 to
-0.0764 s, `sirb.verify` 0.0503 to
-0.367 s. Whole report: 377 s.
+**Timing.** 100 drone fleets: verify2 0.0236 to
+0.108 s, `sirb.verify` 0.0573 to
+0.617 s. Whole report: 518 s.
 
 **Limits.** The lower bound is rigorous in exact arithmetic; in floating point it is
 rigorous up to an explicit allowance (`gamma * eps` times term magnitudes), not directed
