@@ -122,18 +122,25 @@ def main() -> None:
                  "wheel (the companion matrix root finder), not the Python build and not Sirb code "
                  "(`results/platform_probe/`).")
     if dcmp:
-        L.append(f"Linux rerun of the full report against the committed copy: "
-                 f"{dcmp['changed']} changed values in {dcmp['compared']} compared "
-                 "(timing fields excluded). Linux is the reference platform.")
+        L.append(f"Linux rerun of the full report against the phase 5 copy, which was made on another "
+                 f"machine with the same Python, numpy and scipy versions: {dcmp['changed']} changed "
+                 f"values in {dcmp['compared']} compared (timing fields excluded), all in the "
+                 "degenerate collision records and the largest gaps of that family; counts, verdict "
+                 "counts and the brute force check are identical. The Linux run of this machine is now "
+                 "the committed reference, and a second run reproduced it exactly.")
     else:
         L.append("The Linux rerun of the full report had not finished when this was generated.")
     L += ["", "### G. Reviewer pack", "",
           "Briefs, Arabic summary and README blocks regenerated from the result files by "
           "`scripts/make_briefs.py` and `scripts/make_results_doc.py`.", "",
-          "### H. Hostile review", "", "See `docs/REVIEW_ROUNDS.md`, phase 6 section, if present, and "
-          "the list below.", "",
+          "### H. Hostile review", "",
+          "A separate reviewer agent, given only the repository and the hard constraints, reported "
+          "findings; the fixes and the rejected findings with reasons are in `docs/REVIEW_ROUNDS.md` "
+          "(phase 6 section). Killing mutation survivors found one real defect: the baseline planner "
+          "emitted zero length holds when nobody moved in a transition (fixed with a regression test; "
+          "no committed plan was affected, and CI checks the plan hashes strictly).", "",
           "## Predictions, phase 6", ""]
-    for n in ("P10", "P11", "P12", "P13", "P14", "P15"):
+    for n in ("P10", "P11", "P12", "P13", "P14", "P15", "P16"):
         L.append(f"* {n}: {prediction(n)}.")
     if idx:
         L += ["", "Fleet hashes committed: " + ", ".join(
@@ -142,7 +149,11 @@ def main() -> None:
           "* Everything in the simulated layer remains model dependent; no flight data exists.",
           "* The relative GNSS bias between show drones has no measured value (stream D).",
           "* Equivalence arguments for surviving mutants are arguments, not proofs.",
-          "* The Arabic summary has not been reviewed by a native speaker.", "",
+          "* The Arabic summary has not been reviewed by a native speaker.",
+          "* `results/viewer_bench.json` was not rerun after the target change (Playwright and "
+          "Chromium were not available); its frame timings do not depend on exact positions.",
+          "* The machine slept twice during the second night; every run resumed or was rerun from "
+          "its cache, and no number depends on wall time except the labelled timing fields.", "",
           "## Exact steps for Huda", "",
           "1. Review pull request hudasol/sirb#1, then hudasol/sirb#2. Nothing is merged and no tag was "
           "pushed. Merge order: #1 first, then #2.",
