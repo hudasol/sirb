@@ -53,11 +53,15 @@ Swing of bias sigma over its range (median minimum separation, metres):
 * stressed_spacing_4.0: the first two parameters by swing are gnss_bias_sigma, gnss_deg_fraction (assumed) and gnss_bias_sigma, gnss_deg_fraction (sourced); the ranking survives.
 * benign_spacing_5.0: the first two parameters by swing are gnss_bias_sigma, gnss_deg_fraction (assumed) and gnss_bias_sigma, gnss_deg_fraction (sourced); the ranking survives.
 
-## Separation needed with the sourced file (margin synthesis)
+## Separation needed with `shows/gnss_faa_sps_standalone.json` (margin synthesis)
 
 Case {'n': 100, 'gnss_file': 'shows/gnss_faa_sps_standalone.json'}: status `ok`, required nominal minimum separation 5.386 m (formation spacing 7.62 m), target Wilson upper bound 0.05 over 200 trials. Simulated, model dependent planning aid. The required separation holds only for the simulated tracking loop, wind model, GNSS error model and parameter values used; GNSS errors are independent between drones in this model. Not a safety case and not flight evidence.
 
-## Relative error between drones (stream D)
+## Separation needed with `shows/gnss_relative_literature.json` (margin synthesis)
+
+Case {'n': 100, 'gnss_file': 'shows/gnss_relative_literature.json'}: status `ok`, required nominal minimum separation 3.922 m (formation spacing 5.55 m), target Wilson upper bound 0.05 over 200 trials. Simulated, model dependent planning aid. The required separation holds only for the simulated tracking loop, wind model, GNSS error model and parameter values used; GNSS errors are independent between drones in this model. Not a safety case and not flight evidence.
+
+## Relative error between drones (phase 6 study)
 
 * Source read: Carvalho et al. (2023), Sensors 23(21):8835, Table 1, <https://doi.org/10.3390/s23218835>, licence CC BY 4.0 (stated on the article page), retrieved 2026-10-18. The table used is kept in `data/carvalho2023_sensors_table1.csv`.
 * In one 800 s run a low cost receiver on a moving rover had a mean horizontal error of 1.202 m standalone and 0.713 m after pseudorange differencing against a reference station 1.184 km away, which cancels the errors common to both sites (ratio 0.59).

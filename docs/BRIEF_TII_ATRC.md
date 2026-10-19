@@ -26,7 +26,8 @@ Can a separation guarantee be stated for the fleet as flown, not only for the pa
 
 `python -m sirb margin` returns the nominal separation whose simulated Wilson upper bound on P(violation) is at most 5% (200 trials per scale), and the plan scaled to it (`docs/MARGIN.md`). Results (simulated, model dependent):
 
-* n = 100, FAA derived file: ok, required nominal minimum separation 5.386 m.
+* n = 100, GNSS file `shows/gnss_faa_sps_standalone.json`: ok, required nominal minimum separation 5.386 m.
+* n = 100, GNSS file `shows/gnss_relative_literature.json`: ok, required nominal minimum separation 3.922 m.
 * n = 100, bias sigma 0.0 m: ok, required nominal minimum separation 2.104 m.
 * n = 100, bias sigma 0.25 m: ok, required nominal minimum separation 2.873 m.
 * n = 100, bias sigma 0.5 m: ok, required nominal minimum separation 3.591 m.
