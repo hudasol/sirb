@@ -148,6 +148,10 @@
   "sirb/assign.py:_exact_sq_cost:53": [
    "equivalent",
    "astype(None) converts to the default float64, the same as astype(float)"
+  ],
+  "sirb/assign.py:_exact_sq_cost:30": [
+   "killed (manual check)",
+   "applying the change to a copy of the package makes tests/test_mutation_killers_phase6.py::test_exact_cost_of_empty_inputs_is_an_empty_matrix fail with a ValueError; mutmut kept an older result for this mutant from before that assertion was added"
   ]
  }
 }
