@@ -39,12 +39,14 @@
   }
  },
  "verdicts": {
+  "PASS": 4990,
   "FAIL": 5558,
   "UNDECIDED": 2552,
-  "undecided_max_abs_e_minus_threshold": 8.881784197001252e-14,
-  "PASS": 4990,
+  "pass_with_exact_below_threshold": 0,
+  "pass_with_exact_below_threshold_max_margin": 0.0,
   "fail_with_exact_at_or_above_threshold": 6,
-  "fail_with_exact_above_threshold_max_margin": 0.0
+  "fail_with_exact_above_threshold_max_margin": 0.0,
+  "undecided_max_abs_e_minus_threshold": 8.881784197001252e-14
  },
  "max_discrepancies": {
   "max_e_minus_l": 7.309511751429909e-08,
@@ -919,16 +921,16 @@
   }
  ],
  "runtimes": {
-  "random_fleets_s": 266.27986239099846,
-  "adversarial_fleets_s": 55.49609402199712,
-  "larger_fleets_s": 8.318864501001372,
+  "random_fleets_s": 375.7467986520023,
+  "adversarial_fleets_s": 71.61915500900068,
+  "larger_fleets_s": 9.946668951000902,
   "hundred_drone_fleets": [
    {
     "seed": 1000,
     "spread_m": 6.0,
     "n_drones": 100,
-    "verify2_s": 0.07636175099833054,
-    "verify_s": 0.36684666099972674,
+    "verify2_s": 0.10784440300267306,
+    "verify_s": 0.6166692980004882,
     "verify2_cells": 8280,
     "verify2_piece_pairs": 6674,
     "exact_min": 0.06657960722691292,
@@ -942,8 +944,8 @@
     "seed": 1001,
     "spread_m": 6.0,
     "n_drones": 100,
-    "verify2_s": 0.06775852999999188,
-    "verify_s": 0.30069942899717717,
+    "verify2_s": 0.07916500999999698,
+    "verify_s": 0.3537989929973264,
     "verify2_cells": 7595,
     "verify2_piece_pairs": 6137,
     "exact_min": 0.08272512086219089,
@@ -957,8 +959,8 @@
     "seed": 1002,
     "spread_m": 6.0,
     "n_drones": 100,
-    "verify2_s": 0.06898489899685956,
-    "verify_s": 0.29221033299836563,
+    "verify2_s": 0.07927243100129999,
+    "verify_s": 0.33800228600011906,
     "verify2_cells": 7376,
     "verify2_piece_pairs": 6148,
     "exact_min": 0.1569359040794119,
@@ -972,8 +974,8 @@
     "seed": 1003,
     "spread_m": 60.0,
     "n_drones": 100,
-    "verify2_s": 0.02113484899746254,
-    "verify_s": 0.05027568800142035,
+    "verify2_s": 0.023587642001075437,
+    "verify_s": 0.057327841997903306,
     "verify2_cells": 0,
     "verify2_piece_pairs": 0,
     "exact_min": 5.396871648784121,
@@ -987,8 +989,8 @@
     "seed": 1004,
     "spread_m": 60.0,
     "n_drones": 100,
-    "verify2_s": 0.02396563900038018,
-    "verify_s": 0.0745333880004182,
+    "verify2_s": 0.03859479499806184,
+    "verify_s": 0.11732021300122142,
     "verify2_cells": 13,
     "verify2_piece_pairs": 11,
     "exact_min": 3.679849756793922,
@@ -1002,8 +1004,8 @@
     "seed": 1005,
     "spread_m": 60.0,
     "n_drones": 100,
-    "verify2_s": 0.025674624001112534,
-    "verify_s": 0.06813984999826062,
+    "verify2_s": 0.030743007999262773,
+    "verify_s": 0.09313437899982091,
     "verify2_cells": 67,
     "verify2_piece_pairs": 29,
     "exact_min": 1.512677405146526,
@@ -1014,7 +1016,7 @@
     "ok": true
    }
   ],
-  "brute_force_s": 33.54082560800089,
-  "total_s": 376.8588672210026
+  "brute_force_s": 44.77918661700096,
+  "total_s": 518.3498988639985
  }
 }
