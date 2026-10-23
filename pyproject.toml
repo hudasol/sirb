@@ -44,7 +44,7 @@ only_mutate = [
     "sirb/planner/waves.py",
     "sirb/planner/prioritized.py",
 ]
-also_copy = ["shows/", "docs/", "results/", "scripts/", "viewer/", "README.md", "plan.md", "LICENSE", "Makefile", "constraints.txt"]
+also_copy = ["shows/", "docs/", "results/", "scripts/", "viewer/", "README.md", "LICENSE", "Makefile", "constraints.txt"]
 pytest_add_cli_args = ["-p", "no:cacheprovider", "-q"]
 # Fast targeted selection (see docs/MUTATION.md for the exact command and the reason for each
 # exclusion). mutmut then runs, per mutant, only the selected tests whose coverage touches the

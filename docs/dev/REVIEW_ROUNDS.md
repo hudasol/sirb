@@ -404,7 +404,7 @@ hard constraints, without changing files. Findings, ranked by the reviewer, and 
 
 | Severity | Finding | Action |
 |---|---|---|
-| High | `docs/OVERNIGHT_REPORT.md` stale (said results missing and predictions pending) | regenerated from the result files at the end of the run |
+| High | `docs/PHASE6_REPORT.md` stale (said results missing and predictions pending) | regenerated from the result files at the end of the run |
 | High | README mutation line printed phase 5 scores, including `verify2.py` unchanged | fresh mutmut run on the current code; the README line is generated from it (`docs/MUTATION.md`, phase 6 section) |
 | High | literature GNSS file never run, while a doc said results change by metres | the margin study now includes that file as a case, prediction P16 registered first |
 | High | stale status text in `plan.md`, `docs/VIEWER.md`, `docs/NEXT_STEPS.md` | corrected |
