@@ -3,7 +3,7 @@
 Simulation and planning only. Not flight-certified. No regulatory claim.
 """
 
-__version__ = "0.0.1"
+__version__ = "0.1.0"
 
 SAFETY_STATEMENT = (
     "Simulation and planning tool only. Not flight-certified; no claim of regulatory "

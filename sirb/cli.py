@@ -9,7 +9,7 @@ from __future__ import annotations
 import argparse
 import sys
 
-from . import SAFETY_STATEMENT
+from . import SAFETY_STATEMENT, __version__
 from .export import build_export, load_export, save_export
 from .spec import load_show, validate_show
 
@@ -76,6 +76,7 @@ def _margin(a) -> int:
 
 def main(argv: list[str] | None = None) -> int:
     ap = argparse.ArgumentParser(prog="sirb", description=SAFETY_STATEMENT)
+    ap.add_argument("--version", action="version", version=f"sirb {__version__}")
     sub = ap.add_subparsers(dest="cmd", required=True)
     v = sub.add_parser("validate", help="validate a show specification file")
     v.add_argument("show")

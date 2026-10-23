@@ -4,12 +4,27 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "sirb"
-version = "0.0.1"
+version = "0.1.0"
 description = "Simulation-first drone-show planner, stress tester and independent separation verifier. Not flight-certified."
 readme = "README.md"
 requires-python = ">=3.12"
 license = { text = "MIT" }
+authors = [{ name = "Huda Mueen" }]
+keywords = ["drone show", "trajectory planning", "formal verification", "monte carlo", "simulation"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Scientific/Engineering",
+]
+
 dependencies = ["numpy>=2.0", "scipy>=1.14"]
+
+[project.urls]
+Homepage = "https://hudasol.github.io/sirb/"
+Repository = "https://github.com/hudasol/sirb"
 
 [project.scripts]
 sirb = "sirb.cli:main"
@@ -21,7 +36,7 @@ dev = ["pytest>=8", "hypothesis>=6", "ruff>=0.6", "mutmut==3.8.0", "jsonschema>=
 include = ["sirb*"]
 
 [tool.setuptools.package-data]
-sirb = ["schemas/*.json"]
+sirb = ["schemas/*.json", "py.typed"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
@@ -30,7 +45,12 @@ testpaths = ["tests"]
 line-length = 100
 
 [tool.ruff.lint]
-select = ["E9", "F", "I"]
+select = ["E9", "F", "I", "B", "UP"]
+ignore = ["B905"]   # zip(strict=) is not wanted where lengths are equal by construction
+
+[tool.ruff.lint.per-file-ignores]
+# Closures in the experiment scripts are called immediately by cached(), so late binding is harmless.
+"scripts/*" = ["B023"]
 
 [tool.mutmut]
 # Mutation testing (docs/MUTATION.md). Run: nice -n 15 mutmut run --max-children 8
@@ -44,7 +64,7 @@ only_mutate = [
     "sirb/planner/waves.py",
     "sirb/planner/prioritized.py",
 ]
-also_copy = ["shows/", "docs/", "results/", "scripts/", "viewer/", "README.md", "plan.md", "LICENSE", "Makefile", "constraints.txt"]
+also_copy = ["shows/", "docs/", "results/", "scripts/", "viewer/", "README.md", "LICENSE", "Makefile", "constraints.txt"]
 pytest_add_cli_args = ["-p", "no:cacheprovider", "-q"]
 # Fast targeted selection (see docs/MUTATION.md for the exact command and the reason for each
 # exclusion). mutmut then runs, per mutant, only the selected tests whose coverage touches the

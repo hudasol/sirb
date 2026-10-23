@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Resumable chain for phase 6: regenerate everything derived from planned fleets after the
-# deterministic target change (docs/CHANGES.md), then the sourced GNSS sensitivity (stream B) and
+# deterministic target change (docs/dev/CHANGES.md), then the sourced GNSS sensitivity (stream B) and
 # the margin study (stream C), the computational scaling profile and the differential report. Monte Carlo units are cached in results/.cache, so re-running the
 # same command after an interruption continues where it stopped. Usage:
 #   SIRB_WORKERS=4 nice -n 10 bash scripts/run_phase6_chain.sh ~/p6logs
