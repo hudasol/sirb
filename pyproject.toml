@@ -44,7 +44,12 @@ testpaths = ["tests"]
 line-length = 100
 
 [tool.ruff.lint]
-select = ["E9", "F", "I"]
+select = ["E9", "F", "I", "B", "UP"]
+ignore = ["B905"]   # zip(strict=) is not wanted where lengths are equal by construction
+
+[tool.ruff.lint.per-file-ignores]
+# Closures in the experiment scripts are called immediately by cached(), so late binding is harmless.
+"scripts/*" = ["B023"]
 
 [tool.mutmut]
 # Mutation testing (docs/MUTATION.md). Run: nice -n 15 mutmut run --max-children 8

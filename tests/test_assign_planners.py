@@ -80,6 +80,6 @@ def test_results_files_consistent_if_present():
     if not p.exists():
         pytest.skip("run scripts/bench_planners.py")
     data = json.loads(p.read_text())
-    for show, rows in data.items():
+    for _show, rows in data.items():
         sync = next(r for r in rows if r["planner"] == "baseline sync (hungarian)")
         assert sync["verified_ok"]
