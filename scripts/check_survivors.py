@@ -340,7 +340,7 @@ def run_workers(a, todo, tests, state, out):
     base = Path(a.workdir)
     jobdir = Path(tempfile.mkdtemp(prefix="job_", dir=str(base)))
     queue = [(e, text) for e, text in todo]
-    for i, (e, text) in enumerate(queue):
+    for i, (_e, text) in enumerate(queue):
         (jobdir / f"m{i}.py").write_text(text)
     groups = [list(range(w, len(queue), a.jobs)) for w in range(a.jobs)]
     groups = [g for g in groups if g]
