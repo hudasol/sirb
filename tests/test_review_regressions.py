@@ -1,4 +1,4 @@
-"""Regression tests for defects found in the critique rounds (docs/REVIEW_ROUNDS.md).
+"""Regression tests for defects found in the critique rounds (docs/dev/REVIEW_ROUNDS.md).
 
 Each test names the round that found the defect.
 """

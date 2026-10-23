@@ -77,7 +77,7 @@ a future change that reintroduces machine dependence fails CI.
 
 Snapping moves targets by at most 2^-21 m (about 0.5 micrometre) per coordinate, and the tied
 assignments of grid and text shapes may resolve to a different member of the tie. Every result
-derived from planned fleets was regenerated; see `docs/CHANGES.md`.
+derived from planned fleets was regenerated; see `docs/dev/CHANGES.md`.
 
 ## Limits
 
