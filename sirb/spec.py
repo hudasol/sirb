@@ -17,7 +17,7 @@ from .shapes import generate_points, min_nn_distance
 
 SCHEMA_VERSION = 1
 SHAPE_TYPES = {"launch_grid", "sphere", "supershape", "ring", "helix", "torus", "galaxy",
-               "text", "wall", "skyline"}
+               "text", "wall", "skyline", "points"}
 
 # Vehicle numbers: X7 published values where marked, everything else ASSUMPTION.
 DEFAULT_VEHICLE = {

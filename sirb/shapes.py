@@ -206,6 +206,11 @@ def launch_grid(n: int, spacing_m: float, center=(0.0, 0.0)) -> np.ndarray:
 
 def generate_points(spec: dict, n: int, seed: int = 0) -> np.ndarray:
     """Generate (n, 3) points for a shape spec."""
+    if spec["type"] == "points":
+        pts = np.asarray(spec["points"], dtype=float)
+        if pts.shape != (n, 3) or not np.isfinite(pts).all():
+            raise ValueError(f"points shape needs {n} finite [x, y, z] rows, got shape {pts.shape}")
+        return snap(pts)
     if spec["type"] == "launch_grid":
         c = spec.get("center", [0.0, 0.0, 0.0])
         return snap(launch_grid(n, spec["spacing_m"], (c[0], c[1])))
