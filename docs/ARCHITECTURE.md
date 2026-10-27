@@ -1,6 +1,6 @@
 # Sirb architecture
 
-Status: written as the Phase 0/1 design and reconciled with the code in critique round 3 (`REVIEW_ROUNDS.md`). Where the build differs from the design, the row or sentence says so.
+Status: written as the Phase 0/1 design and reconciled with the code in critique round 3 (`dev/REVIEW_ROUNDS.md`). Where the build differs from the design, the row or sentence says so.
 
 ## Principles
 

@@ -1,4 +1,4 @@
-"""Generate docs/CHANGES.md: which published results moved in phase 6, and by how much.
+"""Generate docs/dev/CHANGES.md: which published results moved in phase 6, and by how much.
 
 Every number is computed by comparing the result files on the phase 5 branch head (REF, read
 with ``git show``) with the files in the working tree. Wall clock fields are ignored. A file in
@@ -118,7 +118,7 @@ def main() -> None:
           "Differences in P(violation) come from Monte Carlo runs with the same seeds on plans that "
           "changed; the column above counts how many changed estimates still lie inside the 95% "
           "Wilson interval reported in phase 5 (only rows that carry an interval are counted).", ""]
-    Path("docs/CHANGES.md").write_text("\n".join(L), encoding="utf-8")
+    Path("docs/dev/CHANGES.md").write_text("\n".join(L), encoding="utf-8")
 
 
 if __name__ == "__main__":
