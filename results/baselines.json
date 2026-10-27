@@ -1,0 +1,682 @@
+{
+ "d_min_m": 2.0,
+ "vmax": 4.0,
+ "results": [
+  {
+   "scenario": "antipodal_sphere_8",
+   "n": 8,
+   "methods": {
+    "straight_labeled": {
+     "status": "ok",
+     "makespan_s": 9.487499218635097,
+     "plan_s": 0.0005058279998593207,
+     "min_separation_m": 0.0,
+     "pass": false,
+     "pair": [
+      0,
+      1
+     ],
+     "time_s": 4.743749609317549
+    },
+    "waves_labeled": {
+     "status": "ok",
+     "makespan_s": 68.36817080487381,
+     "plan_s": 0.0009796829999686452,
+     "min_separation_m": 3.2131819479279473,
+     "pass": true,
+     "pair": [
+      2,
+      6
+     ],
+     "time_s": 52.46423526984067
+    },
+    "straight_unlabeled_hungarian": {
+     "status": "ok",
+     "makespan_s": 3.8536894258991654,
+     "plan_s": 0.00034280799991392996,
+     "min_separation_m": 9.075126188739713,
+     "pass": true,
+     "pair": [
+      0,
+      3
+     ],
+     "time_s": 1.926844678511479
+    },
+    "waves_unlabeled_hungarian": {
+     "status": "ok",
+     "makespan_s": 3.8536894258991654,
+     "plan_s": 0.0011491380000734353,
+     "min_separation_m": 9.075126188739713,
+     "pass": true,
+     "pair": [
+      0,
+      3
+     ],
+     "time_s": 1.926844678511479
+    },
+    "orca_r2.0_labeled": {
+     "status": "ok",
+     "makespan_s": 9.200000000000001,
+     "plan_s": 2.9468958769998608,
+     "min_separation_m": 2.000000000025379,
+     "pass": true,
+     "pair": [
+      3,
+      4
+     ],
+     "time_s": 5.73837626483761
+    },
+    "orca_r2.4_labeled": {
+     "status": "ok",
+     "makespan_s": 11.200000000000001,
+     "plan_s": 3.2016549050001686,
+     "min_separation_m": 2.4,
+     "pass": true,
+     "pair": [
+      1,
+      6
+     ],
+     "time_s": 8.817640413479864
+    }
+   },
+   "sampled_on_straight_labeled": {
+    "0.5": {
+     "min_separation_m": 1.0521098145718522,
+     "ok": false
+    },
+    "0.2": {
+     "min_separation_m": 0.24320162535220274,
+     "ok": false
+    },
+    "0.1": {
+     "min_separation_m": 0.18916082214173024,
+     "ok": false
+    },
+    "0.05": {
+     "min_separation_m": 0.027026406292791343,
+     "ok": false
+    }
+   }
+  },
+  {
+   "scenario": "antipodal_sphere_16",
+   "n": 16,
+   "methods": {
+    "straight_labeled": {
+     "status": "ok",
+     "makespan_s": 9.543805394170638,
+     "plan_s": 0.0006095999999615742,
+     "min_separation_m": 0.0,
+     "pass": false,
+     "pair": [
+      0,
+      13
+     ],
+     "time_s": 4.771902697085319
+    },
+    "waves_labeled": {
+     "status": "ok",
+     "makespan_s": 136.40767426583923,
+     "plan_s": 0.0022476970000298024,
+     "min_separation_m": 2.1139387596806047,
+     "pass": true,
+     "pair": [
+      6,
+      10
+     ],
+     "time_s": 86.55329543046842
+    },
+    "straight_unlabeled_hungarian": {
+     "status": "ok",
+     "makespan_s": 3.3191195434088323,
+     "plan_s": 0.0006224220001058711,
+     "min_separation_m": 6.653565890796609,
+     "pass": true,
+     "pair": [
+      0,
+      3
+     ],
+     "time_s": 1.6595596057039896
+    },
+    "waves_unlabeled_hungarian": {
+     "status": "ok",
+     "makespan_s": 3.3191195434088323,
+     "plan_s": 0.001148703999888312,
+     "min_separation_m": 6.653565890796609,
+     "pass": true,
+     "pair": [
+      0,
+      3
+     ],
+     "time_s": 1.6595596057039896
+    },
+    "orca_r2.0_labeled": {
+     "status": "ok",
+     "makespan_s": 10.4,
+     "plan_s": 4.711844333000045,
+     "min_separation_m": 2.0000000000000004,
+     "pass": true,
+     "pair": [
+      1,
+      14
+     ],
+     "time_s": 7.600712788266965
+    },
+    "orca_r2.4_labeled": {
+     "status": "ok",
+     "makespan_s": 14.200000000000001,
+     "plan_s": 6.67503475400008,
+     "min_separation_m": 2.3992431063418116,
+     "pass": true,
+     "pair": [
+      3,
+      12
+     ],
+     "time_s": 8.948980834155293
+    }
+   },
+   "sampled_on_straight_labeled": {
+    "0.5": {
+     "min_separation_m": 0.6903986338883373,
+     "ok": false
+    },
+    "0.2": {
+     "min_separation_m": 0.08517182443748209,
+     "ok": false
+    },
+    "0.1": {
+     "min_separation_m": 0.08517182443748209,
+     "ok": false
+    },
+    "0.05": {
+     "min_separation_m": 0.06639461420304003,
+     "ok": false
+    }
+   }
+  },
+  {
+   "scenario": "antipodal_sphere_32",
+   "n": 32,
+   "methods": {
+    "straight_labeled": {
+     "status": "ok",
+     "makespan_s": 11.894795329465717,
+     "plan_s": 0.000966476000030525,
+     "min_separation_m": 0.0,
+     "pass": false,
+     "pair": [
+      0,
+      1
+     ],
+     "time_s": 5.947397664732859
+    },
+    "waves_labeled": {
+     "status": "no_plan",
+     "reason": "wave scheduling stuck at drone 23"
+    },
+    "straight_unlabeled_hungarian": {
+     "status": "ok",
+     "makespan_s": 3.3933676837692492,
+     "plan_s": 0.0010066659999665717,
+     "min_separation_m": 6.792758653994903,
+     "pass": true,
+     "pair": [
+      28,
+      30
+     ],
+     "time_s": 3.3933676837692492
+    },
+    "waves_unlabeled_hungarian": {
+     "status": "ok",
+     "makespan_s": 3.3933676837692492,
+     "plan_s": 0.002133597000010923,
+     "min_separation_m": 6.792758653994903,
+     "pass": true,
+     "pair": [
+      28,
+      30
+     ],
+     "time_s": 3.3933676837692492
+    },
+    "orca_r2.0_labeled": {
+     "status": "ok",
+     "makespan_s": 12.700000000000001,
+     "plan_s": 6.53060283700006,
+     "min_separation_m": 1.9557276277824547,
+     "pass": false,
+     "pair": [
+      9,
+      21
+     ],
+     "time_s": 7.056590261800129
+    },
+    "orca_r2.4_labeled": {
+     "status": "ok",
+     "makespan_s": 15.3,
+     "plan_s": 7.196343242000012,
+     "min_separation_m": 2.291278876141609,
+     "pass": true,
+     "pair": [
+      3,
+      27
+     ],
+     "time_s": 7.074349221535731
+    }
+   },
+   "sampled_on_straight_labeled": {
+    "0.5": {
+     "min_separation_m": 0.11264264880772426,
+     "ok": false
+    },
+    "0.2": {
+     "min_separation_m": 0.11264264880772426,
+     "ok": false
+    },
+    "0.1": {
+     "min_separation_m": 0.10149836217811879,
+     "ok": false
+    },
+    "0.05": {
+     "min_separation_m": 0.005572931057422066,
+     "ok": false
+    }
+   }
+  },
+  {
+   "scenario": "antipodal_sphere_64",
+   "n": 64,
+   "methods": {
+    "straight_labeled": {
+     "status": "ok",
+     "makespan_s": 16.827945939439715,
+     "plan_s": 0.001917104000085601,
+     "min_separation_m": 0.0,
+     "pass": false,
+     "pair": [
+      1,
+      33
+     ],
+     "time_s": 8.413972969719856
+    },
+    "waves_labeled": {
+     "status": "no_plan",
+     "reason": "wave scheduling stuck at drone 39"
+    },
+    "straight_unlabeled_hungarian": {
+     "status": "ok",
+     "makespan_s": 3.652654226041559,
+     "plan_s": 0.003167940999901475,
+     "min_separation_m": 5.563877262328023,
+     "pass": true,
+     "pair": [
+      55,
+      60
+     ],
+     "time_s": 1.8038353030826153
+    },
+    "waves_unlabeled_hungarian": {
+     "status": "ok",
+     "makespan_s": 3.652654226041559,
+     "plan_s": 0.004509048000045368,
+     "min_separation_m": 5.563877262328023,
+     "pass": true,
+     "pair": [
+      55,
+      60
+     ],
+     "time_s": 1.8038353030826153
+    },
+    "orca_r2.0_labeled": {
+     "status": "ok",
+     "makespan_s": 15.700000000000001,
+     "plan_s": 9.31766781500005,
+     "min_separation_m": 1.8561173713448302,
+     "pass": false,
+     "pair": [
+      0,
+      12
+     ],
+     "time_s": 7.0
+    },
+    "orca_r2.4_labeled": {
+     "status": "ok",
+     "makespan_s": 16.8,
+     "plan_s": 10.481264722999867,
+     "min_separation_m": 2.274716968991204,
+     "pass": true,
+     "pair": [
+      13,
+      33
+     ],
+     "time_s": 6.446492049995283
+    }
+   },
+   "sampled_on_straight_labeled": {
+    "0.5": {
+     "min_separation_m": 0.13029257867686814,
+     "ok": false
+    },
+    "0.2": {
+     "min_separation_m": 0.021164252509275148,
+     "ok": false
+    },
+    "0.1": {
+     "min_separation_m": 0.021164252509275148,
+     "ok": false
+    },
+    "0.05": {
+     "min_separation_m": 0.021164252509275148,
+     "ok": false
+    }
+   }
+  },
+  {
+   "scenario": "random_exchange_16",
+   "n": 16,
+   "methods": {
+    "straight_labeled": {
+     "status": "ok",
+     "makespan_s": 20.305620505443976,
+     "plan_s": 0.00044034899997313914,
+     "min_separation_m": 2.534278534710579,
+     "pass": true,
+     "pair": [
+      3,
+      14
+     ],
+     "time_s": 7.7276611193709295
+    },
+    "waves_labeled": {
+     "status": "ok",
+     "makespan_s": 20.305620505443976,
+     "plan_s": 0.0008824050000839634,
+     "min_separation_m": 2.534278534710579,
+     "pass": true,
+     "pair": [
+      3,
+      14
+     ],
+     "time_s": 7.7276611193709295
+    },
+    "straight_unlabeled_hungarian": {
+     "status": "ok",
+     "makespan_s": 8.835601219737491,
+     "plan_s": 0.0004408810000313679,
+     "min_separation_m": 3.908363152785648,
+     "pass": true,
+     "pair": [
+      9,
+      15
+     ],
+     "time_s": 0.0
+    },
+    "waves_unlabeled_hungarian": {
+     "status": "ok",
+     "makespan_s": 8.835601219737491,
+     "plan_s": 0.0009528329999284324,
+     "min_separation_m": 3.908363152785648,
+     "pass": true,
+     "pair": [
+      9,
+      15
+     ],
+     "time_s": 0.0
+    },
+    "orca_r2.0_labeled": {
+     "status": "ok",
+     "makespan_s": 11.100000000000001,
+     "plan_s": 4.825561341999901,
+     "min_separation_m": 2.1273718187946336,
+     "pass": true,
+     "pair": [
+      6,
+      7
+     ],
+     "time_s": 0.8588553544877945
+    },
+    "orca_r2.4_labeled": {
+     "status": "ok",
+     "makespan_s": 11.100000000000001,
+     "plan_s": 4.902754655000081,
+     "min_separation_m": 2.4000000003466555,
+     "pass": true,
+     "pair": [
+      6,
+      7
+     ],
+     "time_s": 0.8344841199298032
+    }
+   },
+   "sampled_on_straight_labeled": {
+    "0.5": {
+     "min_separation_m": 2.7496950841246703,
+     "ok": true
+    },
+    "0.2": {
+     "min_separation_m": 2.557550341900247,
+     "ok": true
+    },
+    "0.1": {
+     "min_separation_m": 2.5376608931342215,
+     "ok": true
+    },
+    "0.05": {
+     "min_separation_m": 2.536496075172686,
+     "ok": true
+    }
+   }
+  },
+  {
+   "scenario": "random_exchange_32",
+   "n": 32,
+   "methods": {
+    "straight_labeled": {
+     "status": "ok",
+     "makespan_s": 29.6770754298254,
+     "plan_s": 0.000998710999965624,
+     "min_separation_m": 1.0710553628571617,
+     "pass": false,
+     "pair": [
+      1,
+      27
+     ],
+     "time_s": 9.89739708135282
+    },
+    "waves_labeled": {
+     "status": "ok",
+     "makespan_s": 65.06812875228543,
+     "plan_s": 0.002337576999934754,
+     "min_separation_m": 2.5553444226081954,
+     "pass": true,
+     "pair": [
+      7,
+      9
+     ],
+     "time_s": 21.773270885288344
+    },
+    "straight_unlabeled_hungarian": {
+     "status": "ok",
+     "makespan_s": 14.773038936245417,
+     "plan_s": 0.0009861159999218216,
+     "min_separation_m": 3.374935124014802,
+     "pass": true,
+     "pair": [
+      14,
+      18
+     ],
+     "time_s": 6.672668868043552
+    },
+    "waves_unlabeled_hungarian": {
+     "status": "ok",
+     "makespan_s": 14.773038936245417,
+     "plan_s": 0.0024594509998223657,
+     "min_separation_m": 3.374935124014802,
+     "pass": true,
+     "pair": [
+      14,
+      18
+     ],
+     "time_s": 6.672668868043552
+    },
+    "orca_r2.0_labeled": {
+     "status": "ok",
+     "makespan_s": 16.2,
+     "plan_s": 6.895445360000167,
+     "min_separation_m": 2.000000001326295,
+     "pass": true,
+     "pair": [
+      14,
+      30
+     ],
+     "time_s": 0.7201285228567094
+    },
+    "orca_r2.4_labeled": {
+     "status": "ok",
+     "makespan_s": 16.2,
+     "plan_s": 7.8881615220000185,
+     "min_separation_m": 2.4000000000000394,
+     "pass": true,
+     "pair": [
+      19,
+      31
+     ],
+     "time_s": 8.39407263007523
+    }
+   },
+   "sampled_on_straight_labeled": {
+    "0.5": {
+     "min_separation_m": 1.0896133875835365,
+     "ok": false
+    },
+    "0.2": {
+     "min_separation_m": 1.0874601793938399,
+     "ok": false
+    },
+    "0.1": {
+     "min_separation_m": 1.07106728976083,
+     "ok": false
+    },
+    "0.05": {
+     "min_separation_m": 1.07106728976083,
+     "ok": false
+    }
+   }
+  },
+  {
+   "scenario": "random_exchange_64",
+   "n": 64,
+   "methods": {
+    "straight_labeled": {
+     "status": "ok",
+     "makespan_s": 52.35600933934477,
+     "plan_s": 0.0018783660000281088,
+     "min_separation_m": 0.40910551490143965,
+     "pass": false,
+     "pair": [
+      40,
+      49
+     ],
+     "time_s": 22.46074727561415
+    },
+    "waves_labeled": {
+     "status": "ok",
+     "makespan_s": 97.72643734255124,
+     "plan_s": 0.005269537000003766,
+     "min_separation_m": 2.0617440054699747,
+     "pass": true,
+     "pair": [
+      31,
+      35
+     ],
+     "time_s": 26.31164506762531
+    },
+    "straight_unlabeled_hungarian": {
+     "status": "ok",
+     "makespan_s": 14.370513565494655,
+     "plan_s": 0.0022792370000388473,
+     "min_separation_m": 4.196422915313317,
+     "pass": true,
+     "pair": [
+      32,
+      35
+     ],
+     "time_s": 0.0
+    },
+    "waves_unlabeled_hungarian": {
+     "status": "ok",
+     "makespan_s": 14.370513565494655,
+     "plan_s": 0.005506147999994937,
+     "min_separation_m": 4.196422915313317,
+     "pass": true,
+     "pair": [
+      32,
+      35
+     ],
+     "time_s": 0.0
+    },
+    "orca_r2.0_labeled": {
+     "status": "ok",
+     "makespan_s": 27.5,
+     "plan_s": 15.46219758899997,
+     "min_separation_m": 1.9999999999999987,
+     "pass": true,
+     "pair": [
+      32,
+      47
+     ],
+     "time_s": 4.656107454440315
+    },
+    "orca_r2.4_labeled": {
+     "status": "ok",
+     "makespan_s": 27.5,
+     "plan_s": 15.46813890999988,
+     "min_separation_m": 2.4000000000000004,
+     "pass": true,
+     "pair": [
+      25,
+      32
+     ],
+     "time_s": 10.556390287376233
+    }
+   },
+   "sampled_on_straight_labeled": {
+    "0.5": {
+     "min_separation_m": 0.42987369722348556,
+     "ok": false
+    },
+    "0.2": {
+     "min_separation_m": 0.45733336524455326,
+     "ok": false
+    },
+    "0.1": {
+     "min_separation_m": 0.42987369722348556,
+     "ok": false
+    },
+    "0.05": {
+     "min_separation_m": 0.4113170484904335,
+     "ok": false
+    }
+   }
+  }
+ ],
+ "sampled_false_pass": {
+  "trials": 3000,
+  "failing_fleets": 3000,
+  "false_pass": {
+   "0.5": 124,
+   "0.2": 5,
+   "0.1": 1,
+   "0.05": 0
+  },
+  "false_pass_rate": {
+   "0.5": 0.04133333333333333,
+   "0.2": 0.0016666666666666668,
+   "0.1": 0.0003333333333333333,
+   "0.05": 0.0
+  },
+  "relative_speed_range_mps": [
+   0.0,
+   8.0
+  ]
+ }
+}

@@ -51,6 +51,8 @@ No other external dataset is used. `hudasol/marsad` and the Tashwish project wer
 
 Papers and web pages cited in `docs/RESEARCH.md` are linked, not copied. No Skybrush code or file format is used; Skybrush components are GPL-3.0 (per GitHub pages read), which is incompatible with silently adapting them into an MIT project.
 
+Benchmark comparators (`sirb/baselines`, used only by `scripts/bench_baselines.py`): ORCA follows van den Berg, Guy, Lin and Manocha, "Reciprocal n-body collision avoidance" (2011). It is a reimplementation in numpy, not a copy; it was validated against the RVO2-3D reference (Apache-2.0, https://github.com/snape/RVO2-3D, commit f940bfb) built locally outside the repository, matching new velocities within 1e-3 m/s on 2400 random agent states. No third party code or data is redistributed. The sampled separation check mimics the frame based checking described in the Skybrush documentation (read, not copied).
+
 ## Parameters
 
 Vehicle and GNSS parameters carry their sources or the label ASSUMPTION in `docs/RESEARCH.md` sections 3 and 5.
