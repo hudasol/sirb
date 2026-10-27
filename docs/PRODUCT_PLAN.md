@@ -15,8 +15,8 @@ Written 2026-10-28 after an audit of the repository (code review of the verifier
 | M7 | CI covered Linux and one Python only. | Done: Linux, Windows, macOS on 3.12 and 3.13, plus wheel build and clean install test. A release workflow attaches the build. |
 | H3 | The wind headline could read as a limit. | Already worded as not a limit in the README; the model has no common mode wind failure (see limits below). |
 | H4 | Stressed verdicts hinge on treating absolute GNSS error as relative error. | Open. Plan: add a common mode fraction (default 0 so existing results are unchanged) and label margin results UNCALIBRATED until a differential GNSS source is found. |
-| H5 | Real shows cannot be loaded. | Started: a `points` shape takes explicit coordinates. Open: CSV and Crazyswarm importers and a `verify-external` command. |
-| H6 | The stress simulator is reachable only through scripts. | Open: `sirb stress` command. |
+| H5 | Real shows cannot be loaded. | Partly done: a `points` shape takes explicit coordinates and `verify-external` checks a sampled CSV (piecewise linear, separation only). Open: Crazyswarm polynomial import and viewer file drop. |
+| H6 | The stress simulator is reachable only through scripts. | Done: `sirb stress`. |
 | M2 | No machine readable JSON Schema for show files; unknown keys are ignored. | Open. |
 | M4 | Separation is isotropic; downwash is not modelled. | Open. |
 | M5 | Type checking has 65 open errors and `py.typed` is shipped. | Open: fix or drop the marker. |

@@ -1,4 +1,4 @@
-"""Command line entry point: ``python -m sirb {validate,plan,check,margin}``.
+"""Command line entry point: ``python -m sirb {validate,plan,check,margin,stress,verify-external}``.
 
 Files in, files out. Nothing here talks to an aircraft, a radio or a ground station.
 Exit status: 0 = ok, 1 = invalid input or failed check, 2 = the plan verified but FAILED a limit.
@@ -81,6 +81,53 @@ def _margin(a) -> int:
     return 0
 
 
+def _verify_external(a) -> int:
+    from .importers import fleet_from_csv
+    from .verify import pairwise_min_separation
+
+    if not a.d_min > 0:
+        print("error: --d-min must be positive", file=sys.stderr)
+        return 1
+    fleet = fleet_from_csv(a.csv)
+    d, i, j, t, lb, _ = pairwise_min_separation(fleet, a.search_radius)
+    ok = d >= a.d_min
+    bound = " (lower bound: no pair came within the search radius)" if lb else ""
+    print(f"drones: {len(fleet.trajectories)}   fleet sha256: {fleet.content_hash()}")
+    print(f"minimum centre separation: {d:.4f} m{bound} between drones {i} and {j} at t = {t:.3f} s")
+    print(f"verdict: {'PASS' if ok else 'FAIL'} against {a.d_min} m. Samples joined by straight "
+          "lines; separation only; simulation-validated only, not an approval.")
+    return 0 if ok else 2
+
+
+def _stress(a) -> int:
+    import json
+
+    from .disturbance import StressConfig
+    from .gnss_params import load, to_stress_config
+    from .stress import monte_carlo, sample_reference
+
+    if a.trials < 1 or a.workers < 1 or a.w20 < 0:
+        print("error: --trials and --workers must be at least 1 and --w20 not negative",
+              file=sys.stderr)
+        return 1
+    show, fleet, _ = load_export(a.export)
+    cfg = to_stress_config(load(a.gnss), base=StressConfig(dt=0.2, w20=a.w20))
+    d_min = show["limits"]["min_separation_m"]
+    r = monte_carlo(sample_reference(fleet, cfg.dt), cfg, d_min, a.trials, a.seed,
+                    workers=a.workers)
+    lo, hi = r["p_violation_ci95"]
+    print(f"SIMULATED under assumed disturbance models; not flight evidence. d_min {d_min} m, "
+          f"{a.trials} trials, seed {a.seed}")
+    print(f"P(separation violation) = {r['p_violation']:.3f}  (Wilson 95%: {lo:.3f} to {hi:.3f})")
+    q = r["min_separation_quantiles"]
+    print(f"minimum separation quantiles (m): min {q['0.0']:.3f}, 5% {q['0.05']:.3f}, "
+          f"median {q['0.5']:.3f}")
+    if a.report:
+        with open(a.report, "w", encoding="utf-8") as f:
+            json.dump(r, f, indent=1)
+    return 0
+
+
 def main(argv: list[str] | None = None) -> int:
     ap = argparse.ArgumentParser(prog="sirb", description=SAFETY_STATEMENT)
     ap.add_argument("--version", action="version", version=f"sirb {__version__}")
@@ -104,6 +151,19 @@ def main(argv: list[str] | None = None) -> int:
     m.add_argument("--tol", type=float, default=0.02, help="relative tolerance of the scale search")
     m.add_argument("--report", help="write the full search record (.json)")
     m.add_argument("--out", help="export bundle of the plan at the chosen scale (.json)")
+    x = sub.add_parser("verify-external", help="exactly verify separation of a sampled "
+                       "trajectory CSV (drone,t,x,y,z)")
+    x.add_argument("csv")
+    x.add_argument("--d-min", type=float, required=True, help="required centre separation, m")
+    x.add_argument("--search-radius", type=float, default=50.0, help="pair search radius, m")
+    t = sub.add_parser("stress", help="Monte Carlo stress test of an export bundle (simulated)")
+    t.add_argument("export")
+    t.add_argument("--gnss", required=True, help="GNSS parameter file (docs/GNSS_PARAMS.md)")
+    t.add_argument("--w20", type=float, default=0.0, help="mean wind at 20 ft, m/s (assumed)")
+    t.add_argument("--trials", type=int, default=200)
+    t.add_argument("--seed", type=int, default=20261016)
+    t.add_argument("--workers", type=int, default=1)
+    t.add_argument("--report", help="write the full result (.json)")
     a = ap.parse_args(argv)
 
     try:
@@ -127,6 +187,10 @@ def main(argv: list[str] | None = None) -> int:
             return _print_cert(bundle["certificate"])
         if a.cmd == "margin":
             return _margin(a)
+        if a.cmd == "verify-external":
+            return _verify_external(a)
+        if a.cmd == "stress":
+            return _stress(a)
         show, fleet, cert = load_export(a.export)
         print("export hash and recomputed certificate agree")
         return _print_cert(cert)
