@@ -13,7 +13,6 @@ Usage: python scripts/check_viewer_data.py     (after python scripts/build_viewe
 from __future__ import annotations
 
 import json
-import shutil
 import subprocess
 import sys
 from pathlib import Path
@@ -46,7 +45,6 @@ def diff(a, b, path="$"):
 
 def main() -> int:
     first = json.loads(IDX.read_text())
-    shutil.copy(IDX, "/tmp/index_first.json")
     subprocess.check_call([sys.executable, "scripts/build_viewer_data.py"],
                           stdout=subprocess.DEVNULL)
     second = json.loads(IDX.read_text())
