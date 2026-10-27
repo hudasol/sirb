@@ -4,16 +4,36 @@ permissions:
   contents: read
 jobs:
   test:
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+        python: ["3.12", "3.13"]
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
-          python-version: "3.13"
-      - run: pip install -c constraints.txt -e ".[dev]"
+          python-version: ${{ matrix.python }}
+      - run: pip install -e ".[dev]"
       - run: ruff check .
       - run: pytest -q
       - name: Regenerate viewer data, check determinism and PASS verdicts
         run: |
           python scripts/build_viewer_data.py
           python scripts/check_viewer_data.py
+  package:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - run: pip install build
+      - run: python -m build
+      - name: Install the wheel in a clean environment and run the command line
+        run: |
+          python -m venv /tmp/clean
+          /tmp/clean/bin/pip install dist/*.whl
+          /tmp/clean/bin/sirb --version || /tmp/clean/bin/python -m sirb --version
+          /tmp/clean/bin/python -m sirb validate shows/sirb_text_100.json
