@@ -1,0 +1,206 @@
+{
+ "passed": 40,
+ "failed": 0,
+ "checks": [
+  {
+   "check": "[en] tab order starts at skip link",
+   "pass": true,
+   "detail": "{'id': '', 'tag': 'a', 'cls': 'skip', 'outline': 'solid 3px', 'text': 'Skip to the viewer'}"
+  },
+  {
+   "check": "[en] tab reaches every control and leaves the page (no trap)",
+   "pass": true,
+   "detail": "unreached []; first ids ['a', 'showSelect', 'a', 'langBtn', 'themeBtn', 'a', 'a', 'canvas', 'a', 'a', 'a', 'a']"
+  },
+  {
+   "check": "[en] focused controls show an outline",
+   "pass": true,
+   "detail": "[]"
+  },
+  {
+   "check": "[en] Space starts and Enter pauses on the play button",
+   "pass": true,
+   "detail": "pressed=true t=0.22"
+  },
+  {
+   "check": "[en] step buttons work with Enter and Space (one frame = 0.2 s)",
+   "pass": true,
+   "detail": "0.4 0.2"
+  },
+  {
+   "check": "[en] scrubber: arrows, Shift+arrows, Home and End",
+   "pass": true,
+   "detail": "1.0 1.2 0.2 155.6 total 155.6"
+  },
+  {
+   "check": "[en] scrubber exposes a text value",
+   "pass": true,
+   "detail": "Time 155.6 of 155.6 s"
+  },
+  {
+   "check": "[en] Space on the page toggles playback",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "[en] colour mode button toggles with Enter",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "[en] scenario select works from the keyboard",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "[ar] tab order starts at skip link",
+   "pass": true,
+   "detail": "{'id': '', 'tag': 'a', 'cls': 'skip', 'outline': 'solid 3px', 'text': 'تخطَّ إلى العارض'}"
+  },
+  {
+   "check": "[ar] tab reaches every control and leaves the page (no trap)",
+   "pass": true,
+   "detail": "unreached []; first ids ['a', 'showSelect', 'a', 'langBtn', 'themeBtn', 'a', 'a', 'canvas', 'a', 'a', 'a', 'a']"
+  },
+  {
+   "check": "[ar] focused controls show an outline",
+   "pass": true,
+   "detail": "[]"
+  },
+  {
+   "check": "[ar] Space starts and Enter pauses on the play button",
+   "pass": true,
+   "detail": "pressed=true t=0.6"
+  },
+  {
+   "check": "[ar] step buttons work with Enter and Space (one frame = 0.2 s)",
+   "pass": true,
+   "detail": "0.4 0.2"
+  },
+  {
+   "check": "[ar] scrubber: arrows, Shift+arrows, Home and End",
+   "pass": true,
+   "detail": "1.0 1.2 0.2 155.6 total 155.6"
+  },
+  {
+   "check": "[ar] scrubber exposes a text value",
+   "pass": true,
+   "detail": "الزمن ١٥٥٫٦ من ١٥٥٫٦ ث"
+  },
+  {
+   "check": "[ar] Space on the page toggles playback",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "[ar] colour mode button toggles with Enter",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "[ar] scenario select works from the keyboard",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "reduced motion: media query honoured, no autoplay, no CSS animation or transition, no smooth scroll",
+   "pass": true,
+   "detail": "mm=True playing=false t=0.0,0.0 anim=[] sb=auto"
+  },
+  {
+   "check": "light theme: stored light applied, light background, toggle returns to dark, OS light preference used when nothing is stored",
+   "pass": true,
+   "detail": "theme=light bg=rgb(245, 247, 250) canvas=rgb(233, 238, 245) btn=Dark toggled=dark auto=light"
+  },
+  {
+   "check": "file:// shows the static bilingual error banner (role=alert) with the http.server command",
+   "pass": true,
+   "detail": "visible=True text='The viewer cannot run from file://: browsers block ES modules and binary data th'"
+  },
+  {
+   "check": "file:// banner hidden over http",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "AR: dir=rtl, lang=ar",
+   "pass": true,
+   "detail": "rtl"
+  },
+  {
+   "check": "AR: numbers use Arabic-Indic digits in readouts and time",
+   "pass": true,
+   "detail": "['٣٫٠٠ م', '٣٫٠٠ م', '٠ من ١٠٠', '٣٫٠٠ م', '٣٫٠٠ م', '٠ من ١٠٠', '٠ من ٢']الزمن ٠٫٠ من ١٥٥٫٦ ث"
+  },
+  {
+   "check": "AR: scenario parameter values use Arabic-Indic digits",
+   "pass": true,
+   "detail": "['متوسط الرياح عند 20 قدمًا (م/ث): ٣', 'عدد أعطال المحرّكات: ٢']"
+  },
+  {
+   "check": "AR: media controls and timeline stay left to right (time runs left to right) with back left of forward",
+   "pass": true,
+   "detail": "ltr ltr True"
+  },
+  {
+   "check": "AR: hash is an isolated LTR run",
+   "pass": true,
+   "detail": "ltr isolate"
+  },
+  {
+   "check": "AR: step glyphs point in their time direction (back left, forward right)",
+   "pass": true,
+   "detail": "\"◀◀\" \"▶▶\""
+  },
+  {
+   "check": "AR: English original of the safety statement is a separate LTR block",
+   "pass": true,
+   "detail": "ltr"
+  },
+  {
+   "check": "AR methods page: rtl, Arabic text shown, English duplicate hidden",
+   "pass": true,
+   "detail": "{'dir': 'rtl', 'en': 'none', 'ar': 'inline'}"
+  },
+  {
+   "check": "no horizontal overflow at 390px: index.html en",
+   "pass": true,
+   "detail": "{'sw': 390, 'cw': 390, 'bad': []}"
+  },
+  {
+   "check": "no horizontal overflow at 320px: index.html en",
+   "pass": true,
+   "detail": "{'sw': 320, 'cw': 320, 'bad': []}"
+  },
+  {
+   "check": "no horizontal overflow at 390px: index.html ar",
+   "pass": true,
+   "detail": "{'sw': 390, 'cw': 390, 'bad': []}"
+  },
+  {
+   "check": "no horizontal overflow at 320px: index.html ar",
+   "pass": true,
+   "detail": "{'sw': 320, 'cw': 320, 'bad': []}"
+  },
+  {
+   "check": "no horizontal overflow at 390px: methods.html en",
+   "pass": true,
+   "detail": "{'sw': 390, 'cw': 390, 'bad': []}"
+  },
+  {
+   "check": "no horizontal overflow at 320px: methods.html en",
+   "pass": true,
+   "detail": "{'sw': 320, 'cw': 320, 'bad': []}"
+  },
+  {
+   "check": "no horizontal overflow at 390px: methods.html ar",
+   "pass": true,
+   "detail": "{'sw': 390, 'cw': 390, 'bad': []}"
+  },
+  {
+   "check": "no horizontal overflow at 320px: methods.html ar",
+   "pass": true,
+   "detail": "{'sw': 320, 'cw': 320, 'bad': []}"
+  }
+ ]
+}

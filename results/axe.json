@@ -1,0 +1,1721 @@
+{
+ "axe_core": {
+  "version": "4.14.0",
+  "license": "MPL-2.0",
+  "file": "scripts/vendor/axe-core/axe.min.js"
+ },
+ "before": {
+  "summary": {
+   "violation_rules": 18,
+   "violation_nodes": 162,
+   "incomplete_rules": 4,
+   "incomplete_nodes": 8,
+   "violations_by_impact": {
+    "critical": 0,
+    "serious": 6,
+    "moderate": 12,
+    "minor": 0,
+    "None": 0
+   },
+   "incomplete_by_impact": {
+    "critical": 0,
+    "serious": 4,
+    "moderate": 0,
+    "minor": 0,
+    "None": 0
+   }
+  },
+  "runs": [
+   {
+    "page": "index.html",
+    "lang": "en",
+    "theme": "dark",
+    "axe_version": "4.14.0",
+    "violations": [
+     {
+      "id": "label-content-name-mismatch",
+      "impact": "serious",
+      "help": "Elements must have their visible text as part of their accessible name",
+      "nodes": [
+       {
+        "target": [
+         "#langBtn"
+        ],
+        "summary": "Fix any of the following:\n  Text inside the element is not included in the accessible name"
+       }
+      ]
+     },
+     {
+      "id": "region",
+      "impact": "moderate",
+      "help": "All page content should be contained by landmarks",
+      "nodes": [
+       {
+        "target": [
+         "#banner"
+        ],
+        "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+       }
+      ]
+     }
+    ],
+    "incomplete": [
+     {
+      "id": "label-content-name-mismatch",
+      "impact": "serious",
+      "help": "Elements must have their visible text as part of their accessible name",
+      "nodes": [
+       {
+        "target": [
+         "#backBtn"
+        ],
+        "summary": "Fix any of the following:\n  Unable to determine if the visible text is part of the accessible name"
+       },
+       {
+        "target": [
+         "#fwdBtn"
+        ],
+        "summary": "Fix any of the following:\n  Unable to determine if the visible text is part of the accessible name"
+       }
+      ]
+     }
+    ],
+    "violation_counts": {
+     "rules": 2,
+     "nodes": 2,
+     "by_impact": {
+      "critical": 0,
+      "serious": 1,
+      "moderate": 1,
+      "minor": 0,
+      "None": 0
+     }
+    },
+    "incomplete_counts": {
+     "rules": 1,
+     "nodes": 2,
+     "by_impact": {
+      "critical": 0,
+      "serious": 1,
+      "moderate": 0,
+      "minor": 0,
+      "None": 0
+     }
+    }
+   },
+   {
+    "page": "index.html",
+    "lang": "en",
+    "theme": "light",
+    "axe_version": "4.14.0",
+    "violations": [
+     {
+      "id": "label-content-name-mismatch",
+      "impact": "serious",
+      "help": "Elements must have their visible text as part of their accessible name",
+      "nodes": [
+       {
+        "target": [
+         "#langBtn"
+        ],
+        "summary": "Fix any of the following:\n  Text inside the element is not included in the accessible name"
+       }
+      ]
+     },
+     {
+      "id": "region",
+      "impact": "moderate",
+      "help": "All page content should be contained by landmarks",
+      "nodes": [
+       {
+        "target": [
+         "#banner"
+        ],
+        "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+       }
+      ]
+     }
+    ],
+    "incomplete": [
+     {
+      "id": "label-content-name-mismatch",
+      "impact": "serious",
+      "help": "Elements must have their visible text as part of their accessible name",
+      "nodes": [
+       {
+        "target": [
+         "#backBtn"
+        ],
+        "summary": "Fix any of the following:\n  Unable to determine if the visible text is part of the accessible name"
+       },
+       {
+        "target": [
+         "#fwdBtn"
+        ],
+        "summary": "Fix any of the following:\n  Unable to determine if the visible text is part of the accessible name"
+       }
+      ]
+     }
+    ],
+    "violation_counts": {
+     "rules": 2,
+     "nodes": 2,
+     "by_impact": {
+      "critical": 0,
+      "serious": 1,
+      "moderate": 1,
+      "minor": 0,
+      "None": 0
+     }
+    },
+    "incomplete_counts": {
+     "rules": 1,
+     "nodes": 2,
+     "by_impact": {
+      "critical": 0,
+      "serious": 1,
+      "moderate": 0,
+      "minor": 0,
+      "None": 0
+     }
+    }
+   },
+   {
+    "page": "index.html",
+    "lang": "ar",
+    "theme": "dark",
+    "axe_version": "4.14.0",
+    "violations": [
+     {
+      "id": "label-content-name-mismatch",
+      "impact": "serious",
+      "help": "Elements must have their visible text as part of their accessible name",
+      "nodes": [
+       {
+        "target": [
+         "#langBtn"
+        ],
+        "summary": "Fix any of the following:\n  Text inside the element is not included in the accessible name"
+       }
+      ]
+     },
+     {
+      "id": "region",
+      "impact": "moderate",
+      "help": "All page content should be contained by landmarks",
+      "nodes": [
+       {
+        "target": [
+         "#banner"
+        ],
+        "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+       }
+      ]
+     }
+    ],
+    "incomplete": [
+     {
+      "id": "label-content-name-mismatch",
+      "impact": "serious",
+      "help": "Elements must have their visible text as part of their accessible name",
+      "nodes": [
+       {
+        "target": [
+         "#backBtn"
+        ],
+        "summary": "Fix any of the following:\n  Unable to determine if the visible text is part of the accessible name"
+       },
+       {
+        "target": [
+         "#fwdBtn"
+        ],
+        "summary": "Fix any of the following:\n  Unable to determine if the visible text is part of the accessible name"
+       }
+      ]
+     }
+    ],
+    "violation_counts": {
+     "rules": 2,
+     "nodes": 2,
+     "by_impact": {
+      "critical": 0,
+      "serious": 1,
+      "moderate": 1,
+      "minor": 0,
+      "None": 0
+     }
+    },
+    "incomplete_counts": {
+     "rules": 1,
+     "nodes": 2,
+     "by_impact": {
+      "critical": 0,
+      "serious": 1,
+      "moderate": 0,
+      "minor": 0,
+      "None": 0
+     }
+    }
+   },
+   {
+    "page": "index.html",
+    "lang": "ar",
+    "theme": "light",
+    "axe_version": "4.14.0",
+    "violations": [
+     {
+      "id": "label-content-name-mismatch",
+      "impact": "serious",
+      "help": "Elements must have their visible text as part of their accessible name",
+      "nodes": [
+       {
+        "target": [
+         "#langBtn"
+        ],
+        "summary": "Fix any of the following:\n  Text inside the element is not included in the accessible name"
+       }
+      ]
+     },
+     {
+      "id": "region",
+      "impact": "moderate",
+      "help": "All page content should be contained by landmarks",
+      "nodes": [
+       {
+        "target": [
+         "#banner"
+        ],
+        "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+       }
+      ]
+     }
+    ],
+    "incomplete": [
+     {
+      "id": "label-content-name-mismatch",
+      "impact": "serious",
+      "help": "Elements must have their visible text as part of their accessible name",
+      "nodes": [
+       {
+        "target": [
+         "#backBtn"
+        ],
+        "summary": "Fix any of the following:\n  Unable to determine if the visible text is part of the accessible name"
+       },
+       {
+        "target": [
+         "#fwdBtn"
+        ],
+        "summary": "Fix any of the following:\n  Unable to determine if the visible text is part of the accessible name"
+       }
+      ]
+     }
+    ],
+    "violation_counts": {
+     "rules": 2,
+     "nodes": 2,
+     "by_impact": {
+      "critical": 0,
+      "serious": 1,
+      "moderate": 1,
+      "minor": 0,
+      "None": 0
+     }
+    },
+    "incomplete_counts": {
+     "rules": 1,
+     "nodes": 2,
+     "by_impact": {
+      "critical": 0,
+      "serious": 1,
+      "moderate": 0,
+      "minor": 0,
+      "None": 0
+     }
+    }
+   },
+   {
+    "page": "methods.html",
+    "lang": "en",
+    "theme": "dark",
+    "axe_version": "4.14.0",
+    "violations": [
+     {
+      "id": "landmark-one-main",
+      "impact": "moderate",
+      "help": "Document should have one main landmark",
+      "nodes": [
+       {
+        "target": [
+         "html"
+        ],
+        "summary": "Fix all of the following:\n  Document does not have a main landmark"
+       }
+      ]
+     },
+     {
+      "id": "region",
+      "impact": "moderate",
+      "help": "All page content should be contained by landmarks",
+      "nodes": [
+       {
+        "target": [
+         "#backLink"
+        ],
+        "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+       },
+       {
+        "target": [
+         "#safety-statement > strong:nth-child(1)"
+        ],
+        "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+       },
+       {
+        "target": [
+         "#safety-statement > p:nth-child(3)"
+        ],
+        "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+       },
+       {
+        "target": [
+         "h1 > .en"
+        ],
+        "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+       },
+       {
+        "target": [
+         ".note"
+        ],
+        "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+       },
+       {
+        "target": [
+         "#exact-verifier > h2 > .en"
+        ],
+        "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+       },
+       {
+        "target": [
+         "#exact-verifier > .en-detail"
+        ],
+        "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+       },
+       {
+        "target": [
+         "#prefilter > h2 > .en"
+        ],
+        "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+       },
+       {
+        "target": [
+         "#prefilter > .en-detail"
+        ],
+        "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+       },
+       {
+        "target": [
+         "#declared-threshold > h2 > .en"
+        ],
+        "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+       },
+       {
+        "target": [
+         "#declared-threshold > .en-detail"
+        ],
+        "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+       },
+       {
+        "target": [
+         "#dynamics > h2 > .en"
+        ],
+        "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+       },
+       {
+        "target": [
+         "#dynamics > .en-detail"
+        ],
+        "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+       },
+       {
+        "target": [
+         "#content-hash > h2 > .en"
+        ],
+        "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+       },
+       {
+        "target": [
+         "#content-hash > .en-detail"
+        ],
+        "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+       },
+       {
+        "target": [
+         "#recomputation-check > h2 > .en"
+        ],
+        "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+       },
+       {
+        "target": [
+         "#recomputation-check > .en-detail"
+        ],
+        "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+       },
+       {
+        "target": [
+         "#guarantees > h2 > .en"
+        ],
+        "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+       },
+       {
+        "target": [
+         "#guarantees > .en-detail"
+        ],
+        "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+       },
+       {
+        "target": [
+         "#sampled-nn > h2 > .en"
+        ],
+        "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+       },
+       {
+        "target": [
+         "#sampled-nn > .en-detail"
+        ],
+        "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+       },
+       {
+        "target": [
+         "#stress-model > h2 > .en"
+        ],
+        "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+       },
+       {
+        "target": [
+         "#stress-model > .en-detail"
+        ],
+        "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+       },
+       {
+        "target": [
+         "#tracking-error > h2 > .en"
+        ],
+        "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+       },
+       {
+        "target": [
+         "#tracking-error > .en-detail"
+        ],
+        "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+       },
+       {
+        "target": [
+         "#events > h2 > .en"
+        ],
+        "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+       },
+       {
+        "target": [
+         "#events > .en-detail"
+        ],
+        "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+       },
+       {
+        "target": [
+         "#ballistic > h2 > .en"
+        ],
+        "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+       },
+       {
+        "target": [
+         "#ballistic > .en-detail"
+        ],
+        "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+       },
+       {
+        "target": [
+         "#stress-config > h2 > .en"
+        ],
+        "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+       },
+       {
+        "target": [
+         "#stress-config > .en-detail"
+        ],
+        "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+       },
+       {
+        "target": [
+         "#fixed-seed > h2 > .en"
+        ],
+        "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+       },
+       {
+        "target": [
+         "#fixed-seed > .en-detail"
+        ],
+        "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+       },
+       {
+        "target": [
+         "#sim-to-real > h2 > .en"
+        ],
+        "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+       },
+       {
+        "target": [
+         "#sim-to-real > .en-detail"
+        ],
+        "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+       },
+       {
+        "target": [
+         "#data-format > h2 > .en"
+        ],
+        "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+       },
+       {
+        "target": [
+         "#data-format > .en-detail"
+        ],
+        "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+       }
+      ]
+     }
+    ],
+    "incomplete": [],
+    "violation_counts": {
+     "rules": 2,
+     "nodes": 38,
+     "by_impact": {
+      "critical": 0,
+      "serious": 0,
+      "moderate": 2,
+      "minor": 0,
+      "None": 0
+     }
+    },
+    "incomplete_counts": {
+     "rules": 0,
+     "nodes": 0,
+     "by_impact": {
+      "critical": 0,
+      "serious": 0,
+      "moderate": 0,
+      "minor": 0,
+      "None": 0
+     }
+    }
+   },
+   {
+    "page": "methods.html",
+    "lang": "en",
+    "theme": "light",
+    "axe_version": "4.14.0",
+    "violations": [
+     {
+      "id": "landmark-one-main",
+      "impact": "moderate",
+      "help": "Document should have one main landmark",
+      "nodes": [
+       {
+        "target": [
+         "html"
+        ],
+        "summary": "Fix all of the following:\n  Document does not have a main landmark"
+       }
+      ]
+     },
+     {
+      "id": "region",
+      "impact": "moderate",
+      "help": "All page content should be contained by landmarks",
+      "nodes": [
+       {
+        "target": [
+         "#backLink"
+        ],
+        "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+       },
+       {
+        "target": [
+         "#safety-statement > strong:nth-child(1)"
+        ],
+        "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+       },
+       {
+        "target": [
+         "#safety-statement > p:nth-child(3)"
+        ],
+        "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+       },
+       {
+        "target": [
+         "h1 > .en"
+        ],
+        "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+       },
+       {
+        "target": [
+         ".note"
+        ],
+        "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+       },
+       {
+        "target": [
+         "#exact-verifier > h2 > .en"
+        ],
+        "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+       },
+       {
+        "target": [
+         "#exact-verifier > .en-detail"
+        ],
+        "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+       },
+       {
+        "target": [
+         "#prefilter > h2 > .en"
+        ],
+        "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+       },
+       {
+        "target": [
+         "#prefilter > .en-detail"
+        ],
+        "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+       },
+       {
+        "target": [
+         "#declared-threshold > h2 > .en"
+        ],
+        "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+       },
+       {
+        "target": [
+         "#declared-threshold > .en-detail"
+        ],
+        "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+       },
+       {
+        "target": [
+         "#dynamics > h2 > .en"
+        ],
+        "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+       },
+       {
+        "target": [
+         "#dynamics > .en-detail"
+        ],
+        "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+       },
+       {
+        "target": [
+         "#content-hash > h2 > .en"
+        ],
+        "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+       },
+       {
+        "target": [
+         "#content-hash > .en-detail"
+        ],
+        "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+       },
+       {
+        "target": [
+         "#recomputation-check > h2 > .en"
+        ],
+        "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+       },
+       {
+        "target": [
+         "#recomputation-check > .en-detail"
+        ],
+        "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+       },
+       {
+        "target": [
+         "#guarantees > h2 > .en"
+        ],
+        "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+       },
+       {
+        "target": [
+         "#guarantees > .en-detail"
+        ],
+        "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+       },
+       {
+        "target": [
+         "#sampled-nn > h2 > .en"
+        ],
+        "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+       },
+       {
+        "target": [
+         "#sampled-nn > .en-detail"
+        ],
+        "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+       },
+       {
+        "target": [
+         "#stress-model > h2 > .en"
+        ],
+        "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+       },
+       {
+        "target": [
+         "#stress-model > .en-detail"
+        ],
+        "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+       },
+       {
+        "target": [
+         "#tracking-error > h2 > .en"
+        ],
+        "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+       },
+       {
+        "target": [
+         "#tracking-error > .en-detail"
+        ],
+        "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+       },
+       {
+        "target": [
+         "#events > h2 > .en"
+        ],
+        "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+       },
+       {
+        "target": [
+         "#events > .en-detail"
+        ],
+        "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+       },
+       {
+        "target": [
+         "#ballistic > h2 > .en"
+        ],
+        "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+       },
+       {
+        "target": [
+         "#ballistic > .en-detail"
+        ],
+        "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+       },
+       {
+        "target": [
+         "#stress-config > h2 > .en"
+        ],
+        "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+       },
+       {
+        "target": [
+         "#stress-config > .en-detail"
+        ],
+        "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+       },
+       {
+        "target": [
+         "#fixed-seed > h2 > .en"
+        ],
+        "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+       },
+       {
+        "target": [
+         "#fixed-seed > .en-detail"
+        ],
+        "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+       },
+       {
+        "target": [
+         "#sim-to-real > h2 > .en"
+        ],
+        "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+       },
+       {
+        "target": [
+         "#sim-to-real > .en-detail"
+        ],
+        "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+       },
+       {
+        "target": [
+         "#data-format > h2 > .en"
+        ],
+        "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+       },
+       {
+        "target": [
+         "#data-format > .en-detail"
+        ],
+        "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+       }
+      ]
+     }
+    ],
+    "incomplete": [],
+    "violation_counts": {
+     "rules": 2,
+     "nodes": 38,
+     "by_impact": {
+      "critical": 0,
+      "serious": 0,
+      "moderate": 2,
+      "minor": 0,
+      "None": 0
+     }
+    },
+    "incomplete_counts": {
+     "rules": 0,
+     "nodes": 0,
+     "by_impact": {
+      "critical": 0,
+      "serious": 0,
+      "moderate": 0,
+      "minor": 0,
+      "None": 0
+     }
+    }
+   },
+   {
+    "page": "methods.html",
+    "lang": "ar",
+    "theme": "dark",
+    "axe_version": "4.14.0",
+    "violations": [
+     {
+      "id": "label-content-name-mismatch",
+      "impact": "serious",
+      "help": "Elements must have their visible text as part of their accessible name",
+      "nodes": [
+       {
+        "target": [
+         "#langBtn"
+        ],
+        "summary": "Fix any of the following:\n  Text inside the element is not included in the accessible name"
+       }
+      ]
+     },
+     {
+      "id": "landmark-one-main",
+      "impact": "moderate",
+      "help": "Document should have one main landmark",
+      "nodes": [
+       {
+        "target": [
+         "html"
+        ],
+        "summary": "Fix all of the following:\n  Document does not have a main landmark"
+       }
+      ]
+     },
+     {
+      "id": "region",
+      "impact": "moderate",
+      "help": "All page content should be contained by landmarks",
+      "nodes": [
+       {
+        "target": [
+         "#backLink"
+        ],
+        "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+       },
+       {
+        "target": [
+         "strong:nth-child(2)"
+        ],
+        "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+       },
+       {
+        "target": [
+         "#safety-statement > p:nth-child(4)"
+        ],
+        "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+       },
+       {
+        "target": [
+         "h1 > .ar"
+        ],
+        "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+       },
+       {
+        "target": [
+         ".note"
+        ],
+        "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+       },
+       {
+        "target": [
+         "#exact-verifier > h2 > .ar"
+        ],
+        "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+       },
+       {
+        "target": [
+         "#exact-verifier > .ar-sum"
+        ],
+        "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+       },
+       {
+        "target": [
+         "#prefilter > h2 > .ar"
+        ],
+        "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+       },
+       {
+        "target": [
+         "#prefilter > .ar-sum"
+        ],
+        "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+       },
+       {
+        "target": [
+         "#declared-threshold > h2 > .ar"
+        ],
+        "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+       },
+       {
+        "target": [
+         "#declared-threshold > .ar-sum"
+        ],
+        "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+       },
+       {
+        "target": [
+         "#dynamics > h2 > .ar"
+        ],
+        "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+       },
+       {
+        "target": [
+         "#dynamics > .ar-sum"
+        ],
+        "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+       },
+       {
+        "target": [
+         "#content-hash > h2 > .ar"
+        ],
+        "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+       },
+       {
+        "target": [
+         "#content-hash > .ar-sum"
+        ],
+        "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+       },
+       {
+        "target": [
+         "#recomputation-check > h2 > .ar"
+        ],
+        "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+       },
+       {
+        "target": [
+         "#recomputation-check > .ar-sum"
+        ],
+        "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+       },
+       {
+        "target": [
+         "#guarantees > h2 > .ar"
+        ],
+        "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+       },
+       {
+        "target": [
+         "#guarantees > .ar-sum"
+        ],
+        "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+       },
+       {
+        "target": [
+         "#sampled-nn > h2 > .ar"
+        ],
+        "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+       },
+       {
+        "target": [
+         "#sampled-nn > .ar-sum"
+        ],
+        "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+       },
+       {
+        "target": [
+         "#stress-model > h2 > .ar"
+        ],
+        "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+       },
+       {
+        "target": [
+         "#stress-model > .ar-sum"
+        ],
+        "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+       },
+       {
+        "target": [
+         "#tracking-error > h2 > .ar"
+        ],
+        "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+       },
+       {
+        "target": [
+         "#tracking-error > .ar-sum"
+        ],
+        "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+       },
+       {
+        "target": [
+         "#events > h2 > .ar"
+        ],
+        "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+       },
+       {
+        "target": [
+         "#events > .ar-sum"
+        ],
+        "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+       },
+       {
+        "target": [
+         "#ballistic > h2 > .ar"
+        ],
+        "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+       },
+       {
+        "target": [
+         "#ballistic > .ar-sum"
+        ],
+        "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+       },
+       {
+        "target": [
+         "#stress-config > h2 > .ar"
+        ],
+        "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+       },
+       {
+        "target": [
+         "#stress-config > .ar-sum"
+        ],
+        "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+       },
+       {
+        "target": [
+         "#fixed-seed > h2 > .ar"
+        ],
+        "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+       },
+       {
+        "target": [
+         "#fixed-seed > .ar-sum"
+        ],
+        "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+       },
+       {
+        "target": [
+         "#sim-to-real > h2 > .ar"
+        ],
+        "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+       },
+       {
+        "target": [
+         "#sim-to-real > .ar-sum"
+        ],
+        "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+       },
+       {
+        "target": [
+         "#data-format > h2 > .ar"
+        ],
+        "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+       },
+       {
+        "target": [
+         "#data-format > .ar-sum"
+        ],
+        "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+       }
+      ]
+     }
+    ],
+    "incomplete": [],
+    "violation_counts": {
+     "rules": 3,
+     "nodes": 39,
+     "by_impact": {
+      "critical": 0,
+      "serious": 1,
+      "moderate": 2,
+      "minor": 0,
+      "None": 0
+     }
+    },
+    "incomplete_counts": {
+     "rules": 0,
+     "nodes": 0,
+     "by_impact": {
+      "critical": 0,
+      "serious": 0,
+      "moderate": 0,
+      "minor": 0,
+      "None": 0
+     }
+    }
+   },
+   {
+    "page": "methods.html",
+    "lang": "ar",
+    "theme": "light",
+    "axe_version": "4.14.0",
+    "violations": [
+     {
+      "id": "label-content-name-mismatch",
+      "impact": "serious",
+      "help": "Elements must have their visible text as part of their accessible name",
+      "nodes": [
+       {
+        "target": [
+         "#langBtn"
+        ],
+        "summary": "Fix any of the following:\n  Text inside the element is not included in the accessible name"
+       }
+      ]
+     },
+     {
+      "id": "landmark-one-main",
+      "impact": "moderate",
+      "help": "Document should have one main landmark",
+      "nodes": [
+       {
+        "target": [
+         "html"
+        ],
+        "summary": "Fix all of the following:\n  Document does not have a main landmark"
+       }
+      ]
+     },
+     {
+      "id": "region",
+      "impact": "moderate",
+      "help": "All page content should be contained by landmarks",
+      "nodes": [
+       {
+        "target": [
+         "#backLink"
+        ],
+        "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+       },
+       {
+        "target": [
+         "strong:nth-child(2)"
+        ],
+        "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+       },
+       {
+        "target": [
+         "#safety-statement > p:nth-child(4)"
+        ],
+        "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+       },
+       {
+        "target": [
+         "h1 > .ar"
+        ],
+        "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+       },
+       {
+        "target": [
+         ".note"
+        ],
+        "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+       },
+       {
+        "target": [
+         "#exact-verifier > h2 > .ar"
+        ],
+        "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+       },
+       {
+        "target": [
+         "#exact-verifier > .ar-sum"
+        ],
+        "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+       },
+       {
+        "target": [
+         "#prefilter > h2 > .ar"
+        ],
+        "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+       },
+       {
+        "target": [
+         "#prefilter > .ar-sum"
+        ],
+        "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+       },
+       {
+        "target": [
+         "#declared-threshold > h2 > .ar"
+        ],
+        "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+       },
+       {
+        "target": [
+         "#declared-threshold > .ar-sum"
+        ],
+        "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+       },
+       {
+        "target": [
+         "#dynamics > h2 > .ar"
+        ],
+        "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+       },
+       {
+        "target": [
+         "#dynamics > .ar-sum"
+        ],
+        "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+       },
+       {
+        "target": [
+         "#content-hash > h2 > .ar"
+        ],
+        "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+       },
+       {
+        "target": [
+         "#content-hash > .ar-sum"
+        ],
+        "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+       },
+       {
+        "target": [
+         "#recomputation-check > h2 > .ar"
+        ],
+        "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+       },
+       {
+        "target": [
+         "#recomputation-check > .ar-sum"
+        ],
+        "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+       },
+       {
+        "target": [
+         "#guarantees > h2 > .ar"
+        ],
+        "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+       },
+       {
+        "target": [
+         "#guarantees > .ar-sum"
+        ],
+        "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+       },
+       {
+        "target": [
+         "#sampled-nn > h2 > .ar"
+        ],
+        "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+       },
+       {
+        "target": [
+         "#sampled-nn > .ar-sum"
+        ],
+        "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+       },
+       {
+        "target": [
+         "#stress-model > h2 > .ar"
+        ],
+        "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+       },
+       {
+        "target": [
+         "#stress-model > .ar-sum"
+        ],
+        "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+       },
+       {
+        "target": [
+         "#tracking-error > h2 > .ar"
+        ],
+        "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+       },
+       {
+        "target": [
+         "#tracking-error > .ar-sum"
+        ],
+        "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+       },
+       {
+        "target": [
+         "#events > h2 > .ar"
+        ],
+        "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+       },
+       {
+        "target": [
+         "#events > .ar-sum"
+        ],
+        "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+       },
+       {
+        "target": [
+         "#ballistic > h2 > .ar"
+        ],
+        "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+       },
+       {
+        "target": [
+         "#ballistic > .ar-sum"
+        ],
+        "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+       },
+       {
+        "target": [
+         "#stress-config > h2 > .ar"
+        ],
+        "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+       },
+       {
+        "target": [
+         "#stress-config > .ar-sum"
+        ],
+        "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+       },
+       {
+        "target": [
+         "#fixed-seed > h2 > .ar"
+        ],
+        "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+       },
+       {
+        "target": [
+         "#fixed-seed > .ar-sum"
+        ],
+        "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+       },
+       {
+        "target": [
+         "#sim-to-real > h2 > .ar"
+        ],
+        "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+       },
+       {
+        "target": [
+         "#sim-to-real > .ar-sum"
+        ],
+        "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+       },
+       {
+        "target": [
+         "#data-format > h2 > .ar"
+        ],
+        "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+       },
+       {
+        "target": [
+         "#data-format > .ar-sum"
+        ],
+        "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+       }
+      ]
+     }
+    ],
+    "incomplete": [],
+    "violation_counts": {
+     "rules": 3,
+     "nodes": 39,
+     "by_impact": {
+      "critical": 0,
+      "serious": 1,
+      "moderate": 2,
+      "minor": 0,
+      "None": 0
+     }
+    },
+    "incomplete_counts": {
+     "rules": 0,
+     "nodes": 0,
+     "by_impact": {
+      "critical": 0,
+      "serious": 0,
+      "moderate": 0,
+      "minor": 0,
+      "None": 0
+     }
+    }
+   }
+  ]
+ },
+ "after": {
+  "summary": {
+   "violation_rules": 0,
+   "violation_nodes": 0,
+   "incomplete_rules": 0,
+   "incomplete_nodes": 0,
+   "violations_by_impact": {
+    "critical": 0,
+    "serious": 0,
+    "moderate": 0,
+    "minor": 0,
+    "None": 0
+   },
+   "incomplete_by_impact": {
+    "critical": 0,
+    "serious": 0,
+    "moderate": 0,
+    "minor": 0,
+    "None": 0
+   }
+  },
+  "runs": [
+   {
+    "page": "index.html",
+    "lang": "en",
+    "theme": "dark",
+    "axe_version": "4.14.0",
+    "violations": [],
+    "incomplete": [],
+    "violation_counts": {
+     "rules": 0,
+     "nodes": 0,
+     "by_impact": {
+      "critical": 0,
+      "serious": 0,
+      "moderate": 0,
+      "minor": 0,
+      "None": 0
+     }
+    },
+    "incomplete_counts": {
+     "rules": 0,
+     "nodes": 0,
+     "by_impact": {
+      "critical": 0,
+      "serious": 0,
+      "moderate": 0,
+      "minor": 0,
+      "None": 0
+     }
+    }
+   },
+   {
+    "page": "index.html",
+    "lang": "en",
+    "theme": "light",
+    "axe_version": "4.14.0",
+    "violations": [],
+    "incomplete": [],
+    "violation_counts": {
+     "rules": 0,
+     "nodes": 0,
+     "by_impact": {
+      "critical": 0,
+      "serious": 0,
+      "moderate": 0,
+      "minor": 0,
+      "None": 0
+     }
+    },
+    "incomplete_counts": {
+     "rules": 0,
+     "nodes": 0,
+     "by_impact": {
+      "critical": 0,
+      "serious": 0,
+      "moderate": 0,
+      "minor": 0,
+      "None": 0
+     }
+    }
+   },
+   {
+    "page": "index.html",
+    "lang": "ar",
+    "theme": "dark",
+    "axe_version": "4.14.0",
+    "violations": [],
+    "incomplete": [],
+    "violation_counts": {
+     "rules": 0,
+     "nodes": 0,
+     "by_impact": {
+      "critical": 0,
+      "serious": 0,
+      "moderate": 0,
+      "minor": 0,
+      "None": 0
+     }
+    },
+    "incomplete_counts": {
+     "rules": 0,
+     "nodes": 0,
+     "by_impact": {
+      "critical": 0,
+      "serious": 0,
+      "moderate": 0,
+      "minor": 0,
+      "None": 0
+     }
+    }
+   },
+   {
+    "page": "index.html",
+    "lang": "ar",
+    "theme": "light",
+    "axe_version": "4.14.0",
+    "violations": [],
+    "incomplete": [],
+    "violation_counts": {
+     "rules": 0,
+     "nodes": 0,
+     "by_impact": {
+      "critical": 0,
+      "serious": 0,
+      "moderate": 0,
+      "minor": 0,
+      "None": 0
+     }
+    },
+    "incomplete_counts": {
+     "rules": 0,
+     "nodes": 0,
+     "by_impact": {
+      "critical": 0,
+      "serious": 0,
+      "moderate": 0,
+      "minor": 0,
+      "None": 0
+     }
+    }
+   },
+   {
+    "page": "methods.html",
+    "lang": "en",
+    "theme": "dark",
+    "axe_version": "4.14.0",
+    "violations": [],
+    "incomplete": [],
+    "violation_counts": {
+     "rules": 0,
+     "nodes": 0,
+     "by_impact": {
+      "critical": 0,
+      "serious": 0,
+      "moderate": 0,
+      "minor": 0,
+      "None": 0
+     }
+    },
+    "incomplete_counts": {
+     "rules": 0,
+     "nodes": 0,
+     "by_impact": {
+      "critical": 0,
+      "serious": 0,
+      "moderate": 0,
+      "minor": 0,
+      "None": 0
+     }
+    }
+   },
+   {
+    "page": "methods.html",
+    "lang": "en",
+    "theme": "light",
+    "axe_version": "4.14.0",
+    "violations": [],
+    "incomplete": [],
+    "violation_counts": {
+     "rules": 0,
+     "nodes": 0,
+     "by_impact": {
+      "critical": 0,
+      "serious": 0,
+      "moderate": 0,
+      "minor": 0,
+      "None": 0
+     }
+    },
+    "incomplete_counts": {
+     "rules": 0,
+     "nodes": 0,
+     "by_impact": {
+      "critical": 0,
+      "serious": 0,
+      "moderate": 0,
+      "minor": 0,
+      "None": 0
+     }
+    }
+   },
+   {
+    "page": "methods.html",
+    "lang": "ar",
+    "theme": "dark",
+    "axe_version": "4.14.0",
+    "violations": [],
+    "incomplete": [],
+    "violation_counts": {
+     "rules": 0,
+     "nodes": 0,
+     "by_impact": {
+      "critical": 0,
+      "serious": 0,
+      "moderate": 0,
+      "minor": 0,
+      "None": 0
+     }
+    },
+    "incomplete_counts": {
+     "rules": 0,
+     "nodes": 0,
+     "by_impact": {
+      "critical": 0,
+      "serious": 0,
+      "moderate": 0,
+      "minor": 0,
+      "None": 0
+     }
+    }
+   },
+   {
+    "page": "methods.html",
+    "lang": "ar",
+    "theme": "light",
+    "axe_version": "4.14.0",
+    "violations": [],
+    "incomplete": [],
+    "violation_counts": {
+     "rules": 0,
+     "nodes": 0,
+     "by_impact": {
+      "critical": 0,
+      "serious": 0,
+      "moderate": 0,
+      "minor": 0,
+      "None": 0
+     }
+    },
+    "incomplete_counts": {
+     "rules": 0,
+     "nodes": 0,
+     "by_impact": {
+      "critical": 0,
+      "serious": 0,
+      "moderate": 0,
+      "minor": 0,
+      "None": 0
+     }
+    }
+   }
+  ]
+ }
+}

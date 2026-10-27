@@ -389,7 +389,53 @@ def _candidate_pairs(P: _Pieces, R: float, prefilter: bool):
     return order[np.concatenate(A)], order[np.concatenate(B)]
 
 
-def _solve_pairs(P: _Pieces, ia: np.ndarray, ib: np.ndarray):
+_REFINE_HALF_WIDTH = 5e-3   # fraction of the overlap interval searched around the best candidate
+_REFINE_ITERS = 60
+
+
+def _refine_minimum(D: np.ndarray, d_best: np.ndarray, s_best: np.ndarray, below: float):
+    """Local golden-section refinement of |D(s)| around the best candidate.
+
+    Companion-matrix roots are only accurate to about eps^(1/k) at a k-fold root, so a
+    tangent or colliding pair can be reported slightly too far apart (found by differential
+    testing, docs/VERIFIER.md). Every value returned is a direct evaluation of the polynomial
+    at a real time, so refinement can only lower the reported minimum towards the true one,
+    never below it. Only rows already below ``below`` are refined, to bound the cost.
+    """
+    rows = np.nonzero(np.isfinite(d_best) & (d_best < below))[0]
+    if len(rows) == 0:
+        return d_best, s_best
+    Dr = D[rows]
+    lo = np.clip(s_best[rows] - _REFINE_HALF_WIDTH, 0.0, 1.0)
+    hi = np.clip(s_best[rows] + _REFINE_HALF_WIDTH, 0.0, 1.0)
+    g = 0.6180339887498949
+    x1 = hi - g * (hi - lo)
+    x2 = lo + g * (hi - lo)
+
+    def f(x):
+        return np.linalg.norm(_horner_rows(Dr, x[:, None])[:, 0, :], axis=1)
+
+    f1, f2 = f(x1), f(x2)
+    for _ in range(_REFINE_ITERS):
+        left = f1 <= f2
+        hi = np.where(left, x2, hi)
+        lo = np.where(left, lo, x1)
+        x1n = hi - g * (hi - lo)
+        x2n = lo + g * (hi - lo)
+        x1, x2 = np.where(left, x1n, x2), np.where(left, x1, x2n)
+        f1n = np.where(left, f(x1), f2)
+        f2n = np.where(left, f1, f(x2))
+        f1, f2 = f1n, f2n
+    xm = 0.5 * (lo + hi)
+    fm = f(xm)
+    better = fm < d_best[rows]
+    d_new, s_new = d_best.copy(), s_best.copy()
+    d_new[rows[better]] = fm[better]
+    s_new[rows[better]] = xm[better]
+    return d_new, s_new
+
+
+def _solve_pairs(P: _Pieces, ia: np.ndarray, ib: np.ndarray, refine_below: float = np.inf):
     """Exact minimum centre distance (and its time) for each piece pair over the
     overlap of the two pieces."""
     n = len(ia)
@@ -428,8 +474,11 @@ def _solve_pairs(P: _Pieces, ia: np.ndarray, ib: np.ndarray):
             nrm = np.where(bad, np.inf, np.linalg.norm(vec, axis=2))
             best = np.argmin(nrm, axis=1)
             r = np.arange(len(iv))
-            dist[s + iv] = nrm[r, best]
-            tmin[s + iv] = a[iv] + sc[r, best] * h
+            d_best = nrm[r, best]
+            s_best = sc[r, best]
+            d_best, s_best = _refine_minimum(D, d_best, s_best, refine_below)
+            dist[s + iv] = d_best
+            tmin[s + iv] = a[iv] + s_best * h
     return dist, tmin
 
 
@@ -446,7 +495,7 @@ def pair_minima(fleet, search_radius: float, *, prefilter: bool = True, _pieces=
     ia, ib = _candidate_pairs(P, search_radius, prefilter)
     if len(ia) == 0:
         return {}, 0
-    dist, t = _solve_pairs(P, ia, ib)
+    dist, t = _solve_pairs(P, ia, ib, refine_below=search_radius)
     da, db = P.drone[ia], P.drone[ib]
     lo_d, hi_d = np.minimum(da, db), np.maximum(da, db)
     key = lo_d * (int(P.drone.max()) + 1) + hi_d

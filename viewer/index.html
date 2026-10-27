@@ -33,16 +33,21 @@
   </div>
 </header>
 
-<aside id="banner" class="banner" role="note" aria-labelledby="bannerTitle">
+<aside id="banner" class="banner" aria-labelledby="bannerTitle">
   <strong id="bannerTitle" data-i18n="banner_title">Simulation only</strong>
   <p id="bannerText"></p>
-  <p id="bannerOrig" class="banner-orig" lang="en" dir="ltr" hidden></p>
+  <p id="bannerOrig" class="banner-orig" hidden></p>
 </aside>
+
+<div id="fileBanner" class="error" role="alert" hidden>
+  <p lang="en" dir="ltr">The viewer cannot run from <code>file://</code>: browsers block ES modules and binary data there. From the repo root run <code>python -m http.server -d viewer 8000</code> and open <code>http://localhost:8000/</code>.</p>
+  <p lang="ar" dir="rtl">لا يعمل العارض عبر <code>file://</code> لأن المتصفحات تمنع وحدات ES والبيانات الثنائية هناك. من جذر المستودع نفّذ <code>python -m http.server -d viewer 8000</code> ثم افتح <code>http://localhost:8000/</code>.</p>
+</div>
 
 <div id="globalError" class="error" role="alert" hidden></div>
 
 <main id="viewer">
-  <section class="views" aria-label="3D views">
+  <section class="views" data-i18n-aria="views_label" aria-label="3D views">
     <article class="view" id="viewA">
       <header class="view-head">
         <h2 data-i18n="view_nominal">Nominal plan</h2>
@@ -74,11 +79,13 @@
     </article>
   </section>
 
-  <section class="transport" aria-label="Playback">
+  <section class="transport" data-i18n-aria="playback_label" aria-label="Playback">
     <div class="tr-row">
-      <button id="playBtn" type="button" class="btn btn-primary"></button>
-      <button id="backBtn" type="button" class="btn" data-i18n-aria="step_back" aria-label="Back one frame">&#9664;&#9664;</button>
-      <button id="fwdBtn" type="button" class="btn" data-i18n-aria="step_fwd" aria-label="Forward one frame">&#9654;&#9654;</button>
+      <div class="media" dir="ltr">
+        <button id="backBtn" type="button" class="btn" data-i18n-aria="step_back" aria-label="Back one frame"><span class="ico ico-back" aria-hidden="true"></span></button>
+        <button id="playBtn" type="button" class="btn btn-primary"></button>
+        <button id="fwdBtn" type="button" class="btn" data-i18n-aria="step_fwd" aria-label="Forward one frame"><span class="ico ico-fwd" aria-hidden="true"></span></button>
+      </div>
       <button id="restartBtn" type="button" class="btn" data-i18n="restart">Restart</button>
       <div class="seg" role="group" data-i18n-aria="speed" aria-label="Speed" id="speedGroup"></div>
       <output id="timeOut" class="time" aria-live="off"></output>
@@ -107,6 +114,7 @@
 </main>
 
 <footer class="foot"><span id="footNote"></span></footer>
+<script src="fileguard.js"></script>
 <script type="module" src="app.js"></script>
 </body>
 </html>

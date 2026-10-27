@@ -13,7 +13,7 @@ jobs:
       - run: pip install -c constraints.txt -e ".[dev]"
       - run: ruff check .
       - run: pytest -q
-      - name: Regenerate viewer data and check it is deterministic
+      - name: Regenerate viewer data, check determinism and PASS verdicts
         run: |
           python scripts/build_viewer_data.py
-          git diff --stat --exit-code viewer/data/index.json
+          python scripts/check_viewer_data.py

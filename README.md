@@ -1,5 +1,9 @@
 # Sirb (سرب)
 
+> **SAFETY STATEMENT. Simulation and planning tool only. Not flight-certified. No claim of regulatory compliance. No flight-control, radio or MAVLink code; exports are files labeled "simulation-validated only". A real drone show needs an operator safety case and approvals from the relevant UAE aviation authorities. There is no real flight data behind any result in this repository.**
+
+[![CI](https://github.com/hudasol/sirb/actions/workflows/ci.yml/badge.svg)](https://github.com/hudasol/sirb/actions/workflows/ci.yml)
+
 *Sirb* is Arabic for "flock" or "squadron".
 
 A simulation-first suite that turns shape sequences into multi-drone show trajectories, checks them with an exact separation verifier that shares no logic with the planners, stress-tests them in Monte-Carlo simulation against wind, GNSS degradation, drone failures and comms/battery events, and writes a report with the measured margins.
@@ -8,7 +12,46 @@ A simulation-first suite that turns shape sequences into multi-drone show trajec
 
 ## Status
 
-Built and committed: show spec and shapes (M1), assignment (M2), planners (M3), verifier and certificate (M4), disturbance models, stress simulator, contingency behaviours and pre-flight validator (M5, M6, M6b code), static viewer (M7), file export (M8), command line, and the critique rounds in `docs/REVIEW_ROUNDS.md`. Tags exist for M0 to M4, M7 and M8. Not done: milestone tags for M5/M6/M6b (the stress outputs `results/stress_*.json` were generated while the review rounds changed code and are not committed; rerun `make stress` at the final commit first, see the last note in `docs/REVIEW_ROUNDS.md`), deployment (M9: no live URL, no CI badge), `docs/REPORT.md` and the final summary. See `plan.md` for the milestone definitions.
+Built, tested and reviewed: show spec and shapes, assignment, three planners, the exact verifier and its verification record, a second independent verifier used for differential testing, the Monte Carlo stress simulator with contingency behaviours, the pre-flight consistency validator, the bilingual viewer, file export, a command line, a hazard analysis, a versioned GNSS parameter file format, and the critique rounds in `docs/REVIEW_ROUNDS.md`. Predictions were written before the later experiments and graded in `docs/PREDICTIONS.md`.
+
+Live viewer: https://hudasol.github.io/sirb/ (served by GitHub Pages from `viewer/`; it works only after Pages source is set to "GitHub Actions" in the repository settings and the workflow in `.github/workflows/pages.yml` has run). To run it locally: `python -m http.server -d viewer 8000`.
+
+Not done: field or flight validation of any kind, regulatory work, and the exploratory ground robot study is a proposal seed only (`docs/GROUND_ROBOTS.md`). A funded indoor validation is proposed, not started (`docs/PROPOSAL_SEED.md`). See `docs/NEXT_STEPS.md`.
+
+## Headline numbers (generated from `results/*.json`)
+
+<!-- HEADLINES:START -->
+- Demo show `sirb_text_100` (100 drones, 156 s): exact verified minimum separation 2.189 m against d_min 2.0 m, verdict PASS (model: drones as points on the planned polynomials).
+- Demo show `torus_300` (300 drones, 107 s): exact verified minimum separation 2.196 m against d_min 2.0 m, verdict PASS (model: drones as points on the planned polynomials).
+- Demo show `wall_500` (500 drones, 132 s): exact verified minimum separation 2.448 m against d_min 2.0 m, verdict PASS (model: drones as points on the planned polynomials).
+- Simulated wind (ASSUMED models), 100 drone show: highest tested wind with a Wilson upper bound at most 5%: 9 m/s at 20 ft; first tested wind with an observed violation: 12 m/s.
+- Simulated GNSS bias (25% of drones degraded, ASSUMED): P(violation) exceeds 5% already at bias sigma 0.1 m (36.0%); the nominal margin over d_min is only 0.189 m.
+- Nominal separation needed in the stated scenario for a 5% Wilson upper bound: 3.54 m (formation spacing 5.0 m, 300 trials).
+- Contingency runs: largest bystander to bystander violation rate over all rows: 0.0%; violations involved the drone that had the event.
+- Stress study scaling: largest verified size n = 1000: plan 3.3 s + exact verification 14.6 s. Sizes [2000] did not verify because the shapes exceed the altitude band (a limit of the test shapes, not a timing result).
+<!-- HEADLINES:END -->
+
+## Verification evidence (generated from `results/*.json`)
+
+<!-- ASSURANCE:START -->
+- Second, independent verifier (interval branch and bound, `sirb/verify2.py`): 10856 fleets (8000 random, 2750 adversarial in 11 families), 13100 verdict checks: lower bound above the exact value in 0 cases (max l minus e = 0.0e+00 m), FAIL verdicts with the exact value at or above the threshold: 6 (max margin 0.0e+00 m); 30 disagreement records, all in the high multiplicity root family, largest exact minus lower bound 3.9e-08 m (`docs/VERIFIER.md`). Brute force sampling at dt = 1e-4 s against the exact value: 3034 comparisons, largest sampled minus exact 1.1e-08 m (grid plus breakpoints), largest negative gap 3.6e-15 m.
+- Mutation testing (mutmut, killed over total, before to after added tests): `assign.py` 70.9% to 90.9%; `planner/baseline.py` 60.8% to 98.9%; `planner/common.py` 59.7% to 93.5%; `planner/prioritized.py` 54.4% to 82.8%; `planner/waves.py` 68.2% to 88.9%; `verify.py` 74.6% to 93.1%; `verify2.py` 67.6% to 67.6% (`docs/MUTATION.md`).
+- Viewer accessibility (axe-core 4.14.0, 8 page runs): 18 violated rules before, 0 after; this is an automated check and does not replace manual testing.
+- Viewer behaviour checks (keyboard, reduced motion, light theme, file protocol, RTL, overflow): 40 passed, 0 failed.
+- Scale (computational study): n = 4000: plan 226 s, exact verification 206 s, peak memory 666 MB (`docs/PERFORMANCE.md`).
+- Viewer, 1000 drones, two panes, software WebGL: median frame interval 317 ms (3.2 fps), JavaScript update p95 1.2 ms; smoothness on a GPU is not measured.
+- Largest one at a time swings of the median minimum separation (stressed baseline): gnss_bias_sigma (1.57 m), gnss_deg_fraction (0.45 m), gnss_bias_tau (0.10 m) (`docs/SENSITIVITY.md`).
+<!-- ASSURANCE:END -->
+
+What these checks are and are not: they show that two implementations with different methods agree on large random and adversarial sets, that the test suite detects most small code changes, and that the viewer passes an automated accessibility scan. They do not prove the verifier correct, and the first two are statements about the plan as written, not about aircraft.
+
+## Screenshots
+
+| English, desktop | Arabic (right to left), desktop | Arabic, phone width |
+|---|---|---|
+| ![English viewer](viewer/screenshots/index_en_1440.png) | ![Arabic viewer](viewer/screenshots/index_ar_1440.png) | ![Arabic phone](viewer/screenshots/index_ar_390.png) |
+
+Demo video frame list (about 75 s, script in `docs/DEMO_SCRIPT.md`): 1. title and safety banner; 2. both panes playing at 4x; 3. separation colouring; 4. verification record and Methods link; 5. motor failure scenario; 6. Arabic toggle and sim to real gap.
 
 ## What the evidence supports
 
@@ -46,7 +89,7 @@ Reproduction: `make reproduce` runs install, tests, demo shows, planner benchmar
 | `sirb/disturbance.py`, `stress.py`, `contingency.py` | Monte-Carlo stress model |
 | `sirb/preflight.py`, `export.py`, `cli.py` | consistency validator, file export, command line |
 | `viewer/` | static three.js viewer, English/Arabic |
-| `docs/` | `METHODS.md` (assumptions and sim-to-real gap), `VERIFIER.md`, `SHOW_SCHEMA.md`, `RESEARCH.md`, `DATA_SOURCES.md`, `REVIEW_ROUNDS.md` |
+| `docs/` | `HAZARDS.md`, `PREDICTIONS.md`, `MUTATION.md`, `PERFORMANCE.md`, `SENSITIVITY.md`, `GNSS_PARAMS.md`, `RESULTS.md`, `REPORT.md`, `PROPOSAL_SEED.md`, `METHODS.md` (assumptions and sim-to-real gap), `VERIFIER.md`, `SHOW_SCHEMA.md`, `RESEARCH.md`, `DATA_SOURCES.md`, `REVIEW_ROUNDS.md` |
 
 ## Limitations
 
@@ -58,4 +101,4 @@ Simulated drones follow a simplified vehicle model. Vehicle numbers come from pu
 
 ## License
 
-MIT for Sirb's own code. See `docs/DATA_SOURCES.md`.
+MIT for Sirb's own code today. Third party licences: `docs/DATA_SOURCES.md`. A proposal to move code to Apache-2.0 and documentation and data to CC BY 4.0 is in `docs/LICENSE_PROPOSAL.md` (the owner decides).

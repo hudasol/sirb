@@ -1,0 +1,1018 @@
+{
+ "generated_by": "scripts/differential_report.py",
+ "environment": {
+  "python": "3.13.16",
+  "numpy": "2.5.3",
+  "scipy": "1.18.1"
+ },
+ "criteria": {
+  "C1": "l <= e + 1e-9",
+  "C2": "if no undecided cell: e - l <= gap_bound + 1e-9 (verify2 tol 1e-9 plus rounding allowance, plus the 1e-9 accuracy claimed for the exact verifier)",
+  "C3": "u >= e - 1e-9 (witnessed distance cannot beat the exact minimum)",
+  "C4": "no PASS/FAIL contradiction outside +/-1e-6 m of the threshold"
+ },
+ "counts": {
+  "random_fleets": 8000,
+  "adversarial_fleets": 2750,
+  "adversarial_by_family": {
+   "boundary_min": 250,
+   "degenerate_collision": 250,
+   "degenerate_roots": 250,
+   "graze_curved": 250,
+   "graze_linear": 250,
+   "long_high_degree": 250,
+   "parallel_double": 250,
+   "split_smooth": 250,
+   "stationary_threshold": 250,
+   "tiny_random": 250,
+   "tiny_segments": 250
+  },
+  "larger_fleets_12_drones": 100,
+  "verdict_checks": 13100,
+  "hundred_drone_fleets": 6,
+  "total_fleets": 10856,
+  "n_disagreement_records": 30,
+  "disagreements_by_kind": {
+   "C2_gap_too_wide": 11,
+   "C3_witness_below_exact": 12,
+   "exact_vs_construction": 7
+  }
+ },
+ "verdicts": {
+  "FAIL": 5558,
+  "UNDECIDED": 2552,
+  "undecided_max_abs_e_minus_threshold": 8.970602038971265e-14,
+  "PASS": 4990,
+  "fail_with_exact_at_or_above_threshold": 6,
+  "fail_with_exact_above_threshold_max_margin": 0.0
+ },
+ "max_discrepancies": {
+  "max_e_minus_l": 3.9208085667041814e-08,
+  "max_l_minus_e": 0.0,
+  "max_abs_e_minus_construction": 3.9208085667041814e-08,
+  "max_e_minus_u_witness": 3.9208057245332384e-08,
+  "n_undecided_leaves": 0,
+  "n_pairs_compared": 51251,
+  "max_gap_bound": 1.2865022024219118e-09
+ },
+ "brute_force": {
+  "n_exact_argmin_at_a_segment_breakpoint": 1994,
+  "max_sampled_minus_exact_argmin_not_at_breakpoint": 1.0663135707744686e-08,
+  "n_above_1e-6_argmin_at_breakpoint": 3,
+  "n_above_1e-6_argmin_not_at_breakpoint": 0,
+  "grid_plus_breakpoints_max_sampled_minus_exact": 1.0663135707744686e-08,
+  "grid_plus_breakpoints_max_negative_gap": 3.552713678800501e-15,
+  "n_comparisons": 3034,
+  "n_single_segment_pairs": 1500,
+  "n_fleet_pairs": 1534,
+  "dt_s": 0.0001,
+  "max_sampled_minus_exact": 2.260941238851899e-05,
+  "max_negative_gap_exact_minus_sampled": 3.552713678800501e-15,
+  "n_sampled_below_exact_by_more_than_1e-9": 0,
+  "n_sampled_above_exact_by_more_than_1e-6": 3,
+  "n_sampled_above_exact_by_more_than_1e-6_with_exact_below_1e-2": 0,
+  "n_sampled_above_exact_by_more_than_1e-6_with_exact_above_1e-2": 3,
+  "max_sampled_minus_exact_where_exact_above_1e-2": 2.260941238851899e-05,
+  "verify2_lower_bound_above_sampled_by_more_than_1e-9": 0,
+  "max_verify2_lower_bound_minus_sampled": 0.0,
+  "near_collision_passes": {
+   "n": 300,
+   "dt_s": 0.0001,
+   "max_sampled_minus_exact": 5.5067062021407764e-14,
+   "max_negative_gap_exact_minus_sampled": 0.0,
+   "n_sampled_above_exact_by_more_than_1e-6": 0,
+   "max_ratio_to_v_dt_over_2": 1.1550061440074173e-10,
+   "note": "V-shaped minimum: sampling error is bounded by v*dt/2, not by 1e-6"
+  }
+ },
+ "disagreements": [
+  {
+   "kind": "C2_gap_too_wide",
+   "pair": [
+    0,
+    1
+   ],
+   "e": 1.0011435741292669e-06,
+   "l": 9.990000001399928e-07,
+   "u": 1.000000000139993e-06,
+   "t_e": 1.1920677886486226,
+   "diff": 2.1435739892740606e-09,
+   "gap_bound": 2.0773208584563785e-09,
+   "family": "degenerate_collision",
+   "seed": 78,
+   "index": 78,
+   "meta": {
+    "delta": -1e-06
+   },
+   "diagnosis": {
+    "reference_min_longdouble": 1.000000000139778e-06,
+    "reference_argmin_t": 1.1614627273446911,
+    "e_minus_reference": 1.14357398948892e-09,
+    "l_minus_reference": -9.999999997851405e-10,
+    "u_minus_reference": 2.149346103657787e-19,
+    "cause": "float conditioning in sirb.verify: the minimum is a root of high multiplicity of d|D|^2/dt, eigenvalue/Newton root error ~ eps^(1/m) leaves the best candidate off the flat minimum; the reported minimum is too large by e_minus_reference, below the 1e-6 policy tolerance when that value is under 1e-6"
+   }
+  },
+  {
+   "kind": "C3_witness_below_exact",
+   "pair": [
+    0,
+    1
+   ],
+   "e": 1.0011435741292669e-06,
+   "l": 9.990000001399928e-07,
+   "u": 1.000000000139993e-06,
+   "t_e": 1.1920677886486226,
+   "diff": 1.1435739892739854e-09,
+   "family": "degenerate_collision",
+   "seed": 78,
+   "index": 78,
+   "meta": {
+    "delta": -1e-06
+   },
+   "diagnosis": {
+    "reference_min_longdouble": 1.000000000139778e-06,
+    "reference_argmin_t": 1.1614627273446911,
+    "e_minus_reference": 1.14357398948892e-09,
+    "l_minus_reference": -9.999999997851405e-10,
+    "u_minus_reference": 2.149346103657787e-19,
+    "cause": "float conditioning in sirb.verify: the minimum is a root of high multiplicity of d|D|^2/dt, eigenvalue/Newton root error ~ eps^(1/m) leaves the best candidate off the flat minimum; the reported minimum is too large by e_minus_reference, below the 1e-6 policy tolerance when that value is under 1e-6"
+   }
+  },
+  {
+   "kind": "C2_gap_too_wide",
+   "pair": [
+    0,
+    1
+   ],
+   "e": 6.482772985094698e-09,
+   "l": 0.0,
+   "u": 3.169020601490047e-12,
+   "t_e": 1.2525061429815783,
+   "diff": 6.482772985094698e-09,
+   "gap_bound": 2.032582030715178e-09,
+   "family": "degenerate_collision",
+   "seed": 88,
+   "index": 88,
+   "meta": {
+    "delta": 1e-06
+   },
+   "diagnosis": {
+    "reference_min_longdouble": 0.0,
+    "reference_argmin_t": 1.275958644999408,
+    "e_minus_reference": 6.482772985094698e-09,
+    "l_minus_reference": 0.0,
+    "u_minus_reference": 3.169020601490047e-12,
+    "cause": "float conditioning in sirb.verify: the minimum is a root of high multiplicity of d|D|^2/dt, eigenvalue/Newton root error ~ eps^(1/m) leaves the best candidate off the flat minimum; the reported minimum is too large by e_minus_reference, below the 1e-6 policy tolerance when that value is under 1e-6"
+   }
+  },
+  {
+   "kind": "C3_witness_below_exact",
+   "pair": [
+    0,
+    1
+   ],
+   "e": 6.482772985094698e-09,
+   "l": 0.0,
+   "u": 3.169020601490047e-12,
+   "t_e": 1.2525061429815783,
+   "diff": 6.479603964493208e-09,
+   "family": "degenerate_collision",
+   "seed": 88,
+   "index": 88,
+   "meta": {
+    "delta": 1e-06
+   },
+   "diagnosis": {
+    "reference_min_longdouble": 0.0,
+    "reference_argmin_t": 1.275958644999408,
+    "e_minus_reference": 6.482772985094698e-09,
+    "l_minus_reference": 0.0,
+    "u_minus_reference": 3.169020601490047e-12,
+    "cause": "float conditioning in sirb.verify: the minimum is a root of high multiplicity of d|D|^2/dt, eigenvalue/Newton root error ~ eps^(1/m) leaves the best candidate off the flat minimum; the reported minimum is too large by e_minus_reference, below the 1e-6 policy tolerance when that value is under 1e-6"
+   }
+  },
+  {
+   "kind": "C2_gap_too_wide",
+   "pair": [
+    0,
+    1
+   ],
+   "e": 1.0016746311569784e-06,
+   "l": 9.990000001397779e-07,
+   "u": 1.000000000139778e-06,
+   "t_e": 1.34503031644246,
+   "diff": 2.6746310172004605e-09,
+   "gap_bound": 2.1253121673000026e-09,
+   "family": "degenerate_collision",
+   "seed": 91,
+   "index": 91,
+   "meta": {
+    "delta": 0.0
+   },
+   "diagnosis": {
+    "reference_min_longdouble": 1.000000000139778e-06,
+    "reference_argmin_t": 1.3801309320590809,
+    "e_minus_reference": 1.6746310172003853e-09,
+    "l_minus_reference": -1.0000000000000751e-09,
+    "u_minus_reference": 0.0,
+    "cause": "float conditioning in sirb.verify: the minimum is a root of high multiplicity of d|D|^2/dt, eigenvalue/Newton root error ~ eps^(1/m) leaves the best candidate off the flat minimum; the reported minimum is too large by e_minus_reference, below the 1e-6 policy tolerance when that value is under 1e-6"
+   }
+  },
+  {
+   "kind": "C3_witness_below_exact",
+   "pair": [
+    0,
+    1
+   ],
+   "e": 1.0016746311569784e-06,
+   "l": 9.990000001397779e-07,
+   "u": 1.000000000139778e-06,
+   "t_e": 1.34503031644246,
+   "diff": 1.6746310172003853e-09,
+   "family": "degenerate_collision",
+   "seed": 91,
+   "index": 91,
+   "meta": {
+    "delta": 0.0
+   },
+   "diagnosis": {
+    "reference_min_longdouble": 1.000000000139778e-06,
+    "reference_argmin_t": 1.3801309320590809,
+    "e_minus_reference": 1.6746310172003853e-09,
+    "l_minus_reference": -1.0000000000000751e-09,
+    "u_minus_reference": 0.0,
+    "cause": "float conditioning in sirb.verify: the minimum is a root of high multiplicity of d|D|^2/dt, eigenvalue/Newton root error ~ eps^(1/m) leaves the best candidate off the flat minimum; the reported minimum is too large by e_minus_reference, below the 1e-6 policy tolerance when that value is under 1e-6"
+   }
+  },
+  {
+   "kind": "C2_gap_too_wide",
+   "pair": [
+    0,
+    1
+   ],
+   "e": 2.8845050792369875e-08,
+   "l": 0.0,
+   "u": 1.3944934096343786e-10,
+   "t_e": 1.330465039778991,
+   "diff": 2.8845050792369875e-08,
+   "gap_bound": 2.1567737229121557e-09,
+   "family": "degenerate_collision",
+   "seed": 94,
+   "index": 94,
+   "meta": {
+    "delta": 1e-06
+   },
+   "diagnosis": {
+    "reference_min_longdouble": 0.0,
+    "reference_argmin_t": 1.3040623202694275,
+    "e_minus_reference": 2.8845050792369875e-08,
+    "l_minus_reference": 0.0,
+    "u_minus_reference": 1.3944934096343786e-10,
+    "cause": "float conditioning in sirb.verify: the minimum is a root of high multiplicity of d|D|^2/dt, eigenvalue/Newton root error ~ eps^(1/m) leaves the best candidate off the flat minimum; the reported minimum is too large by e_minus_reference, below the 1e-6 policy tolerance when that value is under 1e-6"
+   }
+  },
+  {
+   "kind": "C3_witness_below_exact",
+   "pair": [
+    0,
+    1
+   ],
+   "e": 2.8845050792369875e-08,
+   "l": 0.0,
+   "u": 1.3944934096343786e-10,
+   "t_e": 1.330465039778991,
+   "diff": 2.8705601451406437e-08,
+   "family": "degenerate_collision",
+   "seed": 94,
+   "index": 94,
+   "meta": {
+    "delta": 1e-06
+   },
+   "diagnosis": {
+    "reference_min_longdouble": 0.0,
+    "reference_argmin_t": 1.3040623202694275,
+    "e_minus_reference": 2.8845050792369875e-08,
+    "l_minus_reference": 0.0,
+    "u_minus_reference": 1.3944934096343786e-10,
+    "cause": "float conditioning in sirb.verify: the minimum is a root of high multiplicity of d|D|^2/dt, eigenvalue/Newton root error ~ eps^(1/m) leaves the best candidate off the flat minimum; the reported minimum is too large by e_minus_reference, below the 1e-6 policy tolerance when that value is under 1e-6"
+   }
+  },
+  {
+   "kind": "exact_vs_construction",
+   "pair": [
+    0,
+    1
+   ],
+   "e": 2.8845050792369875e-08,
+   "t_e": 1.330465039778991,
+   "d_true": 0.0,
+   "diff": 2.8845050792369875e-08,
+   "l": 0.0,
+   "u": 1.3944934096343786e-10,
+   "family": "degenerate_collision",
+   "seed": 94,
+   "index": 94,
+   "meta": {
+    "delta": 1e-06
+   },
+   "diagnosis": {
+    "reference_min_longdouble": 0.0,
+    "reference_argmin_t": 1.3040623202694275,
+    "e_minus_reference": 2.8845050792369875e-08,
+    "l_minus_reference": 0.0,
+    "u_minus_reference": 1.3944934096343786e-10,
+    "cause": "float conditioning in sirb.verify: the minimum is a root of high multiplicity of d|D|^2/dt, eigenvalue/Newton root error ~ eps^(1/m) leaves the best candidate off the flat minimum; the reported minimum is too large by e_minus_reference, below the 1e-6 policy tolerance when that value is under 1e-6"
+   }
+  },
+  {
+   "kind": "C2_gap_too_wide",
+   "pair": [
+    0,
+    1
+   ],
+   "e": 2.1263717897568313e-08,
+   "l": 0.0,
+   "u": 2.1241675085548195e-11,
+   "t_e": 1.3317693819194591,
+   "diff": 2.1263717897568313e-08,
+   "gap_bound": 2.223942513779975e-09,
+   "family": "degenerate_collision",
+   "seed": 112,
+   "index": 112,
+   "meta": {
+    "delta": -1e-06,
+    "offset": [
+     917.0838439580232,
+     -220.50288908173957,
+     227.0927955736404
+    ],
+    "bystander": true
+   },
+   "diagnosis": {
+    "reference_min_longdouble": 0.0,
+    "reference_argmin_t": 1.3553406582807226,
+    "e_minus_reference": 2.1263717897568313e-08,
+    "l_minus_reference": 0.0,
+    "u_minus_reference": 2.1241675085548195e-11,
+    "cause": "float conditioning in sirb.verify: the minimum is a root of high multiplicity of d|D|^2/dt, eigenvalue/Newton root error ~ eps^(1/m) leaves the best candidate off the flat minimum; the reported minimum is too large by e_minus_reference, below the 1e-6 policy tolerance when that value is under 1e-6"
+   }
+  },
+  {
+   "kind": "C3_witness_below_exact",
+   "pair": [
+    0,
+    1
+   ],
+   "e": 2.1263717897568313e-08,
+   "l": 0.0,
+   "u": 2.1241675085548195e-11,
+   "t_e": 1.3317693819194591,
+   "diff": 2.1242476222482765e-08,
+   "family": "degenerate_collision",
+   "seed": 112,
+   "index": 112,
+   "meta": {
+    "delta": -1e-06,
+    "offset": [
+     917.0838439580232,
+     -220.50288908173957,
+     227.0927955736404
+    ],
+    "bystander": true
+   },
+   "diagnosis": {
+    "reference_min_longdouble": 0.0,
+    "reference_argmin_t": 1.3553406582807226,
+    "e_minus_reference": 2.1263717897568313e-08,
+    "l_minus_reference": 0.0,
+    "u_minus_reference": 2.1241675085548195e-11,
+    "cause": "float conditioning in sirb.verify: the minimum is a root of high multiplicity of d|D|^2/dt, eigenvalue/Newton root error ~ eps^(1/m) leaves the best candidate off the flat minimum; the reported minimum is too large by e_minus_reference, below the 1e-6 policy tolerance when that value is under 1e-6"
+   }
+  },
+  {
+   "kind": "exact_vs_construction",
+   "pair": [
+    0,
+    1
+   ],
+   "e": 2.1263717897568313e-08,
+   "t_e": 1.3317693819194591,
+   "d_true": 0.0,
+   "diff": 2.1263717897568313e-08,
+   "l": 0.0,
+   "u": 2.1241675085548195e-11,
+   "family": "degenerate_collision",
+   "seed": 112,
+   "index": 112,
+   "meta": {
+    "delta": -1e-06,
+    "offset": [
+     917.0838439580232,
+     -220.50288908173957,
+     227.0927955736404
+    ],
+    "bystander": true
+   },
+   "diagnosis": {
+    "reference_min_longdouble": 0.0,
+    "reference_argmin_t": 1.3553406582807226,
+    "e_minus_reference": 2.1263717897568313e-08,
+    "l_minus_reference": 0.0,
+    "u_minus_reference": 2.1241675085548195e-11,
+    "cause": "float conditioning in sirb.verify: the minimum is a root of high multiplicity of d|D|^2/dt, eigenvalue/Newton root error ~ eps^(1/m) leaves the best candidate off the flat minimum; the reported minimum is too large by e_minus_reference, below the 1e-6 policy tolerance when that value is under 1e-6"
+   }
+  },
+  {
+   "kind": "C2_gap_too_wide",
+   "pair": [
+    0,
+    1
+   ],
+   "e": 3.9208085667041814e-08,
+   "l": 0.0,
+   "u": 2.842170943040401e-14,
+   "t_e": 1.4394838911924532,
+   "diff": 3.9208085667041814e-08,
+   "gap_bound": 2.145173081910052e-09,
+   "family": "degenerate_collision",
+   "seed": 116,
+   "index": 116,
+   "meta": {
+    "delta": -1e-06,
+    "bystander": true
+   },
+   "diagnosis": {
+    "reference_min_longdouble": 0.0,
+    "reference_argmin_t": 1.4701502485112878,
+    "e_minus_reference": 3.9208085667041814e-08,
+    "l_minus_reference": 0.0,
+    "u_minus_reference": 2.842170943040401e-14,
+    "cause": "float conditioning in sirb.verify: the minimum is a root of high multiplicity of d|D|^2/dt, eigenvalue/Newton root error ~ eps^(1/m) leaves the best candidate off the flat minimum; the reported minimum is too large by e_minus_reference, below the 1e-6 policy tolerance when that value is under 1e-6"
+   }
+  },
+  {
+   "kind": "C3_witness_below_exact",
+   "pair": [
+    0,
+    1
+   ],
+   "e": 3.9208085667041814e-08,
+   "l": 0.0,
+   "u": 2.842170943040401e-14,
+   "t_e": 1.4394838911924532,
+   "diff": 3.9208057245332384e-08,
+   "family": "degenerate_collision",
+   "seed": 116,
+   "index": 116,
+   "meta": {
+    "delta": -1e-06,
+    "bystander": true
+   },
+   "diagnosis": {
+    "reference_min_longdouble": 0.0,
+    "reference_argmin_t": 1.4701502485112878,
+    "e_minus_reference": 3.9208085667041814e-08,
+    "l_minus_reference": 0.0,
+    "u_minus_reference": 2.842170943040401e-14,
+    "cause": "float conditioning in sirb.verify: the minimum is a root of high multiplicity of d|D|^2/dt, eigenvalue/Newton root error ~ eps^(1/m) leaves the best candidate off the flat minimum; the reported minimum is too large by e_minus_reference, below the 1e-6 policy tolerance when that value is under 1e-6"
+   }
+  },
+  {
+   "kind": "exact_vs_construction",
+   "pair": [
+    0,
+    1
+   ],
+   "e": 3.9208085667041814e-08,
+   "t_e": 1.4394838911924532,
+   "d_true": 0.0,
+   "diff": 3.9208085667041814e-08,
+   "l": 0.0,
+   "u": 2.842170943040401e-14,
+   "family": "degenerate_collision",
+   "seed": 116,
+   "index": 116,
+   "meta": {
+    "delta": -1e-06,
+    "bystander": true
+   },
+   "diagnosis": {
+    "reference_min_longdouble": 0.0,
+    "reference_argmin_t": 1.4701502485112878,
+    "e_minus_reference": 3.9208085667041814e-08,
+    "l_minus_reference": 0.0,
+    "u_minus_reference": 2.842170943040401e-14,
+    "cause": "float conditioning in sirb.verify: the minimum is a root of high multiplicity of d|D|^2/dt, eigenvalue/Newton root error ~ eps^(1/m) leaves the best candidate off the flat minimum; the reported minimum is too large by e_minus_reference, below the 1e-6 policy tolerance when that value is under 1e-6"
+   }
+  },
+  {
+   "kind": "C2_gap_too_wide",
+   "pair": [
+    0,
+    1
+   ],
+   "e": 1.662076254405065e-08,
+   "l": 0.0,
+   "u": 1.509903313490213e-14,
+   "t_e": 1.2954942198407713,
+   "diff": 1.662076254405065e-08,
+   "gap_bound": 2.0687202676274392e-09,
+   "family": "degenerate_collision",
+   "seed": 132,
+   "index": 132,
+   "meta": {
+    "delta": -0.0001
+   },
+   "diagnosis": {
+    "reference_min_longdouble": 0.0,
+    "reference_argmin_t": 1.3237513627228656,
+    "e_minus_reference": 1.662076254405065e-08,
+    "l_minus_reference": 0.0,
+    "u_minus_reference": 1.509903313490213e-14,
+    "cause": "float conditioning in sirb.verify: the minimum is a root of high multiplicity of d|D|^2/dt, eigenvalue/Newton root error ~ eps^(1/m) leaves the best candidate off the flat minimum; the reported minimum is too large by e_minus_reference, below the 1e-6 policy tolerance when that value is under 1e-6"
+   }
+  },
+  {
+   "kind": "C3_witness_below_exact",
+   "pair": [
+    0,
+    1
+   ],
+   "e": 1.662076254405065e-08,
+   "l": 0.0,
+   "u": 1.509903313490213e-14,
+   "t_e": 1.2954942198407713,
+   "diff": 1.6620747445017514e-08,
+   "family": "degenerate_collision",
+   "seed": 132,
+   "index": 132,
+   "meta": {
+    "delta": -0.0001
+   },
+   "diagnosis": {
+    "reference_min_longdouble": 0.0,
+    "reference_argmin_t": 1.3237513627228656,
+    "e_minus_reference": 1.662076254405065e-08,
+    "l_minus_reference": 0.0,
+    "u_minus_reference": 1.509903313490213e-14,
+    "cause": "float conditioning in sirb.verify: the minimum is a root of high multiplicity of d|D|^2/dt, eigenvalue/Newton root error ~ eps^(1/m) leaves the best candidate off the flat minimum; the reported minimum is too large by e_minus_reference, below the 1e-6 policy tolerance when that value is under 1e-6"
+   }
+  },
+  {
+   "kind": "exact_vs_construction",
+   "pair": [
+    0,
+    1
+   ],
+   "e": 1.662076254405065e-08,
+   "t_e": 1.2954942198407713,
+   "d_true": 0.0,
+   "diff": 1.662076254405065e-08,
+   "l": 0.0,
+   "u": 1.509903313490213e-14,
+   "family": "degenerate_collision",
+   "seed": 132,
+   "index": 132,
+   "meta": {
+    "delta": -0.0001
+   },
+   "diagnosis": {
+    "reference_min_longdouble": 0.0,
+    "reference_argmin_t": 1.3237513627228656,
+    "e_minus_reference": 1.662076254405065e-08,
+    "l_minus_reference": 0.0,
+    "u_minus_reference": 1.509903313490213e-14,
+    "cause": "float conditioning in sirb.verify: the minimum is a root of high multiplicity of d|D|^2/dt, eigenvalue/Newton root error ~ eps^(1/m) leaves the best candidate off the flat minimum; the reported minimum is too large by e_minus_reference, below the 1e-6 policy tolerance when that value is under 1e-6"
+   }
+  },
+  {
+   "kind": "C2_gap_too_wide",
+   "pair": [
+    0,
+    1
+   ],
+   "e": 1.3184582314806903e-08,
+   "l": 0.0,
+   "u": 7.248157629646812e-11,
+   "t_e": 1.3239551485380043,
+   "diff": 1.3184582314806903e-08,
+   "gap_bound": 2.077387137469005e-09,
+   "family": "degenerate_collision",
+   "seed": 150,
+   "index": 150,
+   "meta": {
+    "delta": 0.0
+   },
+   "diagnosis": {
+    "reference_min_longdouble": 0.0,
+    "reference_argmin_t": 1.347992616268583,
+    "e_minus_reference": 1.3184582314806903e-08,
+    "l_minus_reference": 0.0,
+    "u_minus_reference": 7.248157629646812e-11,
+    "cause": "float conditioning in sirb.verify: the minimum is a root of high multiplicity of d|D|^2/dt, eigenvalue/Newton root error ~ eps^(1/m) leaves the best candidate off the flat minimum; the reported minimum is too large by e_minus_reference, below the 1e-6 policy tolerance when that value is under 1e-6"
+   }
+  },
+  {
+   "kind": "C3_witness_below_exact",
+   "pair": [
+    0,
+    1
+   ],
+   "e": 1.3184582314806903e-08,
+   "l": 0.0,
+   "u": 7.248157629646812e-11,
+   "t_e": 1.3239551485380043,
+   "diff": 1.3112100738510435e-08,
+   "family": "degenerate_collision",
+   "seed": 150,
+   "index": 150,
+   "meta": {
+    "delta": 0.0
+   },
+   "diagnosis": {
+    "reference_min_longdouble": 0.0,
+    "reference_argmin_t": 1.347992616268583,
+    "e_minus_reference": 1.3184582314806903e-08,
+    "l_minus_reference": 0.0,
+    "u_minus_reference": 7.248157629646812e-11,
+    "cause": "float conditioning in sirb.verify: the minimum is a root of high multiplicity of d|D|^2/dt, eigenvalue/Newton root error ~ eps^(1/m) leaves the best candidate off the flat minimum; the reported minimum is too large by e_minus_reference, below the 1e-6 policy tolerance when that value is under 1e-6"
+   }
+  },
+  {
+   "kind": "exact_vs_construction",
+   "pair": [
+    0,
+    1
+   ],
+   "e": 1.3184582314806903e-08,
+   "t_e": 1.3239551485380043,
+   "d_true": 0.0,
+   "diff": 1.3184582314806903e-08,
+   "l": 0.0,
+   "u": 7.248157629646812e-11,
+   "family": "degenerate_collision",
+   "seed": 150,
+   "index": 150,
+   "meta": {
+    "delta": 0.0
+   },
+   "diagnosis": {
+    "reference_min_longdouble": 0.0,
+    "reference_argmin_t": 1.347992616268583,
+    "e_minus_reference": 1.3184582314806903e-08,
+    "l_minus_reference": 0.0,
+    "u_minus_reference": 7.248157629646812e-11,
+    "cause": "float conditioning in sirb.verify: the minimum is a root of high multiplicity of d|D|^2/dt, eigenvalue/Newton root error ~ eps^(1/m) leaves the best candidate off the flat minimum; the reported minimum is too large by e_minus_reference, below the 1e-6 policy tolerance when that value is under 1e-6"
+   }
+  },
+  {
+   "kind": "C3_witness_below_exact",
+   "pair": [
+    0,
+    1
+   ],
+   "e": 1.179623509983685e-09,
+   "l": 0.0,
+   "u": 1.2434497875801753e-14,
+   "t_e": 1.1979027119759913,
+   "diff": 1.1796110754858091e-09,
+   "family": "degenerate_collision",
+   "seed": 172,
+   "index": 172,
+   "meta": {
+    "delta": 0.0001,
+    "offset": [
+     776.6220780848112,
+     -727.5069425496712,
+     -729.5262248946303
+    ]
+   },
+   "diagnosis": {
+    "reference_min_longdouble": 0.0,
+    "reference_argmin_t": 1.209431994907326,
+    "e_minus_reference": 1.179623509983685e-09,
+    "l_minus_reference": 0.0,
+    "u_minus_reference": 1.2434497875801753e-14,
+    "cause": "float conditioning in sirb.verify: the minimum is a root of high multiplicity of d|D|^2/dt, eigenvalue/Newton root error ~ eps^(1/m) leaves the best candidate off the flat minimum; the reported minimum is too large by e_minus_reference, below the 1e-6 policy tolerance when that value is under 1e-6"
+   }
+  },
+  {
+   "kind": "C2_gap_too_wide",
+   "pair": [
+    0,
+    1
+   ],
+   "e": 1.216847600460369e-08,
+   "l": 0.0,
+   "u": 2.872191373626265e-11,
+   "t_e": 1.4091085700253163,
+   "diff": 1.216847600460369e-08,
+   "gap_bound": 2.1323770079560902e-09,
+   "family": "degenerate_collision",
+   "seed": 188,
+   "index": 188,
+   "meta": {
+    "delta": 0.0001
+   },
+   "diagnosis": {
+    "reference_min_longdouble": 0.0,
+    "reference_argmin_t": 1.3875859188960682,
+    "e_minus_reference": 1.216847600460369e-08,
+    "l_minus_reference": 0.0,
+    "u_minus_reference": 2.872191373626265e-11,
+    "cause": "float conditioning in sirb.verify: the minimum is a root of high multiplicity of d|D|^2/dt, eigenvalue/Newton root error ~ eps^(1/m) leaves the best candidate off the flat minimum; the reported minimum is too large by e_minus_reference, below the 1e-6 policy tolerance when that value is under 1e-6"
+   }
+  },
+  {
+   "kind": "C3_witness_below_exact",
+   "pair": [
+    0,
+    1
+   ],
+   "e": 1.216847600460369e-08,
+   "l": 0.0,
+   "u": 2.872191373626265e-11,
+   "t_e": 1.4091085700253163,
+   "diff": 1.2139754090867427e-08,
+   "family": "degenerate_collision",
+   "seed": 188,
+   "index": 188,
+   "meta": {
+    "delta": 0.0001
+   },
+   "diagnosis": {
+    "reference_min_longdouble": 0.0,
+    "reference_argmin_t": 1.3875859188960682,
+    "e_minus_reference": 1.216847600460369e-08,
+    "l_minus_reference": 0.0,
+    "u_minus_reference": 2.872191373626265e-11,
+    "cause": "float conditioning in sirb.verify: the minimum is a root of high multiplicity of d|D|^2/dt, eigenvalue/Newton root error ~ eps^(1/m) leaves the best candidate off the flat minimum; the reported minimum is too large by e_minus_reference, below the 1e-6 policy tolerance when that value is under 1e-6"
+   }
+  },
+  {
+   "kind": "exact_vs_construction",
+   "pair": [
+    0,
+    1
+   ],
+   "e": 1.216847600460369e-08,
+   "t_e": 1.4091085700253163,
+   "d_true": 0.0,
+   "diff": 1.216847600460369e-08,
+   "l": 0.0,
+   "u": 2.872191373626265e-11,
+   "family": "degenerate_collision",
+   "seed": 188,
+   "index": 188,
+   "meta": {
+    "delta": 0.0001
+   },
+   "diagnosis": {
+    "reference_min_longdouble": 0.0,
+    "reference_argmin_t": 1.3875859188960682,
+    "e_minus_reference": 1.216847600460369e-08,
+    "l_minus_reference": 0.0,
+    "u_minus_reference": 2.872191373626265e-11,
+    "cause": "float conditioning in sirb.verify: the minimum is a root of high multiplicity of d|D|^2/dt, eigenvalue/Newton root error ~ eps^(1/m) leaves the best candidate off the flat minimum; the reported minimum is too large by e_minus_reference, below the 1e-6 policy tolerance when that value is under 1e-6"
+   }
+  },
+  {
+   "kind": "C2_gap_too_wide",
+   "pair": [
+    0,
+    1
+   ],
+   "e": 1.0030078561550673e-06,
+   "l": 9.990000001397898e-07,
+   "u": 1.0000000001397898e-06,
+   "t_e": 1.5019324415065072,
+   "diff": 4.007856015277509e-09,
+   "gap_bound": 2.1304330751916886e-09,
+   "family": "degenerate_collision",
+   "seed": 238,
+   "index": 238,
+   "meta": {
+    "delta": -0.0001,
+    "bystander": true
+   },
+   "diagnosis": {
+    "reference_min_longdouble": 1.000000000139778e-06,
+    "reference_argmin_t": 1.4657094093949177,
+    "e_minus_reference": 3.007856015289292e-09,
+    "l_minus_reference": -9.999999999882167e-10,
+    "u_minus_reference": 1.1858461261560205e-20,
+    "cause": "float conditioning in sirb.verify: the minimum is a root of high multiplicity of d|D|^2/dt, eigenvalue/Newton root error ~ eps^(1/m) leaves the best candidate off the flat minimum; the reported minimum is too large by e_minus_reference, below the 1e-6 policy tolerance when that value is under 1e-6"
+   }
+  },
+  {
+   "kind": "C3_witness_below_exact",
+   "pair": [
+    0,
+    1
+   ],
+   "e": 1.0030078561550673e-06,
+   "l": 9.990000001397898e-07,
+   "u": 1.0000000001397898e-06,
+   "t_e": 1.5019324415065072,
+   "diff": 3.0078560152774336e-09,
+   "family": "degenerate_collision",
+   "seed": 238,
+   "index": 238,
+   "meta": {
+    "delta": -0.0001,
+    "bystander": true
+   },
+   "diagnosis": {
+    "reference_min_longdouble": 1.000000000139778e-06,
+    "reference_argmin_t": 1.4657094093949177,
+    "e_minus_reference": 3.007856015289292e-09,
+    "l_minus_reference": -9.999999999882167e-10,
+    "u_minus_reference": 1.1858461261560205e-20,
+    "cause": "float conditioning in sirb.verify: the minimum is a root of high multiplicity of d|D|^2/dt, eigenvalue/Newton root error ~ eps^(1/m) leaves the best candidate off the flat minimum; the reported minimum is too large by e_minus_reference, below the 1e-6 policy tolerance when that value is under 1e-6"
+   }
+  },
+  {
+   "kind": "C2_gap_too_wide",
+   "pair": [
+    0,
+    1
+   ],
+   "e": 2.9742450280423327e-08,
+   "l": 0.0,
+   "u": 3.375077994860476e-14,
+   "t_e": 1.067807007058427,
+   "diff": 2.9742450280423327e-08,
+   "gap_bound": 2.0984207091773854e-09,
+   "family": "degenerate_collision",
+   "seed": 242,
+   "index": 242,
+   "meta": {
+    "delta": -1e-06,
+    "bystander": true
+   },
+   "diagnosis": {
+    "reference_min_longdouble": 0.0,
+    "reference_argmin_t": 1.0957141457492774,
+    "e_minus_reference": 2.9742450280423327e-08,
+    "l_minus_reference": 0.0,
+    "u_minus_reference": 3.375077994860476e-14,
+    "cause": "float conditioning in sirb.verify: the minimum is a root of high multiplicity of d|D|^2/dt, eigenvalue/Newton root error ~ eps^(1/m) leaves the best candidate off the flat minimum; the reported minimum is too large by e_minus_reference, below the 1e-6 policy tolerance when that value is under 1e-6"
+   }
+  },
+  {
+   "kind": "C3_witness_below_exact",
+   "pair": [
+    0,
+    1
+   ],
+   "e": 2.9742450280423327e-08,
+   "l": 0.0,
+   "u": 3.375077994860476e-14,
+   "t_e": 1.067807007058427,
+   "diff": 2.974241652964338e-08,
+   "family": "degenerate_collision",
+   "seed": 242,
+   "index": 242,
+   "meta": {
+    "delta": -1e-06,
+    "bystander": true
+   },
+   "diagnosis": {
+    "reference_min_longdouble": 0.0,
+    "reference_argmin_t": 1.0957141457492774,
+    "e_minus_reference": 2.9742450280423327e-08,
+    "l_minus_reference": 0.0,
+    "u_minus_reference": 3.375077994860476e-14,
+    "cause": "float conditioning in sirb.verify: the minimum is a root of high multiplicity of d|D|^2/dt, eigenvalue/Newton root error ~ eps^(1/m) leaves the best candidate off the flat minimum; the reported minimum is too large by e_minus_reference, below the 1e-6 policy tolerance when that value is under 1e-6"
+   }
+  },
+  {
+   "kind": "exact_vs_construction",
+   "pair": [
+    0,
+    1
+   ],
+   "e": 2.9742450280423327e-08,
+   "t_e": 1.067807007058427,
+   "d_true": 0.0,
+   "diff": 2.9742450280423327e-08,
+   "l": 0.0,
+   "u": 3.375077994860476e-14,
+   "family": "degenerate_collision",
+   "seed": 242,
+   "index": 242,
+   "meta": {
+    "delta": -1e-06,
+    "bystander": true
+   },
+   "diagnosis": {
+    "reference_min_longdouble": 0.0,
+    "reference_argmin_t": 1.0957141457492774,
+    "e_minus_reference": 2.9742450280423327e-08,
+    "l_minus_reference": 0.0,
+    "u_minus_reference": 3.375077994860476e-14,
+    "cause": "float conditioning in sirb.verify: the minimum is a root of high multiplicity of d|D|^2/dt, eigenvalue/Newton root error ~ eps^(1/m) leaves the best candidate off the flat minimum; the reported minimum is too large by e_minus_reference, below the 1e-6 policy tolerance when that value is under 1e-6"
+   }
+  }
+ ],
+ "runtimes": {
+  "random_fleets_s": 240.33871589300003,
+  "adversarial_fleets_s": 48.77184944300001,
+  "larger_fleets_s": 8.086137325000038,
+  "hundred_drone_fleets": [
+   {
+    "seed": 1000,
+    "spread_m": 6.0,
+    "n_drones": 100,
+    "verify2_s": 0.06936136399997395,
+    "verify_s": 0.32327618499999744,
+    "verify2_cells": 8280,
+    "verify2_piece_pairs": 6674,
+    "exact_min": 0.06657960722691292,
+    "verify2_lower": 0.06657960679986043,
+    "verify2_upper": 0.06657960779986043,
+    "verdict_at_0p9_exact": "PASS",
+    "verdict_at_1p1_exact": "FAIL",
+    "ok": true
+   },
+   {
+    "seed": 1001,
+    "spread_m": 6.0,
+    "n_drones": 100,
+    "verify2_s": 0.07125479600000517,
+    "verify_s": 0.2963274279999837,
+    "verify2_cells": 7595,
+    "verify2_piece_pairs": 6137,
+    "exact_min": 0.08272512086219089,
+    "verify2_lower": 0.08272512055016822,
+    "verify2_upper": 0.08272512155016822,
+    "verdict_at_0p9_exact": "PASS",
+    "verdict_at_1p1_exact": "FAIL",
+    "ok": true
+   },
+   {
+    "seed": 1002,
+    "spread_m": 6.0,
+    "n_drones": 100,
+    "verify2_s": 0.06242768200002047,
+    "verify_s": 0.33018820399996685,
+    "verify2_cells": 7376,
+    "verify2_piece_pairs": 6148,
+    "exact_min": 0.1569359040794119,
+    "verify2_lower": 0.156935903235185,
+    "verify2_upper": 0.156935904235185,
+    "verdict_at_0p9_exact": "PASS",
+    "verdict_at_1p1_exact": "FAIL",
+    "ok": true
+   },
+   {
+    "seed": 1003,
+    "spread_m": 60.0,
+    "n_drones": 100,
+    "verify2_s": 0.02733383100002129,
+    "verify_s": 0.05451344600004404,
+    "verify2_cells": 0,
+    "verify2_piece_pairs": 0,
+    "exact_min": 5.396871648784121,
+    "verify2_lower": 3.0,
+    "verify2_upper": Infinity,
+    "verdict_at_0p9_exact": "PASS",
+    "verdict_at_1p1_exact": "FAIL",
+    "ok": true
+   },
+   {
+    "seed": 1004,
+    "spread_m": 60.0,
+    "n_drones": 100,
+    "verify2_s": 0.05144730099999606,
+    "verify_s": 0.08382220499998994,
+    "verify2_cells": 13,
+    "verify2_piece_pairs": 11,
+    "exact_min": 3.679849756793922,
+    "verify2_lower": 3.0,
+    "verify2_upper": 4.224330323386996,
+    "verdict_at_0p9_exact": "PASS",
+    "verdict_at_1p1_exact": "FAIL",
+    "ok": true
+   },
+   {
+    "seed": 1005,
+    "spread_m": 60.0,
+    "n_drones": 100,
+    "verify2_s": 0.024402704000010544,
+    "verify_s": 0.06863758299999745,
+    "verify2_cells": 67,
+    "verify2_piece_pairs": 29,
+    "exact_min": 1.512677405146526,
+    "verify2_lower": 1.5126774046416165,
+    "verify2_upper": 1.5126774056416166,
+    "verdict_at_0p9_exact": "PASS",
+    "verdict_at_1p1_exact": "FAIL",
+    "ok": true
+   }
+  ],
+  "brute_force_s": 31.420047079000028,
+  "total_s": 342.848084494
+ }
+}

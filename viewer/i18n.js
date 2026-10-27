@@ -48,6 +48,8 @@ export const STRINGS = {
 
     play: "Play",
     pause: "Pause",
+    views_label: "3D views: nominal plan and stressed scenario",
+    playback_label: "Playback controls",
     step_back: "Back one frame",
     step_fwd: "Forward one frame",
     restart: "Restart",
@@ -186,6 +188,8 @@ export const STRINGS = {
 
     play: "تشغيل",
     pause: "إيقاف مؤقت",
+    views_label: "العرضان ثلاثيا الأبعاد: الخطة الاسمية وسيناريو الإجهاد",
+    playback_label: "أزرار التشغيل",
     step_back: "إطار إلى الخلف",
     step_fwd: "إطار إلى الأمام",
     restart: "إعادة من البداية",
