@@ -22,7 +22,7 @@
 
 ## Results (generated from `results/*.json`, do not edit)
 
-`RESULTS.md`, `REPORT.md`, `ONE_PAGER.md`, `SENSITIVITY.md`, `MARGIN.md`, `PERFORMANCE.md`, `MUTATION.md`, `GNSS_SOURCED.md`, `GROUND_ROBOTS.md`.
+`RESULTS.md`, `REPORT.md`, `ONE_PAGER.md`, `SENSITIVITY.md`, `MARGIN.md`, `PERFORMANCE.md`, `MUTATION.md`, `GNSS_SOURCED.md`, `GROUND_ROBOTS.md`, `BASELINES.md`, `PRODUCT_PLAN.md`.
 
 ## Proposal material
 

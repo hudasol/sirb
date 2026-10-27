@@ -2,6 +2,14 @@
 
 Format follows Keep a Changelog. Versions before 0.1.0 were internal milestones.
 
+## [Unreleased]
+
+### Added
+- Baseline comparators (sampled separation check, ORCA validated against RVO2-3D) and a benchmark judged by the exact verifier (`docs/BASELINES.md`).
+- `points` shape for loading explicit coordinates.
+- Input caps (5000 drones, 64 stages, 3600 s holds) and argument checks for `margin`.
+- CI on Linux, Windows and macOS with Python 3.12 and 3.13; wheel build check; release workflow.
+
 ## [0.1.0]
 
 ### Added
