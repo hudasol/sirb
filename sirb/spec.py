@@ -80,6 +80,11 @@ def _range_ok(r) -> bool:
             and r[0] < r[1])
 
 
+MAX_DRONES = 5000
+MAX_STAGES = 64
+MAX_HOLD_S = 3600.0
+
+
 def validate_show(show: dict, check_targets: bool = True) -> list[str]:
     """Return a list of error strings (empty if valid). Never raises on malformed input."""
     if not isinstance(show, dict):
@@ -96,6 +101,8 @@ def validate_show(show: dict, check_targets: bool = True) -> list[str]:
     if not isinstance(n, int) or isinstance(n, bool) or n < 2:
         errs.append("n_drones must be an integer >= 2")
         return errs
+    if n > MAX_DRONES:
+        return [f"n_drones {n} exceeds the supported maximum of {MAX_DRONES}"]
     lim = show["limits"]
     if not isinstance(lim, dict):
         return ["limits must be an object"]
@@ -140,6 +147,8 @@ def validate_show(show: dict, check_targets: bool = True) -> list[str]:
         return errs
     if len(stages) < 2:
         errs.append("need at least 2 stages")
+    if len(stages) > MAX_STAGES:
+        return [f"{len(stages)} stages exceeds the supported maximum of {MAX_STAGES}"]
     for i, st in enumerate(stages):
         if not isinstance(st, dict):
             errs.append(f"stage {i}: must be an object")
@@ -148,8 +157,8 @@ def validate_show(show: dict, check_targets: bool = True) -> list[str]:
         if not isinstance(shape, dict) or shape.get("type") not in SHAPE_TYPES:
             errs.append(f"stage {i}: unknown shape type")
         hold = st.get("hold_s", 0)
-        if not (_is_num(hold) and hold >= 0):
-            errs.append(f"stage {i}: hold_s must be a finite number >= 0")
+        if not (_is_num(hold) and 0 <= hold <= MAX_HOLD_S):
+            errs.append(f"stage {i}: hold_s must be a finite number between 0 and {MAX_HOLD_S:g}")
     if errs or not check_targets:
         return errs
     try:

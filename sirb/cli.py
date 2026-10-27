@@ -48,6 +48,13 @@ def _margin(a) -> int:
     from .margin import scale_show, synthesise
     from .planner.baseline import plan_baseline
 
+    if not 0.0 < a.target < 1.0:
+        print("error: --target must lie strictly between 0 and 1", file=sys.stderr)
+        return 1
+    if a.trials < 1 or a.tol <= 0 or a.w20 < 0:
+        print("error: --trials must be at least 1, --tol positive and --w20 not negative",
+              file=sys.stderr)
+        return 1
     show = load_show(a.show)
     errs = validate_show(show)
     if errs:
