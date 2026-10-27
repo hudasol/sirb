@@ -13,5 +13,5 @@ Current state: `LICENSE` is MIT for the whole repository.
 ## What changing would involve
 Replacing `LICENSE` text, adding `NOTICE`, adding a short licence table to the README, and adding SPDX
 headers if wanted. Because the author is the sole copyright holder of the repository's own files, the
-change is her decision to make; third party files keep their licences. Not a licence for any real
+change is the repository owner's decision; third party files keep their licences. Not a licence for any real
 flight use: the safety statement applies whatever the licence.

@@ -1,0 +1,20 @@
+# Carvalho G.S., Silva F.O., Pacheco M.V.O., Campos G.A.O. (2023). Performance Analysis of Relative
+# GPS Positioning for Low-Cost Receiver-Equipped Agricultural Rovers. Sensors 23(21):8835.
+# https://doi.org/10.3390/s23218835 ; read at https://pmc.ncbi.nlm.nih.gov/articles/PMC10650014/
+# on 2026-10-18. Licence: CC BY 4.0 (stated on the article page). Reproduced with attribution.
+# Table 1: rover position error against an RTK ground truth, no communication failure, reference
+# station MGLA at a baseline of 1.184 km (Table 3). RGNSS: single differenced L1 C/A pseudoranges
+# against the reference station, extended Kalman filter. SGNSS: the same rover, standalone.
+# Rover: u-blox C102-F9R board, ANN-MB-01 antenna, moving through coffee plantation corridors,
+# 800 epochs at 1 s.
+solution,component,mean_m,std_m
+RGNSS,North,0.528,0.351
+RGNSS,East,0.395,0.308
+RGNSS,Down,1.121,0.866
+RGNSS,Horizontal,0.713,0.381
+RGNSS,Total,1.432,0.779
+SGNSS,North,1.0501,0.498
+SGNSS,East,0.459,0.371
+SGNSS,Down,1.293,1.014
+SGNSS,Horizontal,1.202,0.505
+SGNSS,Total,1.883,0.925

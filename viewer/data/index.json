@@ -25,9 +25,9 @@
     "y": -250.0,
     "min_distance_m": 50.0
    },
-   "fleet_sha256": "4c4766d0a25f65842efd3a5883e7f45a8595ee5ae361546fc78ce60b39a0557a",
+   "fleet_sha256": "dc4aba7546357c59adff49a830f86a84cf066442910f1c7120eba6bde348dd5e",
    "verdict": "PASS",
-   "min_separation_m": 2.188612,
+   "min_separation_m": 2.188611,
    "recomputation_ok": true,
    "certificate": "sirb_text_100/certificate.json",
    "scenarios": [
@@ -42,7 +42,7 @@
     {
      "pos": "wind_gnss.bin",
      "nn": "wind_gnss.nn.bin",
-     "min_nn_m": 1.48,
+     "min_nn_m": 1.02,
      "id": "wind_gnss",
      "label_en": "Wind 6 m/s + degraded GNSS",
      "label_ar": "\u0631\u064a\u0627\u062d \u0666 \u0645/\u062b + \u062a\u062f\u0647\u0648\u0631 GNSS",
@@ -87,7 +87,7 @@
     {
      "pos": "comms_hold.bin",
      "nn": "comms_hold.nn.bin",
-     "min_nn_m": 2.1,
+     "min_nn_m": 0.62,
      "id": "comms_hold",
      "label_en": "5% comms loss, hold-then-descend",
      "label_ar": "\u0641\u0642\u062f\u0627\u0646 \u0627\u062a\u0635\u0627\u0644 \u0665\u066a\u060c \u062a\u062b\u0628\u064a\u062a \u062b\u0645 \u0647\u0628\u0648\u0637",
@@ -159,9 +159,9 @@
     "y": -250.0,
     "min_distance_m": 50.0
    },
-   "fleet_sha256": "59b00af34fb0baf932d2411b840ffa332f9730f6cbc006693c2c2d2486476717",
+   "fleet_sha256": "d17f2c1af3ac8b77728de3e801f46c6677b4125d6701339be430276477bb70af",
    "verdict": "PASS",
-   "min_separation_m": 2.195873,
+   "min_separation_m": 2.195874,
    "recomputation_ok": true,
    "certificate": "torus_300/certificate.json",
    "scenarios": [
@@ -328,7 +328,7 @@
     "y": -250.0,
     "min_distance_m": 50.0
    },
-   "fleet_sha256": "a53142d7bb474e3d9e99b1f1bafc00c9daa2ac54f7fd9dd4e26c4161fd304ba3",
+   "fleet_sha256": "7283bef4999a5fbbffef3d8fa3ef0a3fef8f17f18fb77528934d4fc2879739bf",
    "verdict": "PASS",
    "min_separation_m": 2.448015,
    "recomputation_ok": true,

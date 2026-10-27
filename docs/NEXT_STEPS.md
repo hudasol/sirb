@@ -5,7 +5,7 @@ robotics proposals" is **future work, not built, not claimed**; it is written as
 for proposals only.
 
 ## Backlog (each item sized for one short session)
-1. **Create the GitHub repo, push, enable CI** and replace tag-pinned Actions with commit-SHA pins.
+1. **Pin Actions by commit SHA**: the repository, CI and the Pages workflow exist; the Actions are still pinned by tag.
 2. **Deploy the viewer** (`viewer/` is fully static; Vercel or Render static site, publish dir `viewer`).
 3. **Fix the n=2000 scaling row**: the sphere target extends below the altitude floor; lift the centre or
    raise the floor in that experiment, then re-run `make stress`.
@@ -16,12 +16,17 @@ for proposals only.
    response, wind response). Until then every stressed result is model-conditional.
 7. **Downwash margin**: add an explicit vertical separation rule/model (literature-cited) to the verifier
    and viewer.
-8. **Viewer tests**: keyboard-only, reduced-motion, light theme and `file://` error banner were not
-   tested; add a Playwright smoke test to CI.
+8. **Viewer tests in CI**: keyboard, reduced motion, light theme and `file://` checks exist and pass
+   locally (`results/viewer_checks.json`); they are not run in CI yet.
 9. **Export authentication**: the export hash detects accidents, not tampering by an adversary; add
    signing if exports are ever exchanged between organisations.
 10. **Verify the current UAE UAS rules** from the authority's own pages (GCAA CAR-UAS status was not
     verified as current) and keep a dated summary in RESEARCH.md. Never claim compliance.
+
+11. **Generated docs in CI**: run the doc generators and `scripts/check_doc_numbers.py` in CI and fail
+    when a committed generated file differs from a fresh build.
+12. **Measure the relative GNSS error** between nearby low cost receivers (the parameter every stressed
+    verdict hinges on, `docs/GNSS_SOURCED.md`), for example two receivers on a short static baseline.
 
 ## Future robotics proposals (not built)
 - **GNSS-aware show planning**: parameterize the GNSS error model from outputs of a separate

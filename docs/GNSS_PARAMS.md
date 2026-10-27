@@ -1,8 +1,14 @@
 # GNSS model parameter file (version 1)
 
-**Status: interface only. No external GNSS study, dataset or repository is coupled to Sirb today.**
-The only file that ships, `shows/gnss_assumed_default.json`, reproduces the existing defaults of
-`StressConfig`, and every value in it is flagged `assumed: true`. Nothing in it was measured.
+**Status: no external GNSS study, dataset or repository is coupled to Sirb's model.** Three files ship.
+`shows/gnss_assumed_default.json` reproduces the defaults of `StressConfig`. Since phase 6,
+`shows/gnss_faa_sps_standalone.json` takes the bias magnitude from public FAA accuracy statistics
+(`docs/GNSS_SOURCED.md`); the source gives the absolute error of one receiver, not the relative
+error between drones the model needs, so every value in both files is flagged `assumed: true`.
+`shows/gnss_relative_literature.json` (phase 6, stream D) anchors the bias magnitude to a published
+value for the error left after common mode cancellation (`docs/GNSS_SOURCED.md`); it is a literature
+value for different hardware, so its flags also stay `assumed: true`. Nothing in any of the three
+files was measured by this project.
 
 ## Why a file format
 
@@ -15,7 +21,7 @@ Code: `sirb/gnss_params.py` (`load`, `save`, `validation_errors`, `from_dict`, `
 `from_stress_config`). Machine-readable schema: `sirb/schemas/gnss_params.schema.json` (JSON Schema
 draft 2020-12). The Python validator is the authority; the schema mirrors it for other tools and
 cannot express every rule (ISO date validity, unique region names, `end_s > start_s`, bounding box
-ordering). `jsonschema` is not a dependency of Sirb; a test uses it only if it is installed.
+ordering). `jsonschema` is not a runtime dependency of Sirb; since phase 6 it is a dev dependency, so CI checks every shipped file against the schema.
 
 ## Format
 

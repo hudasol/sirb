@@ -1,0 +1,18 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+title: "Sirb: simulation first drone show planner, exact separation verifier and stress tester"
+type: software
+version: 0.1.0
+authors:
+  - family-names: Mueen
+    given-names: Huda
+repository-code: "https://github.com/hudasol/sirb"
+license: MIT
+keywords:
+  - drone show
+  - trajectory planning
+  - verification
+  - Monte Carlo simulation
+abstract: >-
+  Simulation and planning tool for multi drone show trajectories with an exact
+  separation verifier and a Monte Carlo stress tester. Not flight certified.

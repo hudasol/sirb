@@ -105,7 +105,7 @@ def _plan_window(src, dst, lim, W, dt, step_s, delay_max, lane_dz, lane_dh, orde
                     cands.append((dl + dur, dl, r, durs, vp, lo, hi))
         cands.sort(key=lambda c: (c[0], c[1]))
         ok = None
-        for fin, dl, r, durs, vp, lo, hi in cands:
+        for _fin, dl, r, durs, vp, lo, hi in cands:
             if done:
                 idx = np.array(done)
                 req = d_min + 0.5 * dt * (vp + vpk[idx])

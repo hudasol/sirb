@@ -105,7 +105,10 @@ def headlines() -> list[str]:
             out.append(f"- Simulated wind (ASSUMED models), 100 drone show: highest tested wind with a "
                        f"Wilson upper bound at most 5%: {max(r['value'] for r in okw)} m/s at 20 ft; "
                        f"first tested wind with an observed violation: "
-                       f"{min([r['value'] for r in w if r['p_violation'] > 0] or [float('nan')])} m/s.")
+                       f"{min([r['value'] for r in w if r['p_violation'] > 0] or [float('nan')])} m/s. "
+                       "This is not a wind limit: the model has no actuator limit, the sweep goes "
+                       "beyond the vehicle's published wind limit, and the value moves with the "
+                       "tracking and GNSS assumptions (`docs/SENSITIVITY.md`).")
         b = sw["sweeps"]["gnss_bias_sigma_m_25pct_degraded"]
         first = [r for r in b if r["p_violation"] > 0.05]
         if first:
@@ -118,14 +121,19 @@ def headlines() -> list[str]:
         ok = [r for r in sp["rows"] if r["p_violation_ci95"][1] <= 0.05]
         if ok:
             r = min(ok, key=lambda x: x["formation_spacing_m"])
-            out.append(f"- Nominal separation needed in the stated scenario for a 5% Wilson upper bound: "
-                       f"{r['nominal_min_separation_m']:.2f} m (formation spacing "
-                       f"{r['formation_spacing_m']} m, {sp['trials']} trials).")
+            out.append(f"- Smallest tested formation spacing in the stated scenario whose Wilson upper "
+                       f"bound is at most 5%: {r['formation_spacing_m']} m, nominal separation "
+                       f"{r['nominal_min_separation_m']:.2f} m ({sp['trials']} trials, a coarse grid of "
+                       "spacings; the margin tool's search answer is in `docs/MARGIN.md`).")
     ct = load("stress_contingency.json")
     if ct:
         by = max(r["p_violation_between_bystanders"] for r in ct["rows"])
+        ev = max(ct["rows"], key=lambda r: r["p_violation_involving_event_drone"])
         out.append(f"- Contingency runs: largest bystander to bystander violation rate over all rows: "
-                   f"{pct(by)}; violations involved the drone that had the event.")
+                   f"{pct(by)}. Violations involving the drone that had the event are common: up to "
+                   f"{pct(ev['p_violation_involving_event_drone'])} ({ev['case']}, {ev['behavior']}), "
+                   f"with contact (centres within two drone radii) up to "
+                   f"{pct(max(r['p_contact'] for r in ct['rows']))}.")
     sc = load("stress_scaling.json")
     if sc:
         okr = [r for r in sc["rows"] if r["verified_ok"]]
@@ -133,9 +141,11 @@ def headlines() -> list[str]:
         if okr:
             last = okr[-1]
             out.append(f"- Stress study scaling: largest verified size n = {last['n']}: plan "
-                       f"{last['plan_s']:.1f} s + exact verification {last['verify_s']:.1f} s."
-                       + (f" Sizes {bad} did not verify because the shapes exceed the altitude band "
-                          "(a limit of the test shapes, not a timing result)." if bad else ""))
+                       f"{last['plan_s']:.1f} s + exact verification {last['verify_s']:.1f} s (wall "
+                       "clock on a shared machine; not comparable with `docs/PERFORMANCE.md`)."
+                       + (f" Sizes {', '.join(str(b) for b in bad)} did not verify because the shapes "
+                          "exceed the altitude band (a limit of the test shapes, not a timing result)."
+                          if bad else ""))
     return out
 
 
@@ -167,8 +177,20 @@ def assurance_lines() -> list[str]:
             bsc = m["before"].get(f, {}).get("score")
             if bsc is not None:
                 parts.append(f"`{f.replace('sirb/', '')}` {100 * bsc:.1f}% to {100 * a['score']:.1f}%")
-        out.append("- Mutation testing (mutmut, killed over total, before to after added tests): "
-                   + "; ".join(parts) + " (`docs/MUTATION.md`).")
+        p6 = {f: a for f, a in m.get("phase6", {}).items() if a["not_checked"] < a["total"]}
+        if p6:
+            fresh = "; ".join(f"`{f.replace('sirb/', '')}` {100 * a['score']:.1f}% of {a['total']}"
+                              for f, a in sorted(p6.items()))
+            old = "; ".join(x for x in parts if not any(f"`{f.replace('sirb/', '')}`" in x
+                                                         for f in p6))
+            out.append("- Mutation testing (mutmut, killed over total): fresh phase 6 run on the "
+                       f"current code: {fresh}."
+                       + (f" Not rerun in phase 6, phase 5 scores before to after added tests: {old}."
+                          if old else "")
+                       + " (`docs/MUTATION.md`).")
+        else:
+            out.append("- Mutation testing (mutmut, killed over total, before to after added tests): "
+                       + "; ".join(parts) + " (`docs/MUTATION.md`).")
     ax = load("axe.json")
     if ax:
         bs, as_ = ax["before"]["summary"], ax["after"]["summary"]

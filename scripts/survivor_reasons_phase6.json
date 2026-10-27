@@ -1,0 +1,157 @@
+{
+ "note": "Hand written arguments for survivors of the fresh phase 6 mutmut run that the automatic classifier of scripts/mutation_summary.py leaves open. Key: file:function:mutant number. Arguments from reading the code, not proofs. verify2.py survivors are argued in results/mutation_phase6_triage.json and scripts/survivor_reasons.json.",
+ "rules": {
+  "sirb/verify.py:_candidate_pairs:44": [
+   "equivalent",
+   "tile partition only: the cumulative cell count decides how rows are grouped into tiles; every row is still evaluated once and in order, so the candidate arrays are unchanged (argued; the tests force caps of 1, 3 and 50 cells and 1 to 4 rows and still match the loop reference)"
+  ],
+  "sirb/verify.py:_candidate_pairs:46": [
+   "equivalent",
+   "tile partition only (see mutant 44)"
+  ],
+  "sirb/verify.py:_candidate_pairs:48": [
+   "equivalent",
+   "tile partition only (see mutant 44)"
+  ],
+  "sirb/verify.py:_candidate_pairs:56": [
+   "equivalent",
+   "tile partition only (see mutant 44)"
+  ],
+  "sirb/verify.py:_candidate_pairs:57": [
+   "equivalent",
+   "tile partition only (see mutant 44)"
+  ],
+  "sirb/verify.py:_candidate_pairs:87": [
+   "equivalent",
+   "the lower bound r0 - 1 instead of r0 + 1 only applies when the row has no later columns; both give an empty column range"
+  ],
+  "sirb/verify.py:_candidate_pairs_loop:23": [
+   "tolerance",
+   "test reference only (verify does not call it); a 1e-9 m change of the prefilter slack"
+  ],
+  "sirb/verify.py:_candidate_pairs_loop:24": [
+   "tolerance",
+   "test reference only; a relative 1e-9 change of the prefilter radius"
+  ],
+  "sirb/verify.py:_candidate_pairs_loop:25": [
+   "tolerance",
+   "test reference only; a relative 1e-9 change of the prefilter radius"
+  ],
+  "sirb/verify.py:_candidate_pairs_loop:34": [
+   "equivalent",
+   "test reference only; when j_end <= i + 1 the slice is empty either way"
+  ],
+  "sirb/verify.py:_candidate_pairs_loop:58": [
+   "equivalent",
+   "test reference only; pieces of one drone never overlap in time (each starts where the previous ends and searchsorted uses side left), so the same drone filter never removes a pair"
+  ],
+  "sirb/assign.py:_exact_sq_cost:6": [
+   "equivalent",
+   "dtype None keeps the float64 input as float64; the planners always pass float arrays"
+  ],
+  "sirb/assign.py:_exact_sq_cost:8": [
+   "equivalent",
+   "dtype omitted keeps the float64 input as float64"
+  ],
+  "sirb/assign.py:_exact_sq_cost:17": [
+   "equivalent",
+   "dtype None keeps the float64 input as float64"
+  ],
+  "sirb/assign.py:_exact_sq_cost:19": [
+   "equivalent",
+   "dtype omitted keeps the float64 input as float64"
+  ],
+  "sirb/assign.py:assign_greedy:7": [
+   "equivalent",
+   "the default metric of cdist is euclidean"
+  ],
+  "sirb/assign.py:assign_greedy:23": [
+   "equivalent",
+   "a float zeros array is used only for truthiness, as the bool array is"
+  ],
+  "sirb/assign.py:assign_greedy:25": [
+   "equivalent",
+   "a float zeros array is used only for truthiness, as the bool array is"
+  ],
+  "sirb/assign.py:assign_greedy:41": [
+   "equivalent",
+   "the early exit only stops a scan that would assign nothing more; the result is the same, only slower"
+  ],
+  "sirb/assign.py:assign_greedy:42": [
+   "equivalent",
+   "the early exit only stops a scan that would assign nothing more; the result is the same, only slower"
+  ],
+  "sirb/assign.py:assign_pinned:25": [
+   "equivalent",
+   "replace=None is falsy, so the choice is still without replacement"
+  ],
+  "sirb/planner/common.py:leg_segment:4": [
+   "equivalent",
+   "dtype None keeps float64 positions float64; positions are always float arrays"
+  ],
+  "sirb/planner/common.py:leg_segment:6": [
+   "equivalent",
+   "dtype omitted keeps float64 positions float64"
+  ],
+  "sirb/planner/common.py:leg_segment:8": [
+   "equivalent",
+   "dtype None keeps float64 positions float64"
+  ],
+  "sirb/planner/common.py:leg_segment:10": [
+   "equivalent",
+   "dtype omitted keeps float64 positions float64"
+  ],
+  "sirb/planner/waves.py:schedule_waves:25": [
+   "equivalent",
+   "the diagonal (a drone against itself) is never read: feasible(j, w) only reads drones already placed, and j is not; the degree count shifts by the same 1 for every drone, so the stable order is unchanged"
+  ],
+  "sirb/planner/waves.py:schedule_waves:28": [
+   "equivalent",
+   "diagonal never read (see mutant 25)"
+  ],
+  "sirb/planner/waves.py:schedule_waves:30": [
+   "equivalent",
+   "diagonal never read (see mutant 25)"
+  ],
+  "sirb/planner/waves.py:schedule_waves:33": [
+   "equivalent",
+   "diagonal never read (see mutant 25)"
+  ],
+  "sirb/planner/waves.py:schedule_waves:35": [
+   "equivalent",
+   "diagonal never read (see mutant 25)"
+  ],
+  "sirb/planner/waves.py:schedule_waves:38": [
+   "equivalent",
+   "diagonal never read (see mutant 25)"
+  ],
+  "sirb/planner/waves.py:schedule_waves:53": [
+   "equivalent",
+   "an object array holds the same float values once each drone is placed, and every read is of placed drones"
+  ],
+  "sirb/planner/waves.py:schedule_waves:86": [
+   "heuristic",
+   "changes the candidate wave slots tried; any accepted slot still satisfies every pairwise constraint with the placed drones, and the plan is judged by the verifier"
+  ],
+  "sirb/planner/waves.py:schedule_waves:87": [
+   "heuristic",
+   "candidate slots only (see mutant 86)"
+  ],
+  "sirb/planner/waves.py:schedule_waves:88": [
+   "heuristic",
+   "candidate slots only (see mutant 86)"
+  ],
+  "sirb/planner/waves.py:schedule_waves:99": [
+   "heuristic",
+   "candidate slots only (see mutant 86)"
+  ],
+  "sirb/assign.py:_exact_sq_cost:53": [
+   "equivalent",
+   "astype(None) converts to the default float64, the same as astype(float)"
+  ],
+  "sirb/assign.py:_exact_sq_cost:30": [
+   "killed (manual check)",
+   "applying the change to a copy of the package makes tests/test_mutation_killers_phase6.py::test_exact_cost_of_empty_inputs_is_an_empty_matrix fail with a ValueError; mutmut kept an older result for this mutant from before that assertion was added"
+  ]
+ }
+}

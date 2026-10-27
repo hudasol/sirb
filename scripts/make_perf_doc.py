@@ -60,7 +60,7 @@ def main():
             "roots (`docs/VERIFIER.md`), which does not change scaling.",
             "- Memory is not the limit at these sizes for the verifier. The Monte Carlo stress simulator "
             "was measured separately (`results/stress_scaling.json`, per trial CPU time).", ""]
-    Path("docs/PERFORMANCE.md").write_text("\n".join(out))
+    Path("docs/PERFORMANCE.md").write_text("\n".join(out), encoding="utf-8")
 
 
 if __name__ == "__main__":
