@@ -82,3 +82,16 @@ def test_dropout_windows_have_the_stated_length():
         assert k1 - k0 == round(loss_s / dt)
         assert 0.15 * K * dt <= k0 * dt + dt                  # starts after 15% of the show
         assert np.all(e[:k0, i, :] == 0.0) and np.any(e[k0:k1, i, :] != 0.0)
+
+
+def test_common_fraction_zero_is_the_old_stream_and_one_shares_the_bias():
+    import numpy as np
+
+    from sirb.disturbance import StressConfig, gnss_error
+
+    base = StressConfig(gnss_deg_fraction=1.0, gnss_bias_sigma=1.0, gnss_white_sigma=0.0, dt=0.2)
+    a, _ = gnss_error(50, 6, base, np.random.default_rng(5))
+    b, _ = gnss_error(50, 6, base.with_(gnss_common_fraction=0.0), np.random.default_rng(5))
+    assert np.array_equal(a, b)
+    c, _ = gnss_error(50, 6, base.with_(gnss_common_fraction=1.0), np.random.default_rng(5))
+    assert np.allclose(c, c[:, :1, :])

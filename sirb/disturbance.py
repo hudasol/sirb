@@ -44,6 +44,7 @@ class StressConfig:
     # gnss
     gnss_white_sigma: float = 0.015   # m, per axis (ASSUMPTION, RTK fixed)
     gnss_deg_fraction: float = 0.0    # share of drones in degraded mode
+    gnss_common_fraction: float = 0.0  # share of the bias variance common to all degraded drones
     gnss_bias_sigma: float = 0.0      # m, per axis, degraded drones (ASSUMPTION)
     gnss_bias_tau: float = 30.0       # s (ASSUMPTION)
     gnss_loss_fraction: float = 0.0   # share of drones with a dropout window
@@ -133,6 +134,10 @@ def gnss_error(K: int, n: int, cfg: StressConfig, rng: np.random.Generator,
     degraded = rng.random(n) < cfg.gnss_deg_fraction
     if cfg.gnss_bias_sigma > 0 and degraded.any():
         b = _ou(K, int(degraded.sum()), cfg.dt, cfg.gnss_bias_tau, cfg.gnss_bias_sigma, rng)
+        c = cfg.gnss_common_fraction
+        if c > 0:   # drawn after the individual part so c = 0 keeps every earlier stream
+            shared = _ou(K, 1, cfg.dt, cfg.gnss_bias_tau, cfg.gnss_bias_sigma, rng)
+            b = math.sqrt(1 - c) * b + math.sqrt(c) * shared
         e[:, degraded, :] += b
     loss_mask = rng.random(n) < cfg.gnss_loss_fraction
     windows: dict[int, tuple[int, int]] = {}

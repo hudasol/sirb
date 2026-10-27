@@ -7,6 +7,7 @@ Format follows Keep a Changelog. Versions before 0.1.0 were internal milestones.
 ### Added
 - Baseline comparators (sampled separation check, ORCA validated against RVO2-3D) and a benchmark judged by the exact verifier (`docs/BASELINES.md`).
 - `sirb stress` and `sirb verify-external` commands (`sirb/importers.py`).
+- `gnss_common_fraction` option and the correlation study `docs/GNSS_COMMON.md`.
 - `points` shape for loading explicit coordinates.
 - Input caps (5000 drones, 64 stages, 3600 s holds) and argument checks for `margin`.
 - CI on Linux, Windows and macOS with Python 3.12 and 3.13; wheel build check; release workflow.

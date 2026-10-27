@@ -111,7 +111,11 @@ def _stress(a) -> int:
               file=sys.stderr)
         return 1
     show, fleet, _ = load_export(a.export)
-    cfg = to_stress_config(load(a.gnss), base=StressConfig(dt=0.2, w20=a.w20))
+    if not 0.0 <= a.gnss_common_fraction <= 1.0:
+        print("error: --gnss-common-fraction must lie between 0 and 1", file=sys.stderr)
+        return 1
+    cfg = to_stress_config(load(a.gnss), base=StressConfig(
+        dt=0.2, w20=a.w20, gnss_common_fraction=a.gnss_common_fraction))
     d_min = show["limits"]["min_separation_m"]
     r = monte_carlo(sample_reference(fleet, cfg.dt), cfg, d_min, a.trials, a.seed,
                     workers=a.workers)
@@ -162,6 +166,9 @@ def main(argv: list[str] | None = None) -> int:
     t.add_argument("--w20", type=float, default=0.0, help="mean wind at 20 ft, m/s (assumed)")
     t.add_argument("--trials", type=int, default=200)
     t.add_argument("--seed", type=int, default=20261016)
+    t.add_argument("--gnss-common-fraction", type=float, default=0.0,
+                   help="share of the GNSS bias variance common to all degraded drones, 0 to 1 "
+                        "(default 0: errors independent per drone, the pessimistic reading)")
     t.add_argument("--workers", type=int, default=1)
     t.add_argument("--report", help="write the full result (.json)")
     a = ap.parse_args(argv)

@@ -30,8 +30,9 @@ def test_default_file_reproduces_todays_defaults():
 
 
 def test_gnss_fields_in_map_are_exactly_the_gnss_fields_of_stressconfig():
+    # gnss_common_fraction is a run option (stress --gnss-common-fraction), not a file parameter
     names = {f.name for f in fields(StressConfig) if f.name.startswith("gnss_")}
-    assert set(GNSS_FIELDS) == names
+    assert set(GNSS_FIELDS) == names - {"gnss_common_fraction"}
 
 
 def test_roundtrip_via_stressconfig_and_file(tmp_path):

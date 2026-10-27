@@ -14,7 +14,7 @@ Written 2026-10-28 after an audit of the repository (code review of the verifier
 | M1 | Margin command accepted impossible arguments. | Done. |
 | M7 | CI covered Linux and one Python only. | Done: Linux, Windows, macOS on 3.12 and 3.13, plus wheel build and clean install test. A release workflow attaches the build. |
 | H3 | The wind headline could read as a limit. | Already worded as not a limit in the README; the model has no common mode wind failure (see limits below). |
-| H4 | Stressed verdicts hinge on treating absolute GNSS error as relative error. | Open. Plan: add a common mode fraction (default 0 so existing results are unchanged) and label margin results UNCALIBRATED until a differential GNSS source is found. |
+| H4 | Stressed verdicts hinge on treating absolute GNSS error as relative error. | Done for the stress command: `gnss_common_fraction` (default 0, earlier results unchanged). With the sourced bias scale and all drones degraded, P(violation) is 1.000 up to a common fraction of 0.95 and 0.000 at 1.0 (`docs/GNSS_COMMON.md`), so the verdict is set by an unsourced correlation. Open: carry the option into the margin command and label its output UNCALIBRATED. |
 | H5 | Real shows cannot be loaded. | Partly done: a `points` shape takes explicit coordinates and `verify-external` checks a sampled CSV (piecewise linear, separation only). Open: Crazyswarm polynomial import and viewer file drop. |
 | H6 | The stress simulator is reachable only through scripts. | Done: `sirb stress`. |
 | M2 | No machine readable JSON Schema for show files; unknown keys are ignored. | Open. |
