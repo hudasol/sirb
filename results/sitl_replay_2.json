@@ -1,0 +1,28 @@
+{
+ "n_vehicles": 2,
+ "plan_duration_s": 29.85329958958068,
+ "wall_s": 37.05999779701233,
+ "rate_hz": 20.0,
+ "d_min_m": 2.0,
+ "planned_min_separation_exact_m": 3.123475237772117,
+ "planned_min_separation_on_replay_grid_m": 3.123475237772118,
+ "flown_min_separation_m": 0.3677052569834681,
+ "tracking_error_m": {
+  "mean": 3.1514858432004793,
+  "p95": 7.956356579573224,
+  "max": 9.409498083803122
+ },
+ "per_vehicle_max_error_m": [
+  5.512694088752504,
+  9.409498083803122
+ ],
+ "log_samples": [
+  644,
+  645
+ ],
+ "px4_processes": 2,
+ "px4_cpu_cores_mean": 0.3305,
+ "px4_cpu_cores_max": 0.38,
+ "px4_rss_mb_max_per_instance": 10.354688,
+ "machine_cores": 2
+}
