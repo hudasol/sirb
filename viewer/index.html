@@ -5,7 +5,7 @@
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-5wA3Z8E0Y0OTGN2sJH6JJETuF5CYTp6eGDxFbK0Gl1s='; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Sirb viewer</title>
-<meta name="description" content="Static viewer for Sirb: drone-show plans checked against their declared limits, next to stressed simulation scenarios. Simulation only. Not an approval.">
+<meta name="description" content="Static viewer for Sirb: drone show plans checked against their declared limits, next to stressed simulation scenarios. Simulation only.">
 <meta name="color-scheme" content="dark light">
 <link rel="icon" href="data:,">
 <link rel="stylesheet" href="style.css">
@@ -18,20 +18,21 @@
 
 <header class="top">
   <div class="brand">
-    <h1 data-i18n="app_title">Sirb viewer</h1>
-    <p class="tagline" data-i18n="tagline"></p>
+    <h1><span data-i18n="app_title">Sirb viewer</span></h1>
+    <p class="tagline" data-i18n="brand_sub"></p>
   </div>
   <div class="top-controls">
     <label class="field">
       <span data-i18n="show">Show</span>
-      <select id="showSelect" aria-describedby="showMeta"></select>
+      <select id="showSelect" aria-describedby="showMeta showBlurb"></select>
     </label>
-    <span id="showMeta" class="meta"></span>
+    <button id="viewModeBtn" type="button" class="btn"></button>
     <button id="langBtn" type="button" class="btn" lang="ar"></button>
     <button id="themeBtn" type="button" class="btn" data-i18n-aria="theme_switch_label"></button>
     <a class="btn" href="results.html" data-i18n="results">Results</a>
     <a class="btn" href="methods.html" data-i18n="methods">Methods</a>
   </div>
+  <p class="show-line"><span id="showBlurb"></span> <span id="showMeta" class="meta"></span></p>
 </header>
 
 <aside id="banner" class="banner" aria-labelledby="bannerTitle" hidden>
@@ -48,15 +49,41 @@
 <div id="globalError" class="error" role="alert" hidden></div>
 
 <main id="viewer">
+  <section id="guide" class="guide guide-only" aria-label="Guide">
+    <p id="introLine" class="intro" data-i18n="intro_line"></p>
+    <ol id="steps" class="steps" data-i18n-aria="tour_nav"></ol>
+    <div id="tourCard" class="tour-card" aria-live="polite">
+      <div id="tourBody" class="tour-body"></div>
+      <div class="tour-nav">
+        <button id="tourBack" type="button" class="btn" data-i18n="tour_back" hidden>Back</button>
+        <button id="tourNext" type="button" class="btn btn-primary" data-i18n="tour_next" hidden>Next</button>
+        <button id="tourStart" type="button" class="btn btn-primary" data-i18n="tour_start">Start guided tour</button>
+        <button id="tourExit" type="button" class="btn" data-i18n="tour_exit" hidden>Exit tour</button>
+      </div>
+    </div>
+  </section>
+
+  <div class="views-bar">
+    <div class="seg" role="group" data-i18n-aria="cam_label" aria-label="Camera" id="camGroup">
+      <button type="button" class="btn seg-btn" data-cam="front" aria-pressed="true" data-i18n="cam_front">Front</button>
+      <button type="button" class="btn seg-btn" data-cam="side" aria-pressed="false" data-i18n="cam_side">Side</button>
+      <button type="button" class="btn seg-btn" data-cam="top" aria-pressed="false" data-i18n="cam_top">Top</button>
+      <button type="button" class="btn seg-btn" data-cam="oblique" aria-pressed="false" data-i18n="cam_oblique">Oblique</button>
+    </div>
+  </div>
+
   <section class="views" data-i18n-aria="views_label" aria-label="3D views">
     <article class="view" id="viewA">
       <header class="view-head">
         <h2 data-i18n="view_nominal">Nominal plan</h2>
         <a class="badge badge-ok" href="methods.html#exact-verifier" data-i18n="view_nominal_badge">Exact verifier</a>
       </header>
-      <p class="note scen-ph" data-i18n="nominal_label"></p>
+      <div class="row-fill" aria-hidden="true"></div>
+      <div class="vcard guide-only" id="vcA"></div>
+      <p class="note scen-ph classic-only" data-i18n="nominal_label"></p>
       <div class="canvas-wrap">
         <canvas tabindex="0" role="img" data-i18n-aria="canvas_label_a"></canvas>
+        <span class="pair-label" aria-hidden="true" hidden></span>
         <div class="overlay" aria-live="polite"></div>
       </div>
       <dl class="readouts" id="roA"></dl>
@@ -65,14 +92,16 @@
     <article class="view" id="viewB">
       <header class="view-head">
         <h2 data-i18n="view_stress">Stressed scenario</h2>
-        <a class="badge badge-warn" href="methods.html#stress-model" data-i18n="view_stress_badge">Simulation, ASSUMED models</a>
+        <a class="badge badge-warn" href="methods.html#stress-model" data-i18n="view_stress_badge">Simulated, assumed models</a>
       </header>
       <label class="field scen">
         <span data-i18n="scenario">Scenario</span>
         <select id="scenSelect"></select>
       </label>
+      <div class="vcard guide-only" id="vcB"></div>
       <div class="canvas-wrap">
         <canvas tabindex="0" role="img" data-i18n-aria="canvas_label_b"></canvas>
+        <span class="pair-label" aria-hidden="true" hidden></span>
         <div class="overlay" aria-live="polite"></div>
       </div>
       <dl class="readouts" id="roB"></dl>
@@ -91,7 +120,16 @@
       <div class="seg" role="group" data-i18n-aria="speed" aria-label="Speed" id="speedGroup"></div>
       <output id="timeOut" class="time" aria-live="off"></output>
     </div>
-    <input id="scrub" type="range" min="0" max="100" step="1" value="0" data-i18n-aria="timeline" aria-label="Timeline">
+    <p id="stageNow" class="stage-now guide-only"></p>
+    <div class="timeline" id="timeline" dir="ltr">
+      <div class="tl-markers guide-only" id="tlMarkers"></div>
+      <div class="tl-band guide-only" id="tlBand" role="group" data-i18n-aria="stages_label" aria-label="Show stages"></div>
+      <div class="tl-track">
+        <div class="tl-frames" id="tlFrames" hidden></div>
+        <input id="scrub" type="range" min="0" max="100" step="1" value="0" data-i18n-aria="timeline" aria-label="Timeline">
+      </div>
+    </div>
+    <p class="note guide-only" data-i18n="tl_hint"></p>
     <div class="tr-row">
       <div class="seg" role="group" data-i18n-aria="colour_mode" aria-label="Colour mode" id="modeGroup">
         <button type="button" class="btn seg-btn" data-mode="height" aria-pressed="true" data-i18n="mode_height">By height</button>
@@ -100,6 +138,17 @@
       <ul class="legend" id="legend"></ul>
     </div>
     <p class="note" id="keysHint"></p>
+  </section>
+
+  <section class="why guide-only" id="why" aria-labelledby="whyH">
+    <h2 id="whyH" data-i18n="why_title">Why an exact check</h2>
+    <p data-i18n="why_body"></p>
+    <div class="tr-row">
+      <button id="fcToggle" type="button" class="btn" aria-pressed="false" data-i18n="why_toggle">Show frame check</button>
+      <div class="seg" role="group" data-i18n-aria="why_step" aria-label="Frame step" id="fcSteps" hidden></div>
+    </div>
+    <div id="fcOut" class="fc-out" hidden></div>
+    <div id="fcEvidence" class="fc-ev" hidden></div>
   </section>
 
   <section class="panels">

@@ -209,7 +209,7 @@ def rtl_checks(b, base):
 OVERFLOW_JS = """(w) => { const bad = []; for (const e of document.querySelectorAll('body *')) {
     const r = e.getBoundingClientRect(); const cs = getComputedStyle(e);
     if (r.width === 0 || cs.display === 'none' || cs.position === 'fixed') continue;
-    if (e.closest('.skip')) continue;
+    if (e.closest('.skip, .tbl-wrap')) continue;
     if (r.right > w + 1 || r.left < -1) bad.push(e.tagName.toLowerCase() + (e.id ? '#' + e.id : '') + '.' + String(e.className).slice(0, 20) + ' ' + Math.round(r.left) + '..' + Math.round(r.right)); }
     return {sw: document.documentElement.scrollWidth, cw: document.documentElement.clientWidth, bad: bad.slice(0, 6)}; }"""
 

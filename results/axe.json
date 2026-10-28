@@ -1715,6 +1715,126 @@
       "None": 0
      }
     }
+   },
+   {
+    "page": "results.html",
+    "lang": "en",
+    "theme": "dark",
+    "axe_version": "4.14.0",
+    "violations": [],
+    "incomplete": [],
+    "violation_counts": {
+     "rules": 0,
+     "nodes": 0,
+     "by_impact": {
+      "critical": 0,
+      "serious": 0,
+      "moderate": 0,
+      "minor": 0,
+      "None": 0
+     }
+    },
+    "incomplete_counts": {
+     "rules": 0,
+     "nodes": 0,
+     "by_impact": {
+      "critical": 0,
+      "serious": 0,
+      "moderate": 0,
+      "minor": 0,
+      "None": 0
+     }
+    }
+   },
+   {
+    "page": "results.html",
+    "lang": "en",
+    "theme": "light",
+    "axe_version": "4.14.0",
+    "violations": [],
+    "incomplete": [],
+    "violation_counts": {
+     "rules": 0,
+     "nodes": 0,
+     "by_impact": {
+      "critical": 0,
+      "serious": 0,
+      "moderate": 0,
+      "minor": 0,
+      "None": 0
+     }
+    },
+    "incomplete_counts": {
+     "rules": 0,
+     "nodes": 0,
+     "by_impact": {
+      "critical": 0,
+      "serious": 0,
+      "moderate": 0,
+      "minor": 0,
+      "None": 0
+     }
+    }
+   },
+   {
+    "page": "results.html",
+    "lang": "ar",
+    "theme": "dark",
+    "axe_version": "4.14.0",
+    "violations": [],
+    "incomplete": [],
+    "violation_counts": {
+     "rules": 0,
+     "nodes": 0,
+     "by_impact": {
+      "critical": 0,
+      "serious": 0,
+      "moderate": 0,
+      "minor": 0,
+      "None": 0
+     }
+    },
+    "incomplete_counts": {
+     "rules": 0,
+     "nodes": 0,
+     "by_impact": {
+      "critical": 0,
+      "serious": 0,
+      "moderate": 0,
+      "minor": 0,
+      "None": 0
+     }
+    }
+   },
+   {
+    "page": "results.html",
+    "lang": "ar",
+    "theme": "light",
+    "axe_version": "4.14.0",
+    "violations": [],
+    "incomplete": [],
+    "violation_counts": {
+     "rules": 0,
+     "nodes": 0,
+     "by_impact": {
+      "critical": 0,
+      "serious": 0,
+      "moderate": 0,
+      "minor": 0,
+      "None": 0
+     }
+    },
+    "incomplete_counts": {
+     "rules": 0,
+     "nodes": 0,
+     "by_impact": {
+      "critical": 0,
+      "serious": 0,
+      "moderate": 0,
+      "minor": 0,
+      "None": 0
+     }
+    }
    }
   ]
  }

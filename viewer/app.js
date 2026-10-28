@@ -18,10 +18,12 @@ const el = (tag, attrs = {}, ...kids) => {
 const S = {
   lang: getLang(), t: null, num: null, int: null,
   theme: "dark", index: null, show: null, cert: null,
-  scenId: "wind_gnss", mode: "height", playing: false, speed: 1, time: 0, T: 0, dt: 0.2,
+  scenId: "wind_gnss", mode: "height", playing: false, speed: 4, time: 0, T: 0, dt: 0.2,
+  cam: "front", tour: 0, fc: { on: false, step: 1 }, classic: false, frame: null,
   A: null, B: null, dataA: null, dataB: null, loadToken: 0, dirty: true,
 };
 const SPEEDS = [0.5, 1, 2, 4];
+const VIEW_KEY = "sirb.viewer.view";
 // ?bench=1 (used by scripts/viewer_bench.py): reads the dataset from ./bench/ instead of ./data/ and records
 // per-frame timings in window.__bench. It never changes what the normal page does.
 const BENCH = new URLSearchParams(location.search).get("bench") === "1";
@@ -85,19 +87,26 @@ async function loadScenarioData(show, sc) {
   const pos = new Int16Array(pb), nn = new Uint16Array(nb);
   const n = show.n, K = show.frames;
   if (pos.length !== K * n * 3 || nn.length !== K * n) throw new Error(`${sc.pos}: unexpected size`);
-  const prefMin = new Float32Array(K); let run = Infinity, maxZ = 0;
+  const scl = S.index.pos_scale, dmin = show.d_min_m;
+  const prefMin = new Float32Array(K), frameMin = new Float32Array(K), ever = new Uint8Array(n);
+  let run = Infinity, maxZ = 0, kMin = 0, best = Infinity;
   for (let k = 0; k < K; k++) {
     let m = Infinity;
     for (let i = 0; i < n; i++) {
       const v = nn[k * n + i]; if (v < m) m = v;
+      if (v * scl < dmin) ever[i] = 1;
       const z = pos[(k * n + i) * 3 + 2]; if (z > maxZ) maxZ = z;
     }
-    run = Math.min(run, m); prefMin[k] = run * S.index.pos_scale;
+    if (m < best) { best = m; kMin = k; }
+    run = Math.min(run, m); prefMin[k] = run * scl; frameMin[k] = m * scl;
   }
-  return { pos, nn, K, n, prefMin, maxZ: maxZ * S.index.pos_scale, sc };
+  let everBelow = 0; for (let i = 0; i < n; i++) everBelow += ever[i];
+  const tight = { k: kMin, t: kMin * S.index.dt, d: best * scl };
+  return { pos, nn, K, n, prefMin, frameMin, tight, everBelow, maxZ: maxZ * scl, sc };
 }
 
 // ------------------------------------------------------------------ 3D view
+const V1 = new THREE.Vector3(), V2 = new THREE.Vector3(), V3 = new THREE.Vector3(), V4 = new THREE.Vector3(), UP = new THREE.Vector3(0, 1, 0);
 class View {
   constructor(root, which) {
     this.which = which; this.root = root;
@@ -114,6 +123,14 @@ class View {
     this.statics = new THREE.Group(); this.scene.add(this.statics);
     this.mesh = null; this.markers = null; this.events = [];
     this.data = null; this.show = null;
+    // closest pair: a thin bar between the two drones, a wire halo round each and a distance label
+    this.label = $(".pair-label", root); this.pair = null; this.pairMid = new THREE.Vector3(); this.tx = this.ty = this.tz = null;
+    this.pairMat = new THREE.MeshBasicMaterial({ color: 0xffffff });
+    this.haloMat = new THREE.MeshBasicMaterial({ color: 0xffffff, wireframe: true, transparent: true, opacity: 0.85 });
+    this.pairMesh = new THREE.Mesh(new THREE.CylinderGeometry(0.28, 0.28, 1, 10), this.pairMat);
+    this.halos = [0, 1].map(() => new THREE.Mesh(new THREE.SphereGeometry(2.1, 14, 8), this.haloMat));
+    for (const o of [this.pairMesh, ...this.halos]) { o.frustumCulled = false; o.visible = false; this.scene.add(o); }
+    this.controls.addEventListener("start", () => { if (!View.syncing) { S.cam = null; refreshCam(); } });
     this.ro = new ResizeObserver(() => this.resize()); this.ro.observe($(".canvas-wrap", root));
   }
   static sync(src) {
@@ -131,6 +148,7 @@ class View {
   }
   setShow(show, cert) {
     this.show = show; this.cert = cert; this.zTop = cert?.limits?.z_max ?? 120;
+    this.tx = new Float32Array(show.n); this.ty = new Float32Array(show.n); this.tz = new Float32Array(show.n); this.pair = null;
     // instanced drones
     if (this.mesh) { this.scene.remove(this.mesh); this.mesh.geometry.dispose(); this.mesh.material.dispose(); }
     const geo = new THREE.IcosahedronGeometry(0.9, 1);
@@ -145,6 +163,19 @@ class View {
     const cx = (g.x[0] + g.x[1]) / 2, cy = (g.y[0] + g.y[1]) / 2;
     this.home = { target: new THREE.Vector3(cx, 35, -cy), pos: new THREE.Vector3(cx + 0.25 * W, 0.5 * W, -cy + 0.95 * W) };
     this.resetCamera();
+  }
+  // Camera presets, framed on the extent of the formations (S.frame, metres: x east, y north, z up).
+  setPreset(kind, f) {
+    const tv = Math.tan(THREE.MathUtils.degToRad(this.camera.fov) / 2), th = tv * this.camera.aspect;
+    const W = Math.max(f.x1 - f.x0, 1), D = Math.max(f.y1 - f.y0, 1), H = Math.max(f.z1 - f.z0, 1), pad = 1.2;
+    const target = new THREE.Vector3((f.x0 + f.x1) / 2, (f.z0 + f.z1) / 2, -(f.y0 + f.y1) / 2);
+    let dir, dist;
+    if (kind === "side") { dir = new THREE.Vector3(1, 0.06, 0); dist = Math.max(H / 2 / tv, D / 2 / th) * pad + W / 2; }
+    else if (kind === "top") { dir = new THREE.Vector3(0, 1, 0.001); dist = Math.max(D / 2 / tv, W / 2 / th) * pad + H / 2; }
+    else if (kind === "oblique") { dir = new THREE.Vector3(0.45, 0.5, 0.95); dist = (Math.max(W, D, H) / 2 / Math.min(tv, th)) * pad; }
+    else { dir = new THREE.Vector3(0, 0.06, 1); dist = Math.max(H / 2 / tv, W / 2 / th) * pad + D / 2; }
+    this.camera.position.copy(target).addScaledVector(dir.normalize(), dist);
+    this.controls.target.copy(target); this.controls.update(); S.dirty = true;
   }
   resetCamera() {
     this.camera.position.copy(this.home.pos); this.controls.target.copy(this.home.target); this.controls.update();
@@ -208,7 +239,8 @@ class View {
     const i0 = Math.min(Math.floor(f), K - 1), i1 = Math.min(i0 + 1, K - 1), a = f - i0;
     const mA = this.mesh.instanceMatrix.array, cA = this.mesh.instanceColor.array;
     const sepMode = S.mode === "sep", zmax = Math.max(d.maxZ, 1);
-    let minNow = Infinity, below = 0;
+    const tx = this.tx, ty = this.ty, tz = this.tz;
+    let below = 0, iMin = 0, nvMin = Infinity;
     const ev = this.events.length ? new Map(this.events.map((e, i) => [e.drone, i])) : null;
     const mk = this.markers ? this.markers.instanceMatrix.array : null;
     const o0 = i0 * n, o1 = i1 * n;
@@ -218,7 +250,8 @@ class View {
       const y = (pos[p0 + 1] + a * (pos[p1 + 1] - pos[p0 + 1])) * sc;
       const z = (pos[p0 + 2] + a * (pos[p1 + 2] - pos[p0 + 2])) * sc;
       const nv = (nn[o0 + i] + a * (nn[o1 + i] - nn[o0 + i])) * sc;
-      if (nv < minNow) minNow = nv;
+      tx[i] = x; ty[i] = z; tz[i] = -y;
+      if (nv < nvMin) { nvMin = nv; iMin = i; }
       const isBelow = nv < dmin; if (isBelow) below++;
       const s = sepMode && isBelow ? 1.6 : 1, m = i * 16;
       mA[m] = s; mA[m + 1] = 0; mA[m + 2] = 0; mA[m + 3] = 0; mA[m + 4] = 0; mA[m + 5] = s; mA[m + 6] = 0; mA[m + 7] = 0;
@@ -236,12 +269,46 @@ class View {
         }
       }
     }
+    // closest pair at this instant: the drone with the smallest nearest neighbour distance and its neighbour
+    let jMin = -1, best = Infinity;
+    for (let j = 0; j < n; j++) {
+      if (j === iMin) continue;
+      const dx = tx[j] - tx[iMin], dy = ty[j] - ty[iMin], dz = tz[j] - tz[iMin], dd = dx * dx + dy * dy + dz * dz;
+      if (dd < best) { best = dd; jMin = j; }
+    }
+    const pd = Math.sqrt(best); this.pair = { i: iMin, j: jMin, d: pd };
+    for (const q of [iMin, jMin]) { const m = q * 16, s = Math.max(mA[m], 1) * 1.5; mA[m] = s; mA[m + 5] = s; mA[m + 10] = s; }
+    this.placePair(pd < dmin);
     this.mesh.instanceMatrix.needsUpdate = true; this.mesh.instanceColor.needsUpdate = true;
     if (this.markers) this.markers.instanceMatrix.needsUpdate = true;
     const triggered = this.events.length ? (this.sc.events || []).filter((e) => t >= e.t).length : 0;
-    return { minNow, minSoFar: Math.min(d.prefMin[i0], minNow), below, n, triggered, totalEvents: (this.sc?.events || []).length };
+    return { minNow: pd, pair: this.pair, minSoFar: Math.min(d.prefMin[i0], pd), below, n, triggered, totalEvents: (this.sc?.events || []).length };
   }
-  render() { this.renderer.render(this.scene, this.camera); }
+  placePair(bad) {
+    const { i, j } = this.pair, tx = this.tx, ty = this.ty, tz = this.tz;
+    const a = V1.set(tx[i], ty[i], tz[i]), b = V2.set(tx[j], ty[j], tz[j]);
+    this.pairMid.copy(a).add(b).multiplyScalar(0.5);
+    V3.copy(b).sub(a); const len = V3.length();
+    this.pairMesh.position.copy(this.pairMid); this.pairMesh.scale.set(1, Math.max(len, 1e-3), 1);
+    if (len > 1e-6) this.pairMesh.quaternion.setFromUnitVectors(UP, V3.normalize());
+    this.halos[0].position.copy(a); this.halos[1].position.copy(b);
+    const col = bad ? 0xff4545 : S.theme === "dark" ? 0xffffff : 0x111d2b;
+    this.pairMat.color.setHex(col); this.haloMat.color.setHex(col);
+    for (const o of [this.pairMesh, ...this.halos]) o.visible = true;
+  }
+  placeLabel() {
+    const p = this.pair, lab = this.label; if (!lab) return;
+    if (!p || !this.data) { lab.hidden = true; return; }
+    V4.copy(this.pairMid).project(this.camera);
+    const w = this.canvas.clientWidth, h = this.canvas.clientHeight;
+    const x = (V4.x * 0.5 + 0.5) * w, y = (-V4.y * 0.5 + 0.5) * h;
+    lab.hidden = V4.z > 1 || x < 0 || x > w || y < 0 || y > h;
+    const text = `${S.num(p.d, 2)} ${S.t("unit_m")}`;
+    if (lab.textContent !== text) lab.textContent = text;
+    lab.classList.toggle("bad", p.d < this.show.d_min_m);
+    lab.style.left = `${x.toFixed(1)}px`; lab.style.top = `${y.toFixed(1)}px`;
+  }
+  render() { this.renderer.render(this.scene, this.camera); this.placeLabel(); }
 }
 
 // ------------------------------------------------------------------ DOM builders
@@ -281,7 +348,7 @@ function setRO(which, r) {
     if (o.unit.textContent !== unit) o.unit.textContent = unit;
     o.dd.classList.toggle("is-bad", !!bad);
   };
-  upd("now", num(r.minNow, 2), S.t("unit_m"), r.minNow < dmin);
+  upd("now", num(r.minNow, 2), r.pair ? `${S.t("unit_m")} · ${S.t("pair_label", { a: S.int(r.pair.i), b: S.int(r.pair.j) })}` : S.t("unit_m"), r.minNow < dmin);
   upd("sofar", num(r.minSoFar, 2), S.t("unit_m"), r.minSoFar < dmin);
   upd("below", S.int(r.below), S.t("of_n", { k: "", n: S.int(r.n) }).replace(/^\s*/, ""), r.below > 0);
   if (which === "B") upd("events", S.int(r.triggered), S.t("of_n", { k: "", n: S.int(r.totalEvents) }).replace(/^\s*/, ""), false);
@@ -322,6 +389,7 @@ function updateTransport() {
   const out = $("#timeOut"); out.textContent = S.t("time_readout", { t: fmtTime(S.time), total: fmtTime(S.T) });
   const sc = $("#scrub"); const v = String(Math.round(S.time * 50)); if (sc.value !== v) sc.value = v;
   sc.setAttribute("aria-valuetext", out.textContent);
+  updateStage();
 }
 
 function renderBanner() {
@@ -333,6 +401,7 @@ function renderBanner() {
 
 function renderShowMeta() {
   const s = S.show; if (!s) return; const m = $("#showMeta"); m.replaceChildren();
+  $("#showBlurb").textContent = S.lang === "ar" ? s.blurb_ar : s.blurb_en;
   const tpl = S.t("show_meta", { n: "\u0001", dur: "\u0002", dmin: "\u0003" }).split(/(\u0001|\u0002|\u0003)/);
   for (const part of tpl) {
     if (part === "\u0001") m.append(S.int(s.n)); else if (part === "\u0002") m.append(S.num(s.duration_s, 1));
@@ -447,6 +516,190 @@ function renderScenario() {
   setBlock(body, wrap);
 }
 
+// ------------------------------------------------------------------ guided layer
+const sep = () => (S.lang === "ar" ? "، " : ", ");
+const stageName = (st) => (S.lang === "ar" ? st.name_ar : st.name_en);
+const scenLabel = (sc) => (S.lang === "ar" ? sc.label_ar : sc.label_en);
+const nominalExact = () => {
+  const r = S.cert?.results; if (!r) return null;
+  const pr = r.min_separation_pair || [null, null];
+  return { d: r.min_separation, t: r.min_separation_time ?? S.dataA?.tight.t ?? 0, a: pr[0], b: pr[1] };
+};
+function jumpTo(t) { S.playing = false; S.time = Math.min(Math.max(t, 0), S.T); S.dirty = true; updateTransport(); }
+function setMode(m) {
+  S.mode = m; $("#modeGroup").querySelectorAll("button").forEach((x) => x.setAttribute("aria-pressed", String(x.dataset.mode === m)));
+  buildLegend(); S.dirty = true;
+}
+
+// Camera
+function refreshCam() { $("#camGroup").querySelectorAll("button").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.cam === S.cam))); }
+function applyCamera(kind) {
+  if (!S.A || !S.frame) return;
+  S.cam = kind; S.A.setPreset(kind, S.frame); View.sync(S.A); refreshCam(); S.dirty = true;
+}
+// Extent of the formations (hold windows of the stages between launch and landing), for camera framing.
+function computeFrame(d, show) {
+  const sc = S.index.pos_scale, n = d.n, st = show.stages || [];
+  let x0 = Infinity, x1 = -Infinity, y0 = Infinity, y1 = -Infinity, z0 = 0, z1 = -Infinity;
+  for (let s = 1; s < st.length - 1; s++) {
+    const k0 = Math.max(0, Math.ceil(st[s].t_arrive / S.dt - 1e-9)), k1 = Math.min(d.K - 1, Math.floor(st[s].t_end / S.dt + 1e-9));
+    for (let k = k0; k <= k1; k++) for (let i = 0; i < n; i++) {
+      const p = (k * n + i) * 3, x = d.pos[p] * sc, y = d.pos[p + 1] * sc, z = d.pos[p + 2] * sc;
+      if (x < x0) x0 = x; if (x > x1) x1 = x; if (y < y0) y0 = y; if (y > y1) y1 = y; if (z > z1) z1 = z;
+    }
+  }
+  if (!Number.isFinite(x0)) { const g = show.geofence; x0 = g.x[0]; x1 = g.x[1]; y0 = g.y[0]; y1 = g.y[1]; z1 = 100; }
+  return { x0, x1, y0, y1, z0, z1 };
+}
+
+// Verdict cards in plain language
+function vcard(root, ok, title, detail, note, onTight) {
+  root.className = `vcard guide-only ${ok ? "ok" : "bad"}`;
+  const kids = [el("span", { class: "vc-t", text: title }), el("p", { text: detail })];
+  if (note) kids.push(el("p", { class: "vc-n", text: note }));
+  if (onTight) { const b = el("button", { type: "button", class: "btn", text: S.t("go_tight") }); b.addEventListener("click", onTight); kids.push(b); }
+  root.replaceChildren(...kids);
+}
+function renderVerdicts() {
+  const t = S.t, num = S.num, sh = S.show; if (!sh) return;
+  const a = $("#vcA"), b = $("#vcB"), dmin = num(sh.d_min_m, 1);
+  const ex = nominalExact();
+  if (S.cert && ex) {
+    const pass = S.cert.verdict === "PASS";
+    vcard(a, pass, t(pass ? "vc_nom_pass_t" : "vc_nom_fail_t"), t("vc_nom_d", { d: num(ex.d, 2), t: num(ex.t, 1), dmin }), "", () => jumpTo(ex.t));
+  } else { a.className = "vcard guide-only"; a.replaceChildren(el("p", { text: t("loading") })); }
+  const d = S.dataB;
+  if (d) {
+    const bad = d.everBelow > 0, args = { d: num(d.tight.d, 2), t: num(d.tight.t, 1), dmin, k: S.int(d.everBelow), n: S.int(d.n) };
+    vcard(b, !bad, t(bad ? "vc_str_bad_t" : "vc_str_ok_t"), t(bad ? "vc_str_bad_d" : "vc_str_ok_d", args), t("vc_str_note", { dt: num(S.dt, 1) }), () => jumpTo(d.tight.t));
+  } else { b.className = "vcard guide-only"; b.replaceChildren(el("p", { text: t("loading") })); }
+}
+
+// Stages and markers on the timeline
+function stageIndexAt(t) {
+  const st = S.show?.stages || []; let k = 0;
+  for (let i = 0; i < st.length; i++) if (t >= st[i].t_start - 1e-9) k = i;
+  return k;
+}
+function renderTimeline() {
+  const band = $("#tlBand"), mk = $("#tlMarkers"), sh = S.show; band.replaceChildren(); mk.replaceChildren();
+  if (!sh?.stages || !S.T) return;
+  const st = sh.stages;
+  st.forEach((s, k) => {
+    const end = k + 1 < st.length ? st[k + 1].t_start : S.T, pct = ((end - s.t_start) / S.T) * 100;
+    const b = el("button", { type: "button", class: "tl-seg", style: `flex-basis:${pct.toFixed(3)}%`, title: `${k + 1}. ${stageName(s)}`, text: `${S.int(k + 1)} ${stageName(s)}`, "data-k": String(k) });
+    b.addEventListener("click", () => jumpTo(k === 0 ? 0 : s.t_arrive));
+    band.append(b);
+  });
+  const add = (cls, t, label) => {
+    const b = el("button", { type: "button", class: `tl-mk ${cls}`, style: `left:${((t / S.T) * 100).toFixed(3)}%`, title: label, "aria-label": label });
+    b.addEventListener("click", () => jumpTo(t)); mk.append(b);
+  };
+  const ex = nominalExact();
+  if (ex) add("tight-nom", ex.t, S.t("tl_tight_nom", { t: S.num(ex.t, 1) }));
+  if (S.dataB) add("tight-str", S.dataB.tight.t, S.t("tl_tight_str", { t: S.num(S.dataB.tight.t, 1) }));
+  const sc = S.show.scenarios.find((s) => s.id === S.scenId), seen = new Set();
+  for (const e of (sc?.events || []).slice().sort((a, b) => a.t - b.t)) {
+    if (seen.has(e.drone)) continue; seen.add(e.drone);
+    add("ev", e.t, S.t("tl_event", { kind: S.t("kind_" + e.kind), d: S.int(e.drone), t: S.num(e.t, 1) }));
+  }
+  stageKey = "";
+  updateStage();
+}
+let stageKey = "";
+function updateStage() {
+  const st = S.show?.stages, out = $("#stageNow"); if (!st || !out) return;
+  const k = stageIndexAt(S.time), s = st[k], done = S.time >= S.T - 1e-6;
+  const ph = done ? "phase_end" : S.time < s.t_arrive - 1e-9 ? "phase_move" : "phase_hold";
+  const key = `${S.lang}|${k}|${ph}`; if (key === stageKey) return; stageKey = key;
+  out.replaceChildren(S.t("stage_cur", { k: S.int(k + 1), n: S.int(st.length), name: stageName(s) }), " ", el("span", { class: "ph", text: `· ${S.t(ph)}` }));
+  $("#tlBand").querySelectorAll(".tl-seg").forEach((b) => {
+    const cur = Number(b.dataset.k) === k; b.classList.toggle("cur", cur);
+    if (cur) b.setAttribute("aria-current", "true"); else b.removeAttribute("aria-current");
+  });
+}
+
+// Guided tour
+function tourContent(k) {
+  const t = S.t, num = S.num, sh = S.show, st = sh.stages, dmin = num(sh.d_min_m, 1);
+  if (k === 1) return t("tour1_c", { n: S.int(st.length), list: st.map(stageName).join(sep()) });
+  if (k === 2) {
+    const ex = nominalExact(); if (!ex) return t("loading");
+    return t("tour2_c", { e: num(ex.d, 2), t: num(ex.t, 1), a: S.int(ex.a), b: S.int(ex.b), dmin });
+  }
+  if (k === 3) {
+    const d = S.dataB, sc = sh.scenarios.find((s) => s.id === S.scenId); if (!d || !sc) return t("loading");
+    const res = t(d.everBelow > 0 ? "tour3_bad" : "tour3_ok", { k: S.int(d.everBelow), dmin, t: num(d.tight.t, 1) });
+    return t("tour3_c", { scen: scenLabel(sc), res });
+  }
+  return t("tour4_c");
+}
+function renderSteps() {
+  const ol = $("#steps"); ol.replaceChildren();
+  for (let k = 1; k <= 4; k++) {
+    const b = el("button", { type: "button", class: "step-btn" }, el("span", { class: "no", text: S.int(k) }), el("span", { text: S.t(`tour${k}_t`) }));
+    if (S.tour === k) b.setAttribute("aria-current", "step");
+    b.addEventListener("click", () => goStep(k));
+    ol.append(el("li", {}, b));
+  }
+}
+function renderTour() {
+  const body = $("#tourBody"), k = S.tour;
+  $("#tourStart").hidden = k !== 0; $("#tourExit").hidden = k === 0;
+  $("#tourBack").hidden = k <= 1; $("#tourNext").hidden = k === 0 || k >= 4;
+  if (!k || !S.show) { body.replaceChildren(el("p", { class: "note", text: S.t("tour_idle") })); return; }
+  body.replaceChildren(el("span", { class: "step-no", text: S.t("tour_step", { k: S.int(k), n: S.int(4) }) }), el("h3", { text: S.t(`tour${k}_t`) }), el("p", { text: tourContent(k) }));
+}
+function goStep(k) {
+  S.tour = k; const ex = nominalExact();
+  if (S.show && S.dataA) {
+    if (k === 1) { setMode("height"); jumpTo(S.show.stages[1]?.t_start ?? 0); S.playing = !reducedMotion; updateTransport(); }
+    else if (k === 2 && ex) { setMode("sep"); jumpTo(ex.t); }
+    else if (k === 3 && S.dataB) { setMode("sep"); jumpTo(S.dataB.tight.t); }
+    else if (k === 4) { S.fc.on = true; renderFC(); $("#why").scrollIntoView({ block: "nearest" }); }
+  }
+  renderSteps(); renderTour();
+}
+function exitTour() { S.tour = 0; renderSteps(); renderTour(); }
+
+// Frame check comparison
+function renderFC() {
+  const t = S.t, num = S.num, on = S.fc.on, tg = $("#fcToggle"), steps = $("#fcSteps"), out = $("#fcOut"), evd = $("#fcEvidence");
+  tg.setAttribute("aria-pressed", String(on)); steps.hidden = !on; out.hidden = !on; evd.hidden = !on; $("#tlFrames").hidden = !on;
+  if (!on) return;
+  steps.replaceChildren();
+  for (const sp of [1, 2, 5]) {
+    const b = el("button", { type: "button", class: "btn seg-btn", "aria-pressed": String(sp === S.fc.step), text: `${num(sp, 0)} ${t("unit_s")}` });
+    b.addEventListener("click", () => { S.fc.step = sp; renderFC(); }); steps.append(b);
+  }
+  $("#tlFrames").style.setProperty("--fc-step", String(((S.fc.step / Math.max(S.T, 1)) * 100).toFixed(4)));
+  const d = S.dataA, ex = nominalExact(), kids = [];
+  if (d && ex) {
+    const every = Math.max(1, Math.round(S.fc.step / S.dt)); let m = Infinity;
+    for (let k = 0; k < d.K; k += every) m = Math.min(m, d.frameMin[k]);
+    const diff = m - ex.d;
+    kids.push(el("p", {}, ...t("fc_sees", { step: num(S.fc.step, 0), d: "\u0001", e: "\u0002" }).split(/(\u0001|\u0002)/).map((x) =>
+      x === "\u0001" ? el("span", { class: "fc-num", text: num(m, 2) }) : x === "\u0002" ? el("span", { class: "fc-num", text: num(ex.d, 2) }) : x)));
+    kids.push(el("p", { class: "note", text: diff > 0.005 ? t("fc_over", { x: num(diff, 2) }) : t("fc_same") }));
+  }
+  out.replaceChildren(...kids);
+  const ev = S.index?.evidence; if (!ev) { evd.replaceChildren(); return; }
+  const pc = (v) => num(v * 100, v * 100 < 1 && v > 0 ? 2 : v === 0 ? 0 : 1), r = ev.crossings.false_pass_rate, rz = ev.razor;
+  const ul = el("ul", {}, el("li", { text: t("fc_ev_cross", { a: pc(r["0.5"]), b: pc(r["0.2"]), c: pc(r["0.05"]) }) }),
+    el("li", { text: t("fc_ev_razor", { n: S.int(rz.n), x: S.int(rz.exact_wrong), y: pc(rz.frame_wrong_rate["0.01"]) }) }));
+  evd.replaceChildren(el("h3", { text: t("fc_ev_title") }), ul, el("p", { class: "note" }, el("a", { href: "results.html", text: t("fc_ev_src") })));
+}
+
+// Guided or classic layout
+function applyViewMode(classic, store) {
+  S.classic = classic; document.body.classList.toggle("classic", classic);
+  $("#viewModeBtn").textContent = S.t(classic ? "guided" : "classic");
+  if (store) { try { localStorage.setItem(VIEW_KEY, classic ? "classic" : "guided"); } catch (e) { /* ignore */ } }
+  if (classic && S.tour) exitTour();
+  S.dirty = true;
+}
+function renderGuide() { renderSteps(); renderTour(); renderVerdicts(); renderTimeline(); renderFC(); }
+
 // ------------------------------------------------------------------ orchestration
 function showOverlay(which, text) { (which === "A" ? S.A : S.B).overlay.textContent = text || ""; }
 function showError(err) {
@@ -458,29 +711,33 @@ function showError(err) {
 
 async function loadShow(id) {
   const token = ++S.loadToken; const show = S.index.shows.find((s) => s.id === id) ?? S.index.shows[0];
-  S.show = show; S.playing = false; S.time = 0; S.dt = S.index.dt; S.T = (show.frames - 1) * S.dt; S.cert = null; S.dataA = S.dataB = null;
+  S.show = show; S.playing = false; S.time = 0; S.dt = S.index.dt; S.T = (show.frames - 1) * S.dt; S.cert = null; S.dataA = S.dataB = null; S.frame = null;
+  if (S.tour) S.tour = 0;
   if (!show.scenarios.some((s) => s.id === S.scenId)) S.scenId = show.scenarios.find((s) => s.id !== "nominal")?.id ?? "nominal";
-  fillSelects(); renderShowMeta(); renderCert(); renderScenario();
+  fillSelects(); renderShowMeta(); renderCert(); renderScenario(); renderGuide();
   $("#scrub").max = String(Math.round(S.T * 50)); $("#globalError").hidden = true;
   for (const w of ["A", "B"]) showOverlay(w, S.t("loading_show", { name: show.name }));
   updateTransport();
   try {
     const cert = await fetchJSON(`${DATA}/${show.certificate}`); if (token !== S.loadToken) return;
-    S.cert = cert; renderCert();
+    S.cert = cert; renderCert(); renderVerdicts(); renderTimeline();
     S.A.setShow(show, cert); S.B.setShow(show, cert);
     const nomSc = show.scenarios.find((s) => s.id === "nominal");
     const [dA] = await Promise.all([loadScenarioData(show, nomSc)]); if (token !== S.loadToken) return;
     S.dataA = dA; S.A.setData(dA, nomSc); showOverlay("A", "");
+    S.frame = computeFrame(dA, show); applyCamera(S.cam ?? "front");
+    renderTimeline(); renderFC();
     await loadScenario(S.scenId, token);
   } catch (e) { for (const w of ["A", "B"]) showOverlay(w, String(e.message || e)); showError(e); }
   S.dirty = true;
 }
 async function loadScenario(id, token = S.loadToken) {
-  const sc = S.show.scenarios.find((s) => s.id === id); S.scenId = id; renderScenario();
+  const sc = S.show.scenarios.find((s) => s.id === id); S.scenId = id; renderScenario(); S.dataB = null; renderVerdicts(); renderTimeline();
   showOverlay("B", S.t("loading"));
   try {
     const d = await loadScenarioData(S.show, sc); if (token !== S.loadToken || id !== S.scenId) return;
     S.dataB = d; S.B.setData(d, sc); showOverlay("B", "");
+    renderVerdicts(); renderTimeline(); if (S.tour === 3) renderTour();
   } catch (e) { showOverlay("B", String(e.message || e)); showError(e); }
   S.dirty = true;
 }
@@ -500,7 +757,9 @@ function setLang(lang, store = true) {
   });
   renderBanner(); buildReadouts(); buildLegend(); buildSpeedButtons();
   $("#modeGroup").querySelectorAll("button").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.mode === S.mode)));
-  if (S.index) { fillSelects(); renderShowMeta(); renderCert(); renderScenario(); updateTransport(); }
+  $("#viewModeBtn").textContent = S.t(S.classic ? "guided" : "classic");
+  if (S.index) { fillSelects(); renderShowMeta(); renderCert(); renderScenario(); renderGuide(); updateTransport(); }
+  else renderSteps();
   S.dirty = true;
 }
 
@@ -551,6 +810,13 @@ function wire() {
     S.mode = b.dataset.mode; $("#modeGroup").querySelectorAll("button").forEach((x) => x.setAttribute("aria-pressed", String(x === b)));
     buildLegend(); S.dirty = true;
   }));
+  $("#camGroup").querySelectorAll("button").forEach((b) => b.addEventListener("click", () => applyCamera(b.dataset.cam)));
+  $("#viewModeBtn").addEventListener("click", () => applyViewMode(!S.classic, true));
+  $("#tourStart").addEventListener("click", () => goStep(1));
+  $("#tourNext").addEventListener("click", () => goStep(Math.min(S.tour + 1, 4)));
+  $("#tourBack").addEventListener("click", () => goStep(Math.max(S.tour - 1, 1)));
+  $("#tourExit").addEventListener("click", exitTour);
+  $("#fcToggle").addEventListener("click", () => { S.fc.on = !S.fc.on; renderFC(); });
   document.addEventListener("keydown", (e) => {
     if (e.target.closest?.("select,input,textarea,canvas")) return;
     if (e.code === "Space" && e.target === document.body) { e.preventDefault(); $("#playBtn").click(); }
@@ -559,6 +825,8 @@ function wire() {
 
 async function main() {
   S.theme = initialTheme(); document.documentElement.dataset.theme = S.theme;
+  try { S.classic = localStorage.getItem(VIEW_KEY) === "classic"; } catch (e) { /* ignore */ }
+  document.body.classList.toggle("classic", S.classic);
   setLang(S.lang, false); wire();
   try { S.A = new View($("#viewA"), "A"); S.B = new View($("#viewB"), "B"); }
   catch (e) { const g = $("#globalError"); g.hidden = false; g.textContent = S.t("webgl_error"); return; }

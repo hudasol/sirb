@@ -5,6 +5,7 @@ Format follows Keep a Changelog. Versions before 0.1.0 were internal milestones.
 ## [Unreleased]
 
 ### Added
+- Viewer guided layer: four step tour (the plan, the check, the stress, what Sirb tells you), plain language verdict cards, a closest pair line with its distance in both views, camera presets (front, side, top, oblique), a timeline with named stages and clickable markers for tightest moments and failure events, and a frame check comparison using measured results. The gallery show is the default at 4x. A Classic view switch restores the earlier layout. Stage windows, show descriptions and the evidence figures are added to `viewer/data/index.json`; no planner, verifier or stress number changed. New Arabic strings await native review.
 - Related work, benchmark v2, stress credibility, model fidelity and PX4 SITL replay studies with their documents, and a results page in the viewer (`viewer/results.html`).
 - Optional `latency_s` and `accel_limit` in the stress tracker (off by default).
 - Show `oryx_500` (500 drones, orb, an original Arabian oryx silhouette, supershape). It replaces `wall_500` in the viewer; `wall_500.json` and the results that cite it are unchanged.
