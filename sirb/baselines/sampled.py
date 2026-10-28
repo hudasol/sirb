@@ -38,3 +38,19 @@ def sampled_min_separation(fleet: Fleet, dt: float, d_min: float,
             d, _ = cKDTree(frame).query(frame, k=2)
             best = min(best, float(d[:, 1].min()))
     return SampledReport(dt=dt, min_separation=best, ok=best >= d_min, n_samples=len(times))
+
+
+def sampled_min_separation_dense(fleet: Fleet, dt: float, d_min: float,
+                                 chunk: int = 512) -> SampledReport:
+    """Same check with all pairs evaluated by broadcasting (fast for small fleets: no tree
+    build per frame). Used as the best effort sampled baseline in the benchmark."""
+    t_end = fleet.t_end
+    times = np.unique(np.append(np.arange(0.0, t_end, dt), t_end))
+    n = fleet.n
+    iu = np.triu_indices(n, 1)
+    best = np.inf
+    for lo in range(0, len(times), chunk):
+        block = fleet.sample(times[lo:lo + chunk])           # (T, n, 3)
+        diff = block[:, iu[0], :] - block[:, iu[1], :]
+        best = min(best, float(np.sqrt((diff * diff).sum(axis=2)).min()))
+    return SampledReport(dt=dt, min_separation=best, ok=best >= d_min, n_samples=len(times))
