@@ -26,7 +26,25 @@ from sirb.verify import verify
 OUT = Path("viewer/data")
 DT = 0.2
 SEED = 20261011
-SHOWS = ["sirb_text_100", "torus_300", "oryx_500", "gallery_120"]
+SHOWS = ["gallery_120", "oryx_500", "torus_300", "sirb_text_100"]
+
+# Display names for the stages of each show (stage ids come from shows/*.json). Arabic wording is
+# new and awaits native review (docs/VIEWER.md).
+STAGE_NAMES = {
+    "launch": ("Launch", "الإقلاع"), "land": ("Landing", "الهبوط"), "orb": ("Orb", "الكرة"),
+    "word": ("Sirb wordmark", "شعار سرب"), "ring": ("Ring", "الحلقة"), "torus": ("Torus", "الطارة"),
+    "super": ("Supershape", "الشكل الفائق"), "oryx": ("Arabian oryx", "المها العربي"),
+    "falcon": ("Falcon", "الصقر"), "dhow": ("Dhow", "الداو"), "palm": ("Palm", "النخلة"),
+    "hero": ("Hero", "البطل"), "heart": ("Heart", "القلب"), "skyline": ("Skyline", "الأفق"),
+}
+SHOW_BLURBS = {
+    "gallery_120": ("120 drones: falcon, dhow, palm, hero, heart, wordmark and skyline.",
+                    "١٢٠ طائرة: صقر وداو ونخلة وبطل وقلب وشعار وأفق."),
+    "oryx_500": ("500 drones: orb, Arabian oryx and a supershape.",
+                 "٥٠٠ طائرة: كرة ومها عربي وشكل فائق."),
+    "torus_300": ("300 drones: torus and a supershape.", "٣٠٠ طائرة: طارة وشكل فائق."),
+    "sirb_text_100": ("100 drones: orb, wordmark and ring.", "١٠٠ طائرة: كرة وشعار وحلقة."),
+}
 
 SCENARIOS = {
     "wind_gnss": dict(label_en="Wind 6 m/s + degraded GNSS", label_ar="رياح ٦ م/ث + تدهور GNSS",
@@ -54,6 +72,34 @@ def round_floats(x, nd: int = 6):
     return x
 
 
+def stage_windows(show: dict, plan_info: dict, t_end: float) -> list[dict]:
+    """Stage k: `t_start` is when the fleet leaves the previous formation (0 for the first stage),
+    `t_arrive` when it has reached this one, `t_end` when its hold ends. Read from the planner's
+    own transition list, so the windows are the ones the trajectories were built from."""
+    out, tr = [], plan_info["transitions"]
+    for k, st in enumerate(show["stages"]):
+        t_start = 0.0 if k == 0 else float(tr[k - 1]["t_start"])
+        t_arrive = 0.0 if k == 0 else float(tr[k - 1]["t_start"] + tr[k - 1]["window_s"])
+        hold = float(st.get("hold_s", 0.0))
+        en, ar = STAGE_NAMES[st["name"]]
+        out.append({"id": st["name"], "name_en": en, "name_ar": ar, "t_start": t_start,
+                    "t_arrive": t_arrive, "t_end": min(t_arrive + hold, t_end) if k < len(show["stages"]) - 1 else t_end})
+    return out
+
+
+def evidence() -> dict:
+    """Measured results shown on the viewer's 'Why Sirb' card, copied from the committed result files."""
+    base = json.loads(Path("results/baselines.json").read_text())["sampled_false_pass"]
+    b2 = json.loads(Path("results/benchmark_v2.json").read_text())["strata"]
+    razor = b2["razor_violating"]
+    return {
+        "crossings": {"trials": base["trials"], "false_pass_rate": base["false_pass_rate"]},
+        "razor": {"n": razor["n"], "exact_wrong": razor["exact_wrong"]["count"],
+                  "frame_wrong_rate": {k: v["rate"] for k, v in razor["fixed_wrong"].items()}},
+        "sources": ["results/baselines.json", "results/benchmark_v2.json"],
+    }
+
+
 def nn_distance(X: np.ndarray) -> np.ndarray:
     K, n, _ = X.shape
     out = np.empty((K, n), dtype=np.float64)
@@ -75,10 +121,10 @@ def write_bin(path: Path, X: np.ndarray) -> dict:
 def main() -> None:
     OUT.mkdir(parents=True, exist_ok=True)
     index = {"safety_statement": SAFETY_STATEMENT, "dt": DT, "seed": SEED, "pos_scale": 0.01,
-             "shows": []}
+             "evidence": evidence(), "shows": []}
     for name in SHOWS:
         show = load_show(f"shows/{name}.json")
-        fleet, _ = plan_baseline(show)
+        fleet, plan_info = plan_baseline(show)
         rep = verify(fleet, show["limits"])
         cert = make_certificate(rep, fleet, show["limits"])
         recomputation_ok = bool(verify_certificate(cert, fleet))
@@ -101,7 +147,9 @@ def main() -> None:
                         config=spec["cfg"])
             sc.append(info)
         index["shows"].append({
-            "id": name, "name": show["name"], "n": int(n), "frames": int(K),
+            "id": name, "name": show["name"],
+            "blurb_en": SHOW_BLURBS[name][0], "blurb_ar": SHOW_BLURBS[name][1],
+            "stages": stage_windows(show, plan_info, float(fleet.t_end)), "n": int(n), "frames": int(K),
             "duration_s": float(fleet.t_end), "d_min_m": show["limits"]["min_separation_m"],
             "geofence": show["limits"]["geofence"], "crowd": show["limits"]["crowd"],
             "fleet_sha256": fleet.content_hash(), "verdict": cert["verdict"],

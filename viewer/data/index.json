@@ -3,147 +3,115 @@
  "dt": 0.2,
  "seed": 20261011,
  "pos_scale": 0.01,
+ "evidence": {
+  "crossings": {
+   "trials": 3000,
+   "false_pass_rate": {
+    "0.5": 0.041333,
+    "0.2": 0.001667,
+    "0.1": 0.000333,
+    "0.05": 0.0
+   }
+  },
+  "razor": {
+   "n": 78,
+   "exact_wrong": 0,
+   "frame_wrong_rate": {
+    "0.5": 0.974359,
+    "0.2": 0.948718,
+    "0.1": 0.923077,
+    "0.05": 0.858974,
+    "0.01": 0.564103
+   }
+  },
+  "sources": [
+   "results/baselines.json",
+   "results/benchmark_v2.json"
+  ]
+ },
  "shows": [
   {
-   "id": "sirb_text_100",
-   "name": "Sirb text (100 drones)",
-   "n": 100,
-   "frames": 779,
-   "duration_s": 155.635331,
-   "d_min_m": 2.0,
-   "geofence": {
-    "x": [
-     -150.0,
-     150.0
-    ],
-    "y": [
-     -130.0,
-     100.0
-    ]
-   },
-   "crowd": {
-    "y": -250.0,
-    "min_distance_m": 50.0
-   },
-   "fleet_sha256": "dc4aba7546357c59adff49a830f86a84cf066442910f1c7120eba6bde348dd5e",
-   "verdict": "PASS",
-   "min_separation_m": 2.188611,
-   "recomputation_ok": true,
-   "certificate": "sirb_text_100/certificate.json",
-   "scenarios": [
+   "id": "gallery_120",
+   "name": "Gallery of silhouettes (120 drones)",
+   "blurb_en": "120 drones: falcon, dhow, palm, hero, heart, wordmark and skyline.",
+   "blurb_ar": "\u0661\u0662\u0660 \u0637\u0627\u0626\u0631\u0629: \u0635\u0642\u0631 \u0648\u062f\u0627\u0648 \u0648\u0646\u062e\u0644\u0629 \u0648\u0628\u0637\u0644 \u0648\u0642\u0644\u0628 \u0648\u0634\u0639\u0627\u0631 \u0648\u0623\u0641\u0642.",
+   "stages": [
     {
-     "id": "nominal",
-     "label_en": "Nominal (passed the separation check)",
-     "label_ar": "\u0627\u0644\u062e\u0637\u0629 \u0627\u0644\u0627\u0633\u0645\u064a\u0629 (\u0627\u062c\u062a\u0627\u0632\u062a \u0641\u062d\u0635 \u0627\u0644\u062a\u0628\u0627\u0639\u062f)",
-     "pos": "nominal.bin",
-     "nn": "nominal.nn.bin",
-     "min_nn_m": 2.19
+     "id": "launch",
+     "name_en": "Launch",
+     "name_ar": "\u0627\u0644\u0625\u0642\u0644\u0627\u0639",
+     "t_start": 0.0,
+     "t_arrive": 0.0,
+     "t_end": 2.0
     },
     {
-     "pos": "wind_gnss.bin",
-     "nn": "wind_gnss.nn.bin",
-     "min_nn_m": 1.02,
-     "id": "wind_gnss",
-     "label_en": "Wind 6 m/s + degraded GNSS",
-     "label_ar": "\u0631\u064a\u0627\u062d \u0666 \u0645/\u062b + \u062a\u062f\u0647\u0648\u0631 GNSS",
-     "events": [],
-     "ballistic": [],
-     "max_tracking_error_m": 2.083365,
-     "config": {
-      "w20": 6.0,
-      "gnss_deg_fraction": 0.25,
-      "gnss_bias_sigma": 0.5
-     }
+     "id": "falcon",
+     "name_en": "Falcon",
+     "name_ar": "\u0627\u0644\u0635\u0642\u0631",
+     "t_start": 2.0,
+     "t_arrive": 36.143544,
+     "t_end": 41.143544
     },
     {
-     "pos": "motor_failure.bin",
-     "nn": "motor_failure.nn.bin",
-     "min_nn_m": 1.75,
-     "id": "motor_failure",
-     "label_en": "2 motor failures (ballistic fall), wind 3 m/s",
-     "label_ar": "\u0639\u0637\u0644 \u0645\u062d\u0631\u0651\u0643\u064a\u0646 (\u0633\u0642\u0648\u0637 \u062d\u0631)\u060c \u0631\u064a\u0627\u062d \u0663 \u0645/\u062b",
-     "events": [
-      {
-       "drone": 46,
-       "kind": "motor_failure",
-       "t": 49.0
-      },
-      {
-       "drone": 75,
-       "kind": "motor_failure",
-       "t": 119.2
-      }
-     ],
-     "ballistic": [
-      46,
-      75
-     ],
-     "max_tracking_error_m": 0.400591,
-     "config": {
-      "w20": 3.0,
-      "motor_failures": 2
-     }
+     "id": "dhow",
+     "name_en": "Dhow",
+     "name_ar": "\u0627\u0644\u062f\u0627\u0648",
+     "t_start": 41.143544,
+     "t_arrive": 66.585531,
+     "t_end": 71.585531
     },
     {
-     "pos": "comms_hold.bin",
-     "nn": "comms_hold.nn.bin",
-     "min_nn_m": 0.62,
-     "id": "comms_hold",
-     "label_en": "5% comms loss, hold-then-descend",
-     "label_ar": "\u0641\u0642\u062f\u0627\u0646 \u0627\u062a\u0635\u0627\u0644 \u0665\u066a\u060c \u062a\u062b\u0628\u064a\u062a \u062b\u0645 \u0647\u0628\u0648\u0637",
-     "events": [
-      {
-       "drone": 50,
-       "kind": "comms_loss",
-       "t": 91.4
-      },
-      {
-       "drone": 12,
-       "kind": "comms_loss",
-       "t": 122.8
-      },
-      {
-       "drone": 27,
-       "kind": "comms_loss",
-       "t": 126.6
-      },
-      {
-       "drone": 63,
-       "kind": "comms_loss",
-       "t": 88.8
-      },
-      {
-       "drone": 7,
-       "kind": "comms_loss",
-       "t": 92.6
-      },
-      {
-       "drone": 51,
-       "kind": "comms_loss",
-       "t": 127.0
-      }
-     ],
-     "ballistic": [],
-     "max_tracking_error_m": 0.424797,
-     "config": {
-      "w20": 3.0,
-      "comms_loss_fraction": 0.05,
-      "behavior": {
-       "comms_loss": "hold",
-       "battery_low": "descend",
-       "gnss_loss": "continue",
-       "motor_failure": "ballistic"
-      }
-     }
+     "id": "palm",
+     "name_en": "Palm",
+     "name_ar": "\u0627\u0644\u0646\u062e\u0644\u0629",
+     "t_start": 71.585531,
+     "t_arrive": 85.280306,
+     "t_end": 90.280306
+    },
+    {
+     "id": "hero",
+     "name_en": "Hero",
+     "name_ar": "\u0627\u0644\u0628\u0637\u0644",
+     "t_start": 90.280306,
+     "t_arrive": 109.984793,
+     "t_end": 114.984793
+    },
+    {
+     "id": "heart",
+     "name_en": "Heart",
+     "name_ar": "\u0627\u0644\u0642\u0644\u0628",
+     "t_start": 114.984793,
+     "t_arrive": 131.40265,
+     "t_end": 135.40265
+    },
+    {
+     "id": "word",
+     "name_en": "Sirb wordmark",
+     "name_ar": "\u0634\u0639\u0627\u0631 \u0633\u0631\u0628",
+     "t_start": 135.40265,
+     "t_arrive": 172.043503,
+     "t_end": 177.043503
+    },
+    {
+     "id": "skyline",
+     "name_en": "Skyline",
+     "name_ar": "\u0627\u0644\u0623\u0641\u0642",
+     "t_start": 177.043503,
+     "t_arrive": 194.304323,
+     "t_end": 199.304323
+    },
+    {
+     "id": "land",
+     "name_en": "Landing",
+     "name_ar": "\u0627\u0644\u0647\u0628\u0648\u0637",
+     "t_start": 199.304323,
+     "t_arrive": 243.535574,
+     "t_end": 245.535574
     }
-   ]
-  },
-  {
-   "id": "torus_300",
-   "name": "Torus orbit (300 drones)",
-   "n": 300,
-   "frames": 535,
-   "duration_s": 106.731978,
+   ],
+   "n": 120,
+   "frames": 1229,
+   "duration_s": 245.535574,
    "d_min_m": 2.0,
    "geofence": {
     "x": [
@@ -159,11 +127,11 @@
     "y": -250.0,
     "min_distance_m": 50.0
    },
-   "fleet_sha256": "d17f2c1af3ac8b77728de3e801f46c6677b4125d6701339be430276477bb70af",
+   "fleet_sha256": "deea9ff8714078b49c3ada1c24ba3b21b9e6a1a165f44ce002cb4554a20d9e99",
    "verdict": "PASS",
-   "min_separation_m": 2.195874,
+   "min_separation_m": 2.155806,
    "recomputation_ok": true,
-   "certificate": "torus_300/certificate.json",
+   "certificate": "gallery_120/certificate.json",
    "scenarios": [
     {
      "id": "nominal",
@@ -171,18 +139,18 @@
      "label_ar": "\u0627\u0644\u062e\u0637\u0629 \u0627\u0644\u0627\u0633\u0645\u064a\u0629 (\u0627\u062c\u062a\u0627\u0632\u062a \u0641\u062d\u0635 \u0627\u0644\u062a\u0628\u0627\u0639\u062f)",
      "pos": "nominal.bin",
      "nn": "nominal.nn.bin",
-     "min_nn_m": 2.2
+     "min_nn_m": 2.16
     },
     {
      "pos": "wind_gnss.bin",
      "nn": "wind_gnss.nn.bin",
-     "min_nn_m": 1.23,
+     "min_nn_m": 1.04,
      "id": "wind_gnss",
      "label_en": "Wind 6 m/s + degraded GNSS",
      "label_ar": "\u0631\u064a\u0627\u062d \u0666 \u0645/\u062b + \u062a\u062f\u0647\u0648\u0631 GNSS",
      "events": [],
      "ballistic": [],
-     "max_tracking_error_m": 2.205174,
+     "max_tracking_error_m": 2.864603,
      "config": {
       "w20": 6.0,
       "gnss_deg_fraction": 0.25,
@@ -192,27 +160,27 @@
     {
      "pos": "motor_failure.bin",
      "nn": "motor_failure.nn.bin",
-     "min_nn_m": 0.59,
+     "min_nn_m": 0.43,
      "id": "motor_failure",
      "label_en": "2 motor failures (ballistic fall), wind 3 m/s",
      "label_ar": "\u0639\u0637\u0644 \u0645\u062d\u0631\u0651\u0643\u064a\u0646 (\u0633\u0642\u0648\u0637 \u062d\u0631)\u060c \u0631\u064a\u0627\u062d \u0663 \u0645/\u062b",
      "events": [
       {
-       "drone": 242,
+       "drone": 117,
        "kind": "motor_failure",
-       "t": 78.0
+       "t": 111.4
       },
       {
-       "drone": 59,
+       "drone": 87,
        "kind": "motor_failure",
-       "t": 81.6
+       "t": 44.6
       }
      ],
      "ballistic": [
-      242,
-      59
+      87,
+      117
      ],
-     "max_tracking_error_m": 0.3938,
+     "max_tracking_error_m": 0.448498,
      "config": {
       "w20": 3.0,
       "motor_failures": 2
@@ -221,79 +189,34 @@
     {
      "pos": "comms_hold.bin",
      "nn": "comms_hold.nn.bin",
-     "min_nn_m": 0.33,
+     "min_nn_m": 0.58,
      "id": "comms_hold",
      "label_en": "5% comms loss, hold-then-descend",
      "label_ar": "\u0641\u0642\u062f\u0627\u0646 \u0627\u062a\u0635\u0627\u0644 \u0665\u066a\u060c \u062a\u062b\u0628\u064a\u062a \u062b\u0645 \u0647\u0628\u0648\u0637",
      "events": [
       {
-       "drone": 267,
+       "drone": 54,
        "kind": "comms_loss",
-       "t": 28.4
+       "t": 90.0
       },
       {
-       "drone": 124,
+       "drone": 10,
        "kind": "comms_loss",
-       "t": 44.8
-      },
-      {
-       "drone": 4,
-       "kind": "comms_loss",
-       "t": 27.0
-      },
-      {
-       "drone": 209,
-       "kind": "comms_loss",
-       "t": 62.2
-      },
-      {
-       "drone": 52,
-       "kind": "comms_loss",
-       "t": 84.4
-      },
-      {
-       "drone": 120,
-       "kind": "comms_loss",
-       "t": 34.0
-      },
-      {
-       "drone": 92,
-       "kind": "comms_loss",
-       "t": 45.4
-      },
-      {
-       "drone": 42,
-       "kind": "comms_loss",
-       "t": 50.2
-      },
-      {
-       "drone": 5,
-       "kind": "comms_loss",
-       "t": 73.4
-      },
-      {
-       "drone": 180,
-       "kind": "comms_loss",
-       "t": 22.2
-      },
-      {
-       "drone": 150,
-       "kind": "comms_loss",
-       "t": 16.2
-      },
-      {
-       "drone": 156,
-       "kind": "comms_loss",
-       "t": 31.8
+       "t": 157.4
       },
       {
        "drone": 66,
        "kind": "comms_loss",
-       "t": 83.4
+       "t": 107.8
+      },
+      {
+       "drone": 6,
+       "kind": "comms_loss",
+       "t": 142.6
       }
      ],
      "ballistic": [],
-     "max_tracking_error_m": 0.428179,
+     "max_tracking_error_m": 0.435094,
      "config": {
       "w20": 3.0,
       "comms_loss_fraction": 0.05,
@@ -310,6 +233,50 @@
   {
    "id": "oryx_500",
    "name": "Oryx and orb (500 drones)",
+   "blurb_en": "500 drones: orb, Arabian oryx and a supershape.",
+   "blurb_ar": "\u0665\u0660\u0660 \u0637\u0627\u0626\u0631\u0629: \u0643\u0631\u0629 \u0648\u0645\u0647\u0627 \u0639\u0631\u0628\u064a \u0648\u0634\u0643\u0644 \u0641\u0627\u0626\u0642.",
+   "stages": [
+    {
+     "id": "launch",
+     "name_en": "Launch",
+     "name_ar": "\u0627\u0644\u0625\u0642\u0644\u0627\u0639",
+     "t_start": 0.0,
+     "t_arrive": 0.0,
+     "t_end": 2.0
+    },
+    {
+     "id": "orb",
+     "name_en": "Orb",
+     "name_ar": "\u0627\u0644\u0643\u0631\u0629",
+     "t_start": 2.0,
+     "t_arrive": 28.947505,
+     "t_end": 32.947505
+    },
+    {
+     "id": "oryx",
+     "name_en": "Arabian oryx",
+     "name_ar": "\u0627\u0644\u0645\u0647\u0627 \u0627\u0644\u0639\u0631\u0628\u064a",
+     "t_start": 32.947505,
+     "t_arrive": 54.486535,
+     "t_end": 59.486535
+    },
+    {
+     "id": "super",
+     "name_en": "Supershape",
+     "name_ar": "\u0627\u0644\u0634\u0643\u0644 \u0627\u0644\u0641\u0627\u0626\u0642",
+     "t_start": 59.486535,
+     "t_arrive": 77.49241,
+     "t_end": 82.49241
+    },
+    {
+     "id": "land",
+     "name_en": "Landing",
+     "name_ar": "\u0627\u0644\u0647\u0628\u0648\u0637",
+     "t_start": 82.49241,
+     "t_arrive": 142.171853,
+     "t_end": 144.171853
+    }
+   ],
    "n": 500,
    "frames": 722,
    "duration_s": 144.171853,
@@ -542,11 +509,47 @@
    ]
   },
   {
-   "id": "gallery_120",
-   "name": "Gallery of silhouettes (120 drones)",
-   "n": 120,
-   "frames": 1229,
-   "duration_s": 245.535574,
+   "id": "torus_300",
+   "name": "Torus orbit (300 drones)",
+   "blurb_en": "300 drones: torus and a supershape.",
+   "blurb_ar": "\u0663\u0660\u0660 \u0637\u0627\u0626\u0631\u0629: \u0637\u0627\u0631\u0629 \u0648\u0634\u0643\u0644 \u0641\u0627\u0626\u0642.",
+   "stages": [
+    {
+     "id": "launch",
+     "name_en": "Launch",
+     "name_ar": "\u0627\u0644\u0625\u0642\u0644\u0627\u0639",
+     "t_start": 0.0,
+     "t_arrive": 0.0,
+     "t_end": 2.0
+    },
+    {
+     "id": "torus",
+     "name_en": "Torus",
+     "name_ar": "\u0627\u0644\u0637\u0627\u0631\u0629",
+     "t_start": 2.0,
+     "t_arrive": 26.198869,
+     "t_end": 31.198869
+    },
+    {
+     "id": "super",
+     "name_en": "Supershape",
+     "name_ar": "\u0627\u0644\u0634\u0643\u0644 \u0627\u0644\u0641\u0627\u0626\u0642",
+     "t_start": 31.198869,
+     "t_arrive": 42.979407,
+     "t_end": 47.979407
+    },
+    {
+     "id": "land",
+     "name_en": "Landing",
+     "name_ar": "\u0627\u0644\u0647\u0628\u0648\u0637",
+     "t_start": 47.979407,
+     "t_arrive": 104.731978,
+     "t_end": 106.731978
+    }
+   ],
+   "n": 300,
+   "frames": 535,
+   "duration_s": 106.731978,
    "d_min_m": 2.0,
    "geofence": {
     "x": [
@@ -562,11 +565,11 @@
     "y": -250.0,
     "min_distance_m": 50.0
    },
-   "fleet_sha256": "deea9ff8714078b49c3ada1c24ba3b21b9e6a1a165f44ce002cb4554a20d9e99",
+   "fleet_sha256": "d17f2c1af3ac8b77728de3e801f46c6677b4125d6701339be430276477bb70af",
    "verdict": "PASS",
-   "min_separation_m": 2.155806,
+   "min_separation_m": 2.195874,
    "recomputation_ok": true,
-   "certificate": "gallery_120/certificate.json",
+   "certificate": "torus_300/certificate.json",
    "scenarios": [
     {
      "id": "nominal",
@@ -574,18 +577,18 @@
      "label_ar": "\u0627\u0644\u062e\u0637\u0629 \u0627\u0644\u0627\u0633\u0645\u064a\u0629 (\u0627\u062c\u062a\u0627\u0632\u062a \u0641\u062d\u0635 \u0627\u0644\u062a\u0628\u0627\u0639\u062f)",
      "pos": "nominal.bin",
      "nn": "nominal.nn.bin",
-     "min_nn_m": 2.16
+     "min_nn_m": 2.2
     },
     {
      "pos": "wind_gnss.bin",
      "nn": "wind_gnss.nn.bin",
-     "min_nn_m": 1.04,
+     "min_nn_m": 1.23,
      "id": "wind_gnss",
      "label_en": "Wind 6 m/s + degraded GNSS",
      "label_ar": "\u0631\u064a\u0627\u062d \u0666 \u0645/\u062b + \u062a\u062f\u0647\u0648\u0631 GNSS",
      "events": [],
      "ballistic": [],
-     "max_tracking_error_m": 2.864603,
+     "max_tracking_error_m": 2.205174,
      "config": {
       "w20": 6.0,
       "gnss_deg_fraction": 0.25,
@@ -595,27 +598,27 @@
     {
      "pos": "motor_failure.bin",
      "nn": "motor_failure.nn.bin",
-     "min_nn_m": 0.43,
+     "min_nn_m": 0.59,
      "id": "motor_failure",
      "label_en": "2 motor failures (ballistic fall), wind 3 m/s",
      "label_ar": "\u0639\u0637\u0644 \u0645\u062d\u0631\u0651\u0643\u064a\u0646 (\u0633\u0642\u0648\u0637 \u062d\u0631)\u060c \u0631\u064a\u0627\u062d \u0663 \u0645/\u062b",
      "events": [
       {
-       "drone": 117,
+       "drone": 242,
        "kind": "motor_failure",
-       "t": 111.4
+       "t": 78.0
       },
       {
-       "drone": 87,
+       "drone": 59,
        "kind": "motor_failure",
-       "t": 44.6
+       "t": 81.6
       }
      ],
      "ballistic": [
-      87,
-      117
+      242,
+      59
      ],
-     "max_tracking_error_m": 0.448498,
+     "max_tracking_error_m": 0.3938,
      "config": {
       "w20": 3.0,
       "motor_failures": 2
@@ -624,34 +627,257 @@
     {
      "pos": "comms_hold.bin",
      "nn": "comms_hold.nn.bin",
-     "min_nn_m": 0.58,
+     "min_nn_m": 0.33,
      "id": "comms_hold",
      "label_en": "5% comms loss, hold-then-descend",
      "label_ar": "\u0641\u0642\u062f\u0627\u0646 \u0627\u062a\u0635\u0627\u0644 \u0665\u066a\u060c \u062a\u062b\u0628\u064a\u062a \u062b\u0645 \u0647\u0628\u0648\u0637",
      "events": [
       {
-       "drone": 54,
+       "drone": 267,
        "kind": "comms_loss",
-       "t": 90.0
+       "t": 28.4
       },
       {
-       "drone": 10,
+       "drone": 124,
        "kind": "comms_loss",
-       "t": 157.4
+       "t": 44.8
+      },
+      {
+       "drone": 4,
+       "kind": "comms_loss",
+       "t": 27.0
+      },
+      {
+       "drone": 209,
+       "kind": "comms_loss",
+       "t": 62.2
+      },
+      {
+       "drone": 52,
+       "kind": "comms_loss",
+       "t": 84.4
+      },
+      {
+       "drone": 120,
+       "kind": "comms_loss",
+       "t": 34.0
+      },
+      {
+       "drone": 92,
+       "kind": "comms_loss",
+       "t": 45.4
+      },
+      {
+       "drone": 42,
+       "kind": "comms_loss",
+       "t": 50.2
+      },
+      {
+       "drone": 5,
+       "kind": "comms_loss",
+       "t": 73.4
+      },
+      {
+       "drone": 180,
+       "kind": "comms_loss",
+       "t": 22.2
+      },
+      {
+       "drone": 150,
+       "kind": "comms_loss",
+       "t": 16.2
+      },
+      {
+       "drone": 156,
+       "kind": "comms_loss",
+       "t": 31.8
       },
       {
        "drone": 66,
        "kind": "comms_loss",
-       "t": 107.8
-      },
-      {
-       "drone": 6,
-       "kind": "comms_loss",
-       "t": 142.6
+       "t": 83.4
       }
      ],
      "ballistic": [],
-     "max_tracking_error_m": 0.435094,
+     "max_tracking_error_m": 0.428179,
+     "config": {
+      "w20": 3.0,
+      "comms_loss_fraction": 0.05,
+      "behavior": {
+       "comms_loss": "hold",
+       "battery_low": "descend",
+       "gnss_loss": "continue",
+       "motor_failure": "ballistic"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "id": "sirb_text_100",
+   "name": "Sirb text (100 drones)",
+   "blurb_en": "100 drones: orb, wordmark and ring.",
+   "blurb_ar": "\u0661\u0660\u0660 \u0637\u0627\u0626\u0631\u0629: \u0643\u0631\u0629 \u0648\u0634\u0639\u0627\u0631 \u0648\u062d\u0644\u0642\u0629.",
+   "stages": [
+    {
+     "id": "launch",
+     "name_en": "Launch",
+     "name_ar": "\u0627\u0644\u0625\u0642\u0644\u0627\u0639",
+     "t_start": 0.0,
+     "t_arrive": 0.0,
+     "t_end": 2.0
+    },
+    {
+     "id": "orb",
+     "name_en": "Orb",
+     "name_ar": "\u0627\u0644\u0643\u0631\u0629",
+     "t_start": 2.0,
+     "t_arrive": 23.10515,
+     "t_end": 27.10515
+    },
+    {
+     "id": "word",
+     "name_en": "Sirb wordmark",
+     "name_ar": "\u0634\u0639\u0627\u0631 \u0633\u0631\u0628",
+     "t_start": 27.10515,
+     "t_arrive": 42.218071,
+     "t_end": 47.218071
+    },
+    {
+     "id": "ring",
+     "name_en": "Ring",
+     "name_ar": "\u0627\u0644\u062d\u0644\u0642\u0629",
+     "t_start": 47.218071,
+     "t_arrive": 78.928405,
+     "t_end": 82.928405
+    },
+    {
+     "id": "land",
+     "name_en": "Landing",
+     "name_ar": "\u0627\u0644\u0647\u0628\u0648\u0637",
+     "t_start": 82.928405,
+     "t_arrive": 153.635331,
+     "t_end": 155.635331
+    }
+   ],
+   "n": 100,
+   "frames": 779,
+   "duration_s": 155.635331,
+   "d_min_m": 2.0,
+   "geofence": {
+    "x": [
+     -150.0,
+     150.0
+    ],
+    "y": [
+     -130.0,
+     100.0
+    ]
+   },
+   "crowd": {
+    "y": -250.0,
+    "min_distance_m": 50.0
+   },
+   "fleet_sha256": "dc4aba7546357c59adff49a830f86a84cf066442910f1c7120eba6bde348dd5e",
+   "verdict": "PASS",
+   "min_separation_m": 2.188611,
+   "recomputation_ok": true,
+   "certificate": "sirb_text_100/certificate.json",
+   "scenarios": [
+    {
+     "id": "nominal",
+     "label_en": "Nominal (passed the separation check)",
+     "label_ar": "\u0627\u0644\u062e\u0637\u0629 \u0627\u0644\u0627\u0633\u0645\u064a\u0629 (\u0627\u062c\u062a\u0627\u0632\u062a \u0641\u062d\u0635 \u0627\u0644\u062a\u0628\u0627\u0639\u062f)",
+     "pos": "nominal.bin",
+     "nn": "nominal.nn.bin",
+     "min_nn_m": 2.19
+    },
+    {
+     "pos": "wind_gnss.bin",
+     "nn": "wind_gnss.nn.bin",
+     "min_nn_m": 1.02,
+     "id": "wind_gnss",
+     "label_en": "Wind 6 m/s + degraded GNSS",
+     "label_ar": "\u0631\u064a\u0627\u062d \u0666 \u0645/\u062b + \u062a\u062f\u0647\u0648\u0631 GNSS",
+     "events": [],
+     "ballistic": [],
+     "max_tracking_error_m": 2.083365,
+     "config": {
+      "w20": 6.0,
+      "gnss_deg_fraction": 0.25,
+      "gnss_bias_sigma": 0.5
+     }
+    },
+    {
+     "pos": "motor_failure.bin",
+     "nn": "motor_failure.nn.bin",
+     "min_nn_m": 1.75,
+     "id": "motor_failure",
+     "label_en": "2 motor failures (ballistic fall), wind 3 m/s",
+     "label_ar": "\u0639\u0637\u0644 \u0645\u062d\u0631\u0651\u0643\u064a\u0646 (\u0633\u0642\u0648\u0637 \u062d\u0631)\u060c \u0631\u064a\u0627\u062d \u0663 \u0645/\u062b",
+     "events": [
+      {
+       "drone": 46,
+       "kind": "motor_failure",
+       "t": 49.0
+      },
+      {
+       "drone": 75,
+       "kind": "motor_failure",
+       "t": 119.2
+      }
+     ],
+     "ballistic": [
+      46,
+      75
+     ],
+     "max_tracking_error_m": 0.400591,
+     "config": {
+      "w20": 3.0,
+      "motor_failures": 2
+     }
+    },
+    {
+     "pos": "comms_hold.bin",
+     "nn": "comms_hold.nn.bin",
+     "min_nn_m": 0.62,
+     "id": "comms_hold",
+     "label_en": "5% comms loss, hold-then-descend",
+     "label_ar": "\u0641\u0642\u062f\u0627\u0646 \u0627\u062a\u0635\u0627\u0644 \u0665\u066a\u060c \u062a\u062b\u0628\u064a\u062a \u062b\u0645 \u0647\u0628\u0648\u0637",
+     "events": [
+      {
+       "drone": 50,
+       "kind": "comms_loss",
+       "t": 91.4
+      },
+      {
+       "drone": 12,
+       "kind": "comms_loss",
+       "t": 122.8
+      },
+      {
+       "drone": 27,
+       "kind": "comms_loss",
+       "t": 126.6
+      },
+      {
+       "drone": 63,
+       "kind": "comms_loss",
+       "t": 88.8
+      },
+      {
+       "drone": 7,
+       "kind": "comms_loss",
+       "t": 92.6
+      },
+      {
+       "drone": 51,
+       "kind": "comms_loss",
+       "t": 127.0
+      }
+     ],
+     "ballistic": [],
+     "max_tracking_error_m": 0.424797,
      "config": {
       "w20": 3.0,
       "comms_loss_fraction": 0.05,
