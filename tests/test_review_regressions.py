@@ -318,7 +318,7 @@ def test_round4_no_ui_line_claims_safety_or_approval_without_negation():
     loaded = re.compile(r"\b(safe|safely|approved|cleared|clearance|certified)\b", re.I)
     negation = re.compile(r"\b(not|no|nor|never|without|need|needs)\b|n't", re.I)
     offenders = []
-    for f in ("viewer/i18n.js", "viewer/index.html", "viewer/methods.html", "viewer/app.js"):
+    for f in ("viewer/i18n.js", "viewer/index.html", "viewer/methods.html", "viewer/results.html", "viewer/app.js"):
         for i, line in enumerate(Path(f).read_text(encoding="utf-8").splitlines(), 1):
             if loaded.search(line) and not negation.search(line):
                 offenders.append((f, i, line.strip()[:100]))
@@ -668,10 +668,10 @@ def test_round6_viewer_has_no_html_injection_sinks_and_a_matching_csp():
 
     sinks = re.compile(r"innerHTML|outerHTML|insertAdjacentHTML|document\.write|\beval\(|new Function|"
                        r"srcdoc|javascript:|setAttribute\(\s*[\"']on")
-    for f in ("viewer/app.js", "viewer/i18n.js", "viewer/index.html", "viewer/methods.html"):
+    for f in ("viewer/app.js", "viewer/i18n.js", "viewer/index.html", "viewer/methods.html", "viewer/results.html"):
         text = Path(f).read_text(encoding="utf-8")
         assert not sinks.search(text), (f, sinks.search(text).group(0))
-    for f in ("viewer/index.html", "viewer/methods.html"):
+    for f in ("viewer/index.html", "viewer/methods.html", "viewer/results.html"):
         html = Path(f).read_text(encoding="utf-8")
         meta = re.search(r'http-equiv="Content-Security-Policy" content="([^"]+)"', html)
         assert meta, f

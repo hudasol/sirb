@@ -58,7 +58,7 @@ def main():
     args = ap.parse_args()
     runs = []
     with serve() as base, browser() as b:
-        for page_name in ("index.html", "methods.html"):
+        for page_name in ("index.html", "methods.html", "results.html"):
             for lang in ("en", "ar"):
                 for theme in ("dark", "light"):
                     r = run_page(b, base, page_name, lang, theme)

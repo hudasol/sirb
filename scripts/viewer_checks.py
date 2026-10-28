@@ -215,7 +215,7 @@ OVERFLOW_JS = """(w) => { const bad = []; for (const e of document.querySelector
 
 
 def overflow_checks(b, base):
-    for page in ("index.html", "methods.html"):
+    for page in ("index.html", "methods.html", "results.html"):
         for lang in ("en", "ar"):
             for w in (390, 320):
                 ctx, p = new_page(b, base, lang, width=w, page=page)

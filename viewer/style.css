@@ -135,3 +135,4 @@ html[dir="rtl"] .doc .en-detail ul { padding-inline-start: 0; padding-inline-end
 .en-block { display: block; text-align: left; }
 .ico-back::before { content: "\25C0\25C0"; }
 .ico-fwd::before { content: "\25B6\25B6"; }
+.tbl-wrap { overflow-x: auto; max-inline-size: 100%; }
