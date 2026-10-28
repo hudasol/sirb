@@ -93,10 +93,10 @@ def headlines() -> list[str]:
     if f.exists():
         idx = json.loads(f.read_text())
         for sh in idx["shows"]:
-            out.append(f"- Demo show `{sh['id']}` ({sh['n']} drones, {sh['duration_s']:.0f} s): exact "
-                       f"verified minimum separation {sh['min_separation_m']:.3f} m against "
-                       f"d_min {sh['d_min_m']} m, verdict {sh['verdict']} (model: drones as points "
-                       "on the planned polynomials).")
+            out.append(f"- Demo show `{sh['id']}` ({sh['n']} drones, {sh['duration_s']:.0f} s): the nominal "
+                       f"trajectory passed the specified separation check (exact minimum separation "
+                       f"{sh['min_separation_m']:.3f} m against d_min {sh['d_min_m']} m, verdict "
+                       f"{sh['verdict']}; model: drones as points on the planned polynomials).")
     sw = load("stress_sweeps.json")
     if sw:
         w = sw["sweeps"]["wind_w20_mps"]

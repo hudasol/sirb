@@ -134,7 +134,7 @@
     <h2><span class="en">Stressed scenarios (disturbance model)</span><span class="ar">سيناريوهات الإجهاد (نموذج الاضطراب)</span></h2>
     <p class="ar ar-sum">تُنتج سيناريوهات الإجهاد بمحاكاة تضيف إلى الخطة الاسمية رياحًا وأخطاء GNSS وأعطالًا بنماذج وبارامترات مفترضة. النتائج محاكاة تحت افتراضات، وليست ضمانات ولا قياسات.</p>
     <div class="en en-detail">
-      <p><strong>Summary.</strong> Each stressed scenario takes the verified plan sampled at 0.2 s as a reference and flies it through a simulated tracking loop with disturbances (<code>sirb/disturbance.py</code>, <code>sirb/stress.py</code>, <code>sirb/contingency.py</code>). Every parameter is either cited in <code>docs/RESEARCH.md</code> or labelled ASSUMPTION. No real flight data is used.</p>
+      <p><strong>Summary.</strong> Each stressed scenario takes the nominal plan, which passed the specified separation check, sampled at 0.2 s as a reference and flies it through a simulated tracking loop with disturbances (<code>sirb/disturbance.py</code>, <code>sirb/stress.py</code>, <code>sirb/contingency.py</code>). Every parameter is either cited in <code>docs/RESEARCH.md</code> or labelled ASSUMPTION. No real flight data is used.</p>
       <h3 id="wind">Wind</h3>
       <p>Mean wind at 20 ft (<code>w20</code>) with a 1/7 power-law altitude profile (ASSUMPTION). Turbulence intensity from the Dryden low-altitude relations of MIL-HDBK-1797 as implemented in MathWorks documentation: sigma_w = 0.1 W20, sigma_u = sigma_v = sigma_w / (0.177 + 0.000823 h_ft)^0.4. Those relations were built for piloted aircraft; applying them to a small multirotor is an ASSUMPTION. Spatial structure by frozen turbulence: every drone sees the same first-order Gauss-Markov process delayed by its position along the wind, plus an independent local component (fraction 0.3, ASSUMPTION), so differential wind between neighbours is physical rather than imposed.</p>
       <h3 id="gnss">GNSS error</h3>
@@ -197,7 +197,7 @@
       <p><strong>Summary.</strong> Nothing here has been validated against flight data. Known gaps:</p>
       <ul>
         <li>Drones are points in the verifier; the 0.24 m vehicle radius is only used for a contact flag in the stress code. The viewer draws drones larger (0.9 m) for visibility.</li>
-        <li>The tracking loop is a generic second-order model, not a real autopilot with latency, saturation and estimator behaviour.</li>
+        <li>The tracking loop is a generic second-order model, not a real autopilot. Command latency and an acceleration cap exist as opt in options (<code>docs/MODEL_FIDELITY.md</code>) but are off in the scenarios shown here; estimator behaviour is not modelled.</li>
         <li>Wind uses aircraft-derived turbulence spectra, a power-law profile and a simple drag gain; no gusts at the scale of a real site, no terrain or building wakes, no downwash between close neighbours.</li>
         <li>GNSS error is a simple bias plus noise; jamming and spoofing are not simulated in these scenarios.</li>
         <li>Failure behaviour is simplified; battery, link and failsafe logic of a real fleet differ by vendor.</li>

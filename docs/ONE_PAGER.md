@@ -7,9 +7,10 @@ Real shows need an operator safety case and approvals from the relevant UAE avia
 
 **Headline numbers (generated from result files).**
 <!-- HEADLINES:START -->
-- Demo show `sirb_text_100` (100 drones, 156 s): exact verified minimum separation 2.189 m against d_min 2.0 m, verdict PASS (model: drones as points on the planned polynomials).
-- Demo show `torus_300` (300 drones, 107 s): exact verified minimum separation 2.196 m against d_min 2.0 m, verdict PASS (model: drones as points on the planned polynomials).
-- Demo show `wall_500` (500 drones, 132 s): exact verified minimum separation 2.448 m against d_min 2.0 m, verdict PASS (model: drones as points on the planned polynomials).
+- Demo show `sirb_text_100` (100 drones, 156 s): the nominal trajectory passed the specified separation check (exact minimum separation 2.189 m against d_min 2.0 m, verdict PASS; model: drones as points on the planned polynomials).
+- Demo show `torus_300` (300 drones, 107 s): the nominal trajectory passed the specified separation check (exact minimum separation 2.196 m against d_min 2.0 m, verdict PASS; model: drones as points on the planned polynomials).
+- Demo show `oryx_500` (500 drones, 144 s): the nominal trajectory passed the specified separation check (exact minimum separation 2.521 m against d_min 2.0 m, verdict PASS; model: drones as points on the planned polynomials).
+- Demo show `gallery_120` (120 drones, 246 s): the nominal trajectory passed the specified separation check (exact minimum separation 2.156 m against d_min 2.0 m, verdict PASS; model: drones as points on the planned polynomials).
 - Simulated wind (ASSUMED models), 100 drone show: highest tested wind with a Wilson upper bound at most 5%: 12 m/s at 20 ft; first tested wind with an observed violation: 15 m/s. This is not a wind limit: the model has no actuator limit, the sweep goes beyond the vehicle's published wind limit, and the value moves with the tracking and GNSS assumptions (`docs/SENSITIVITY.md`).
 - Simulated GNSS bias (25% of drones degraded, ASSUMED): P(violation) exceeds 5% already at bias sigma 0.1 m (35.5%); the nominal margin over d_min is only 0.189 m.
 - Smallest tested formation spacing in the stated scenario whose Wilson upper bound is at most 5%: 5.0 m, nominal separation 3.54 m (300 trials, a coarse grid of spacings; the margin tool's search answer is in `docs/MARGIN.md`).

@@ -87,8 +87,8 @@ def main() -> None:
         d = OUT / name
         d.mkdir(exist_ok=True)
         (d / "certificate.json").write_text(json.dumps(cert, indent=1))
-        sc = [{"id": "nominal", "label_en": "Nominal (verified plan)",
-               "label_ar": "الخطة الاسمية (متحقَّق منها)", **write_bin(d / "nominal.bin", ref)}]
+        sc = [{"id": "nominal", "label_en": "Nominal (passed the separation check)",
+               "label_ar": "الخطة الاسمية (اجتازت فحص التباعد)", **write_bin(d / "nominal.bin", ref)}]
         for sid, spec in SCENARIOS.items():
             cfg = StressConfig(dt=DT).with_(**spec["cfg"])
             X, R, eps, events, ginfo, bal = realize(ref, cfg, SEED + len(sid))
