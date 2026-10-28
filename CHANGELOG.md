@@ -5,6 +5,7 @@ Format follows Keep a Changelog. Versions before 0.1.0 were internal milestones.
 ## [Unreleased]
 
 ### Added
+- Show `oryx_500` (500 drones, orb, an original Arabian oryx silhouette, supershape). It replaces `wall_500` in the viewer; `wall_500.json` and the results that cite it are unchanged.
 - Gallery show of 120 drones with original outline silhouettes (falcon, dhow, palm, figure, heart, SIRB, skyline), planned and verified like the other shows, and listed in the viewer.
 
 ### Changed

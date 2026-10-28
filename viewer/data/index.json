@@ -308,11 +308,11 @@
    ]
   },
   {
-   "id": "wall_500",
-   "name": "Skyline and orb (500 drones)",
+   "id": "oryx_500",
+   "name": "Oryx and orb (500 drones)",
    "n": 500,
-   "frames": 661,
-   "duration_s": 131.901247,
+   "frames": 727,
+   "duration_s": 145.213358,
    "d_min_m": 2.0,
    "geofence": {
     "x": [
@@ -328,11 +328,11 @@
     "y": -250.0,
     "min_distance_m": 50.0
    },
-   "fleet_sha256": "7283bef4999a5fbbffef3d8fa3ef0a3fef8f17f18fb77528934d4fc2879739bf",
+   "fleet_sha256": "451eae28c4f2b48229fe2bbbdbb5ddcd765f1c08be45c917011a33baff6bb8b5",
    "verdict": "PASS",
-   "min_separation_m": 2.448015,
+   "min_separation_m": 2.415012,
    "recomputation_ok": true,
-   "certificate": "wall_500/certificate.json",
+   "certificate": "oryx_500/certificate.json",
    "scenarios": [
     {
      "id": "nominal",
@@ -340,18 +340,18 @@
      "label_ar": "\u0627\u0644\u062e\u0637\u0629 \u0627\u0644\u0627\u0633\u0645\u064a\u0629 (\u0645\u062a\u062d\u0642\u064e\u0651\u0642 \u0645\u0646\u0647\u0627)",
      "pos": "nominal.bin",
      "nn": "nominal.nn.bin",
-     "min_nn_m": 2.45
+     "min_nn_m": 2.42
     },
     {
      "pos": "wind_gnss.bin",
      "nn": "wind_gnss.nn.bin",
-     "min_nn_m": 1.01,
+     "min_nn_m": 1.31,
      "id": "wind_gnss",
      "label_en": "Wind 6 m/s + degraded GNSS",
      "label_ar": "\u0631\u064a\u0627\u062d \u0666 \u0645/\u062b + \u062a\u062f\u0647\u0648\u0631 GNSS",
      "events": [],
      "ballistic": [],
-     "max_tracking_error_m": 2.452053,
+     "max_tracking_error_m": 2.39019,
      "config": {
       "w20": 6.0,
       "gnss_deg_fraction": 0.25,
@@ -361,27 +361,27 @@
     {
      "pos": "motor_failure.bin",
      "nn": "motor_failure.nn.bin",
-     "min_nn_m": 1.06,
+     "min_nn_m": 0.27,
      "id": "motor_failure",
      "label_en": "2 motor failures (ballistic fall), wind 3 m/s",
      "label_ar": "\u0639\u0637\u0644 \u0645\u062d\u0631\u0651\u0643\u064a\u0646 (\u0633\u0642\u0648\u0637 \u062d\u0631)\u060c \u0631\u064a\u0627\u062d \u0663 \u0645/\u062b",
      "events": [
       {
-       "drone": 245,
+       "drone": 41,
        "kind": "motor_failure",
-       "t": 107.0
+       "t": 87.6
       },
       {
-       "drone": 342,
+       "drone": 373,
        "kind": "motor_failure",
-       "t": 76.8
+       "t": 63.0
       }
      ],
      "ballistic": [
-      342,
-      245
+      373,
+      41
      ],
-     "max_tracking_error_m": 0.403816,
+     "max_tracking_error_m": 0.397916,
      "config": {
       "w20": 3.0,
       "motor_failures": 2
@@ -390,104 +390,159 @@
     {
      "pos": "comms_hold.bin",
      "nn": "comms_hold.nn.bin",
-     "min_nn_m": 0.46,
+     "min_nn_m": 0.59,
      "id": "comms_hold",
      "label_en": "5% comms loss, hold-then-descend",
      "label_ar": "\u0641\u0642\u062f\u0627\u0646 \u0627\u062a\u0635\u0627\u0644 \u0665\u066a\u060c \u062a\u062b\u0628\u064a\u062a \u062b\u0645 \u0647\u0628\u0648\u0637",
      "events": [
       {
-       "drone": 95,
+       "drone": 474,
        "kind": "comms_loss",
-       "t": 110.4
+       "t": 55.0
       },
       {
-       "drone": 47,
+       "drone": 468,
        "kind": "comms_loss",
-       "t": 101.0
+       "t": 50.2
       },
       {
-       "drone": 37,
+       "drone": 136,
        "kind": "comms_loss",
-       "t": 34.0
+       "t": 45.0
       },
       {
-       "drone": 76,
+       "drone": 118,
        "kind": "comms_loss",
-       "t": 99.6
+       "t": 121.4
       },
       {
-       "drone": 63,
+       "drone": 186,
        "kind": "comms_loss",
-       "t": 78.6
+       "t": 81.6
       },
       {
-       "drone": 361,
+       "drone": 303,
        "kind": "comms_loss",
-       "t": 23.4
-      },
-      {
-       "drone": 403,
-       "kind": "comms_loss",
-       "t": 37.0
-      },
-      {
-       "drone": 352,
-       "kind": "comms_loss",
-       "t": 24.0
-      },
-      {
-       "drone": 192,
-       "kind": "comms_loss",
-       "t": 90.4
-      },
-      {
-       "drone": 248,
-       "kind": "comms_loss",
-       "t": 22.2
-      },
-      {
-       "drone": 295,
-       "kind": "comms_loss",
-       "t": 72.8
-      },
-      {
-       "drone": 381,
-       "kind": "comms_loss",
-       "t": 112.2
-      },
-      {
-       "drone": 428,
-       "kind": "comms_loss",
-       "t": 80.8
-      },
-      {
-       "drone": 421,
-       "kind": "comms_loss",
-       "t": 59.0
-      },
-      {
-       "drone": 462,
-       "kind": "comms_loss",
-       "t": 98.4
-      },
-      {
-       "drone": 305,
-       "kind": "comms_loss",
-       "t": 50.4
+       "t": 47.0
       },
       {
        "drone": 0,
        "kind": "comms_loss",
-       "t": 94.6
+       "t": 103.4
       },
       {
-       "drone": 494,
+       "drone": 236,
        "kind": "comms_loss",
-       "t": 100.2
+       "t": 121.0
+      },
+      {
+       "drone": 357,
+       "kind": "comms_loss",
+       "t": 27.4
+      },
+      {
+       "drone": 237,
+       "kind": "comms_loss",
+       "t": 111.6
+      },
+      {
+       "drone": 429,
+       "kind": "comms_loss",
+       "t": 28.2
+      },
+      {
+       "drone": 117,
+       "kind": "comms_loss",
+       "t": 60.4
+      },
+      {
+       "drone": 363,
+       "kind": "comms_loss",
+       "t": 40.4
+      },
+      {
+       "drone": 388,
+       "kind": "comms_loss",
+       "t": 91.0
+      },
+      {
+       "drone": 278,
+       "kind": "comms_loss",
+       "t": 66.8
+      },
+      {
+       "drone": 287,
+       "kind": "comms_loss",
+       "t": 39.6
+      },
+      {
+       "drone": 70,
+       "kind": "comms_loss",
+       "t": 49.4
+      },
+      {
+       "drone": 354,
+       "kind": "comms_loss",
+       "t": 101.8
+      },
+      {
+       "drone": 213,
+       "kind": "comms_loss",
+       "t": 109.0
+      },
+      {
+       "drone": 418,
+       "kind": "comms_loss",
+       "t": 123.0
+      },
+      {
+       "drone": 251,
+       "kind": "comms_loss",
+       "t": 119.0
+      },
+      {
+       "drone": 127,
+       "kind": "comms_loss",
+       "t": 35.4
+      },
+      {
+       "drone": 356,
+       "kind": "comms_loss",
+       "t": 35.0
+      },
+      {
+       "drone": 371,
+       "kind": "comms_loss",
+       "t": 34.6
+      },
+      {
+       "drone": 90,
+       "kind": "comms_loss",
+       "t": 79.0
+      },
+      {
+       "drone": 268,
+       "kind": "comms_loss",
+       "t": 59.6
+      },
+      {
+       "drone": 436,
+       "kind": "comms_loss",
+       "t": 116.2
+      },
+      {
+       "drone": 380,
+       "kind": "comms_loss",
+       "t": 80.4
+      },
+      {
+       "drone": 154,
+       "kind": "comms_loss",
+       "t": 91.2
       }
      ],
      "ballistic": [],
-     "max_tracking_error_m": 0.42868,
+     "max_tracking_error_m": 0.433399,
      "config": {
       "w20": 3.0,
       "comms_loss_fraction": 0.05,

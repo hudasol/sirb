@@ -26,7 +26,7 @@ from sirb.verify import verify
 OUT = Path("viewer/data")
 DT = 0.2
 SEED = 20261011
-SHOWS = ["sirb_text_100", "torus_300", "wall_500", "gallery_120"]
+SHOWS = ["sirb_text_100", "torus_300", "oryx_500", "gallery_120"]
 
 SCENARIOS = {
     "wind_gnss": dict(label_en="Wind 6 m/s + degraded GNSS", label_ar="رياح ٦ م/ث + تدهور GNSS",

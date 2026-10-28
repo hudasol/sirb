@@ -1,6 +1,6 @@
 # Demo video script (about 75 s)
 
-Screen: the viewer, default show "Skyline and orb (500 drones)". Voice-over in English; repeat with the
+Screen: the viewer, default show "Oryx and orb (500 drones)". Voice-over in English; repeat with the
 Arabic toggle for an Arabic cut.
 
 | Time | On screen | Voice-over |
