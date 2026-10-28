@@ -21,7 +21,8 @@ FORMAT = "sirb-export-1"
 def build_export(show: dict, fleet: Fleet, stress_summary: dict | None = None) -> dict:
     from . import SAFETY_STATEMENT
     rep = verify(fleet, show["limits"])
-    cert = make_certificate(rep, fleet, show["limits"])
+    cert = make_certificate(rep, fleet, show["limits"],
+                            vehicle_radius_m=show["vehicle"].get("radius_m"))
     return {
         "format": FORMAT,
         "label": LABEL,
@@ -67,6 +68,9 @@ def load_export(path: str | Path) -> tuple[dict, Fleet, dict]:
             raise ValueError(f"fleet has {fleet.n} drones, show declares {show['n_drones']}")
         if _canon(cert["limits"]) != _canon(show["limits"]):
             raise ValueError("certificate was computed against different limits than the show")
+        veh = cert.get("vehicle")
+        if (veh or {}).get("radius_m") != show["vehicle"].get("radius_m"):
+            raise ValueError("certificate was computed for a different vehicle radius than the show")
         ok = verify_certificate(cert, fleet)
     except (KeyError, TypeError, AttributeError, IndexError) as exc:
         raise ValueError(f"malformed export: {type(exc).__name__}: {exc}") from None

@@ -70,7 +70,7 @@ def test_json_serialisable_deterministic_no_timestamp():
     for k in keys(c1):
         assert not any(w in k for w in ("time", "date", "created", "runtime")) or k in (
             "min_separation_time", "t", "time_contiguity_s"), k
-    assert c1["tool"] == "sirb.verify" and c1["certificate_version"] == 1
+    assert c1["tool"] == "sirb.verify" and c1["certificate_version"] == 2
     assert c1["n_drones"] == 2 and c1["limits"] == json.loads(json.dumps(LIM))
 
 
@@ -82,3 +82,55 @@ def test_numpy_limits_serialise():
     cert = make_certificate(verify(f, lim), f, lim)
     json.dumps(cert, allow_nan=False)
     assert verify_certificate(json.loads(json.dumps(cert)), f)
+
+
+def test_loosened_tolerances_cannot_turn_a_fail_into_a_pass():
+    f = fleet()
+    cert = make_certificate(verify(f, LIM), f, LIM)
+    assert verify_certificate(cert, f)
+    for key, val in (("tol", 1e-3), ("position_continuity_m", 1.0), ("velocity_continuity_mps", 1.0),
+                     ("acceleration_continuity_mps2", 1.0), ("search_radius", 0.5)):
+        bad = copy.deepcopy(cert)
+        bad["results"]["tolerances"][key] = val
+        assert not verify_certificate(bad, f), key
+
+
+def test_robustness_and_clearance_fields():
+    f = fleet()
+    rep = verify(f, LIM)
+    c = make_certificate(rep, f, LIM, vehicle_radius_m=0.24)
+    assert c["separation_robustness_m"] == rep.min_separation - LIM["min_separation_m"]
+    assert abs(c["vehicle"]["surface_clearance_m"] - (rep.min_separation - 0.48)) < 1e-12
+    assert "not an approval" in c["meaning"]
+    assert make_certificate(rep, f, LIM)["vehicle"] is None
+
+
+def test_changing_any_safety_input_invalidates_the_record(tmp_path):
+    import json as _json
+
+    from sirb.export import build_export, load_export, save_export
+    from sirb.planner.baseline import plan_baseline
+    from sirb.spec import load_show
+
+    show = load_show("shows/sirb_text_100.json")
+    fleet_, _ = plan_baseline(show)
+    path = tmp_path / "e.json"
+    save_export(path, build_export(show, fleet_))
+    load_export(path)                                  # unmodified: loads
+    base = _json.loads(path.read_text())
+    edits = {
+        "limit": lambda b: (b["show"]["limits"].__setitem__("min_separation_m", 1.0)),
+        "vehicle": lambda b: b["show"]["vehicle"].__setitem__("radius_m", 0.1),
+        "coefficient": lambda b: b["fleet"]["drones"][0][0]["coeffs"][0].__setitem__(0, 99.0),
+        "verdict": lambda b: b["certificate"].__setitem__("verdict", "FAIL"),
+    }
+    for name, edit in edits.items():
+        b = _json.loads(_json.dumps(base))
+        edit(b)
+        p = tmp_path / f"{name}.json"
+        p.write_text(_json.dumps(b))
+        try:
+            load_export(p)
+        except (ValueError, KeyError, TypeError):
+            continue
+        raise AssertionError(f"edit {name!r} was not detected")

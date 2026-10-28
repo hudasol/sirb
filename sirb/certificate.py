@@ -9,9 +9,11 @@ from dataclasses import asdict
 import numpy as np
 
 from sirb import SAFETY_STATEMENT, __version__
-from sirb.verify import VerifyReport, verify
+from sirb.verify import ACC_TOL, POS_TOL, TIME_TOL, VEL_TOL, VerifyReport, verify
 
-CERT_VERSION = 1
+DEFAULT_TOL = 1e-6   # the verifier's default; a certificate with another value is rejected
+
+CERT_VERSION = 2
 STATEMENT = "simulation-validated only; not flight-certified; no regulatory compliance claim"
 
 METHOD = (
@@ -27,6 +29,16 @@ METHOD = (
     "Structural checks cover time contiguity, position, velocity and acceleration continuity "
     "and finite coefficients. No time sampling is used."
 )
+
+PROPERTY = ("For every pair of drones i != j and every time t in [0, T]: "
+            "|p_i(t) - p_j(t)| >= min_separation_m (centre to centre), for the polynomial paths "
+            "exactly as written. The reported separation_robustness_m is the minimum over all "
+            "pairs and time of |p_i(t) - p_j(t)| - min_separation_m, the quantitative "
+            "(robustness) value of that always-property; it is negative exactly when it fails.")
+
+MEANING = ("A PASS means the nominal planned trajectories met the checks listed here under the "
+           "stated assumptions. It is not a statement that a fleet is safe to fly, and it is "
+           "not an approval.")
 
 GUARANTEES = [
     "Under the declared model (polynomial paths exactly as written, drones as points whose "
@@ -84,7 +96,8 @@ def verdict_for(ok: bool, limits: dict) -> str:
     return "PASS" if not unchecked_limits(limits) else "INCOMPLETE"
 
 
-def make_certificate(report: VerifyReport, fleet, limits: dict, *, extra: dict | None = None) -> dict:
+def make_certificate(report: VerifyReport, fleet, limits: dict, *, extra: dict | None = None,
+                     vehicle_radius_m: float | None = None) -> dict:
     results = asdict(report)
     results.pop("runtime_s", None)   # not reproducible; deliberately excluded
     results["violations"] = results["violations"][:200]
@@ -101,6 +114,15 @@ def make_certificate(report: VerifyReport, fleet, limits: dict, *, extra: dict |
         "method": METHOD,
         "guarantees": list(GUARANTEES),
         "not_guaranteed": list(NOT_GUARANTEED),
+        "property": PROPERTY,
+        "meaning": MEANING,
+        "separation_robustness_m": (None if report.min_separation_is_lower_bound
+                                    else report.min_separation - float(limits["min_separation_m"])),
+        "vehicle": ({"radius_m": float(vehicle_radius_m),
+                     "model": "sphere around the centre; centre separation is what is checked",
+                     "surface_clearance_m": (None if report.min_separation_is_lower_bound
+                                             else report.min_separation - 2 * float(vehicle_radius_m))}
+                    if vehicle_radius_m is not None else None),
         "statement": STATEMENT,
         "safety_statement": SAFETY_STATEMENT,
     }
@@ -122,6 +144,12 @@ def verify_certificate(cert: dict, fleet) -> bool:
             return False
         res = cert["results"]
         tol = res["tolerances"]
+        pinned = {"tol": DEFAULT_TOL, "time_contiguity_s": TIME_TOL, "position_continuity_m": POS_TOL,
+                  "velocity_continuity_mps": VEL_TOL, "acceleration_continuity_mps2": ACC_TOL}
+        if any(tol.get(k) != v for k, v in pinned.items()):
+            return False     # a looser tolerance must not be able to turn a FAIL into a PASS
+        if tol["search_radius"] < 4.0 * float(cert["limits"]["min_separation_m"]):
+            return False
         rep = verify(fleet, cert["limits"], search_radius=tol["search_radius"], tol=tol["tol"])
         if verdict_for(rep.ok, cert["limits"]) != cert["verdict"]:
             return False
