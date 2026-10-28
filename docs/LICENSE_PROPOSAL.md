@@ -1,6 +1,6 @@
 # Licence proposal (for the owner to decide; nothing here is legal advice)
 
-Current state: `LICENSE` is MIT for the whole repository.
+Decision (2026-10-28): the owner chose Apache-2.0 for the whole repository, including documentation, show files and results; the table below is the original proposal and its CC BY 4.0 split was not adopted. `LICENSE` is the Apache License 2.0 text and `NOTICE` carries the copyright line.
 
 ## Proposal
 | Part | Proposed licence | Reason |

@@ -21,7 +21,7 @@ Scope: a planner, exact verifier and stress tester for multi drone show trajecto
 | Planner capability | The wave and prioritized planners do not beat the baseline on the demo shows (`docs/PREDICTIONS.md`). |
 | Viewer frame rate on a GPU | Only software rendering was measured (`docs/VIEWER.md`). |
 | Native review of `docs/SUMMARY_AR.md` | Arabic text has not been reviewed by a native speaker. |
-| Licence decision | Options in `docs/LICENSE_PROPOSAL.md`. |
+| Licence decision | Done: Apache-2.0 (`docs/LICENSE_PROPOSAL.md`). |
 
 ## Principles
 

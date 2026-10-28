@@ -105,4 +105,4 @@ Drones are points following a simplified vehicle model. Vehicle numbers come fro
 
 ## Licence and citation
 
-MIT for the code. Third party licences are listed in `docs/DATA_SOURCES.md`. A move to Apache-2.0 for code and CC BY 4.0 for documentation is proposed in `docs/LICENSE_PROPOSAL.md`. Citation metadata is in `CITATION.cff`.
+Apache-2.0 for the whole repository (`LICENSE`, `NOTICE`); the vendored three.js files keep their own licence. Third party licences are listed in `docs/DATA_SOURCES.md`; the reasoning is in `docs/LICENSE_PROPOSAL.md`. Citation metadata is in `CITATION.cff`.

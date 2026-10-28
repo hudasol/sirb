@@ -7,7 +7,7 @@ authors:
   - family-names: Mueen
     given-names: Huda
 repository-code: "https://github.com/hudasol/sirb"
-license: MIT
+license: Apache-2.0
 keywords:
   - drone show
   - trajectory planning

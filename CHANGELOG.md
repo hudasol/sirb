@@ -4,6 +4,9 @@ Format follows Keep a Changelog. Versions before 0.1.0 were internal milestones.
 
 ## [Unreleased]
 
+### Changed
+- Licence changed from MIT to Apache-2.0 (adds an explicit patent grant).
+
 ### Added
 - Baseline comparators (sampled separation check, ORCA validated against RVO2-3D) and a benchmark judged by the exact verifier (`docs/BASELINES.md`).
 - `sirb stress` and `sirb verify-external` commands (`sirb/importers.py`).
