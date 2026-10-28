@@ -1,0 +1,582 @@
+{
+ "show": "Sirb text (100 drones)",
+ "trials": 100,
+ "dt": 0.1,
+ "seed": 20261215,
+ "delay_margin": {
+  "crossover_rad_s": 3.7543498516925466,
+  "phase_margin_deg": 73.51372216041794,
+  "delay_margin_s": 0.34175198044401245
+ },
+ "required_feedback_accel": {
+  "GNSS bias 0.5 m, 25% degraded": {
+   "drone_peaks_p50": 0.26639306331554957,
+   "drone_peaks_p95": 3.789612158845848,
+   "drone_peaks_max": 6.4962390765422935,
+   "trials": 20,
+   "wind_drag_accel_mean_m_s2": 0.0
+  },
+  "wind 9 m/s": {
+   "drone_peaks_p50": 4.906950894978349,
+   "drone_peaks_p95": 5.368410706003766,
+   "drone_peaks_max": 5.897969979977422,
+   "trials": 20,
+   "wind_drag_accel_mean_m_s2": 3.7427894352547737
+  },
+  "comms loss 5%, corridor": {
+   "drone_peaks_p50": 0.25860412984482095,
+   "drone_peaks_p95": 0.2957101586355653,
+   "drone_peaks_max": 0.3715861756481672,
+   "trials": 20,
+   "wind_drag_accel_mean_m_s2": 0.0
+  }
+ },
+ "rows": [
+  {
+   "case": "GNSS bias 0.5 m, 25% degraded",
+   "model": "baseline (linear, no limits)",
+   "trials": 100,
+   "p_violation": 1.0,
+   "p_violation_ci95": [
+    0.9630051925239981,
+    0.9999999999999999
+   ],
+   "p_contact": 0.02,
+   "p_contact_ci95": [
+    0.005501852234968185,
+    0.07001316294199365
+   ],
+   "p_violation_involving_event_drone": 0.0,
+   "p_violation_between_bystanders": 1.0,
+   "min_separation_quantiles": {
+    "0.0": 0.21779454984844873,
+    "0.05": 0.6813124142929062,
+    "0.5": 1.2526902429682452
+   },
+   "mean_violating_pairs": 12.62,
+   "mean_max_tracking_error_m": 1.8067188719991152,
+   "wall_s": 25.519693497000006,
+   "mean_trial_cpu_s": 0.48991112087999966
+  },
+  {
+   "case": "GNSS bias 0.5 m, 25% degraded",
+   "model": "latency 0.2 s",
+   "trials": 100,
+   "p_violation": 1.0,
+   "p_violation_ci95": [
+    0.9630051925239981,
+    0.9999999999999999
+   ],
+   "p_contact": 0.02,
+   "p_contact_ci95": [
+    0.005501852234968185,
+    0.07001316294199365
+   ],
+   "p_violation_involving_event_drone": 0.0,
+   "p_violation_between_bystanders": 1.0,
+   "min_separation_quantiles": {
+    "0.0": 0.2335631147395175,
+    "0.05": 0.6611293539712781,
+    "0.5": 1.2150274796925982
+   },
+   "mean_violating_pairs": 14.05,
+   "mean_max_tracking_error_m": 1.8357223320702898,
+   "wall_s": 50.84147704499999,
+   "mean_trial_cpu_s": 0.9814072103099999
+  },
+  {
+   "case": "GNSS bias 0.5 m, 25% degraded",
+   "model": "latency 0.3 s",
+   "trials": 100,
+   "p_violation": 1.0,
+   "p_violation_ci95": [
+    0.9630051925239981,
+    0.9999999999999999
+   ],
+   "p_contact": 1.0,
+   "p_contact_ci95": [
+    0.9630051925239981,
+    0.9999999999999999
+   ],
+   "p_violation_involving_event_drone": 0.0,
+   "p_violation_between_bystanders": 1.0,
+   "min_separation_quantiles": {
+    "0.0": 0.008150307628447448,
+    "0.05": 0.015813435158022873,
+    "0.5": 0.04713619349278836
+   },
+   "mean_violating_pairs": 341.92,
+   "mean_max_tracking_error_m": 5031.489648771735,
+   "wall_s": 46.523527573000024,
+   "mean_trial_cpu_s": 0.9181894509800043
+  },
+  {
+   "case": "GNSS bias 0.5 m, 25% degraded",
+   "model": "latency 0.4 s",
+   "trials": 100,
+   "p_violation": 1.0,
+   "p_violation_ci95": [
+    0.9630051925239981,
+    0.9999999999999999
+   ],
+   "p_contact": 1.0,
+   "p_contact_ci95": [
+    0.9630051925239981,
+    0.9999999999999999
+   ],
+   "p_violation_involving_event_drone": 0.0,
+   "p_violation_between_bystanders": 1.0,
+   "min_separation_quantiles": {
+    "0.0": 0.009021028734704131,
+    "0.05": 0.0283099378646811,
+    "0.5": 0.07306947648111226
+   },
+   "mean_violating_pairs": 443.13,
+   "mean_max_tracking_error_m": 1.3074138287923417e+34,
+   "wall_s": 52.03153675200002,
+   "mean_trial_cpu_s": 1.00504408898
+  },
+  {
+   "case": "GNSS bias 0.5 m, 25% degraded",
+   "model": "accel cap 4 m/s^2",
+   "trials": 100,
+   "p_violation": 1.0,
+   "p_violation_ci95": [
+    0.9630051925239981,
+    0.9999999999999999
+   ],
+   "p_contact": 0.02,
+   "p_contact_ci95": [
+    0.005501852234968185,
+    0.07001316294199365
+   ],
+   "p_violation_involving_event_drone": 0.0,
+   "p_violation_between_bystanders": 1.0,
+   "min_separation_quantiles": {
+    "0.0": 0.21952316812552392,
+    "0.05": 0.6798601096695873,
+    "0.5": 1.2474759362030872
+   },
+   "mean_violating_pairs": 12.75,
+   "mean_max_tracking_error_m": 1.8090904034696975,
+   "wall_s": 55.95993447799998,
+   "mean_trial_cpu_s": 1.1025667777600014
+  },
+  {
+   "case": "GNSS bias 0.5 m, 25% degraded",
+   "model": "accel cap 2 m/s^2",
+   "trials": 100,
+   "p_violation": 1.0,
+   "p_violation_ci95": [
+    0.9630051925239981,
+    0.9999999999999999
+   ],
+   "p_contact": 0.02,
+   "p_contact_ci95": [
+    0.005501852234968185,
+    0.07001316294199365
+   ],
+   "p_violation_involving_event_drone": 0.0,
+   "p_violation_between_bystanders": 1.0,
+   "min_separation_quantiles": {
+    "0.0": 0.21952316812552392,
+    "0.05": 0.6798601096695873,
+    "0.5": 1.2474759362030872
+   },
+   "mean_violating_pairs": 12.73,
+   "mean_max_tracking_error_m": 1.8084320492542378,
+   "wall_s": 58.464346412,
+   "mean_trial_cpu_s": 1.1421629234200026
+  },
+  {
+   "case": "GNSS bias 0.5 m, 25% degraded",
+   "model": "latency 0.2 s + accel cap 4 m/s^2",
+   "trials": 100,
+   "p_violation": 1.0,
+   "p_violation_ci95": [
+    0.9630051925239981,
+    0.9999999999999999
+   ],
+   "p_contact": 0.02,
+   "p_contact_ci95": [
+    0.005501852234968185,
+    0.07001316294199365
+   ],
+   "p_violation_involving_event_drone": 0.0,
+   "p_violation_between_bystanders": 1.0,
+   "min_separation_quantiles": {
+    "0.0": 0.2335631147395175,
+    "0.05": 0.6567326245864972,
+    "0.5": 1.2150274796925982
+   },
+   "mean_violating_pairs": 14.02,
+   "mean_max_tracking_error_m": 1.8340738148662874,
+   "wall_s": 56.414741107,
+   "mean_trial_cpu_s": 1.0917717137100005
+  },
+  {
+   "case": "wind 9 m/s",
+   "model": "baseline (linear, no limits)",
+   "trials": 100,
+   "p_violation": 0.0,
+   "p_violation_ci95": [
+    0.0,
+    0.03699480747600191
+   ],
+   "p_contact": 0.0,
+   "p_contact_ci95": [
+    0.0,
+    0.03699480747600191
+   ],
+   "p_violation_involving_event_drone": 0.0,
+   "p_violation_between_bystanders": 0.0,
+   "min_separation_quantiles": {
+    "0.0": 2.0296743604487637,
+    "0.05": 2.063310382338561,
+    "0.5": 2.1055128174379023
+   },
+   "mean_violating_pairs": 0.0,
+   "mean_max_tracking_error_m": 1.2707856202999628,
+   "wall_s": 23.42737119399999,
+   "mean_trial_cpu_s": 0.4629741565400053
+  },
+  {
+   "case": "wind 9 m/s",
+   "model": "latency 0.2 s",
+   "trials": 100,
+   "p_violation": 0.0,
+   "p_violation_ci95": [
+    0.0,
+    0.03699480747600191
+   ],
+   "p_contact": 0.0,
+   "p_contact_ci95": [
+    0.0,
+    0.03699480747600191
+   ],
+   "p_violation_involving_event_drone": 0.0,
+   "p_violation_between_bystanders": 0.0,
+   "min_separation_quantiles": {
+    "0.0": 2.0226123290487803,
+    "0.05": 2.052773730362814,
+    "0.5": 2.0974222865164975
+   },
+   "mean_violating_pairs": 0.0,
+   "mean_max_tracking_error_m": 1.2852740276375019,
+   "wall_s": 44.74005395400002,
+   "mean_trial_cpu_s": 0.8694254680399984
+  },
+  {
+   "case": "wind 9 m/s",
+   "model": "latency 0.3 s",
+   "trials": 100,
+   "p_violation": 1.0,
+   "p_violation_ci95": [
+    0.9630051925239981,
+    0.9999999999999999
+   ],
+   "p_contact": 1.0,
+   "p_contact_ci95": [
+    0.9630051925239981,
+    0.9999999999999999
+   ],
+   "p_violation_involving_event_drone": 0.0,
+   "p_violation_between_bystanders": 1.0,
+   "min_separation_quantiles": {
+    "0.0": 0.0009705782010293615,
+    "0.05": 0.011086389663562164,
+    "0.5": 0.045651712754487914
+   },
+   "mean_violating_pairs": 242.66,
+   "mean_max_tracking_error_m": 2822.7232489994426,
+   "wall_s": 38.186724437000066,
+   "mean_trial_cpu_s": 0.7473725931100023
+  },
+  {
+   "case": "wind 9 m/s",
+   "model": "latency 0.4 s",
+   "trials": 100,
+   "p_violation": 1.0,
+   "p_violation_ci95": [
+    0.9630051925239981,
+    0.9999999999999999
+   ],
+   "p_contact": 1.0,
+   "p_contact_ci95": [
+    0.9630051925239981,
+    0.9999999999999999
+   ],
+   "p_violation_involving_event_drone": 0.0,
+   "p_violation_between_bystanders": 1.0,
+   "min_separation_quantiles": {
+    "0.0": 0.019996717958784486,
+    "0.05": 0.02905925136524267,
+    "0.5": 0.08222439259905573
+   },
+   "mean_violating_pairs": 437.07,
+   "mean_max_tracking_error_m": 6.690277948898099e+33,
+   "wall_s": 44.19931884499999,
+   "mean_trial_cpu_s": 0.8628119597900014
+  },
+  {
+   "case": "wind 9 m/s",
+   "model": "accel cap 4 m/s^2",
+   "trials": 100,
+   "p_violation": 1.0,
+   "p_violation_ci95": [
+    0.9630051925239981,
+    0.9999999999999999
+   ],
+   "p_contact": 1.0,
+   "p_contact_ci95": [
+    0.9630051925239981,
+    0.9999999999999999
+   ],
+   "p_violation_involving_event_drone": 0.0,
+   "p_violation_between_bystanders": 1.0,
+   "min_separation_quantiles": {
+    "0.0": 0.012632176968667091,
+    "0.05": 0.03882209835404281,
+    "0.5": 0.14248664989751214
+   },
+   "mean_violating_pairs": 110.97,
+   "mean_max_tracking_error_m": 873.5650734361916,
+   "wall_s": 42.477222031,
+   "mean_trial_cpu_s": 0.8362464793500033
+  },
+  {
+   "case": "wind 9 m/s",
+   "model": "accel cap 2 m/s^2",
+   "trials": 100,
+   "p_violation": 1.0,
+   "p_violation_ci95": [
+    0.9630051925239981,
+    0.9999999999999999
+   ],
+   "p_contact": 0.99,
+   "p_contact_ci95": [
+    0.9455124752390653,
+    0.9982326134344526
+   ],
+   "p_violation_involving_event_drone": 0.0,
+   "p_violation_between_bystanders": 1.0,
+   "min_separation_quantiles": {
+    "0.0": 0.01817901375861694,
+    "0.05": 0.028631797392724326,
+    "0.5": 0.12980699155409647
+   },
+   "mean_violating_pairs": 110.39,
+   "mean_max_tracking_error_m": 21001.051543269296,
+   "wall_s": 42.32857038499992,
+   "mean_trial_cpu_s": 0.84240060478999
+  },
+  {
+   "case": "wind 9 m/s",
+   "model": "latency 0.2 s + accel cap 4 m/s^2",
+   "trials": 100,
+   "p_violation": 1.0,
+   "p_violation_ci95": [
+    0.9630051925239981,
+    0.9999999999999999
+   ],
+   "p_contact": 1.0,
+   "p_contact_ci95": [
+    0.9630051925239981,
+    0.9999999999999999
+   ],
+   "p_violation_involving_event_drone": 0.0,
+   "p_violation_between_bystanders": 1.0,
+   "min_separation_quantiles": {
+    "0.0": 0.010077111606313905,
+    "0.05": 0.03521808877779731,
+    "0.5": 0.12054277241551006
+   },
+   "mean_violating_pairs": 113.97,
+   "mean_max_tracking_error_m": 887.6174249197621,
+   "wall_s": 42.22126670199998,
+   "mean_trial_cpu_s": 0.8356165905200033
+  },
+  {
+   "case": "comms loss 5%, corridor",
+   "model": "baseline (linear, no limits)",
+   "trials": 100,
+   "p_violation": 0.15,
+   "p_violation_ci95": [
+    0.09305903191162297,
+    0.23283733332157835
+   ],
+   "p_contact": 0.05,
+   "p_contact_ci95": [
+    0.02154336145631356,
+    0.11175196527208817
+   ],
+   "p_violation_involving_event_drone": 0.15,
+   "p_violation_between_bystanders": 0.0,
+   "min_separation_quantiles": {
+    "0.0": 0.10452906674402117,
+    "0.05": 0.5817385805470404,
+    "0.5": 2.177520639410234
+   },
+   "mean_violating_pairs": 0.25,
+   "mean_max_tracking_error_m": 0.016227159678819447,
+   "wall_s": 15.211115320999966,
+   "mean_trial_cpu_s": 0.2963709000500069
+  },
+  {
+   "case": "comms loss 5%, corridor",
+   "model": "latency 0.2 s",
+   "trials": 100,
+   "p_violation": 0.15,
+   "p_violation_ci95": [
+    0.09305903191162297,
+    0.23283733332157835
+   ],
+   "p_contact": 0.05,
+   "p_contact_ci95": [
+    0.02154336145631356,
+    0.11175196527208817
+   ],
+   "p_violation_involving_event_drone": 0.15,
+   "p_violation_between_bystanders": 0.0,
+   "min_separation_quantiles": {
+    "0.0": 0.10622675721223789,
+    "0.05": 0.5725869939084264,
+    "0.5": 2.1705299559222837
+   },
+   "mean_violating_pairs": 0.25,
+   "mean_max_tracking_error_m": 0.024241809089939607,
+   "wall_s": 18.41577736199997,
+   "mean_trial_cpu_s": 0.36608515917001117
+  },
+  {
+   "case": "comms loss 5%, corridor",
+   "model": "latency 0.3 s",
+   "trials": 100,
+   "p_violation": 1.0,
+   "p_violation_ci95": [
+    0.9630051925239981,
+    0.9999999999999999
+   ],
+   "p_contact": 1.0,
+   "p_contact_ci95": [
+    0.9630051925239981,
+    0.9999999999999999
+   ],
+   "p_violation_involving_event_drone": 0.06,
+   "p_violation_between_bystanders": 0.94,
+   "min_separation_quantiles": {
+    "0.0": 0.008150307628447448,
+    "0.05": 0.01684539667251146,
+    "0.5": 0.05142107560356024
+   },
+   "mean_violating_pairs": 185.17,
+   "mean_max_tracking_error_m": 458.99091209965803,
+   "wall_s": 17.578387441000018,
+   "mean_trial_cpu_s": 0.3445712364900032
+  },
+  {
+   "case": "comms loss 5%, corridor",
+   "model": "latency 0.4 s",
+   "trials": 100,
+   "p_violation": 1.0,
+   "p_violation_ci95": [
+    0.9630051925239981,
+    0.9999999999999999
+   ],
+   "p_contact": 1.0,
+   "p_contact_ci95": [
+    0.9630051925239981,
+    0.9999999999999999
+   ],
+   "p_violation_involving_event_drone": 0.11,
+   "p_violation_between_bystanders": 0.89,
+   "min_separation_quantiles": {
+    "0.0": 0.015144418467398316,
+    "0.05": 0.039153206734430526,
+    "0.5": 0.08824282274088996
+   },
+   "mean_violating_pairs": 280.86,
+   "mean_max_tracking_error_m": 6.3498368886311725e+32,
+   "wall_s": 18.00245528100004,
+   "mean_trial_cpu_s": 0.34789827967000747
+  },
+  {
+   "case": "comms loss 5%, corridor",
+   "model": "accel cap 4 m/s^2",
+   "trials": 100,
+   "p_violation": 0.15,
+   "p_violation_ci95": [
+    0.09305903191162297,
+    0.23283733332157835
+   ],
+   "p_contact": 0.05,
+   "p_contact_ci95": [
+    0.02154336145631356,
+    0.11175196527208817
+   ],
+   "p_violation_involving_event_drone": 0.15,
+   "p_violation_between_bystanders": 0.0,
+   "min_separation_quantiles": {
+    "0.0": 0.10455785244789219,
+    "0.05": 0.5810910789137287,
+    "0.5": 2.1769318305973817
+   },
+   "mean_violating_pairs": 0.25,
+   "mean_max_tracking_error_m": 0.016797704660569707,
+   "wall_s": 21.11025572599999,
+   "mean_trial_cpu_s": 0.4090372031999982
+  },
+  {
+   "case": "comms loss 5%, corridor",
+   "model": "accel cap 2 m/s^2",
+   "trials": 100,
+   "p_violation": 0.15,
+   "p_violation_ci95": [
+    0.09305903191162297,
+    0.23283733332157835
+   ],
+   "p_contact": 0.05,
+   "p_contact_ci95": [
+    0.02154336145631356,
+    0.11175196527208817
+   ],
+   "p_violation_involving_event_drone": 0.15,
+   "p_violation_between_bystanders": 0.0,
+   "min_separation_quantiles": {
+    "0.0": 0.10455785244789219,
+    "0.05": 0.5810910789137287,
+    "0.5": 2.1769318305973817
+   },
+   "mean_violating_pairs": 0.25,
+   "mean_max_tracking_error_m": 0.016797704660569707,
+   "wall_s": 21.316432996000003,
+   "mean_trial_cpu_s": 0.42037285160000126
+  },
+  {
+   "case": "comms loss 5%, corridor",
+   "model": "latency 0.2 s + accel cap 4 m/s^2",
+   "trials": 100,
+   "p_violation": 0.15,
+   "p_violation_ci95": [
+    0.09305903191162297,
+    0.23283733332157835
+   ],
+   "p_contact": 0.05,
+   "p_contact_ci95": [
+    0.02154336145631356,
+    0.11175196527208817
+   ],
+   "p_violation_involving_event_drone": 0.15,
+   "p_violation_between_bystanders": 0.0,
+   "min_separation_quantiles": {
+    "0.0": 0.10622675721223789,
+    "0.05": 0.5725869939084264,
+    "0.5": 2.1705299559222837
+   },
+   "mean_violating_pairs": 0.25,
+   "mean_max_tracking_error_m": 0.024241809089939607,
+   "wall_s": 21.307804159000057,
+   "mean_trial_cpu_s": 0.41855714731999455
+  }
+ ]
+}
