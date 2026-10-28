@@ -89,7 +89,16 @@ def _verify_external(a) -> int:
         print("error: --d-min must be positive", file=sys.stderr)
         return 1
     fleet = fleet_from_csv(a.csv)
-    d, i, j, t, lb, _ = pairwise_min_separation(fleet, a.search_radius)
+    if a.d_min_vertical is not None:
+        from .clearance import ellipsoidal_min_separation
+        if a.d_min_vertical < a.d_min:
+            print("error: --d-min-vertical must be at least --d-min", file=sys.stderr)
+            return 1
+        d, i, j, t, lb, _ = ellipsoidal_min_separation(fleet, a.d_min, a.d_min_vertical,
+                                                       a.search_radius)
+        print(f"ellipsoidal check: {a.d_min} m horizontal, {a.d_min_vertical} m vertical")
+    else:
+        d, i, j, t, lb, _ = pairwise_min_separation(fleet, a.search_radius)
     ok = d >= a.d_min
     bound = " (lower bound: no pair came within the search radius)" if lb else ""
     print(f"drones: {len(fleet.trajectories)}   fleet sha256: {fleet.content_hash()}")
@@ -159,6 +168,8 @@ def main(argv: list[str] | None = None) -> int:
                        "trajectory CSV (drone,t,x,y,z)")
     x.add_argument("csv")
     x.add_argument("--d-min", type=float, required=True, help="required centre separation, m")
+    x.add_argument("--d-min-vertical", type=float, default=None,
+                   help="required vertical separation, m (ellipsoid check; at least --d-min)")
     x.add_argument("--search-radius", type=float, default=50.0, help="pair search radius, m")
     t = sub.add_parser("stress", help="Monte Carlo stress test of an export bundle (simulated)")
     t.add_argument("export")

@@ -53,3 +53,22 @@ def test_stress_cli(tmp_path, capsys):
     assert "SIMULATED" in out and "P(separation violation)" in out
     assert json.load(open(rep))["trials"] == 4
     assert main(["stress", exp, "--gnss", "shows/gnss_assumed_default.json", "--trials", "0"]) == 1
+
+
+def test_ellipsoidal_check_matches_dense_sampling(tmp_path, capsys):
+    import numpy as np
+
+    from sirb.clearance import ellipsoidal_min_separation
+    from sirb.importers import fleet_from_csv
+
+    # two drones passing 1.0 m apart horizontally and 1.5 m apart vertically
+    p = write(tmp_path, "drone,t,x,y,z\n0,0,-10,0,5\n0,10,10,0,5\n1,0,10,1,6.5\n1,10,-10,1,6.5\n")
+    f = fleet_from_csv(p)
+    d, *_ = ellipsoidal_min_separation(f, 2.0, 4.0)
+    ts = np.linspace(0, 10, 200001)
+    P = f.sample(ts)
+    rel = P[:, 0, :] - P[:, 1, :]
+    ref = np.sqrt(rel[:, 0] ** 2 + rel[:, 1] ** 2 + (rel[:, 2] * 0.5) ** 2).min()
+    assert abs(d - ref) < 1e-6
+    assert main(["verify-external", p, "--d-min", "2", "--d-min-vertical", "4"]) == 2
+    assert main(["verify-external", p, "--d-min", "2", "--d-min-vertical", "1"]) == 1

@@ -11,6 +11,7 @@ Format follows Keep a Changelog. Versions before 0.1.0 were internal milestones.
 - A certificate now carries the formal property, the separation robustness value, the vehicle radius and surface clearance, and a plain statement of what a PASS means. Verification refuses a certificate whose tolerances are looser than the verifier's own, and an export whose vehicle radius differs from the show's.
 
 ### Added
+- Ellipsoidal (downwash style) separation check, exact by scaling the vertical axis (`sirb/clearance.py`, `verify-external --d-min-vertical`).
 - Baseline comparators (sampled separation check, ORCA validated against RVO2-3D) and a benchmark judged by the exact verifier (`docs/BASELINES.md`).
 - `sirb stress` and `sirb verify-external` commands (`sirb/importers.py`).
 - `gnss_common_fraction` option and the correlation study `docs/GNSS_COMMON.md`.
