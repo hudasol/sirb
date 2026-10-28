@@ -22,12 +22,25 @@ Written 2026-10-28 after an audit of the repository (code review of the verifier
 | M5 | Type checking has 65 open errors and `py.typed` is shipped. | Open: fix or drop the marker. |
 | M8 | Coverage gate and a nightly large differential run are absent. | Open. |
 
+## Second round (2026-10-28): evidence and fidelity
+
+| Id | Item | Status |
+|---|---|---|
+| R1 | Related work, gap statement and falsifiable hypotheses | Done: `docs/RELATED_WORK.md`, predictions P17 to P33 in `docs/PREDICTIONS.md`, misses included. |
+| R2 | Certificate semantics, robustness value, vehicle clearance, invalidation tests | Done: certificate version 2. |
+| R3 | Detection benchmark with truth independent of the verifiers, equal compute sampling, fleet sizes 4 to 64 | Done: `docs/BENCHMARK_V2.md`. |
+| R4 | Step size convergence, separate tuning and evaluation seeds, worst case search, fault matrix with detection delay | Done: `docs/STRESS_CREDIBILITY.md`. The 0.2 s step is slightly coarse for the GNSS case (median separation moved 0.085 m at 0.05 s). |
+| R5 | Tracker latency and acceleration cap | Done as opt in options: `docs/MODEL_FIDELITY.md`. The wind verdict depends on control authority; the loop is unstable beyond a 0.342 s delay margin. A state estimator was not built (no data to set its noise). |
+| R6 | Offline PX4 simulation in hardware replay, 2 to 4 vehicles | Done: `docs/SITL.md`. Default parameters do not follow the plan. Open: a tuned controller or planning to the controller limits; more than 4 vehicles; repeated runs. |
+| R7 | Results page and limitations in the viewer, wording sweep | Done: `viewer/results.html`. |
+
 ## Limits that remain, stated plainly
 
 - Guarantees are under the model: the exact verifier proves separation of the planned polynomial paths, not of aircraft. Everything stressed is simulated with assumed or cited parameters.
 - The second verifier shares the first verifier's semantics (same polynomial model, same units), so agreement is not independent evidence of a correct model.
 - Planners other than the free assignment baseline add little on the demo shows; waves and prioritized produce slow plans (see `docs/BASELINES.md`: waves took 68 to 136 s where ORCA took 9 to 14 s) and no plan at 32 and 64 drones on the labeled antipodal sphere.
 - ORCA here is a numpy reimplementation validated per step, and perfectly symmetric starts (a ring of drones swapping across the centre) resolve slowly in both it and the algorithm in general.
+- The stress tracker has no estimator, and its wind drag law uses the wind velocity rather than the velocity relative to the air. Latency and an acceleration cap are opt in and were studied on three configurations only. The PX4 replay is one real time run per vehicle count with default parameters.
 - No flight control, radio, or regulatory claim. Not flight certified.
 
 ## Acceptance tests for the remaining items
