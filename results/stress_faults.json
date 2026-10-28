@@ -1,0 +1,606 @@
+{
+ "show": "Sirb text (100 drones)",
+ "trials": 100,
+ "seed": 20261202,
+ "rows": [
+  {
+   "case": "comms_loss 5%, continue, delay 0 s",
+   "outcome": "no violation observed",
+   "trials": 100,
+   "p_violation": 0.0,
+   "p_violation_ci95": [
+    0.0,
+    0.03699480747600191
+   ],
+   "p_contact": 0.0,
+   "p_contact_ci95": [
+    0.0,
+    0.03699480747600191
+   ],
+   "p_violation_involving_event_drone": 0.0,
+   "p_violation_between_bystanders": 0.0,
+   "min_separation_quantiles": {
+    "0.0": 2.156305736805308,
+    "0.05": 2.1684286507661983,
+    "0.5": 2.1732319987842343
+   },
+   "mean_violating_pairs": 0.0,
+   "mean_max_tracking_error_m": 0.02277042615912601,
+   "wall_s": 12.351320818999966,
+   "mean_trial_cpu_s": 0.23606253279999465
+  },
+  {
+   "case": "comms_loss 5%, hold, delay 0 s",
+   "outcome": "event drone conflicts only",
+   "trials": 100,
+   "p_violation": 0.84,
+   "p_violation_ci95": [
+    0.7557955544110557,
+    0.8990479765052628
+   ],
+   "p_contact": 0.35,
+   "p_contact_ci95": [
+    0.2636410465347802,
+    0.4474573957080203
+   ],
+   "p_violation_involving_event_drone": 0.84,
+   "p_violation_between_bystanders": 0.0,
+   "min_separation_quantiles": {
+    "0.0": 0.009327408970493707,
+    "0.05": 0.12695803080892867,
+    "0.5": 0.6426926520450923
+   },
+   "mean_violating_pairs": 3.62,
+   "mean_max_tracking_error_m": 0.02277042615912601,
+   "wall_s": 11.62650041400002,
+   "mean_trial_cpu_s": 0.22768738319000476
+  },
+  {
+   "case": "comms_loss 5%, hold, delay 1 s",
+   "outcome": "event drone conflicts only",
+   "trials": 100,
+   "p_violation": 0.85,
+   "p_violation_ci95": [
+    0.7671626666784216,
+    0.906940968088377
+   ],
+   "p_contact": 0.48,
+   "p_contact_ci95": [
+    0.38464384320080547,
+    0.5768359490982345
+   ],
+   "p_violation_involving_event_drone": 0.85,
+   "p_violation_between_bystanders": 0.0,
+   "min_separation_quantiles": {
+    "0.0": 0.0076239704166194975,
+    "0.05": 0.05726524174605596,
+    "0.5": 0.5273189877091967
+   },
+   "mean_violating_pairs": 3.62,
+   "mean_max_tracking_error_m": 0.02277042615912601,
+   "wall_s": 11.562093642000036,
+   "mean_trial_cpu_s": 0.2211667741700171
+  },
+  {
+   "case": "comms_loss 5%, hold, delay 3 s",
+   "outcome": "event drone conflicts only",
+   "trials": 100,
+   "p_violation": 0.85,
+   "p_violation_ci95": [
+    0.7671626666784216,
+    0.906940968088377
+   ],
+   "p_contact": 0.35,
+   "p_contact_ci95": [
+    0.2636410465347802,
+    0.4474573957080203
+   ],
+   "p_violation_involving_event_drone": 0.85,
+   "p_violation_between_bystanders": 0.0,
+   "min_separation_quantiles": {
+    "0.0": 0.004549558262549699,
+    "0.05": 0.09997906192041593,
+    "0.5": 0.6741600903469283
+   },
+   "mean_violating_pairs": 3.58,
+   "mean_max_tracking_error_m": 0.02277042615912601,
+   "wall_s": 10.954458492999947,
+   "mean_trial_cpu_s": 0.21669857917998342
+  },
+  {
+   "case": "comms_loss 5%, descend, delay 0 s",
+   "outcome": "event drone conflicts only",
+   "trials": 100,
+   "p_violation": 0.88,
+   "p_violation_ci95": [
+    0.8018773199709163,
+    0.9300066263473222
+   ],
+   "p_contact": 0.44,
+   "p_contact_ci95": [
+    0.34671865400968327,
+    0.537720722887437
+   ],
+   "p_violation_involving_event_drone": 0.88,
+   "p_violation_between_bystanders": 0.0,
+   "min_separation_quantiles": {
+    "0.0": 0.002925685821196866,
+    "0.05": 0.009198786278574572,
+    "0.5": 0.6098466202350692
+   },
+   "mean_violating_pairs": 3.98,
+   "mean_max_tracking_error_m": 0.02277042615912601,
+   "wall_s": 10.009952423999948,
+   "mean_trial_cpu_s": 0.1989509498700113
+  },
+  {
+   "case": "comms_loss 5%, descend, delay 1 s",
+   "outcome": "event drone conflicts only",
+   "trials": 100,
+   "p_violation": 0.85,
+   "p_violation_ci95": [
+    0.7671626666784216,
+    0.906940968088377
+   ],
+   "p_contact": 0.4,
+   "p_contact_ci95": [
+    0.3093997461136028,
+    0.4979992153815976
+   ],
+   "p_violation_involving_event_drone": 0.85,
+   "p_violation_between_bystanders": 0.0,
+   "min_separation_quantiles": {
+    "0.0": 0.001974457080879033,
+    "0.05": 0.013190753194472197,
+    "0.5": 0.6295071381288085
+   },
+   "mean_violating_pairs": 3.78,
+   "mean_max_tracking_error_m": 0.02277042615912601,
+   "wall_s": 10.921830689999979,
+   "mean_trial_cpu_s": 0.20871425707999378
+  },
+  {
+   "case": "comms_loss 5%, descend, delay 3 s",
+   "outcome": "event drone conflicts only",
+   "trials": 100,
+   "p_violation": 0.84,
+   "p_violation_ci95": [
+    0.7557955544110557,
+    0.8990479765052628
+   ],
+   "p_contact": 0.36,
+   "p_contact_ci95": [
+    0.2727107459049014,
+    0.45764780018837914
+   ],
+   "p_violation_involving_event_drone": 0.84,
+   "p_violation_between_bystanders": 0.0,
+   "min_separation_quantiles": {
+    "0.0": 0.008271788361408482,
+    "0.05": 0.02405662808674477,
+    "0.5": 0.7462203456075157
+   },
+   "mean_violating_pairs": 3.58,
+   "mean_max_tracking_error_m": 0.02277042615912601,
+   "wall_s": 10.872763774000077,
+   "mean_trial_cpu_s": 0.21296579395999743
+  },
+  {
+   "case": "comms_loss 5%, corridor, delay 0 s",
+   "outcome": "event drone conflicts only",
+   "trials": 100,
+   "p_violation": 0.17,
+   "p_violation_ci95": [
+    0.10893476059773155,
+    0.25548181233642975
+   ],
+   "p_contact": 0.02,
+   "p_contact_ci95": [
+    0.005501852234968185,
+    0.07001316294199365
+   ],
+   "p_violation_involving_event_drone": 0.17,
+   "p_violation_between_bystanders": 0.0,
+   "min_separation_quantiles": {
+    "0.0": 0.2711251101853413,
+    "0.05": 1.0073611218705385,
+    "0.5": 2.172904165760845
+   },
+   "mean_violating_pairs": 0.32,
+   "mean_max_tracking_error_m": 0.02277042615912601,
+   "wall_s": 10.944730850000042,
+   "mean_trial_cpu_s": 0.21454023404000055
+  },
+  {
+   "case": "comms_loss 5%, corridor, delay 1 s",
+   "outcome": "event drone conflicts only",
+   "trials": 100,
+   "p_violation": 0.15,
+   "p_violation_ci95": [
+    0.09305903191162297,
+    0.23283733332157835
+   ],
+   "p_contact": 0.02,
+   "p_contact_ci95": [
+    0.005501852234968185,
+    0.07001316294199365
+   ],
+   "p_violation_involving_event_drone": 0.15,
+   "p_violation_between_bystanders": 0.0,
+   "min_separation_quantiles": {
+    "0.0": 0.1191961954176953,
+    "0.05": 1.1776237713641597,
+    "0.5": 2.1730820331335954
+   },
+   "mean_violating_pairs": 0.28,
+   "mean_max_tracking_error_m": 0.02277042615912601,
+   "wall_s": 10.041486621999866,
+   "mean_trial_cpu_s": 0.19663718921999135
+  },
+  {
+   "case": "comms_loss 5%, corridor, delay 3 s",
+   "outcome": "event drone conflicts only",
+   "trials": 100,
+   "p_violation": 0.15,
+   "p_violation_ci95": [
+    0.09305903191162297,
+    0.23283733332157835
+   ],
+   "p_contact": 0.0,
+   "p_contact_ci95": [
+    0.0,
+    0.03699480747600191
+   ],
+   "p_violation_involving_event_drone": 0.15,
+   "p_violation_between_bystanders": 0.0,
+   "min_separation_quantiles": {
+    "0.0": 0.5244624373627258,
+    "0.05": 1.1453451547902556,
+    "0.5": 2.172933784825875
+   },
+   "mean_violating_pairs": 0.33,
+   "mean_max_tracking_error_m": 0.02277042615912601,
+   "wall_s": 11.707277310000109,
+   "mean_trial_cpu_s": 0.23212929277000058
+  },
+  {
+   "case": "battery_low 5%, continue, delay 0 s",
+   "outcome": "no violation observed",
+   "trials": 100,
+   "p_violation": 0.0,
+   "p_violation_ci95": [
+    0.0,
+    0.03699480747600191
+   ],
+   "p_contact": 0.0,
+   "p_contact_ci95": [
+    0.0,
+    0.03699480747600191
+   ],
+   "p_violation_involving_event_drone": 0.0,
+   "p_violation_between_bystanders": 0.0,
+   "min_separation_quantiles": {
+    "0.0": 2.156305736805308,
+    "0.05": 2.1684286507661983,
+    "0.5": 2.1732319987842343
+   },
+   "mean_violating_pairs": 0.0,
+   "mean_max_tracking_error_m": 0.02277042615912601,
+   "wall_s": 10.986728962000143,
+   "mean_trial_cpu_s": 0.21320317857999954
+  },
+  {
+   "case": "battery_low 5%, hold, delay 0 s",
+   "outcome": "event drone conflicts only",
+   "trials": 100,
+   "p_violation": 0.84,
+   "p_violation_ci95": [
+    0.7557955544110557,
+    0.8990479765052628
+   ],
+   "p_contact": 0.35,
+   "p_contact_ci95": [
+    0.2636410465347802,
+    0.4474573957080203
+   ],
+   "p_violation_involving_event_drone": 0.84,
+   "p_violation_between_bystanders": 0.0,
+   "min_separation_quantiles": {
+    "0.0": 0.009327408970493707,
+    "0.05": 0.12695803080892867,
+    "0.5": 0.6426926520450923
+   },
+   "mean_violating_pairs": 3.62,
+   "mean_max_tracking_error_m": 0.02277042615912601,
+   "wall_s": 9.884299832000124,
+   "mean_trial_cpu_s": 0.1944665511800008
+  },
+  {
+   "case": "battery_low 5%, hold, delay 1 s",
+   "outcome": "event drone conflicts only",
+   "trials": 100,
+   "p_violation": 0.85,
+   "p_violation_ci95": [
+    0.7671626666784216,
+    0.906940968088377
+   ],
+   "p_contact": 0.48,
+   "p_contact_ci95": [
+    0.38464384320080547,
+    0.5768359490982345
+   ],
+   "p_violation_involving_event_drone": 0.85,
+   "p_violation_between_bystanders": 0.0,
+   "min_separation_quantiles": {
+    "0.0": 0.0076239704166194975,
+    "0.05": 0.05726524174605596,
+    "0.5": 0.5273189877091967
+   },
+   "mean_violating_pairs": 3.62,
+   "mean_max_tracking_error_m": 0.02277042615912601,
+   "wall_s": 10.360930511000106,
+   "mean_trial_cpu_s": 0.20437843769999062
+  },
+  {
+   "case": "battery_low 5%, hold, delay 3 s",
+   "outcome": "event drone conflicts only",
+   "trials": 100,
+   "p_violation": 0.85,
+   "p_violation_ci95": [
+    0.7671626666784216,
+    0.906940968088377
+   ],
+   "p_contact": 0.35,
+   "p_contact_ci95": [
+    0.2636410465347802,
+    0.4474573957080203
+   ],
+   "p_violation_involving_event_drone": 0.85,
+   "p_violation_between_bystanders": 0.0,
+   "min_separation_quantiles": {
+    "0.0": 0.004549558262549699,
+    "0.05": 0.09997906192041593,
+    "0.5": 0.6741600903469283
+   },
+   "mean_violating_pairs": 3.58,
+   "mean_max_tracking_error_m": 0.02277042615912601,
+   "wall_s": 10.076236232000156,
+   "mean_trial_cpu_s": 0.19905991621001476
+  },
+  {
+   "case": "battery_low 5%, descend, delay 0 s",
+   "outcome": "event drone conflicts only",
+   "trials": 100,
+   "p_violation": 0.88,
+   "p_violation_ci95": [
+    0.8018773199709163,
+    0.9300066263473222
+   ],
+   "p_contact": 0.44,
+   "p_contact_ci95": [
+    0.34671865400968327,
+    0.537720722887437
+   ],
+   "p_violation_involving_event_drone": 0.88,
+   "p_violation_between_bystanders": 0.0,
+   "min_separation_quantiles": {
+    "0.0": 0.002925685821196866,
+    "0.05": 0.009198786278574572,
+    "0.5": 0.6098466202350692
+   },
+   "mean_violating_pairs": 3.98,
+   "mean_max_tracking_error_m": 0.02277042615912601,
+   "wall_s": 10.756905694000125,
+   "mean_trial_cpu_s": 0.20815415407000273
+  },
+  {
+   "case": "battery_low 5%, descend, delay 1 s",
+   "outcome": "event drone conflicts only",
+   "trials": 100,
+   "p_violation": 0.85,
+   "p_violation_ci95": [
+    0.7671626666784216,
+    0.906940968088377
+   ],
+   "p_contact": 0.4,
+   "p_contact_ci95": [
+    0.3093997461136028,
+    0.4979992153815976
+   ],
+   "p_violation_involving_event_drone": 0.85,
+   "p_violation_between_bystanders": 0.0,
+   "min_separation_quantiles": {
+    "0.0": 0.001974457080879033,
+    "0.05": 0.013190753194472197,
+    "0.5": 0.6295071381288085
+   },
+   "mean_violating_pairs": 3.78,
+   "mean_max_tracking_error_m": 0.02277042615912601,
+   "wall_s": 11.463497807999829,
+   "mean_trial_cpu_s": 0.21754686791000494
+  },
+  {
+   "case": "battery_low 5%, descend, delay 3 s",
+   "outcome": "event drone conflicts only",
+   "trials": 100,
+   "p_violation": 0.84,
+   "p_violation_ci95": [
+    0.7557955544110557,
+    0.8990479765052628
+   ],
+   "p_contact": 0.36,
+   "p_contact_ci95": [
+    0.2727107459049014,
+    0.45764780018837914
+   ],
+   "p_violation_involving_event_drone": 0.84,
+   "p_violation_between_bystanders": 0.0,
+   "min_separation_quantiles": {
+    "0.0": 0.008271788361408482,
+    "0.05": 0.02405662808674477,
+    "0.5": 0.7462203456075157
+   },
+   "mean_violating_pairs": 3.58,
+   "mean_max_tracking_error_m": 0.02277042615912601,
+   "wall_s": 11.787537903999919,
+   "mean_trial_cpu_s": 0.22639818251999258
+  },
+  {
+   "case": "battery_low 5%, corridor, delay 0 s",
+   "outcome": "event drone conflicts only",
+   "trials": 100,
+   "p_violation": 0.17,
+   "p_violation_ci95": [
+    0.10893476059773155,
+    0.25548181233642975
+   ],
+   "p_contact": 0.02,
+   "p_contact_ci95": [
+    0.005501852234968185,
+    0.07001316294199365
+   ],
+   "p_violation_involving_event_drone": 0.17,
+   "p_violation_between_bystanders": 0.0,
+   "min_separation_quantiles": {
+    "0.0": 0.2711251101853413,
+    "0.05": 1.0073611218705385,
+    "0.5": 2.172904165760845
+   },
+   "mean_violating_pairs": 0.32,
+   "mean_max_tracking_error_m": 0.02277042615912601,
+   "wall_s": 12.620738397999958,
+   "mean_trial_cpu_s": 0.24985606363996793
+  },
+  {
+   "case": "battery_low 5%, corridor, delay 1 s",
+   "outcome": "event drone conflicts only",
+   "trials": 100,
+   "p_violation": 0.15,
+   "p_violation_ci95": [
+    0.09305903191162297,
+    0.23283733332157835
+   ],
+   "p_contact": 0.02,
+   "p_contact_ci95": [
+    0.005501852234968185,
+    0.07001316294199365
+   ],
+   "p_violation_involving_event_drone": 0.15,
+   "p_violation_between_bystanders": 0.0,
+   "min_separation_quantiles": {
+    "0.0": 0.1191961954176953,
+    "0.05": 1.1776237713641597,
+    "0.5": 2.1730820331335954
+   },
+   "mean_violating_pairs": 0.28,
+   "mean_max_tracking_error_m": 0.02277042615912601,
+   "wall_s": 11.96925566699997,
+   "mean_trial_cpu_s": 0.2315854275600009
+  },
+  {
+   "case": "battery_low 5%, corridor, delay 3 s",
+   "outcome": "event drone conflicts only",
+   "trials": 100,
+   "p_violation": 0.15,
+   "p_violation_ci95": [
+    0.09305903191162297,
+    0.23283733332157835
+   ],
+   "p_contact": 0.0,
+   "p_contact_ci95": [
+    0.0,
+    0.03699480747600191
+   ],
+   "p_violation_involving_event_drone": 0.15,
+   "p_violation_between_bystanders": 0.0,
+   "min_separation_quantiles": {
+    "0.0": 0.5244624373627258,
+    "0.05": 1.1453451547902556,
+    "0.5": 2.172933784825875
+   },
+   "mean_violating_pairs": 0.33,
+   "mean_max_tracking_error_m": 0.02277042615912601,
+   "wall_s": 11.714357705999873,
+   "mean_trial_cpu_s": 0.22424552437998727
+  },
+  {
+   "case": "one motor failure (ballistic)",
+   "outcome": "event drone conflicts only",
+   "trials": 100,
+   "p_violation": 0.57,
+   "p_violation_ci95": [
+    0.4721521169586435,
+    0.6626686099947162
+   ],
+   "p_contact": 0.21,
+   "p_contact_ci95": [
+    0.14165549531645788,
+    0.2998014930196232
+   ],
+   "p_violation_involving_event_drone": 0.57,
+   "p_violation_between_bystanders": 0.0,
+   "min_separation_quantiles": {
+    "0.0": 0.01916495736428886,
+    "0.05": 0.06029642467598687,
+    "0.5": 1.8145961065417655
+   },
+   "mean_violating_pairs": 2.05,
+   "mean_max_tracking_error_m": 0.02277042615912601,
+   "wall_s": 11.042301215999942,
+   "mean_trial_cpu_s": 0.2122040287099935
+  },
+  {
+   "case": "combined faults, delay 0 s",
+   "outcome": "event drone conflicts only",
+   "trials": 100,
+   "p_violation": 1.0,
+   "p_violation_ci95": [
+    0.9630051925239981,
+    0.9999999999999999
+   ],
+   "p_contact": 0.65,
+   "p_contact_ci95": [
+    0.5525426042919797,
+    0.7363589534652197
+   ],
+   "p_violation_involving_event_drone": 0.99,
+   "p_violation_between_bystanders": 0.01,
+   "min_separation_quantiles": {
+    "0.0": 0.0029278316120163175,
+    "0.05": 0.01501244229089865,
+    "0.5": 0.33070180813884154
+   },
+   "mean_violating_pairs": 23.59,
+   "mean_max_tracking_error_m": 2.15157347982091,
+   "wall_s": 30.804613085000028,
+   "mean_trial_cpu_s": 0.5968850831300005
+  },
+  {
+   "case": "combined faults, delay 3 s",
+   "outcome": "event drone conflicts only",
+   "trials": 100,
+   "p_violation": 1.0,
+   "p_violation_ci95": [
+    0.9630051925239981,
+    0.9999999999999999
+   ],
+   "p_contact": 0.73,
+   "p_contact_ci95": [
+    0.6356769977376873,
+    0.8073053908233518
+   ],
+   "p_violation_involving_event_drone": 0.98,
+   "p_violation_between_bystanders": 0.02,
+   "min_separation_quantiles": {
+    "0.0": 0.002695405130752831,
+    "0.05": 0.011346082986607883,
+    "0.5": 0.27946871781238364
+   },
+   "mean_violating_pairs": 23.78,
+   "mean_max_tracking_error_m": 2.15157347982091,
+   "wall_s": 31.267636853999875,
+   "mean_trial_cpu_s": 0.6144274105700015
+  }
+ ],
+ "nominal_min_separation_m": 2.188611469898205
+}

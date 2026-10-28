@@ -24,7 +24,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
 from sirb.baselines.sampled import sampled_min_separation_dense  # noqa: E402
-from sirb.diffcases import ADVERSARIAL, adversarial_case  # noqa: E402
+from sirb.diffcases import adversarial_case  # noqa: E402
 from sirb.stress import wilson  # noqa: E402
 from sirb.trajectory import Fleet, Segment, Trajectory  # noqa: E402
 from sirb.verify import pairwise_min_separation  # noqa: E402
@@ -133,7 +133,7 @@ def size_sweep(rng_seed=0):
     for n in sizes:
         rng = np.random.default_rng(rng_seed + n)
         fl = Fleet([line(rng.uniform(-30, 30, 3), rng.normal(size=3) * 2.0) for _ in range(n)])
-        times, brute = [], []
+        times = []
         for _ in range(7):
             t0 = time.perf_counter()
             d, *_rest, npairs = pairwise_min_separation(fl, 1000.0)
