@@ -500,6 +500,130 @@
      }
     }
    ]
+  },
+  {
+   "id": "gallery_120",
+   "name": "Gallery of silhouettes (120 drones)",
+   "n": 120,
+   "frames": 1229,
+   "duration_s": 245.535574,
+   "d_min_m": 2.0,
+   "geofence": {
+    "x": [
+     -150.0,
+     150.0
+    ],
+    "y": [
+     -130.0,
+     100.0
+    ]
+   },
+   "crowd": {
+    "y": -250.0,
+    "min_distance_m": 50.0
+   },
+   "fleet_sha256": "deea9ff8714078b49c3ada1c24ba3b21b9e6a1a165f44ce002cb4554a20d9e99",
+   "verdict": "PASS",
+   "min_separation_m": 2.155806,
+   "recomputation_ok": true,
+   "certificate": "gallery_120/certificate.json",
+   "scenarios": [
+    {
+     "id": "nominal",
+     "label_en": "Nominal (verified plan)",
+     "label_ar": "\u0627\u0644\u062e\u0637\u0629 \u0627\u0644\u0627\u0633\u0645\u064a\u0629 (\u0645\u062a\u062d\u0642\u064e\u0651\u0642 \u0645\u0646\u0647\u0627)",
+     "pos": "nominal.bin",
+     "nn": "nominal.nn.bin",
+     "min_nn_m": 2.16
+    },
+    {
+     "pos": "wind_gnss.bin",
+     "nn": "wind_gnss.nn.bin",
+     "min_nn_m": 1.04,
+     "id": "wind_gnss",
+     "label_en": "Wind 6 m/s + degraded GNSS",
+     "label_ar": "\u0631\u064a\u0627\u062d \u0666 \u0645/\u062b + \u062a\u062f\u0647\u0648\u0631 GNSS",
+     "events": [],
+     "ballistic": [],
+     "max_tracking_error_m": 2.864603,
+     "config": {
+      "w20": 6.0,
+      "gnss_deg_fraction": 0.25,
+      "gnss_bias_sigma": 0.5
+     }
+    },
+    {
+     "pos": "motor_failure.bin",
+     "nn": "motor_failure.nn.bin",
+     "min_nn_m": 0.43,
+     "id": "motor_failure",
+     "label_en": "2 motor failures (ballistic fall), wind 3 m/s",
+     "label_ar": "\u0639\u0637\u0644 \u0645\u062d\u0631\u0651\u0643\u064a\u0646 (\u0633\u0642\u0648\u0637 \u062d\u0631)\u060c \u0631\u064a\u0627\u062d \u0663 \u0645/\u062b",
+     "events": [
+      {
+       "drone": 117,
+       "kind": "motor_failure",
+       "t": 111.4
+      },
+      {
+       "drone": 87,
+       "kind": "motor_failure",
+       "t": 44.6
+      }
+     ],
+     "ballistic": [
+      87,
+      117
+     ],
+     "max_tracking_error_m": 0.448498,
+     "config": {
+      "w20": 3.0,
+      "motor_failures": 2
+     }
+    },
+    {
+     "pos": "comms_hold.bin",
+     "nn": "comms_hold.nn.bin",
+     "min_nn_m": 0.58,
+     "id": "comms_hold",
+     "label_en": "5% comms loss, hold-then-descend",
+     "label_ar": "\u0641\u0642\u062f\u0627\u0646 \u0627\u062a\u0635\u0627\u0644 \u0665\u066a\u060c \u062a\u062b\u0628\u064a\u062a \u062b\u0645 \u0647\u0628\u0648\u0637",
+     "events": [
+      {
+       "drone": 54,
+       "kind": "comms_loss",
+       "t": 90.0
+      },
+      {
+       "drone": 10,
+       "kind": "comms_loss",
+       "t": 157.4
+      },
+      {
+       "drone": 66,
+       "kind": "comms_loss",
+       "t": 107.8
+      },
+      {
+       "drone": 6,
+       "kind": "comms_loss",
+       "t": 142.6
+      }
+     ],
+     "ballistic": [],
+     "max_tracking_error_m": 0.435094,
+     "config": {
+      "w20": 3.0,
+      "comms_loss_fraction": 0.05,
+      "behavior": {
+       "comms_loss": "hold",
+       "battery_low": "descend",
+       "gnss_loss": "continue",
+       "motor_failure": "ballistic"
+      }
+     }
+    }
+   ]
   }
  ]
 }

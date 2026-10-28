@@ -1,0 +1,100 @@
+{
+ "certificate_version": 2,
+ "tool": "sirb.verify",
+ "sirb_version": "0.1.0",
+ "fleet_sha256": "deea9ff8714078b49c3ada1c24ba3b21b9e6a1a165f44ce002cb4554a20d9e99",
+ "n_drones": 120,
+ "limits": {
+  "vmax_h": 10.0,
+  "vmax_up": 6.0,
+  "vmax_down": 3.0,
+  "amax": 4.0,
+  "jmax": 8.0,
+  "z_min": 0.0,
+  "z_max": 120.0,
+  "geofence": {
+   "x": [
+    -150.0,
+    150.0
+   ],
+   "y": [
+    -130.0,
+    100.0
+   ]
+  },
+  "min_separation_m": 2.0,
+  "crowd": {
+   "y": -250.0,
+   "min_distance_m": 50.0
+  },
+  "sources": {
+   "vmax_h": "datasheet",
+   "vmax_up": "datasheet",
+   "vmax_down": "assumption",
+   "amax": "assumption",
+   "jmax": "assumption",
+   "z_max": "assumption",
+   "geofence": "assumption",
+   "min_separation_m": "assumption",
+   "crowd": "cited guidance, see docs/RESEARCH.md"
+  }
+ },
+ "results": {
+  "ok": true,
+  "min_separation": 2.1558062328596472,
+  "min_separation_is_lower_bound": false,
+  "min_separation_pair": [
+   65,
+   98
+  ],
+  "min_separation_time": 221.80664263273977,
+  "max_speed_h": 9.803921568627459,
+  "max_speed_up": 5.882352941176468,
+  "max_speed_down": 2.9411764705882386,
+  "max_accel": 1.8454320752755298,
+  "max_jerk": 1.1681362259528305,
+  "min_z": -1.4210854715202004e-13,
+  "max_z": 118.12500000000006,
+  "geofence_margin": 30.124999999999787,
+  "crowd_margin": 100.12499999999979,
+  "violations": [],
+  "n_drones": 120,
+  "n_segments": 2040,
+  "n_pairs_checked": 4591,
+  "tolerances": {
+   "tol": 1e-06,
+   "policy": "limit violated only if exceeded by more than tol*(1+|limit|)",
+   "search_radius": 8.0,
+   "time_contiguity_s": 1e-09,
+   "position_continuity_m": 0.0001,
+   "velocity_continuity_mps": 0.001,
+   "acceleration_continuity_mps2": 0.001,
+   "violation_cap_per_kind": 1000
+  },
+  "violation_counts": {},
+  "violations_truncated": false
+ },
+ "verdict": "PASS",
+ "unchecked_limits": [],
+ "method": "Exact verification of piecewise-polynomial trajectories. Pairwise separation: for each pair of drones, time is split at all segment breakpoints (a drone is held at its start position before its first segment and at its final position after its last); on each sub-interval the squared centre distance is a scalar polynomial whose minimum is at an endpoint or a real root of its derivative, found by companion-matrix eigenvalues, Newton-polished and evaluated directly. Exact axis-aligned segment bounding boxes (from derivative roots) discard pairs that provably cannot come within the search radius. Speed, acceleration, jerk, altitude, geofence and crowd limits are checked via the extrema of the corresponding scalar polynomials (derivative roots) per segment. Structural checks cover time contiguity, position, velocity and acceleration continuity and finite coefficients. No time sampling is used.",
+ "guarantees": [
+  "Under the declared model (polynomial paths exactly as written, drones as points whose required separation is min_separation_m centre to centre) the reported minimum separation over all time is exact up to floating-point and root-finding tolerance, for every pair whose minimum is below the search radius.",
+  "Dynamic limits (speed, climb/descent rate, acceleration, jerk, altitude, geofence, crowd distance) hold for the polynomials as written, within the stated tolerance policy.",
+  "Segments are contiguous in time with position, velocity and acceleration continuity within the stated tolerances (an acceleration step would mean unbounded jerk)."
+ ],
+ "not_guaranteed": [
+  "Real aircraft tracking of the commanded polynomials (controller error, latency)",
+  "Wind and other weather disturbances",
+  "GNSS position error, jamming or spoofing",
+  "Aerodynamic interaction such as downwash",
+  "Vehicle size, shape or battery behaviour beyond the declared limits",
+  "Failures, comms loss and contingency behaviour",
+  "Regulatory, airworthiness or operational approval properties of any kind"
+ ],
+ "property": "For every pair of drones i != j and every time t in [0, T]: |p_i(t) - p_j(t)| >= min_separation_m (centre to centre), for the polynomial paths exactly as written. The reported separation_robustness_m is the minimum over all pairs and time of |p_i(t) - p_j(t)| - min_separation_m, the quantitative (robustness) value of that always-property; it is negative exactly when it fails.",
+ "meaning": "A PASS means the nominal planned trajectories met the checks listed here under the stated assumptions. It is not a statement that a fleet is safe to fly, and it is not an approval.",
+ "separation_robustness_m": 0.15580623285964723,
+ "vehicle": null,
+ "statement": "simulation-validated only; not flight-certified; no regulatory compliance claim",
+ "safety_statement": "Simulation and planning tool only. Not flight-certified; no claim of regulatory compliance. Real shows need an operator safety case and approvals from the relevant UAE aviation authorities. Simulation-validated only."
+}

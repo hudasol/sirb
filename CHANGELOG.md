@@ -4,6 +4,9 @@ Format follows Keep a Changelog. Versions before 0.1.0 were internal milestones.
 
 ## [Unreleased]
 
+### Added
+- Gallery show of 120 drones with original outline silhouettes (falcon, dhow, palm, figure, heart, SIRB, skyline), planned and verified like the other shows, and listed in the viewer.
+
 ### Changed
 - Licence changed from MIT to Apache-2.0 (adds an explicit patent grant).
 
