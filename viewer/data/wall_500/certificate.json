@@ -1,5 +1,5 @@
 {
- "certificate_version": 1,
+ "certificate_version": 2,
  "tool": "sirb.verify",
  "sirb_version": "0.1.0",
  "fleet_sha256": "7283bef4999a5fbbffef3d8fa3ef0a3fef8f17f18fb77528934d4fc2879739bf",
@@ -91,6 +91,10 @@
   "Failures, comms loss and contingency behaviour",
   "Regulatory, airworthiness or operational approval properties of any kind"
  ],
+ "property": "For every pair of drones i != j and every time t in [0, T]: |p_i(t) - p_j(t)| >= min_separation_m (centre to centre), for the polynomial paths exactly as written. The reported separation_robustness_m is the minimum over all pairs and time of |p_i(t) - p_j(t)| - min_separation_m, the quantitative (robustness) value of that always-property; it is negative exactly when it fails.",
+ "meaning": "A PASS means the nominal planned trajectories met the checks listed here under the stated assumptions. It is not a statement that a fleet is safe to fly, and it is not an approval.",
+ "separation_robustness_m": 0.44801504032488637,
+ "vehicle": null,
  "statement": "simulation-validated only; not flight-certified; no regulatory compliance claim",
  "safety_statement": "Simulation and planning tool only. Not flight-certified; no claim of regulatory compliance. Real shows need an operator safety case and approvals from the relevant UAE aviation authorities. Simulation-validated only."
 }
