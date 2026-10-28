@@ -62,6 +62,32 @@ def track(ref: np.ndarray, u: np.ndarray, cfg: StressConfig) -> np.ndarray:
     return eps
 
 
+def track_limited(e: np.ndarray, wind: np.ndarray, cfg: StressConfig) -> np.ndarray:
+    """Tracking error with a command latency and a cap on the feedback acceleration.
+
+    The feedback (state and GNSS error terms) is computed from the state ``latency_s`` earlier and its
+    norm is limited to ``accel_limit``; the wind drag acceleration is not limited. Explicit
+    integration with constant acceleration over each step. Used only when one of the two options is
+    set; otherwise ``track`` (exact discretisation of the linear loop) is used.
+    """
+    kp, kd = cfg.omega_n**2, 2 * cfg.zeta * cfg.omega_n
+    K = e.shape[0]
+    m = int(round(cfg.latency_s / cfg.dt))
+    eps = np.zeros_like(e)
+    vel = np.zeros_like(e)
+    dt = cfg.dt
+    for k in range(K - 1):
+        j = max(k - m, 0)
+        ctrl = -kp * (eps[j] + e[j]) - kd * vel[j]
+        if cfg.accel_limit is not None:
+            norm = np.linalg.norm(ctrl, axis=1, keepdims=True)
+            ctrl = ctrl * np.minimum(1.0, cfg.accel_limit / np.maximum(norm, 1e-12))
+        a = ctrl + cfg.drag_gain * wind[k]
+        eps[k + 1] = eps[k] + vel[k] * dt + 0.5 * a * dt * dt
+        vel[k + 1] = vel[k] + a * dt
+    return eps
+
+
 def ballistic_track(x_before: np.ndarray, x_at: np.ndarray, K: int, k_e: int,
                     cfg: StressConfig) -> np.ndarray:
     """Positions (K - k_e, 3) of an uncontrolled fall starting at step k_e."""
@@ -83,7 +109,10 @@ def dev_bound(cfg: StressConfig) -> float:
         if cfg.gnss_loss_fraction > 0 else 0.0
     kp = cfg.omega_n**2
     wind = cfg.drag_gain * (1.5 * cfg.w20 + 0.0) / kp * 2
-    return 2 * (gn + wind) + 1.0
+    bound = 2 * (gn + wind) + 1.0
+    if cfg.latency_s > 0 or cfg.accel_limit is not None:
+        bound = 2.0 * bound + 2.0     # latency and clipping can enlarge errors; selection only
+    return bound
 
 
 def candidate_pairs(R: np.ndarray, radius: float, stride: int = 4,
@@ -166,8 +195,11 @@ def realize(ref: np.ndarray, cfg: StressConfig, seed):
     events = sample_events(K, n, cfg, rng)
     R, ballistic = apply_events(ref, events, ginfo, cfg)
     kp = cfg.omega_n**2
-    u = -kp * e + cfg.drag_gain * wind
-    eps = track(R, u, cfg)
+    if cfg.latency_s > 0 or cfg.accel_limit is not None:
+        eps = track_limited(e, wind, cfg)
+    else:
+        u = -kp * e + cfg.drag_gain * wind
+        eps = track(R, u, cfg)
     X = R + eps
     bal_idx = []
     for i, k_e in ballistic:

@@ -35,6 +35,9 @@ class StressConfig:
     # tracking loop (closed-loop second order), ASSUMPTION
     omega_n: float = 2.0
     zeta: float = 0.9
+    # optional tracker limits, both opt in (defaults keep the linear model of earlier results)
+    latency_s: float = 0.0               # command latency on the feedback, s (ASSUMPTION)
+    accel_limit: float | None = None     # cap on the feedback acceleration norm, m/s^2 (ASSUMPTION)
     # wind
     w20: float = 0.0               # mean wind at 20 ft, m/s
     wind_dir_deg: float = 0.0
