@@ -19,10 +19,11 @@
 | `HAZARDS.md` | Hazard table and which check covers each cause |
 | `RESEARCH.md` | Sources read and what was found |
 | `DATA_SOURCES.md` | Libraries and data with licences |
+| `RELATED_WORK.md` | Closest published methods, the gap statement and the hypotheses |
 
 ## Results (generated from `results/*.json`, do not edit)
 
-`RESULTS.md`, `REPORT.md`, `ONE_PAGER.md`, `SENSITIVITY.md`, `MARGIN.md`, `PERFORMANCE.md`, `MUTATION.md`, `GNSS_SOURCED.md`, `GROUND_ROBOTS.md`, `BASELINES.md`, `PRODUCT_PLAN.md`.
+`RESULTS.md`, `REPORT.md`, `ONE_PAGER.md`, `SENSITIVITY.md`, `MARGIN.md`, `PERFORMANCE.md`, `MUTATION.md`, `GNSS_SOURCED.md`, `GROUND_ROBOTS.md`, `BASELINES.md`, `BENCHMARK_V2.md`, `GNSS_COMMON.md`, `STRESS_CREDIBILITY.md`, `MODEL_FIDELITY.md`, `SITL.md`, `PRODUCT_PLAN.md`.
 
 ## Proposal material
 
