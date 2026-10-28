@@ -107,6 +107,8 @@ def apply_events(ref_nominal: np.ndarray, events: list[dict], gnss_info: dict,
     for ev in sorted(events, key=lambda e: e["k"]):
         i, k_e, kind = ev["drone"], ev["k"], ev["kind"]
         beh = cfg.behavior.get(kind, "continue")
+        if kind != "motor_failure" and cfg.detection_delay_s > 0:
+            k_e = min(k_e + int(round(cfg.detection_delay_s / cfg.dt)), ref_nominal.shape[0] - 1)
         if kind == "motor_failure" or beh == "ballistic":
             ballistic.append((i, k_e))
         elif beh == "hold":

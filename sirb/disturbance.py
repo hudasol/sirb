@@ -51,6 +51,8 @@ class StressConfig:
     gnss_loss_s: float = 10.0
     gnss_dead_reckoning_rate: float = 0.3  # m / sqrt(s), random walk in dropout (ASSUMPTION)
     # events (comms loss, low battery, motor failure)
+    detection_delay_s: float = 0.0  # time from a comms or battery event to the contingency
+    # behaviour starting (the drone keeps flying its plan meanwhile); motor failure is physical
     comms_loss_fraction: float = 0.0
     battery_low_fraction: float = 0.0
     motor_failures: int = 0

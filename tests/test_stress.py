@@ -203,3 +203,24 @@ def test_unknown_behavior_rejected(planned):
                   "motor_failure": "ballistic"})
     with pytest.raises(ValueError):
         run_trial(ref, cfg, 2.0, 1)
+
+
+def test_detection_delay_postpones_the_contingency_and_zero_keeps_old_behaviour():
+    import numpy as np
+
+    from sirb.contingency import apply_events
+    from sirb.disturbance import StressConfig
+
+    K, n = 200, 3
+    ref = np.zeros((K, n, 3))
+    ref[:, :, 0] = np.arange(K)[:, None] * 0.1
+    ev = [{"drone": 1, "kind": "comms_loss", "k": 50}]
+    base = StressConfig(dt=0.1, behavior={"comms_loss": "hold", "battery_low": "descend",
+                                          "gnss_loss": "continue", "motor_failure": "ballistic"})
+    a, _ = apply_events(ref, ev, {}, base)
+    b, _ = apply_events(ref, ev, {}, base.with_(detection_delay_s=0.0))
+    assert np.array_equal(a, b)
+    c, _ = apply_events(ref, ev, {}, base.with_(detection_delay_s=2.0))
+    assert np.allclose(c[50:70, 1], ref[50:70, 1])          # still flying the plan
+    assert np.allclose(c[100:, 1, 0], c[70, 1, 0])           # holds from step 70 on
+    assert np.allclose(a[60:, 1, 0], a[50, 1, 0])            # no delay: holds from step 50
