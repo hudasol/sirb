@@ -1,0 +1,79 @@
+{
+ "label": "ASSUMED rule scaled from a smaller vehicle; planning only; not flight evidence",
+ "rule_file": "shows/downwash_assumed.json",
+ "d_h_m": 2.0,
+ "vertical_radii_m": [
+  2.0,
+  3.0,
+  4.56,
+  5.0
+ ],
+ "shows": {
+  "gallery_120": {
+   "n_drones": 120,
+   "fleet_sha256": "deea9ff8714078b49c3ada1c24ba3b21b9e6a1a165f44ce002cb4554a20d9e99",
+   "violating_pairs": {
+    "2.0": 0,
+    "3.0": 48,
+    "4.56": 183,
+    "5.0": 217
+   }
+  },
+  "oryx_500": {
+   "n_drones": 500,
+   "fleet_sha256": "0d318a350ad03364dbf157d6e136e88d6757a945949ae5390edc93932cdea353",
+   "violating_pairs": {
+    "2.0": 0,
+    "3.0": 3,
+    "4.56": 317,
+    "5.0": 322
+   }
+  },
+  "torus_300": {
+   "n_drones": 300,
+   "fleet_sha256": "d17f2c1af3ac8b77728de3e801f46c6677b4125d6701339be430276477bb70af",
+   "violating_pairs": {
+    "2.0": 0,
+    "3.0": 0,
+    "4.56": 5,
+    "5.0": 9
+   }
+  },
+  "sirb_text_100": {
+   "n_drones": 100,
+   "fleet_sha256": "dc4aba7546357c59adff49a830f86a84cf066442910f1c7120eba6bde348dd5e",
+   "violating_pairs": {
+    "2.0": 0,
+    "3.0": 11,
+    "4.56": 66,
+    "5.0": 75
+   }
+  }
+ },
+ "P41": {
+  "all_have_violation_at_4.56": true,
+  "none_at_2.0": true
+ },
+ "P42": {
+  "shows_with_ratio_ge_5": 3,
+  "of": 4
+ },
+ "environment": {
+  "python": "3.13.16",
+  "implementation": "CPython",
+  "numpy": "2.5.3",
+  "scipy": "1.18.1",
+  "sirb": "0.1.0",
+  "os": "Linux 6.18.44-fc-v230",
+  "machine": "x86_64",
+  "cpu_count": 2,
+  "thread_environment": {
+   "OMP_NUM_THREADS": null,
+   "OPENBLAS_NUM_THREADS": "1",
+   "MKL_NUM_THREADS": null,
+   "SIRB_WORKERS": null
+  },
+  "device": "cpu",
+  "seeds": {}
+ }
+}

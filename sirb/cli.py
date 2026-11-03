@@ -1,4 +1,4 @@
-"""Command line entry point: ``python -m sirb {validate,plan,check,margin,stress,doctor,repair,verify-external}``.
+"""Command line entry point: ``python -m sirb {validate,plan,check,margin,stress,doctor,repair,downwash,verify-external}``.
 
 Files in, files out. Nothing here talks to an aircraft, a radio or a ground station.
 Exit status: 0 = ok, 1 = invalid input or failed check, 2 = the plan verified but FAILED a limit.
@@ -207,6 +207,22 @@ def _repair(a) -> int:
     return 0 if f["meets_target"] else 2
 
 
+def _downwash(a) -> int:
+    import json
+
+    from .downwash import load_rule, report
+
+    show, fleet, _ = load_export(a.export)
+    rule = load_rule(a.rule, show["limits"]["min_separation_m"], a.d_v)
+    r = report(fleet, rule)
+    print(f"downwash rule (ASSUMED, optional): horizontal {rule.d_h} m, vertical {rule.d_v} m: "
+          f"{r['verdict']}, {r['violating_pairs']} violating pair(s). Simulation only.")
+    if a.report:
+        with open(a.report, "w", encoding="utf-8") as f:
+            json.dump(r, f, indent=1)
+    return 0 if r["verdict"] == "PASS" else 2
+
+
 def main(argv: list[str] | None = None) -> int:
     ap = argparse.ArgumentParser(prog="sirb", description=SAFETY_STATEMENT)
     ap.add_argument("--version", action="version", version=f"sirb {__version__}")
@@ -269,6 +285,12 @@ def main(argv: list[str] | None = None) -> int:
     r.add_argument("--max-moves", type=int, default=15)
     r.add_argument("--out", help="repaired export bundle (.json)")
     r.add_argument("--log", help="repair log (.json)")
+    w = sub.add_parser("downwash", help="optional exact check of an ellipsoidal downwash rule "
+                       "(default off; the shipped vertical radius is assumed)")
+    w.add_argument("export")
+    w.add_argument("--rule", default="shows/downwash_assumed.json")
+    w.add_argument("--d-v", type=float, default=None, help="override the vertical radius, m")
+    w.add_argument("--report", help="write the result (.json)")
     a = ap.parse_args(argv)
 
     try:
@@ -296,6 +318,8 @@ def main(argv: list[str] | None = None) -> int:
             return _verify_external(a)
         if a.cmd == "stress":
             return _stress(a)
+        if a.cmd == "downwash":
+            return _downwash(a)
         if a.cmd == "repair":
             return _repair(a)
         if a.cmd == "doctor":

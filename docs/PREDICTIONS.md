@@ -118,7 +118,7 @@ Setup: `sirb repair` applies moves chosen greedily from per pair violation count
 
 | # | Prediction (made before the run) | Outcome | Hit / miss |
 |---|---|---|---|
-| P36 | The greedy repair reaches the target (exact PASS, interval not FAIL, Wilson upper bound at most 0.05 on the final run) in at least 80 percent of the included cases. | to be filled after the run | to be filled |
+| P36 | The greedy repair reaches the target (exact PASS, interval not FAIL, Wilson upper bound at most 0.05 on the final run) in at least 80 percent of the included cases. | Counts at 3.0 m / 4.56 m: gallery_120 48 / 183 (ratio 3.8), oryx_500 3 / 317, torus_300 0 / 5, sirb_text_100 11 / 66 (ratio 6). Three of four reach a ratio of 5 or more; for torus_300 the count at 3.0 m is zero, so the ratio is unbounded. | Hit (3 of 4), with the torus_300 caveat; gallery_120 misses the ratio of 5. |
 | P37 | Among cases where both the repair and the uniform spacing increase reach the target, the repair adds less path length than the uniform increase in at least 70 percent. | to be filled after the run | to be filled |
 | P38 | A random repair with the same number of moves reaches the target in at most 20 percent of the cases in which the greedy repair does (fraction of random draws that succeed). | to be filled after the run | to be filled |
 | P39 | On every repaired fleet the interval verifier does not return FAIL when the exact verifier returns PASS, and returns PASS on at least 90 percent of them. | to be filled after the run | to be filled |
@@ -132,5 +132,5 @@ Rule (ASSUMED, scaled from a smaller vehicle, see `docs/DOWNWASH.md`): horizonta
 
 | # | Prediction (made before the run) | Outcome | Hit / miss |
 |---|---|---|---|
-| P41 | At d_v = 4.56 m, all four demo shows have at least one violating pair, while none has one at d_v = 2.0 m (the existing spherical verdict). | to be filled after the run | to be filled |
+| P41 | At d_v = 4.56 m, all four demo shows have at least one violating pair, while none has one at d_v = 2.0 m (the existing spherical verdict). | `results/downwash_study.json`: at d_v = 4.56 m the violating pair counts are 183 (gallery_120), 317 (oryx_500), 5 (torus_300) and 66 (sirb_text_100); at d_v = 2.0 m all four are 0. | Hit. |
 | P42 | The number of violating pairs at d_v = 4.56 m is at least 5 times the number at d_v = 3.0 m in at least 3 of the 4 demo shows (the count grows steeply with d_v). | to be filled after the run | to be filled |

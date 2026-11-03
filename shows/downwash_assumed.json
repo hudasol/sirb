@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "rule": "ellipsoid",
+  "provenance": {
+    "source_name": "Kiran, Ayanian and Breuer, Influence of Static and Dynamic Downwash Interactions on Multi Quadrotor Systems",
+    "url": "https://arxiv.org/pdf/2507.09463",
+    "licence": "not stated on the retrieved page",
+    "retrieval_date": "2026-11-03",
+    "derived_by": "Huda Mueen: 19 arm lengths (thrust within 95 to 98 percent of hover) multiplied by the arm length of the reference multirotor, taken as its radius_m of 0.24 m. The source measured Crazyflie vehicles (arm length 0.0325 m); transferring the result to a larger vehicle by arm length is an assumption.",
+    "notes": "Preiss et al. (arXiv 1704.04852) use a vertical to horizontal ratio of 2.5 for Crazyflie vehicles; the sensitivity value 5.0 m applies that ratio to a 2.0 m horizontal radius."
+  },
+  "parameters": {
+    "vertical_radius_m": {"value": 4.56, "unit": "m", "assumed": true}
+  },
+  "sensitivity_vertical_radius_m": [3.0, 4.56, 5.0]
+}
