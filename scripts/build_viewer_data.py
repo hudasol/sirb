@@ -118,6 +118,16 @@ def write_bin(path: Path, X: np.ndarray) -> dict:
             "min_nn_m": float(nn.min() / 100.0)}
 
 
+def downwash_block(name: str) -> dict | None:
+    """Pair counts of the optional, ASSUMED downwash rule (results/downwash_study.json)."""
+    f = Path("results/downwash_study.json")
+    if not f.exists():
+        return None
+    r = json.loads(f.read_text())["shows"][name]["violating_pairs"]
+    return {"d_h_m": 2.0, "assumed": True,
+            "pairs": {k: v for k, v in r.items() if k != "2.0"}}
+
+
 def main() -> None:
     OUT.mkdir(parents=True, exist_ok=True)
     index = {"safety_statement": SAFETY_STATEMENT, "dt": DT, "seed": SEED, "pos_scale": 0.01,
@@ -154,7 +164,8 @@ def main() -> None:
             "geofence": show["limits"]["geofence"], "crowd": show["limits"]["crowd"],
             "fleet_sha256": fleet.content_hash(), "verdict": cert["verdict"],
             "min_separation_m": rep.min_separation, "recomputation_ok": recomputation_ok,
-            "certificate": f"{name}/certificate.json", "scenarios": sc})
+            "certificate": f"{name}/certificate.json", "downwash": downwash_block(name),
+            "scenarios": sc})
         print(name, n, K, cert["verdict"], round(rep.min_separation, 3), flush=True)
     (OUT / "index.json").write_text(json.dumps(round_floats(index), indent=1))
 

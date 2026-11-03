@@ -70,7 +70,7 @@
   {
    "check": "[ar] Space starts and Enter pauses on the play button",
    "pass": true,
-   "detail": "pressed=true t=3.0"
+   "detail": "pressed=true t=2.94"
   },
   {
    "check": "[ar] step buttons work with Enter and Space (one frame = 0.2 s)",

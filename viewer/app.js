@@ -440,6 +440,12 @@ function renderCert() {
     if (lim.sources?.min_separation_m === "assumption") f.append(el("span", { class: "chip", text: t("cert_dmin_assumed") })); return f; })());
   kv(dl, t("cert_margin"), withUnit(num(r.min_separation - lim.min_separation_m, 3), "exact-verifier"));
   kv(dl, t("cert_recheck"), el("a", { class: "num", href: methodsHref("recomputation-check"), text: (sh.recomputation_ok ? "" : "✖ ") + t(sh.recomputation_ok ? "recheck_yes" : "recheck_no") }));
+  if (sh.downwash) {
+    const pairs = sh.downwash.pairs, dv = Object.keys(pairs);
+    const f = el("div", {}, el("span", { class: "num", text: dv.map((k) => `${num(parseFloat(k), 2)} ${t("unit_m")}: ${S.int(pairs[k])}`).join(" · ") }));
+    f.append(el("span", { class: "chip", text: t("cert_dmin_assumed") }), el("div", { class: "note", text: t("downwash_note") }));
+    kv(dl, t("cert_downwash"), f);
+  }
   const full = c.fleet_sha256, short = `${full.slice(0, 8)}…${full.slice(-8)}`;
   const shaWrap = el("div", {}, el("a", { class: "num", href: methodsHref("content-hash") }, el("code", { class: "hash", text: short })), " ");
   const copy = el("button", { type: "button", class: "btn ev-btn", text: t("copy") }); const stat = el("span", { class: "note", role: "status" });

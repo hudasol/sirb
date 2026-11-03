@@ -132,6 +132,15 @@
    "min_separation_m": 2.155806,
    "recomputation_ok": true,
    "certificate": "gallery_120/certificate.json",
+   "downwash": {
+    "d_h_m": 2.0,
+    "assumed": true,
+    "pairs": {
+     "3.0": 48,
+     "4.56": 183,
+     "5.0": 217
+    }
+   },
    "scenarios": [
     {
      "id": "nominal",
@@ -300,6 +309,15 @@
    "min_separation_m": 2.521361,
    "recomputation_ok": true,
    "certificate": "oryx_500/certificate.json",
+   "downwash": {
+    "d_h_m": 2.0,
+    "assumed": true,
+    "pairs": {
+     "3.0": 3,
+     "4.56": 317,
+     "5.0": 322
+    }
+   },
    "scenarios": [
     {
      "id": "nominal",
@@ -570,6 +588,15 @@
    "min_separation_m": 2.195874,
    "recomputation_ok": true,
    "certificate": "torus_300/certificate.json",
+   "downwash": {
+    "d_h_m": 2.0,
+    "assumed": true,
+    "pairs": {
+     "3.0": 0,
+     "4.56": 5,
+     "5.0": 9
+    }
+   },
    "scenarios": [
     {
      "id": "nominal",
@@ -783,6 +810,15 @@
    "min_separation_m": 2.188611,
    "recomputation_ok": true,
    "certificate": "sirb_text_100/certificate.json",
+   "downwash": {
+    "d_h_m": 2.0,
+    "assumed": true,
+    "pairs": {
+     "3.0": 11,
+     "4.56": 66,
+     "5.0": 75
+    }
+   },
    "scenarios": [
     {
      "id": "nominal",
