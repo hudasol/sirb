@@ -1,4 +1,4 @@
-"""Command line entry point: ``python -m sirb {validate,plan,check,margin,stress,doctor,repair,downwash,verify-external}``.
+"""Command line entry point: ``python -m sirb {validate,plan,check,margin,stress,doctor,repair,downwash,pack,verify-external}``.
 
 Files in, files out. Nothing here talks to an aircraft, a radio or a ground station.
 Exit status: 0 = ok, 1 = invalid input or failed check, 2 = the plan verified but FAILED a limit.
@@ -225,6 +225,39 @@ def _downwash(a) -> int:
     return 0 if r["verdict"] == "PASS" else 2
 
 
+def _pack(a) -> int:
+    from .disturbance import StressConfig
+    from .gnss_params import load, to_stress_config
+    from .pack import build_pack, check_hashes, keygen, sign, verify_signature
+
+    if a.pack_cmd == "keygen":
+        print("public key (hex):", keygen(a.out))
+        return 0
+    if a.pack_cmd == "check":
+        bad = check_hashes(a.folder)
+        print("hash list agrees with the files" if not bad else f"changed or missing: {bad}")
+        if a.pubkey:
+            ok = verify_signature(a.folder, a.pubkey)
+            print("signature valid (origin of the hash list only; not a safety statement)" if ok
+                  else "signature INVALID")
+            return 0 if (ok and not bad) else 1
+        return 0 if not bad else 1
+    show = load_show(a.show)
+    errs = validate_show(show)
+    if errs:
+        for e in errs:
+            print("error:", e, file=sys.stderr)
+        return 1
+    cfg = to_stress_config(load(a.gnss), base=StressConfig(dt=0.2, w20=a.w20))
+    r = build_pack(show, a.out, cfg, trials=a.trials, target=a.target, do_repair=not a.no_repair,
+                   with_band=not a.no_band)
+    if a.sign_key:
+        sign(a.out, a.sign_key)
+    print(f"wrote {len(r['files'])} files to {a.out}; open {a.out}/summary.html. Simulation only; "
+          "not an approval.")
+    return 0
+
+
 def main(argv: list[str] | None = None) -> int:
     ap = argparse.ArgumentParser(prog="sirb", description=SAFETY_STATEMENT)
     ap.add_argument("--version", action="version", version=f"sirb {__version__}")
@@ -293,6 +326,24 @@ def main(argv: list[str] | None = None) -> int:
     w.add_argument("--rule", default="shows/downwash_assumed.json")
     w.add_argument("--d-v", type=float, default=None, help="override the vertical radius, m")
     w.add_argument("--report", help="write the result (.json)")
+    pk = sub.add_parser("pack", help="evidence pack: plan, checks, diagnosis, repair log and a "
+                        "bilingual one page summary in one folder (simulation only)")
+    pks = pk.add_subparsers(dest="pack_cmd", required=True)
+    pb = pks.add_parser("build")
+    pb.add_argument("show")
+    pb.add_argument("--out", required=True, help="output folder")
+    pb.add_argument("--gnss", required=True)
+    pb.add_argument("--w20", type=float, default=0.0)
+    pb.add_argument("--trials", type=int, default=100)
+    pb.add_argument("--target", type=float, default=0.05)
+    pb.add_argument("--no-repair", action="store_true")
+    pb.add_argument("--no-band", action="store_true")
+    pb.add_argument("--sign-key", help="Ed25519 private key (PEM); needs the optional cryptography extra")
+    pc = pks.add_parser("check")
+    pc.add_argument("folder")
+    pc.add_argument("--pubkey", help="public key (hex) to verify SHA256SUMS.sig")
+    pg = pks.add_parser("keygen")
+    pg.add_argument("--out", required=True)
     a = ap.parse_args(argv)
 
     try:
@@ -320,6 +371,9 @@ def main(argv: list[str] | None = None) -> int:
             return _verify_external(a)
         if a.cmd == "stress":
             return _stress(a)
+        if a.cmd == "pack":
+            a.show = getattr(a, "show", None)
+            return _pack(a)
         if a.cmd == "downwash":
             return _downwash(a)
         if a.cmd == "repair":
