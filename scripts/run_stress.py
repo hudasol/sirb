@@ -112,6 +112,9 @@ def exp_scaling() -> dict:
     for n in (20, 50, 100, 200, 500, 1000, 2000):
         def one(n=n):
             show = family_show(3.2, n, big=True)
+            if n >= 2000:   # the wall of this size reaches below the altitude floor: lift it
+                show["stages"][2]["shape"] = {**show["stages"][2]["shape"], "center": [0, 0, 100]}
+                show["limits"]["z_max"] = 170.0
             t = time.time()
             fleet, _ = plan_baseline(show)
             plan_s = time.time() - t
