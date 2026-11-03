@@ -145,3 +145,15 @@ Setup: sirb_text_100, gallery_120, torus_300 and the 20 random fleets of the doc
 |---|---|---|---|
 | P43 | In at least 80 percent of the cases the verdict depends on the parameter (some grid cells meet the target and some do not). | to be filled after the run | to be filled |
 | P44 | At bias sigma 0.5 m, setting the shared fraction to 0.5 instead of 0 changes whether the target is met in at least 30 percent of the cases. | to be filled after the run | to be filled |
+
+### Tuned PX4 replay and identified tracking model (WP3, `scripts/sitl_identify.py`)
+
+Informed priors (disclosed): the default parameter runs (P32, P33) deviated from the plan by 9 to 20 m. The plan asks for a vertical speed of up to 6 m/s up and 3 m/s down and a horizontal acceleration of up to 4 m/s^2, while the PX4 defaults I recall (not looked up in this session before writing) limit climb to about 3 m/s, descent to about 1.5 m/s and horizontal acceleration to about 3 m/s^2, so the vertical limits are my main suspect. I have not run any tuned configuration.
+
+Setup: simulation in hardware (SIH) quadrotors, 2, 3 and 4 vehicles, 10 seeds each (show seeds 0 to 9, which draw the ring spacing from 4.5 to 6.0 m and the launch grid offset), two configurations: PX4 defaults, and a tuned set (documented position and velocity limits and gains of the multicopter position controller raised to cover the plan's declared limits; the exact values are written to the result file). This is software in the loop, not hardware. Success of the tuned set is judged on the same 30 seeds and vehicle counts, not on held out seeds, because the tuning is a small hand chosen change of limits, not a search; this is disclosed. A run counts as deviating if the maximum distance between flown and planned position exceeds 3 m. The tracking model fitted per run is a second order loop with a transport delay (natural frequency, damping, delay) by least squares between commanded and flown position at 20 Hz.
+
+| # | Prediction (made before the run) | Outcome | Hit / miss |
+|---|---|---|---|
+| P45 | With the tuned set the maximum deviation is at most 3 m in at least 80 percent of runs, against at most 20 percent of runs with the defaults. | to be filled after the run | to be filled |
+| P46 | The flown minimum separation is below the 2.0 m threshold in at least 20 percent of default runs and in at most 10 percent of tuned runs. | to be filled after the run | to be filled |
+| P47 | The median fitted natural frequency of the tuned runs is higher than that of the default runs, and the median fit error (RMS of flown minus fitted position) of the tuned runs is below 1.0 m. | to be filled after the run | to be filled |
