@@ -13,7 +13,7 @@ from . import SAFETY_STATEMENT, __version__
 from .export import build_export, load_export, save_export
 from .spec import load_show, validate_show
 
-PLANNERS = ("baseline", "waves", "prioritized")
+PLANNERS = ("baseline", "waves", "prioritized", "delays")
 
 
 def _plan(show: dict, planner: str):
@@ -21,6 +21,8 @@ def _plan(show: dict, planner: str):
         from .planner.baseline import plan_baseline as fn
     elif planner == "waves":
         from .planner.waves import plan_waves as fn
+    elif planner == "delays":
+        from .planner.delays import plan_delay_cbs as fn
     else:
         from .planner.prioritized import plan_prioritized as fn
     return fn(show)

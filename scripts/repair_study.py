@@ -38,7 +38,9 @@ from sirb.verify import verify  # noqa: E402
 TARGET = 0.05
 FINAL_SEED, SYNTH_SEED, RANDOM_SEED = 7003, 7004, 7005
 N_RANDOM = 10
-BUDGET_S = 900.0
+BUDGET_S = 300.0
+SEARCH_TRIALS = 40
+MAX_MOVES = 8
 CACHE = Path("results/.cache")
 CFG = StressConfig(**PROFILE)
 
@@ -79,7 +81,8 @@ def run_case(name: str, show: dict) -> dict:
         out["included"] = False
         return out
     out["included"] = True
-    r, s2, f2 = repair(show, CFG, target=TARGET, final_seed=FINAL_SEED, time_budget_s=BUDGET_S)
+    r, s2, f2 = repair(show, CFG, target=TARGET, final_seed=FINAL_SEED, time_budget_s=BUDGET_S,
+                       search_trials=SEARCH_TRIALS, max_moves=MAX_MOVES)
     out["greedy"] = {k: r[k] for k in ("status", "n_moves", "moves", "after", "cost", "wall_s")}
     out["greedy"]["meets_target"] = meets(r["after"])
     # uniform spacing increase
