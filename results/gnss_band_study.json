@@ -1,0 +1,2246 @@
+{
+ "label": "SIMULATED; synthetic fleets; assumed parameter grid; not flight evidence",
+ "profile": {
+  "dt": 0.2,
+  "w20": 6.0,
+  "gnss_bias_sigma": 0.5,
+  "gnss_deg_fraction": 0.25
+ },
+ "cases": [
+  {
+   "name": "sirb_text_100",
+   "n_drones": 100,
+   "band": {
+    "label": "SIMULATED; assumed parameter grid; not flight evidence",
+    "trials": 100,
+    "seed": 20261016,
+    "target_upper_bound": 0.05,
+    "cells": [
+     {
+      "bias_sigma_m": 0.1,
+      "common_fraction": 0.0,
+      "p_violation": 0.39,
+      "p_violation_ci95": [
+       0.300167219319702,
+       0.48797163832501844
+      ],
+      "meets_target": false
+     },
+     {
+      "bias_sigma_m": 0.1,
+      "common_fraction": 0.5,
+      "p_violation": 0.3,
+      "p_violation_ci95": [
+       0.21894753866228117,
+       0.39585038432811953
+      ],
+      "meets_target": false
+     },
+     {
+      "bias_sigma_m": 0.25,
+      "common_fraction": 0.0,
+      "p_violation": 0.92,
+      "p_violation_ci95": [
+       0.8500173312059693,
+       0.9589070305141891
+      ],
+      "meets_target": false
+     },
+     {
+      "bias_sigma_m": 0.25,
+      "common_fraction": 0.5,
+      "p_violation": 0.92,
+      "p_violation_ci95": [
+       0.8500173312059693,
+       0.9589070305141891
+      ],
+      "meets_target": false
+     },
+     {
+      "bias_sigma_m": 0.5,
+      "common_fraction": 0.0,
+      "p_violation": 1.0,
+      "p_violation_ci95": [
+       0.9630051925239981,
+       0.9999999999999999
+      ],
+      "meets_target": false
+     },
+     {
+      "bias_sigma_m": 0.5,
+      "common_fraction": 0.5,
+      "p_violation": 1.0,
+      "p_violation_ci95": [
+       0.9630051925239981,
+       0.9999999999999999
+      ],
+      "meets_target": false
+     },
+     {
+      "bias_sigma_m": 1.0,
+      "common_fraction": 0.0,
+      "p_violation": 1.0,
+      "p_violation_ci95": [
+       0.9630051925239981,
+       0.9999999999999999
+      ],
+      "meets_target": false
+     },
+     {
+      "bias_sigma_m": 1.0,
+      "common_fraction": 0.5,
+      "p_violation": 1.0,
+      "p_violation_ci95": [
+       0.9630051925239981,
+       0.9999999999999999
+      ],
+      "meets_target": false
+     }
+    ],
+    "depends_on_parameter": false,
+    "notice": "Within the grid the decision does not change with this parameter, which is still unmeasured: the relative GNSS error between nearby receivers is not measured by this project and no free source supplies it. The band below lists ASSUMED values; read every stressed verdict as conditional on the value used."
+   },
+   "common_flips_at_0.5": false
+  },
+  {
+   "name": "gallery_120",
+   "n_drones": 120,
+   "band": {
+    "label": "SIMULATED; assumed parameter grid; not flight evidence",
+    "trials": 100,
+    "seed": 20261016,
+    "target_upper_bound": 0.05,
+    "cells": [
+     {
+      "bias_sigma_m": 0.1,
+      "common_fraction": 0.0,
+      "p_violation": 0.62,
+      "p_violation_ci95": [
+       0.5220957382071033,
+       0.7090255079986562
+      ],
+      "meets_target": false
+     },
+     {
+      "bias_sigma_m": 0.1,
+      "common_fraction": 0.5,
+      "p_violation": 0.53,
+      "p_violation_ci95": [
+       0.4328868313724773,
+       0.6248934801789626
+      ],
+      "meets_target": false
+     },
+     {
+      "bias_sigma_m": 0.25,
+      "common_fraction": 0.0,
+      "p_violation": 0.99,
+      "p_violation_ci95": [
+       0.9455124752390653,
+       0.9982326134344526
+      ],
+      "meets_target": false
+     },
+     {
+      "bias_sigma_m": 0.25,
+      "common_fraction": 0.5,
+      "p_violation": 0.96,
+      "p_violation_ci95": [
+       0.9016278276739262,
+       0.984336949448152
+      ],
+      "meets_target": false
+     },
+     {
+      "bias_sigma_m": 0.5,
+      "common_fraction": 0.0,
+      "p_violation": 1.0,
+      "p_violation_ci95": [
+       0.9630051925239981,
+       0.9999999999999999
+      ],
+      "meets_target": false
+     },
+     {
+      "bias_sigma_m": 0.5,
+      "common_fraction": 0.5,
+      "p_violation": 1.0,
+      "p_violation_ci95": [
+       0.9630051925239981,
+       0.9999999999999999
+      ],
+      "meets_target": false
+     },
+     {
+      "bias_sigma_m": 1.0,
+      "common_fraction": 0.0,
+      "p_violation": 1.0,
+      "p_violation_ci95": [
+       0.9630051925239981,
+       0.9999999999999999
+      ],
+      "meets_target": false
+     },
+     {
+      "bias_sigma_m": 1.0,
+      "common_fraction": 0.5,
+      "p_violation": 1.0,
+      "p_violation_ci95": [
+       0.9630051925239981,
+       0.9999999999999999
+      ],
+      "meets_target": false
+     }
+    ],
+    "depends_on_parameter": false,
+    "notice": "Within the grid the decision does not change with this parameter, which is still unmeasured: the relative GNSS error between nearby receivers is not measured by this project and no free source supplies it. The band below lists ASSUMED values; read every stressed verdict as conditional on the value used."
+   },
+   "common_flips_at_0.5": false
+  },
+  {
+   "name": "torus_300",
+   "n_drones": 300,
+   "band": {
+    "label": "SIMULATED; assumed parameter grid; not flight evidence",
+    "trials": 100,
+    "seed": 20261016,
+    "target_upper_bound": 0.05,
+    "cells": [
+     {
+      "bias_sigma_m": 0.1,
+      "common_fraction": 0.0,
+      "p_violation": 0.02,
+      "p_violation_ci95": [
+       0.005501852234968185,
+       0.07001316294199365
+      ],
+      "meets_target": false
+     },
+     {
+      "bias_sigma_m": 0.1,
+      "common_fraction": 0.5,
+      "p_violation": 0.01,
+      "p_violation_ci95": [
+       0.0017673865655472645,
+       0.0544875247609346
+      ],
+      "meets_target": false
+     },
+     {
+      "bias_sigma_m": 0.25,
+      "common_fraction": 0.0,
+      "p_violation": 0.61,
+      "p_violation_ci95": [
+       0.5120283616749817,
+       0.699832780680298
+      ],
+      "meets_target": false
+     },
+     {
+      "bias_sigma_m": 0.25,
+      "common_fraction": 0.5,
+      "p_violation": 0.45,
+      "p_violation_ci95": [
+       0.3561437510640346,
+       0.5475557296835656
+      ],
+      "meets_target": false
+     },
+     {
+      "bias_sigma_m": 0.5,
+      "common_fraction": 0.0,
+      "p_violation": 1.0,
+      "p_violation_ci95": [
+       0.9630051925239981,
+       0.9999999999999999
+      ],
+      "meets_target": false
+     },
+     {
+      "bias_sigma_m": 0.5,
+      "common_fraction": 0.5,
+      "p_violation": 1.0,
+      "p_violation_ci95": [
+       0.9630051925239981,
+       0.9999999999999999
+      ],
+      "meets_target": false
+     },
+     {
+      "bias_sigma_m": 1.0,
+      "common_fraction": 0.0,
+      "p_violation": 1.0,
+      "p_violation_ci95": [
+       0.9630051925239981,
+       0.9999999999999999
+      ],
+      "meets_target": false
+     },
+     {
+      "bias_sigma_m": 1.0,
+      "common_fraction": 0.5,
+      "p_violation": 1.0,
+      "p_violation_ci95": [
+       0.9630051925239981,
+       0.9999999999999999
+      ],
+      "meets_target": false
+     }
+    ],
+    "depends_on_parameter": false,
+    "notice": "Within the grid the decision does not change with this parameter, which is still unmeasured: the relative GNSS error between nearby receivers is not measured by this project and no free source supplies it. The band below lists ASSUMED values; read every stressed verdict as conditional on the value used."
+   },
+   "common_flips_at_0.5": false
+  },
+  {
+   "name": "random_3400",
+   "n_drones": 40,
+   "band": {
+    "label": "SIMULATED; assumed parameter grid; not flight evidence",
+    "trials": 100,
+    "seed": 20261016,
+    "target_upper_bound": 0.05,
+    "cells": [
+     {
+      "bias_sigma_m": 0.1,
+      "common_fraction": 0.0,
+      "p_violation": 0.02,
+      "p_violation_ci95": [
+       0.005501852234968185,
+       0.07001316294199365
+      ],
+      "meets_target": false
+     },
+     {
+      "bias_sigma_m": 0.1,
+      "common_fraction": 0.5,
+      "p_violation": 0.02,
+      "p_violation_ci95": [
+       0.005501852234968185,
+       0.07001316294199365
+      ],
+      "meets_target": false
+     },
+     {
+      "bias_sigma_m": 0.25,
+      "common_fraction": 0.0,
+      "p_violation": 0.53,
+      "p_violation_ci95": [
+       0.4328868313724773,
+       0.6248934801789626
+      ],
+      "meets_target": false
+     },
+     {
+      "bias_sigma_m": 0.25,
+      "common_fraction": 0.5,
+      "p_violation": 0.4,
+      "p_violation_ci95": [
+       0.3093997461136028,
+       0.4979992153815976
+      ],
+      "meets_target": false
+     },
+     {
+      "bias_sigma_m": 0.5,
+      "common_fraction": 0.0,
+      "p_violation": 0.96,
+      "p_violation_ci95": [
+       0.9016278276739262,
+       0.984336949448152
+      ],
+      "meets_target": false
+     },
+     {
+      "bias_sigma_m": 0.5,
+      "common_fraction": 0.5,
+      "p_violation": 0.92,
+      "p_violation_ci95": [
+       0.8500173312059693,
+       0.9589070305141891
+      ],
+      "meets_target": false
+     },
+     {
+      "bias_sigma_m": 1.0,
+      "common_fraction": 0.0,
+      "p_violation": 1.0,
+      "p_violation_ci95": [
+       0.9630051925239981,
+       0.9999999999999999
+      ],
+      "meets_target": false
+     },
+     {
+      "bias_sigma_m": 1.0,
+      "common_fraction": 0.5,
+      "p_violation": 1.0,
+      "p_violation_ci95": [
+       0.9630051925239981,
+       0.9999999999999999
+      ],
+      "meets_target": false
+     }
+    ],
+    "depends_on_parameter": false,
+    "notice": "Within the grid the decision does not change with this parameter, which is still unmeasured: the relative GNSS error between nearby receivers is not measured by this project and no free source supplies it. The band below lists ASSUMED values; read every stressed verdict as conditional on the value used."
+   },
+   "common_flips_at_0.5": false
+  },
+  {
+   "name": "random_3401",
+   "n_drones": 40,
+   "band": {
+    "label": "SIMULATED; assumed parameter grid; not flight evidence",
+    "trials": 100,
+    "seed": 20261016,
+    "target_upper_bound": 0.05,
+    "cells": [
+     {
+      "bias_sigma_m": 0.1,
+      "common_fraction": 0.0,
+      "p_violation": 0.0,
+      "p_violation_ci95": [
+       0.0,
+       0.03699480747600191
+      ],
+      "meets_target": true
+     },
+     {
+      "bias_sigma_m": 0.1,
+      "common_fraction": 0.5,
+      "p_violation": 0.0,
+      "p_violation_ci95": [
+       0.0,
+       0.03699480747600191
+      ],
+      "meets_target": true
+     },
+     {
+      "bias_sigma_m": 0.25,
+      "common_fraction": 0.0,
+      "p_violation": 0.01,
+      "p_violation_ci95": [
+       0.0017673865655472645,
+       0.0544875247609346
+      ],
+      "meets_target": false
+     },
+     {
+      "bias_sigma_m": 0.25,
+      "common_fraction": 0.5,
+      "p_violation": 0.01,
+      "p_violation_ci95": [
+       0.0017673865655472645,
+       0.0544875247609346
+      ],
+      "meets_target": false
+     },
+     {
+      "bias_sigma_m": 0.5,
+      "common_fraction": 0.0,
+      "p_violation": 0.62,
+      "p_violation_ci95": [
+       0.5220957382071033,
+       0.7090255079986562
+      ],
+      "meets_target": false
+     },
+     {
+      "bias_sigma_m": 0.5,
+      "common_fraction": 0.5,
+      "p_violation": 0.38,
+      "p_violation_ci95": [
+       0.2909744920013438,
+       0.47790426179289663
+      ],
+      "meets_target": false
+     },
+     {
+      "bias_sigma_m": 1.0,
+      "common_fraction": 0.0,
+      "p_violation": 1.0,
+      "p_violation_ci95": [
+       0.9630051925239981,
+       0.9999999999999999
+      ],
+      "meets_target": false
+     },
+     {
+      "bias_sigma_m": 1.0,
+      "common_fraction": 0.5,
+      "p_violation": 1.0,
+      "p_violation_ci95": [
+       0.9630051925239981,
+       0.9999999999999999
+      ],
+      "meets_target": false
+     }
+    ],
+    "depends_on_parameter": true,
+    "notice": "The decision depends on this parameter: the relative GNSS error between nearby receivers is not measured by this project and no free source supplies it. The band below lists ASSUMED values; read every stressed verdict as conditional on the value used."
+   },
+   "common_flips_at_0.5": false
+  },
+  {
+   "name": "random_3402",
+   "n_drones": 20,
+   "band": {
+    "label": "SIMULATED; assumed parameter grid; not flight evidence",
+    "trials": 100,
+    "seed": 20261016,
+    "target_upper_bound": 0.05,
+    "cells": [
+     {
+      "bias_sigma_m": 0.1,
+      "common_fraction": 0.0,
+      "p_violation": 0.0,
+      "p_violation_ci95": [
+       0.0,
+       0.03699480747600191
+      ],
+      "meets_target": true
+     },
+     {
+      "bias_sigma_m": 0.1,
+      "common_fraction": 0.5,
+      "p_violation": 0.0,
+      "p_violation_ci95": [
+       0.0,
+       0.03699480747600191
+      ],
+      "meets_target": true
+     },
+     {
+      "bias_sigma_m": 0.25,
+      "common_fraction": 0.0,
+      "p_violation": 0.0,
+      "p_violation_ci95": [
+       0.0,
+       0.03699480747600191
+      ],
+      "meets_target": true
+     },
+     {
+      "bias_sigma_m": 0.25,
+      "common_fraction": 0.5,
+      "p_violation": 0.0,
+      "p_violation_ci95": [
+       0.0,
+       0.03699480747600191
+      ],
+      "meets_target": true
+     },
+     {
+      "bias_sigma_m": 0.5,
+      "common_fraction": 0.0,
+      "p_violation": 0.04,
+      "p_violation_ci95": [
+       0.015663050551848016,
+       0.09837217232607373
+      ],
+      "meets_target": false
+     },
+     {
+      "bias_sigma_m": 0.5,
+      "common_fraction": 0.5,
+      "p_violation": 0.05,
+      "p_violation_ci95": [
+       0.02154336145631356,
+       0.11175196527208817
+      ],
+      "meets_target": false
+     },
+     {
+      "bias_sigma_m": 1.0,
+      "common_fraction": 0.0,
+      "p_violation": 0.66,
+      "p_violation_ci95": [
+       0.5627754565831095,
+       0.74538620502457
+      ],
+      "meets_target": false
+     },
+     {
+      "bias_sigma_m": 1.0,
+      "common_fraction": 0.5,
+      "p_violation": 0.61,
+      "p_violation_ci95": [
+       0.5120283616749817,
+       0.699832780680298
+      ],
+      "meets_target": false
+     }
+    ],
+    "depends_on_parameter": true,
+    "notice": "The decision depends on this parameter: the relative GNSS error between nearby receivers is not measured by this project and no free source supplies it. The band below lists ASSUMED values; read every stressed verdict as conditional on the value used."
+   },
+   "common_flips_at_0.5": false
+  },
+  {
+   "name": "random_3403",
+   "n_drones": 29,
+   "band": {
+    "label": "SIMULATED; assumed parameter grid; not flight evidence",
+    "trials": 100,
+    "seed": 20261016,
+    "target_upper_bound": 0.05,
+    "cells": [
+     {
+      "bias_sigma_m": 0.1,
+      "common_fraction": 0.0,
+      "p_violation": 0.0,
+      "p_violation_ci95": [
+       0.0,
+       0.03699480747600191
+      ],
+      "meets_target": true
+     },
+     {
+      "bias_sigma_m": 0.1,
+      "common_fraction": 0.5,
+      "p_violation": 0.0,
+      "p_violation_ci95": [
+       0.0,
+       0.03699480747600191
+      ],
+      "meets_target": true
+     },
+     {
+      "bias_sigma_m": 0.25,
+      "common_fraction": 0.0,
+      "p_violation": 0.0,
+      "p_violation_ci95": [
+       0.0,
+       0.03699480747600191
+      ],
+      "meets_target": true
+     },
+     {
+      "bias_sigma_m": 0.25,
+      "common_fraction": 0.5,
+      "p_violation": 0.0,
+      "p_violation_ci95": [
+       0.0,
+       0.03699480747600191
+      ],
+      "meets_target": true
+     },
+     {
+      "bias_sigma_m": 0.5,
+      "common_fraction": 0.0,
+      "p_violation": 0.15,
+      "p_violation_ci95": [
+       0.09305903191162297,
+       0.23283733332157835
+      ],
+      "meets_target": false
+     },
+     {
+      "bias_sigma_m": 0.5,
+      "common_fraction": 0.5,
+      "p_violation": 0.04,
+      "p_violation_ci95": [
+       0.015663050551848016,
+       0.09837217232607373
+      ],
+      "meets_target": false
+     },
+     {
+      "bias_sigma_m": 1.0,
+      "common_fraction": 0.0,
+      "p_violation": 0.95,
+      "p_violation_ci95": [
+       0.8882480347279118,
+       0.9784566385436864
+      ],
+      "meets_target": false
+     },
+     {
+      "bias_sigma_m": 1.0,
+      "common_fraction": 0.5,
+      "p_violation": 0.87,
+      "p_violation_ci95": [
+       0.7901947810519012,
+       0.9224290614158575
+      ],
+      "meets_target": false
+     }
+    ],
+    "depends_on_parameter": true,
+    "notice": "The decision depends on this parameter: the relative GNSS error between nearby receivers is not measured by this project and no free source supplies it. The band below lists ASSUMED values; read every stressed verdict as conditional on the value used."
+   },
+   "common_flips_at_0.5": false
+  },
+  {
+   "name": "random_3404",
+   "n_drones": 19,
+   "band": {
+    "label": "SIMULATED; assumed parameter grid; not flight evidence",
+    "trials": 100,
+    "seed": 20261016,
+    "target_upper_bound": 0.05,
+    "cells": [
+     {
+      "bias_sigma_m": 0.1,
+      "common_fraction": 0.0,
+      "p_violation": 0.0,
+      "p_violation_ci95": [
+       0.0,
+       0.03699480747600191
+      ],
+      "meets_target": true
+     },
+     {
+      "bias_sigma_m": 0.1,
+      "common_fraction": 0.5,
+      "p_violation": 0.0,
+      "p_violation_ci95": [
+       0.0,
+       0.03699480747600191
+      ],
+      "meets_target": true
+     },
+     {
+      "bias_sigma_m": 0.25,
+      "common_fraction": 0.0,
+      "p_violation": 0.0,
+      "p_violation_ci95": [
+       0.0,
+       0.03699480747600191
+      ],
+      "meets_target": true
+     },
+     {
+      "bias_sigma_m": 0.25,
+      "common_fraction": 0.5,
+      "p_violation": 0.0,
+      "p_violation_ci95": [
+       0.0,
+       0.03699480747600191
+      ],
+      "meets_target": true
+     },
+     {
+      "bias_sigma_m": 0.5,
+      "common_fraction": 0.0,
+      "p_violation": 0.07,
+      "p_violation_ci95": [
+       0.034318824364064096,
+       0.13749671006529757
+      ],
+      "meets_target": false
+     },
+     {
+      "bias_sigma_m": 0.5,
+      "common_fraction": 0.5,
+      "p_violation": 0.01,
+      "p_violation_ci95": [
+       0.0017673865655472645,
+       0.0544875247609346
+      ],
+      "meets_target": false
+     },
+     {
+      "bias_sigma_m": 1.0,
+      "common_fraction": 0.0,
+      "p_violation": 0.81,
+      "p_violation_ci95": [
+       0.7222097592919214,
+       0.8748534600729574
+      ],
+      "meets_target": false
+     },
+     {
+      "bias_sigma_m": 1.0,
+      "common_fraction": 0.5,
+      "p_violation": 0.69,
+      "p_violation_ci95": [
+       0.5937376052204429,
+       0.7722043679386762
+      ],
+      "meets_target": false
+     }
+    ],
+    "depends_on_parameter": true,
+    "notice": "The decision depends on this parameter: the relative GNSS error between nearby receivers is not measured by this project and no free source supplies it. The band below lists ASSUMED values; read every stressed verdict as conditional on the value used."
+   },
+   "common_flips_at_0.5": false
+  },
+  {
+   "name": "random_3405",
+   "n_drones": 23,
+   "band": {
+    "label": "SIMULATED; assumed parameter grid; not flight evidence",
+    "trials": 100,
+    "seed": 20261016,
+    "target_upper_bound": 0.05,
+    "cells": [
+     {
+      "bias_sigma_m": 0.1,
+      "common_fraction": 0.0,
+      "p_violation": 0.18,
+      "p_violation_ci95": [
+       0.11700131654251038,
+       0.26667536024213084
+      ],
+      "meets_target": false
+     },
+     {
+      "bias_sigma_m": 0.1,
+      "common_fraction": 0.5,
+      "p_violation": 0.15,
+      "p_violation_ci95": [
+       0.09305903191162297,
+       0.23283733332157835
+      ],
+      "meets_target": false
+     },
+     {
+      "bias_sigma_m": 0.25,
+      "common_fraction": 0.0,
+      "p_violation": 0.67,
+      "p_violation_ci95": [
+       0.5730516033971139,
+       0.7543701620610456
+      ],
+      "meets_target": false
+     },
+     {
+      "bias_sigma_m": 0.25,
+      "common_fraction": 0.5,
+      "p_violation": 0.55,
+      "p_violation_ci95": [
+       0.45244427031643447,
+       0.6438562489359654
+      ],
+      "meets_target": false
+     },
+     {
+      "bias_sigma_m": 0.5,
+      "common_fraction": 0.0,
+      "p_violation": 0.94,
+      "p_violation_ci95": [
+       0.8752303146877748,
+       0.9722142547333433
+      ],
+      "meets_target": false
+     },
+     {
+      "bias_sigma_m": 0.5,
+      "common_fraction": 0.5,
+      "p_violation": 0.95,
+      "p_violation_ci95": [
+       0.8882480347279118,
+       0.9784566385436864
+      ],
+      "meets_target": false
+     },
+     {
+      "bias_sigma_m": 1.0,
+      "common_fraction": 0.0,
+      "p_violation": 0.99,
+      "p_violation_ci95": [
+       0.9455124752390653,
+       0.9982326134344526
+      ],
+      "meets_target": false
+     },
+     {
+      "bias_sigma_m": 1.0,
+      "common_fraction": 0.5,
+      "p_violation": 1.0,
+      "p_violation_ci95": [
+       0.9630051925239981,
+       0.9999999999999999
+      ],
+      "meets_target": false
+     }
+    ],
+    "depends_on_parameter": false,
+    "notice": "Within the grid the decision does not change with this parameter, which is still unmeasured: the relative GNSS error between nearby receivers is not measured by this project and no free source supplies it. The band below lists ASSUMED values; read every stressed verdict as conditional on the value used."
+   },
+   "common_flips_at_0.5": false
+  },
+  {
+   "name": "random_3406",
+   "n_drones": 38,
+   "band": {
+    "label": "SIMULATED; assumed parameter grid; not flight evidence",
+    "trials": 100,
+    "seed": 20261016,
+    "target_upper_bound": 0.05,
+    "cells": [
+     {
+      "bias_sigma_m": 0.1,
+      "common_fraction": 0.0,
+      "p_violation": 0.0,
+      "p_violation_ci95": [
+       0.0,
+       0.03699480747600191
+      ],
+      "meets_target": true
+     },
+     {
+      "bias_sigma_m": 0.1,
+      "common_fraction": 0.5,
+      "p_violation": 0.0,
+      "p_violation_ci95": [
+       0.0,
+       0.03699480747600191
+      ],
+      "meets_target": true
+     },
+     {
+      "bias_sigma_m": 0.25,
+      "common_fraction": 0.0,
+      "p_violation": 0.04,
+      "p_violation_ci95": [
+       0.015663050551848016,
+       0.09837217232607373
+      ],
+      "meets_target": false
+     },
+     {
+      "bias_sigma_m": 0.25,
+      "common_fraction": 0.5,
+      "p_violation": 0.0,
+      "p_violation_ci95": [
+       0.0,
+       0.03699480747600191
+      ],
+      "meets_target": true
+     },
+     {
+      "bias_sigma_m": 0.5,
+      "common_fraction": 0.0,
+      "p_violation": 0.88,
+      "p_violation_ci95": [
+       0.8018773199709163,
+       0.9300066263473222
+      ],
+      "meets_target": false
+     },
+     {
+      "bias_sigma_m": 0.5,
+      "common_fraction": 0.5,
+      "p_violation": 0.81,
+      "p_violation_ci95": [
+       0.7222097592919214,
+       0.8748534600729574
+      ],
+      "meets_target": false
+     },
+     {
+      "bias_sigma_m": 1.0,
+      "common_fraction": 0.0,
+      "p_violation": 1.0,
+      "p_violation_ci95": [
+       0.9630051925239981,
+       0.9999999999999999
+      ],
+      "meets_target": false
+     },
+     {
+      "bias_sigma_m": 1.0,
+      "common_fraction": 0.5,
+      "p_violation": 1.0,
+      "p_violation_ci95": [
+       0.9630051925239981,
+       0.9999999999999999
+      ],
+      "meets_target": false
+     }
+    ],
+    "depends_on_parameter": true,
+    "notice": "The decision depends on this parameter: the relative GNSS error between nearby receivers is not measured by this project and no free source supplies it. The band below lists ASSUMED values; read every stressed verdict as conditional on the value used."
+   },
+   "common_flips_at_0.5": false
+  },
+  {
+   "name": "random_3407",
+   "n_drones": 30,
+   "band": {
+    "label": "SIMULATED; assumed parameter grid; not flight evidence",
+    "trials": 100,
+    "seed": 20261016,
+    "target_upper_bound": 0.05,
+    "cells": [
+     {
+      "bias_sigma_m": 0.1,
+      "common_fraction": 0.0,
+      "p_violation": 0.02,
+      "p_violation_ci95": [
+       0.005501852234968185,
+       0.07001316294199365
+      ],
+      "meets_target": false
+     },
+     {
+      "bias_sigma_m": 0.1,
+      "common_fraction": 0.5,
+      "p_violation": 0.0,
+      "p_violation_ci95": [
+       0.0,
+       0.03699480747600191
+      ],
+      "meets_target": true
+     },
+     {
+      "bias_sigma_m": 0.25,
+      "common_fraction": 0.0,
+      "p_violation": 0.32,
+      "p_violation_ci95": [
+       0.2366901081545688,
+       0.4166280225367919
+      ],
+      "meets_target": false
+     },
+     {
+      "bias_sigma_m": 0.25,
+      "common_fraction": 0.5,
+      "p_violation": 0.18,
+      "p_violation_ci95": [
+       0.11700131654251038,
+       0.26667536024213084
+      ],
+      "meets_target": false
+     },
+     {
+      "bias_sigma_m": 0.5,
+      "common_fraction": 0.0,
+      "p_violation": 0.92,
+      "p_violation_ci95": [
+       0.8500173312059693,
+       0.9589070305141891
+      ],
+      "meets_target": false
+     },
+     {
+      "bias_sigma_m": 0.5,
+      "common_fraction": 0.5,
+      "p_violation": 0.84,
+      "p_violation_ci95": [
+       0.7557955544110557,
+       0.8990479765052628
+      ],
+      "meets_target": false
+     },
+     {
+      "bias_sigma_m": 1.0,
+      "common_fraction": 0.0,
+      "p_violation": 1.0,
+      "p_violation_ci95": [
+       0.9630051925239981,
+       0.9999999999999999
+      ],
+      "meets_target": false
+     },
+     {
+      "bias_sigma_m": 1.0,
+      "common_fraction": 0.5,
+      "p_violation": 1.0,
+      "p_violation_ci95": [
+       0.9630051925239981,
+       0.9999999999999999
+      ],
+      "meets_target": false
+     }
+    ],
+    "depends_on_parameter": true,
+    "notice": "The decision depends on this parameter: the relative GNSS error between nearby receivers is not measured by this project and no free source supplies it. The band below lists ASSUMED values; read every stressed verdict as conditional on the value used."
+   },
+   "common_flips_at_0.5": false
+  },
+  {
+   "name": "random_3408",
+   "n_drones": 25,
+   "band": {
+    "label": "SIMULATED; assumed parameter grid; not flight evidence",
+    "trials": 100,
+    "seed": 20261016,
+    "target_upper_bound": 0.05,
+    "cells": [
+     {
+      "bias_sigma_m": 0.1,
+      "common_fraction": 0.0,
+      "p_violation": 0.0,
+      "p_violation_ci95": [
+       0.0,
+       0.03699480747600191
+      ],
+      "meets_target": true
+     },
+     {
+      "bias_sigma_m": 0.1,
+      "common_fraction": 0.5,
+      "p_violation": 0.0,
+      "p_violation_ci95": [
+       0.0,
+       0.03699480747600191
+      ],
+      "meets_target": true
+     },
+     {
+      "bias_sigma_m": 0.25,
+      "common_fraction": 0.0,
+      "p_violation": 0.26,
+      "p_violation_ci95": [
+       0.18404578126986462,
+       0.35371172631861636
+      ],
+      "meets_target": false
+     },
+     {
+      "bias_sigma_m": 0.25,
+      "common_fraction": 0.5,
+      "p_violation": 0.18,
+      "p_violation_ci95": [
+       0.11700131654251038,
+       0.26667536024213084
+      ],
+      "meets_target": false
+     },
+     {
+      "bias_sigma_m": 0.5,
+      "common_fraction": 0.0,
+      "p_violation": 0.81,
+      "p_violation_ci95": [
+       0.7222097592919214,
+       0.8748534600729574
+      ],
+      "meets_target": false
+     },
+     {
+      "bias_sigma_m": 0.5,
+      "common_fraction": 0.5,
+      "p_violation": 0.74,
+      "p_violation_ci95": [
+       0.6462882736813838,
+       0.8159542187301354
+      ],
+      "meets_target": false
+     },
+     {
+      "bias_sigma_m": 1.0,
+      "common_fraction": 0.0,
+      "p_violation": 1.0,
+      "p_violation_ci95": [
+       0.9630051925239981,
+       0.9999999999999999
+      ],
+      "meets_target": false
+     },
+     {
+      "bias_sigma_m": 1.0,
+      "common_fraction": 0.5,
+      "p_violation": 0.99,
+      "p_violation_ci95": [
+       0.9455124752390653,
+       0.9982326134344526
+      ],
+      "meets_target": false
+     }
+    ],
+    "depends_on_parameter": true,
+    "notice": "The decision depends on this parameter: the relative GNSS error between nearby receivers is not measured by this project and no free source supplies it. The band below lists ASSUMED values; read every stressed verdict as conditional on the value used."
+   },
+   "common_flips_at_0.5": false
+  },
+  {
+   "name": "random_3409",
+   "n_drones": 30,
+   "band": {
+    "label": "SIMULATED; assumed parameter grid; not flight evidence",
+    "trials": 100,
+    "seed": 20261016,
+    "target_upper_bound": 0.05,
+    "cells": [
+     {
+      "bias_sigma_m": 0.1,
+      "common_fraction": 0.0,
+      "p_violation": 0.0,
+      "p_violation_ci95": [
+       0.0,
+       0.03699480747600191
+      ],
+      "meets_target": true
+     },
+     {
+      "bias_sigma_m": 0.1,
+      "common_fraction": 0.5,
+      "p_violation": 0.0,
+      "p_violation_ci95": [
+       0.0,
+       0.03699480747600191
+      ],
+      "meets_target": true
+     },
+     {
+      "bias_sigma_m": 0.25,
+      "common_fraction": 0.0,
+      "p_violation": 0.1,
+      "p_violation_ci95": [
+       0.05522854161313613,
+       0.1743673043676654
+      ],
+      "meets_target": false
+     },
+     {
+      "bias_sigma_m": 0.25,
+      "common_fraction": 0.5,
+      "p_violation": 0.1,
+      "p_violation_ci95": [
+       0.05522854161313613,
+       0.1743673043676654
+      ],
+      "meets_target": false
+     },
+     {
+      "bias_sigma_m": 0.5,
+      "common_fraction": 0.0,
+      "p_violation": 0.7,
+      "p_violation_ci95": [
+       0.6041496156718804,
+       0.7810524613377188
+      ],
+      "meets_target": false
+     },
+     {
+      "bias_sigma_m": 0.5,
+      "common_fraction": 0.5,
+      "p_violation": 0.68,
+      "p_violation_ci95": [
+       0.5833719774632081,
+       0.7633098918454312
+      ],
+      "meets_target": false
+     },
+     {
+      "bias_sigma_m": 1.0,
+      "common_fraction": 0.0,
+      "p_violation": 1.0,
+      "p_violation_ci95": [
+       0.9630051925239981,
+       0.9999999999999999
+      ],
+      "meets_target": false
+     },
+     {
+      "bias_sigma_m": 1.0,
+      "common_fraction": 0.5,
+      "p_violation": 0.99,
+      "p_violation_ci95": [
+       0.9455124752390653,
+       0.9982326134344526
+      ],
+      "meets_target": false
+     }
+    ],
+    "depends_on_parameter": true,
+    "notice": "The decision depends on this parameter: the relative GNSS error between nearby receivers is not measured by this project and no free source supplies it. The band below lists ASSUMED values; read every stressed verdict as conditional on the value used."
+   },
+   "common_flips_at_0.5": false
+  },
+  {
+   "name": "random_3410",
+   "n_drones": 26,
+   "band": {
+    "label": "SIMULATED; assumed parameter grid; not flight evidence",
+    "trials": 100,
+    "seed": 20261016,
+    "target_upper_bound": 0.05,
+    "cells": [
+     {
+      "bias_sigma_m": 0.1,
+      "common_fraction": 0.0,
+      "p_violation": 0.35,
+      "p_violation_ci95": [
+       0.2636410465347802,
+       0.4474573957080203
+      ],
+      "meets_target": false
+     },
+     {
+      "bias_sigma_m": 0.1,
+      "common_fraction": 0.5,
+      "p_violation": 0.28,
+      "p_violation_ci95": [
+       0.2013955916759837,
+       0.37488212361345724
+      ],
+      "meets_target": false
+     },
+     {
+      "bias_sigma_m": 0.25,
+      "common_fraction": 0.0,
+      "p_violation": 0.8,
+      "p_violation_ci95": [
+       0.7111690380734977,
+       0.8666340774409013
+      ],
+      "meets_target": false
+     },
+     {
+      "bias_sigma_m": 0.25,
+      "common_fraction": 0.5,
+      "p_violation": 0.76,
+      "p_violation_ci95": [
+       0.6676748127670786,
+       0.8330878873454004
+      ],
+      "meets_target": false
+     },
+     {
+      "bias_sigma_m": 0.5,
+      "common_fraction": 0.0,
+      "p_violation": 0.96,
+      "p_violation_ci95": [
+       0.9016278276739262,
+       0.984336949448152
+      ],
+      "meets_target": false
+     },
+     {
+      "bias_sigma_m": 0.5,
+      "common_fraction": 0.5,
+      "p_violation": 0.95,
+      "p_violation_ci95": [
+       0.8882480347279118,
+       0.9784566385436864
+      ],
+      "meets_target": false
+     },
+     {
+      "bias_sigma_m": 1.0,
+      "common_fraction": 0.0,
+      "p_violation": 1.0,
+      "p_violation_ci95": [
+       0.9630051925239981,
+       0.9999999999999999
+      ],
+      "meets_target": false
+     },
+     {
+      "bias_sigma_m": 1.0,
+      "common_fraction": 0.5,
+      "p_violation": 1.0,
+      "p_violation_ci95": [
+       0.9630051925239981,
+       0.9999999999999999
+      ],
+      "meets_target": false
+     }
+    ],
+    "depends_on_parameter": false,
+    "notice": "Within the grid the decision does not change with this parameter, which is still unmeasured: the relative GNSS error between nearby receivers is not measured by this project and no free source supplies it. The band below lists ASSUMED values; read every stressed verdict as conditional on the value used."
+   },
+   "common_flips_at_0.5": false
+  },
+  {
+   "name": "random_3411",
+   "n_drones": 29,
+   "band": {
+    "label": "SIMULATED; assumed parameter grid; not flight evidence",
+    "trials": 100,
+    "seed": 20261016,
+    "target_upper_bound": 0.05,
+    "cells": [
+     {
+      "bias_sigma_m": 0.1,
+      "common_fraction": 0.0,
+      "p_violation": 0.01,
+      "p_violation_ci95": [
+       0.0017673865655472645,
+       0.0544875247609346
+      ],
+      "meets_target": false
+     },
+     {
+      "bias_sigma_m": 0.1,
+      "common_fraction": 0.5,
+      "p_violation": 0.0,
+      "p_violation_ci95": [
+       0.0,
+       0.03699480747600191
+      ],
+      "meets_target": true
+     },
+     {
+      "bias_sigma_m": 0.25,
+      "common_fraction": 0.0,
+      "p_violation": 0.22,
+      "p_violation_ci95": [
+       0.15001174503655804,
+       0.3107053471500031
+      ],
+      "meets_target": false
+     },
+     {
+      "bias_sigma_m": 0.25,
+      "common_fraction": 0.5,
+      "p_violation": 0.17,
+      "p_violation_ci95": [
+       0.10893476059773155,
+       0.25548181233642975
+      ],
+      "meets_target": false
+     },
+     {
+      "bias_sigma_m": 0.5,
+      "common_fraction": 0.0,
+      "p_violation": 0.81,
+      "p_violation_ci95": [
+       0.7222097592919214,
+       0.8748534600729574
+      ],
+      "meets_target": false
+     },
+     {
+      "bias_sigma_m": 0.5,
+      "common_fraction": 0.5,
+      "p_violation": 0.78,
+      "p_violation_ci95": [
+       0.6892946528499969,
+       0.849988254963442
+      ],
+      "meets_target": false
+     },
+     {
+      "bias_sigma_m": 1.0,
+      "common_fraction": 0.0,
+      "p_violation": 1.0,
+      "p_violation_ci95": [
+       0.9630051925239981,
+       0.9999999999999999
+      ],
+      "meets_target": false
+     },
+     {
+      "bias_sigma_m": 1.0,
+      "common_fraction": 0.5,
+      "p_violation": 1.0,
+      "p_violation_ci95": [
+       0.9630051925239981,
+       0.9999999999999999
+      ],
+      "meets_target": false
+     }
+    ],
+    "depends_on_parameter": true,
+    "notice": "The decision depends on this parameter: the relative GNSS error between nearby receivers is not measured by this project and no free source supplies it. The band below lists ASSUMED values; read every stressed verdict as conditional on the value used."
+   },
+   "common_flips_at_0.5": false
+  },
+  {
+   "name": "random_3412",
+   "n_drones": 30,
+   "band": {
+    "label": "SIMULATED; assumed parameter grid; not flight evidence",
+    "trials": 100,
+    "seed": 20261016,
+    "target_upper_bound": 0.05,
+    "cells": [
+     {
+      "bias_sigma_m": 0.1,
+      "common_fraction": 0.0,
+      "p_violation": 0.02,
+      "p_violation_ci95": [
+       0.005501852234968185,
+       0.07001316294199365
+      ],
+      "meets_target": false
+     },
+     {
+      "bias_sigma_m": 0.1,
+      "common_fraction": 0.5,
+      "p_violation": 0.01,
+      "p_violation_ci95": [
+       0.0017673865655472645,
+       0.0544875247609346
+      ],
+      "meets_target": false
+     },
+     {
+      "bias_sigma_m": 0.25,
+      "common_fraction": 0.0,
+      "p_violation": 0.29,
+      "p_violation_ci95": [
+       0.21014706973984146,
+       0.38539074940007934
+      ],
+      "meets_target": false
+     },
+     {
+      "bias_sigma_m": 0.25,
+      "common_fraction": 0.5,
+      "p_violation": 0.24,
+      "p_violation_ci95": [
+       0.16691211265459965,
+       0.3323251872329213
+      ],
+      "meets_target": false
+     },
+     {
+      "bias_sigma_m": 0.5,
+      "common_fraction": 0.0,
+      "p_violation": 0.85,
+      "p_violation_ci95": [
+       0.7671626666784216,
+       0.906940968088377
+      ],
+      "meets_target": false
+     },
+     {
+      "bias_sigma_m": 0.5,
+      "common_fraction": 0.5,
+      "p_violation": 0.83,
+      "p_violation_ci95": [
+       0.7445181876635703,
+       0.8910652394022684
+      ],
+      "meets_target": false
+     },
+     {
+      "bias_sigma_m": 1.0,
+      "common_fraction": 0.0,
+      "p_violation": 1.0,
+      "p_violation_ci95": [
+       0.9630051925239981,
+       0.9999999999999999
+      ],
+      "meets_target": false
+     },
+     {
+      "bias_sigma_m": 1.0,
+      "common_fraction": 0.5,
+      "p_violation": 1.0,
+      "p_violation_ci95": [
+       0.9630051925239981,
+       0.9999999999999999
+      ],
+      "meets_target": false
+     }
+    ],
+    "depends_on_parameter": false,
+    "notice": "Within the grid the decision does not change with this parameter, which is still unmeasured: the relative GNSS error between nearby receivers is not measured by this project and no free source supplies it. The band below lists ASSUMED values; read every stressed verdict as conditional on the value used."
+   },
+   "common_flips_at_0.5": false
+  },
+  {
+   "name": "random_3413",
+   "n_drones": 18,
+   "band": {
+    "label": "SIMULATED; assumed parameter grid; not flight evidence",
+    "trials": 100,
+    "seed": 20261016,
+    "target_upper_bound": 0.05,
+    "cells": [
+     {
+      "bias_sigma_m": 0.1,
+      "common_fraction": 0.0,
+      "p_violation": 0.0,
+      "p_violation_ci95": [
+       0.0,
+       0.03699480747600191
+      ],
+      "meets_target": true
+     },
+     {
+      "bias_sigma_m": 0.1,
+      "common_fraction": 0.5,
+      "p_violation": 0.0,
+      "p_violation_ci95": [
+       0.0,
+       0.03699480747600191
+      ],
+      "meets_target": true
+     },
+     {
+      "bias_sigma_m": 0.25,
+      "common_fraction": 0.0,
+      "p_violation": 0.0,
+      "p_violation_ci95": [
+       0.0,
+       0.03699480747600191
+      ],
+      "meets_target": true
+     },
+     {
+      "bias_sigma_m": 0.25,
+      "common_fraction": 0.5,
+      "p_violation": 0.0,
+      "p_violation_ci95": [
+       0.0,
+       0.03699480747600191
+      ],
+      "meets_target": true
+     },
+     {
+      "bias_sigma_m": 0.5,
+      "common_fraction": 0.0,
+      "p_violation": 0.03,
+      "p_violation_ci95": [
+       0.010254338223414816,
+       0.08452078080402699
+      ],
+      "meets_target": false
+     },
+     {
+      "bias_sigma_m": 0.5,
+      "common_fraction": 0.5,
+      "p_violation": 0.02,
+      "p_violation_ci95": [
+       0.005501852234968185,
+       0.07001316294199365
+      ],
+      "meets_target": false
+     },
+     {
+      "bias_sigma_m": 1.0,
+      "common_fraction": 0.0,
+      "p_violation": 0.75,
+      "p_violation_ci95": [
+       0.6569535362992417,
+       0.8245490599627573
+      ],
+      "meets_target": false
+     },
+     {
+      "bias_sigma_m": 1.0,
+      "common_fraction": 0.5,
+      "p_violation": 0.77,
+      "p_violation_ci95": [
+       0.6784543514317231,
+       0.841568452531236
+      ],
+      "meets_target": false
+     }
+    ],
+    "depends_on_parameter": true,
+    "notice": "The decision depends on this parameter: the relative GNSS error between nearby receivers is not measured by this project and no free source supplies it. The band below lists ASSUMED values; read every stressed verdict as conditional on the value used."
+   },
+   "common_flips_at_0.5": false
+  },
+  {
+   "name": "random_3414",
+   "n_drones": 31,
+   "band": {
+    "label": "SIMULATED; assumed parameter grid; not flight evidence",
+    "trials": 100,
+    "seed": 20261016,
+    "target_upper_bound": 0.05,
+    "cells": [
+     {
+      "bias_sigma_m": 0.1,
+      "common_fraction": 0.0,
+      "p_violation": 0.0,
+      "p_violation_ci95": [
+       0.0,
+       0.03699480747600191
+      ],
+      "meets_target": true
+     },
+     {
+      "bias_sigma_m": 0.1,
+      "common_fraction": 0.5,
+      "p_violation": 0.0,
+      "p_violation_ci95": [
+       0.0,
+       0.03699480747600191
+      ],
+      "meets_target": true
+     },
+     {
+      "bias_sigma_m": 0.25,
+      "common_fraction": 0.0,
+      "p_violation": 0.23,
+      "p_violation_ci95": [
+       0.15843154746876406,
+       0.32154564856827694
+      ],
+      "meets_target": false
+     },
+     {
+      "bias_sigma_m": 0.25,
+      "common_fraction": 0.5,
+      "p_violation": 0.21,
+      "p_violation_ci95": [
+       0.14165549531645788,
+       0.2998014930196232
+      ],
+      "meets_target": false
+     },
+     {
+      "bias_sigma_m": 0.5,
+      "common_fraction": 0.0,
+      "p_violation": 0.9,
+      "p_violation_ci95": [
+       0.8256326956323347,
+       0.9447714583868639
+      ],
+      "meets_target": false
+     },
+     {
+      "bias_sigma_m": 0.5,
+      "common_fraction": 0.5,
+      "p_violation": 0.82,
+      "p_violation_ci95": [
+       0.7333246397578691,
+       0.8829986834574896
+      ],
+      "meets_target": false
+     },
+     {
+      "bias_sigma_m": 1.0,
+      "common_fraction": 0.0,
+      "p_violation": 1.0,
+      "p_violation_ci95": [
+       0.9630051925239981,
+       0.9999999999999999
+      ],
+      "meets_target": false
+     },
+     {
+      "bias_sigma_m": 1.0,
+      "common_fraction": 0.5,
+      "p_violation": 1.0,
+      "p_violation_ci95": [
+       0.9630051925239981,
+       0.9999999999999999
+      ],
+      "meets_target": false
+     }
+    ],
+    "depends_on_parameter": true,
+    "notice": "The decision depends on this parameter: the relative GNSS error between nearby receivers is not measured by this project and no free source supplies it. The band below lists ASSUMED values; read every stressed verdict as conditional on the value used."
+   },
+   "common_flips_at_0.5": false
+  },
+  {
+   "name": "random_3415",
+   "n_drones": 16,
+   "band": {
+    "label": "SIMULATED; assumed parameter grid; not flight evidence",
+    "trials": 100,
+    "seed": 20261016,
+    "target_upper_bound": 0.05,
+    "cells": [
+     {
+      "bias_sigma_m": 0.1,
+      "common_fraction": 0.0,
+      "p_violation": 0.09,
+      "p_violation_ci95": [
+       0.04807199516388488,
+       0.16226374696643667
+      ],
+      "meets_target": false
+     },
+     {
+      "bias_sigma_m": 0.1,
+      "common_fraction": 0.5,
+      "p_violation": 0.06,
+      "p_violation_ci95": [
+       0.02778574526665662,
+       0.12476968531222507
+      ],
+      "meets_target": false
+     },
+     {
+      "bias_sigma_m": 0.25,
+      "common_fraction": 0.0,
+      "p_violation": 0.47,
+      "p_violation_ci95": [
+       0.3751065198210374,
+       0.5671131686275227
+      ],
+      "meets_target": false
+     },
+     {
+      "bias_sigma_m": 0.25,
+      "common_fraction": 0.5,
+      "p_violation": 0.52,
+      "p_violation_ci95": [
+       0.4231640509017654,
+       0.6153561567991945
+      ],
+      "meets_target": false
+     },
+     {
+      "bias_sigma_m": 0.5,
+      "common_fraction": 0.0,
+      "p_violation": 0.82,
+      "p_violation_ci95": [
+       0.7333246397578691,
+       0.8829986834574896
+      ],
+      "meets_target": false
+     },
+     {
+      "bias_sigma_m": 0.5,
+      "common_fraction": 0.5,
+      "p_violation": 0.82,
+      "p_violation_ci95": [
+       0.7333246397578691,
+       0.8829986834574896
+      ],
+      "meets_target": false
+     },
+     {
+      "bias_sigma_m": 1.0,
+      "common_fraction": 0.0,
+      "p_violation": 0.97,
+      "p_violation_ci95": [
+       0.915479219195973,
+       0.9897456617765851
+      ],
+      "meets_target": false
+     },
+     {
+      "bias_sigma_m": 1.0,
+      "common_fraction": 0.5,
+      "p_violation": 0.99,
+      "p_violation_ci95": [
+       0.9455124752390653,
+       0.9982326134344526
+      ],
+      "meets_target": false
+     }
+    ],
+    "depends_on_parameter": false,
+    "notice": "Within the grid the decision does not change with this parameter, which is still unmeasured: the relative GNSS error between nearby receivers is not measured by this project and no free source supplies it. The band below lists ASSUMED values; read every stressed verdict as conditional on the value used."
+   },
+   "common_flips_at_0.5": false
+  },
+  {
+   "name": "random_3416",
+   "n_drones": 38,
+   "band": {
+    "label": "SIMULATED; assumed parameter grid; not flight evidence",
+    "trials": 100,
+    "seed": 20261016,
+    "target_upper_bound": 0.05,
+    "cells": [
+     {
+      "bias_sigma_m": 0.1,
+      "common_fraction": 0.0,
+      "p_violation": 0.0,
+      "p_violation_ci95": [
+       0.0,
+       0.03699480747600191
+      ],
+      "meets_target": true
+     },
+     {
+      "bias_sigma_m": 0.1,
+      "common_fraction": 0.5,
+      "p_violation": 0.0,
+      "p_violation_ci95": [
+       0.0,
+       0.03699480747600191
+      ],
+      "meets_target": true
+     },
+     {
+      "bias_sigma_m": 0.25,
+      "common_fraction": 0.0,
+      "p_violation": 0.01,
+      "p_violation_ci95": [
+       0.0017673865655472645,
+       0.0544875247609346
+      ],
+      "meets_target": false
+     },
+     {
+      "bias_sigma_m": 0.25,
+      "common_fraction": 0.5,
+      "p_violation": 0.0,
+      "p_violation_ci95": [
+       0.0,
+       0.03699480747600191
+      ],
+      "meets_target": true
+     },
+     {
+      "bias_sigma_m": 0.5,
+      "common_fraction": 0.0,
+      "p_violation": 0.48,
+      "p_violation_ci95": [
+       0.38464384320080547,
+       0.5768359490982345
+      ],
+      "meets_target": false
+     },
+     {
+      "bias_sigma_m": 0.5,
+      "common_fraction": 0.5,
+      "p_violation": 0.27,
+      "p_violation_ci95": [
+       0.1926946091766482,
+       0.3643230022623127
+      ],
+      "meets_target": false
+     },
+     {
+      "bias_sigma_m": 1.0,
+      "common_fraction": 0.0,
+      "p_violation": 1.0,
+      "p_violation_ci95": [
+       0.9630051925239981,
+       0.9999999999999999
+      ],
+      "meets_target": false
+     },
+     {
+      "bias_sigma_m": 1.0,
+      "common_fraction": 0.5,
+      "p_violation": 1.0,
+      "p_violation_ci95": [
+       0.9630051925239981,
+       0.9999999999999999
+      ],
+      "meets_target": false
+     }
+    ],
+    "depends_on_parameter": true,
+    "notice": "The decision depends on this parameter: the relative GNSS error between nearby receivers is not measured by this project and no free source supplies it. The band below lists ASSUMED values; read every stressed verdict as conditional on the value used."
+   },
+   "common_flips_at_0.5": false
+  },
+  {
+   "name": "random_3417",
+   "n_drones": 19,
+   "band": {
+    "label": "SIMULATED; assumed parameter grid; not flight evidence",
+    "trials": 100,
+    "seed": 20261016,
+    "target_upper_bound": 0.05,
+    "cells": [
+     {
+      "bias_sigma_m": 0.1,
+      "common_fraction": 0.0,
+      "p_violation": 0.0,
+      "p_violation_ci95": [
+       0.0,
+       0.03699480747600191
+      ],
+      "meets_target": true
+     },
+     {
+      "bias_sigma_m": 0.1,
+      "common_fraction": 0.5,
+      "p_violation": 0.0,
+      "p_violation_ci95": [
+       0.0,
+       0.03699480747600191
+      ],
+      "meets_target": true
+     },
+     {
+      "bias_sigma_m": 0.25,
+      "common_fraction": 0.0,
+      "p_violation": 0.04,
+      "p_violation_ci95": [
+       0.015663050551848016,
+       0.09837217232607373
+      ],
+      "meets_target": false
+     },
+     {
+      "bias_sigma_m": 0.25,
+      "common_fraction": 0.5,
+      "p_violation": 0.0,
+      "p_violation_ci95": [
+       0.0,
+       0.03699480747600191
+      ],
+      "meets_target": true
+     },
+     {
+      "bias_sigma_m": 0.5,
+      "common_fraction": 0.0,
+      "p_violation": 0.5,
+      "p_violation_ci95": [
+       0.40382982859014716,
+       0.5961701714098528
+      ],
+      "meets_target": false
+     },
+     {
+      "bias_sigma_m": 0.5,
+      "common_fraction": 0.5,
+      "p_violation": 0.33,
+      "p_violation_ci95": [
+       0.24562983793895452,
+       0.4269483966028862
+      ],
+      "meets_target": false
+     },
+     {
+      "bias_sigma_m": 1.0,
+      "common_fraction": 0.0,
+      "p_violation": 0.96,
+      "p_violation_ci95": [
+       0.9016278276739262,
+       0.984336949448152
+      ],
+      "meets_target": false
+     },
+     {
+      "bias_sigma_m": 1.0,
+      "common_fraction": 0.5,
+      "p_violation": 0.96,
+      "p_violation_ci95": [
+       0.9016278276739262,
+       0.984336949448152
+      ],
+      "meets_target": false
+     }
+    ],
+    "depends_on_parameter": true,
+    "notice": "The decision depends on this parameter: the relative GNSS error between nearby receivers is not measured by this project and no free source supplies it. The band below lists ASSUMED values; read every stressed verdict as conditional on the value used."
+   },
+   "common_flips_at_0.5": false
+  },
+  {
+   "name": "random_3418",
+   "n_drones": 20,
+   "band": {
+    "label": "SIMULATED; assumed parameter grid; not flight evidence",
+    "trials": 100,
+    "seed": 20261016,
+    "target_upper_bound": 0.05,
+    "cells": [
+     {
+      "bias_sigma_m": 0.1,
+      "common_fraction": 0.0,
+      "p_violation": 0.0,
+      "p_violation_ci95": [
+       0.0,
+       0.03699480747600191
+      ],
+      "meets_target": true
+     },
+     {
+      "bias_sigma_m": 0.1,
+      "common_fraction": 0.5,
+      "p_violation": 0.0,
+      "p_violation_ci95": [
+       0.0,
+       0.03699480747600191
+      ],
+      "meets_target": true
+     },
+     {
+      "bias_sigma_m": 0.25,
+      "common_fraction": 0.0,
+      "p_violation": 0.0,
+      "p_violation_ci95": [
+       0.0,
+       0.03699480747600191
+      ],
+      "meets_target": true
+     },
+     {
+      "bias_sigma_m": 0.25,
+      "common_fraction": 0.5,
+      "p_violation": 0.0,
+      "p_violation_ci95": [
+       0.0,
+       0.03699480747600191
+      ],
+      "meets_target": true
+     },
+     {
+      "bias_sigma_m": 0.5,
+      "common_fraction": 0.0,
+      "p_violation": 0.37,
+      "p_violation_ci95": [
+       0.28182212569509163,
+       0.46779652424866885
+      ],
+      "meets_target": false
+     },
+     {
+      "bias_sigma_m": 0.5,
+      "common_fraction": 0.5,
+      "p_violation": 0.23,
+      "p_violation_ci95": [
+       0.15843154746876406,
+       0.32154564856827694
+      ],
+      "meets_target": false
+     },
+     {
+      "bias_sigma_m": 1.0,
+      "common_fraction": 0.0,
+      "p_violation": 0.92,
+      "p_violation_ci95": [
+       0.8500173312059693,
+       0.9589070305141891
+      ],
+      "meets_target": false
+     },
+     {
+      "bias_sigma_m": 1.0,
+      "common_fraction": 0.5,
+      "p_violation": 0.94,
+      "p_violation_ci95": [
+       0.8752303146877748,
+       0.9722142547333433
+      ],
+      "meets_target": false
+     }
+    ],
+    "depends_on_parameter": true,
+    "notice": "The decision depends on this parameter: the relative GNSS error between nearby receivers is not measured by this project and no free source supplies it. The band below lists ASSUMED values; read every stressed verdict as conditional on the value used."
+   },
+   "common_flips_at_0.5": false
+  },
+  {
+   "name": "random_3419",
+   "n_drones": 34,
+   "band": {
+    "label": "SIMULATED; assumed parameter grid; not flight evidence",
+    "trials": 100,
+    "seed": 20261016,
+    "target_upper_bound": 0.05,
+    "cells": [
+     {
+      "bias_sigma_m": 0.1,
+      "common_fraction": 0.0,
+      "p_violation": 0.01,
+      "p_violation_ci95": [
+       0.0017673865655472645,
+       0.0544875247609346
+      ],
+      "meets_target": false
+     },
+     {
+      "bias_sigma_m": 0.1,
+      "common_fraction": 0.5,
+      "p_violation": 0.0,
+      "p_violation_ci95": [
+       0.0,
+       0.03699480747600191
+      ],
+      "meets_target": true
+     },
+     {
+      "bias_sigma_m": 0.25,
+      "common_fraction": 0.0,
+      "p_violation": 0.3,
+      "p_violation_ci95": [
+       0.21894753866228117,
+       0.39585038432811953
+      ],
+      "meets_target": false
+     },
+     {
+      "bias_sigma_m": 0.25,
+      "common_fraction": 0.5,
+      "p_violation": 0.24,
+      "p_violation_ci95": [
+       0.16691211265459965,
+       0.3323251872329213
+      ],
+      "meets_target": false
+     },
+     {
+      "bias_sigma_m": 0.5,
+      "common_fraction": 0.0,
+      "p_violation": 0.93,
+      "p_violation_ci95": [
+       0.8625032899347025,
+       0.965681175635936
+      ],
+      "meets_target": false
+     },
+     {
+      "bias_sigma_m": 0.5,
+      "common_fraction": 0.5,
+      "p_violation": 0.86,
+      "p_violation_ci95": [
+       0.7786263961619276,
+       0.914737342455351
+      ],
+      "meets_target": false
+     },
+     {
+      "bias_sigma_m": 1.0,
+      "common_fraction": 0.0,
+      "p_violation": 1.0,
+      "p_violation_ci95": [
+       0.9630051925239981,
+       0.9999999999999999
+      ],
+      "meets_target": false
+     },
+     {
+      "bias_sigma_m": 1.0,
+      "common_fraction": 0.5,
+      "p_violation": 1.0,
+      "p_violation_ci95": [
+       0.9630051925239981,
+       0.9999999999999999
+      ],
+      "meets_target": false
+     }
+    ],
+    "depends_on_parameter": true,
+    "notice": "The decision depends on this parameter: the relative GNSS error between nearby receivers is not measured by this project and no free source supplies it. The band below lists ASSUMED values; read every stressed verdict as conditional on the value used."
+   },
+   "common_flips_at_0.5": false
+  }
+ ],
+ "P43": {
+  "fraction_depends": 0.6521739130434783,
+  "threshold": 0.8
+ },
+ "P44": {
+  "fraction_flips": 0.0,
+  "threshold": 0.3
+ },
+ "environment": {
+  "python": "3.13.16",
+  "implementation": "CPython",
+  "numpy": "2.5.3",
+  "scipy": "1.18.1",
+  "sirb": "0.1.0",
+  "os": "Linux 6.18.44-fc-v230",
+  "machine": "x86_64",
+  "cpu_count": 2,
+  "thread_environment": {
+   "OMP_NUM_THREADS": null,
+   "OPENBLAS_NUM_THREADS": "1",
+   "MKL_NUM_THREADS": null,
+   "SIRB_WORKERS": null
+  },
+  "device": "cpu",
+  "seeds": {
+   "stress_seed": 20261016,
+   "random_fleet_seeds": [
+    3400,
+    3401,
+    3402,
+    3403,
+    3404,
+    3405,
+    3406,
+    3407,
+    3408,
+    3409,
+    3410,
+    3411,
+    3412,
+    3413,
+    3414,
+    3415,
+    3416,
+    3417,
+    3418,
+    3419
+   ]
+  }
+ }
+}

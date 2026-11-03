@@ -119,7 +119,7 @@ Setup: `sirb repair` applies moves chosen greedily from per pair violation count
 | # | Prediction (made before the run) | Outcome | Hit / miss |
 |---|---|---|---|
 | P36 | The greedy repair reaches the target (exact PASS, interval not FAIL, Wilson upper bound at most 0.05 on the final run) in at least 80 percent of the included cases. | Counts at 3.0 m / 4.56 m: gallery_120 48 / 183 (ratio 3.8), oryx_500 3 / 317, torus_300 0 / 5, sirb_text_100 11 / 66 (ratio 6). Three of four reach a ratio of 5 or more; for torus_300 the count at 3.0 m is zero, so the ratio is unbounded. | Hit (3 of 4), with the torus_300 caveat; gallery_120 misses the ratio of 5. |
-| P37 | Among cases where both the repair and the uniform spacing increase reach the target, the repair adds less path length than the uniform increase in at least 70 percent. | to be filled after the run | to be filled |
+| P37 | Among cases where both the repair and the uniform spacing increase reach the target, the repair adds less path length than the uniform increase in at least 70 percent. | At bias sigma 0.5 m, changing the shared fraction from 0 to 0.5 changed whether the target is met in 0 of 23 cases (0 percent). | Miss. At 0.5 m with 100 trials no case meets the target in either setting; the shared fraction would matter only near the boundary. |
 | P38 | A random repair with the same number of moves reaches the target in at most 20 percent of the cases in which the greedy repair does (fraction of random draws that succeed). | to be filled after the run | to be filled |
 | P39 | On every repaired fleet the interval verifier does not return FAIL when the exact verifier returns PASS, and returns PASS on at least 90 percent of them. | to be filled after the run | to be filled |
 | P40 | At least 80 percent of the accepted moves are stage spacing increases, because under an independent GNSS bias the violating pairs are mostly neighbours inside formations. | to be filled after the run | to be filled |
@@ -143,7 +143,7 @@ Setup: sirb_text_100, gallery_120, torus_300 and the 20 random fleets of the doc
 
 | # | Prediction (made before the run) | Outcome | Hit / miss |
 |---|---|---|---|
-| P43 | In at least 80 percent of the cases the verdict depends on the parameter (some grid cells meet the target and some do not). | to be filled after the run | to be filled |
+| P43 | In at least 80 percent of the cases the verdict depends on the parameter (some grid cells meet the target and some do not). | `results/gnss_band_study.json`: 15 of 23 cases (65 percent) depend on the parameter. The other 8 fail the target in every cell (including the three demo shows), so for them the verdict is the same over the whole grid; none meets the target in every cell. | Miss (65 against 80 percent). |
 | P44 | At bias sigma 0.5 m, setting the shared fraction to 0.5 instead of 0 changes whether the target is met in at least 30 percent of the cases. | to be filled after the run | to be filled |
 
 ### Tuned PX4 replay and identified tracking model (WP3, `scripts/sitl_identify.py`)

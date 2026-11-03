@@ -72,3 +72,10 @@ Case {'n': 100, 'gnss_file': 'shows/gnss_relative_literature.json'}: status `ok`
 ## Limits
 
 The model's GNSS errors are independent between drones; real standalone errors are largely common to nearby drones, so these sourced runs are expected to overstate relative error. A fleet wide common error (for example jamming or spoofing) is not modelled at all (`docs/HAZARDS.md`). The reference sites are in the United States, Canada and Mexico, not in the UAE.
+
+
+## Sensitivity band instead of one value (2026-11-03)
+
+Author: Huda Mueen. A second search for a free measured value of the relative error between two neighbouring show drones found none (`docs/RELATED_WORK.md`, addendum of 2026-11-03; decision D3). Rather than choose a value, `sirb/gnss_band.py` evaluates a grid of ASSUMED values (bias sigma 0.1, 0.25, 0.5 and 1.0 m, shared fraction 0 and 0.5) and `sirb doctor` and `sirb pack` print the notice that the decision depends on the parameter when the grid mixes met and unmet cells.
+
+`results/gnss_band_study.json` (`scripts/gnss_band_study.py`, predictions P43 and P44): of 23 cases (3 demo shows and 20 random fleets, 100 trials per cell, 25 percent of drones degraded, 6 m/s wind), 15 depend on the parameter, 8 fail the target everywhere in the grid, and none meets it everywhere. The three demo shows fail at every grid value, including bias sigma 0.1 m. A shared fraction of 0.5 did not change any verdict at sigma 0.5 m. Both predictions missed (65 percent against 80, and 0 against 30 percent). Reading: for most plans the stressed verdict is a function of an unmeasured number, which is the reason the notice is printed and the reason no stressed verdict in this repository should be read without its parameter.
