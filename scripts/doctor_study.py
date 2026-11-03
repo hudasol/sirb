@@ -39,7 +39,7 @@ SHAPES = ("sphere", "wall", "ring", "torus")
 def random_show(seed: int) -> dict:
     rng = np.random.default_rng(seed)
     n = int(rng.integers(16, 41))
-    sp = float(rng.uniform(2.2, 3.4))
+    sp = float(rng.uniform(3.0, 4.2))
     grid = {"type": "launch_grid", "spacing_m": sp, "center": [0.0, -85.0, 0.0]}
     stages = [{"name": "launch", "shape": grid, "hold_s": 2}]
     for k, name in enumerate(rng.choice(SHAPES, size=3)):
@@ -82,7 +82,12 @@ def run_case(name: str, show: dict) -> dict:
 
 
 def main() -> None:
-    cases = [run_case(k, load_show(v)) for k, v in DEMOS.items()]
+    run1 = Path("results/doctor_study_run1.json")
+    if run1.exists():   # the demo cases are deterministic and unchanged between the two runs
+        old = {c["name"]: c for c in json.loads(run1.read_text())["cases"]}
+        cases = [old[k] for k in DEMOS]
+    else:
+        cases = [run_case(k, load_show(v)) for k, v in DEMOS.items()]
     cases += [run_case(f"random_{s}", random_show(s)) for s in RANDOM_SEEDS]
     inc = [c for c in cases if c.get("included")]
     p34 = [c["top10_share"] >= 0.8 for c in inc]

@@ -1,0 +1,485 @@
+{
+ "label": "SIMULATED; synthetic fleets; assumed disturbance profile; not flight evidence",
+ "profile": {
+  "dt": 0.2,
+  "w20": 6.0,
+  "gnss_bias_sigma": 0.5,
+  "gnss_deg_fraction": 0.25
+ },
+ "trials": 200,
+ "seed": 20261016,
+ "min_violating_trials": 20,
+ "cases": [
+  {
+   "name": "gallery_120",
+   "n_drones": 120,
+   "exact_verdict": "PASS",
+   "exact_min_separation_m": 2.1558062328596472,
+   "violating_trials": 200,
+   "p_violation": 1.0,
+   "violation_events": 4384,
+   "wall_s": 43.97870135307312,
+   "included": true,
+   "top1_share": 0.009808394160583942,
+   "top5_share": 0.04927007299270073,
+   "top10_share": 0.09397810218978102,
+   "most_frequent_pair": [
+    68,
+    79
+   ],
+   "most_frequent_pair_exact_rank": 4,
+   "exact_rank1_is_most_frequent": false,
+   "pairs_with_violations": 628
+  },
+  {
+   "name": "oryx_500",
+   "n_drones": 500,
+   "exact_verdict": "PASS",
+   "exact_min_separation_m": 2.5213611850134434,
+   "violating_trials": 200,
+   "p_violation": 1.0,
+   "violation_events": 9512,
+   "wall_s": 329.80904960632324,
+   "included": true,
+   "top1_share": 0.0019974768713204374,
+   "top5_share": 0.010828427249789739,
+   "top10_share": 0.018292682926829267,
+   "most_frequent_pair": [
+    22,
+    436
+   ],
+   "most_frequent_pair_exact_rank": 3,
+   "exact_rank1_is_most_frequent": false,
+   "pairs_with_violations": 2283
+  },
+  {
+   "name": "torus_300",
+   "n_drones": 300,
+   "exact_verdict": "PASS",
+   "exact_min_separation_m": 2.1958735705894443,
+   "violating_trials": 200,
+   "p_violation": 1.0,
+   "violation_events": 4736,
+   "wall_s": 91.37697553634644,
+   "included": true,
+   "top1_share": 0.00633445945945946,
+   "top5_share": 0.028927364864864864,
+   "top10_share": 0.0546875,
+   "most_frequent_pair": [
+    149,
+    150
+   ],
+   "most_frequent_pair_exact_rank": 2,
+   "exact_rank1_is_most_frequent": false,
+   "pairs_with_violations": 1014
+  },
+  {
+   "name": "sirb_text_100",
+   "n_drones": 100,
+   "exact_verdict": "PASS",
+   "exact_min_separation_m": 2.188611469898205,
+   "violating_trials": 200,
+   "p_violation": 1.0,
+   "violation_events": 2650,
+   "wall_s": 22.91698408126831,
+   "included": true,
+   "top1_share": 0.02150943396226415,
+   "top5_share": 0.08415094339622642,
+   "top10_share": 0.1649056603773585,
+   "most_frequent_pair": [
+    27,
+    57
+   ],
+   "most_frequent_pair_exact_rank": 11,
+   "exact_rank1_is_most_frequent": false,
+   "pairs_with_violations": 423
+  },
+  {
+   "name": "random_3400",
+   "status": "invalid show",
+   "errors": [
+    "stage 0: target spacing 2.41 m is below 1.5 x min separation",
+    "stage 1: target spacing 2.41 m is below 1.5 x min separation",
+    "stage 2: target spacing 2.41 m is below 1.5 x min separation",
+    "stage 3: target spacing 2.41 m is below 1.5 x min separation",
+    "stage 4: target spacing 2.41 m is below 1.5 x min separation"
+   ]
+  },
+  {
+   "name": "random_3401",
+   "status": "invalid show",
+   "errors": [
+    "stage 0: target spacing 2.54 m is below 1.5 x min separation",
+    "stage 1: target spacing 2.54 m is below 1.5 x min separation",
+    "stage 2: target spacing 2.54 m is below 1.5 x min separation",
+    "stage 3: target spacing 2.54 m is below 1.5 x min separation",
+    "stage 4: target spacing 2.54 m is below 1.5 x min separation"
+   ]
+  },
+  {
+   "name": "random_3402",
+   "n_drones": 20,
+   "exact_verdict": "PASS",
+   "exact_min_separation_m": 2.379915488145883,
+   "violating_trials": 142,
+   "p_violation": 0.71,
+   "violation_events": 224,
+   "wall_s": 1.7528574466705322,
+   "included": true,
+   "top1_share": 0.13392857142857142,
+   "top5_share": 0.47767857142857145,
+   "top10_share": 0.6517857142857143,
+   "most_frequent_pair": [
+    2,
+    7
+   ],
+   "most_frequent_pair_exact_rank": 2,
+   "exact_rank1_is_most_frequent": false,
+   "pairs_with_violations": 31
+  },
+  {
+   "name": "random_3403",
+   "n_drones": 29,
+   "exact_verdict": "PASS",
+   "exact_min_separation_m": 2.383831972221333,
+   "violating_trials": 176,
+   "p_violation": 0.88,
+   "violation_events": 427,
+   "wall_s": 2.5612902641296387,
+   "included": true,
+   "top1_share": 0.05152224824355972,
+   "top5_share": 0.22716627634660422,
+   "top10_share": 0.33489461358313816,
+   "most_frequent_pair": [
+    0,
+    6
+   ],
+   "most_frequent_pair_exact_rank": 5,
+   "exact_rank1_is_most_frequent": false,
+   "pairs_with_violations": 76
+  },
+  {
+   "name": "random_3404",
+   "n_drones": 19,
+   "exact_verdict": "PASS",
+   "exact_min_separation_m": 2.6745239680627466,
+   "violating_trials": 111,
+   "p_violation": 0.555,
+   "violation_events": 164,
+   "wall_s": 1.908916711807251,
+   "included": true,
+   "top1_share": 0.0975609756097561,
+   "top5_share": 0.3170731707317073,
+   "top10_share": 0.45121951219512196,
+   "most_frequent_pair": [
+    2,
+    7
+   ],
+   "most_frequent_pair_exact_rank": 3,
+   "exact_rank1_is_most_frequent": false,
+   "pairs_with_violations": 38
+  },
+  {
+   "name": "random_3405",
+   "status": "invalid show",
+   "errors": [
+    "stage 0: target spacing 2.26 m is below 1.5 x min separation",
+    "stage 1: target spacing 2.26 m is below 1.5 x min separation",
+    "stage 2: target spacing 2.26 m is below 1.5 x min separation",
+    "stage 3: target spacing 2.26 m is below 1.5 x min separation",
+    "stage 4: target spacing 2.26 m is below 1.5 x min separation"
+   ]
+  },
+  {
+   "name": "random_3406",
+   "status": "invalid show",
+   "errors": [
+    "stage 0: target spacing 2.36 m is below 1.5 x min separation",
+    "stage 1: target spacing 2.36 m is below 1.5 x min separation",
+    "stage 2: target spacing 2.36 m is below 1.5 x min separation",
+    "stage 3: target spacing 2.36 m is below 1.5 x min separation",
+    "stage 4: target spacing 2.36 m is below 1.5 x min separation"
+   ]
+  },
+  {
+   "name": "random_3407",
+   "status": "invalid show",
+   "errors": [
+    "stage 0: target spacing 2.61 m is below 1.5 x min separation",
+    "stage 1: target spacing 2.61 m is below 1.5 x min separation",
+    "stage 2: target spacing 2.61 m is below 1.5 x min separation",
+    "stage 3: target spacing 2.61 m is below 1.5 x min separation",
+    "stage 4: target spacing 2.61 m is below 1.5 x min separation"
+   ]
+  },
+  {
+   "name": "random_3408",
+   "status": "invalid show",
+   "errors": [
+    "stage 0: target spacing 2.61 m is below 1.5 x min separation",
+    "stage 1: target spacing 2.61 m is below 1.5 x min separation",
+    "stage 2: target spacing 2.61 m is below 1.5 x min separation",
+    "stage 3: target spacing 2.61 m is below 1.5 x min separation",
+    "stage 4: target spacing 2.61 m is below 1.5 x min separation"
+   ]
+  },
+  {
+   "name": "random_3409",
+   "status": "invalid show",
+   "errors": [
+    "stage 0: target spacing 2.71 m is below 1.5 x min separation",
+    "stage 1: target spacing 2.71 m is below 1.5 x min separation",
+    "stage 2: target spacing 2.71 m is below 1.5 x min separation",
+    "stage 3: target spacing 2.71 m is below 1.5 x min separation",
+    "stage 4: target spacing 2.71 m is below 1.5 x min separation"
+   ]
+  },
+  {
+   "name": "random_3410",
+   "status": "invalid show",
+   "errors": [
+    "stage 0: target spacing 2.23 m is below 1.5 x min separation",
+    "stage 1: target spacing 2.23 m is below 1.5 x min separation",
+    "stage 2: target spacing 2.23 m is below 1.5 x min separation",
+    "stage 3: target spacing 2.23 m is below 1.5 x min separation",
+    "stage 4: target spacing 2.23 m is below 1.5 x min separation"
+   ]
+  },
+  {
+   "name": "random_3411",
+   "status": "invalid show",
+   "errors": [
+    "stage 0: target spacing 2.60 m is below 1.5 x min separation",
+    "stage 1: target spacing 2.60 m is below 1.5 x min separation",
+    "stage 2: target spacing 2.60 m is below 1.5 x min separation",
+    "stage 3: target spacing 2.60 m is below 1.5 x min separation",
+    "stage 4: target spacing 2.60 m is below 1.5 x min separation"
+   ]
+  },
+  {
+   "name": "random_3412",
+   "status": "invalid show",
+   "errors": [
+    "stage 0: target spacing 2.47 m is below 1.5 x min separation",
+    "stage 1: target spacing 2.47 m is below 1.5 x min separation",
+    "stage 2: target spacing 2.47 m is below 1.5 x min separation",
+    "stage 3: target spacing 2.47 m is below 1.5 x min separation",
+    "stage 4: target spacing 2.47 m is below 1.5 x min separation"
+   ]
+  },
+  {
+   "name": "random_3413",
+   "n_drones": 18,
+   "exact_verdict": "PASS",
+   "exact_min_separation_m": 2.6510539012020273,
+   "violating_trials": 104,
+   "p_violation": 0.52,
+   "violation_events": 150,
+   "wall_s": 1.9701793193817139,
+   "included": true,
+   "top1_share": 0.04,
+   "top5_share": 0.4066666666666667,
+   "top10_share": 0.6133333333333333,
+   "most_frequent_pair": [
+    3,
+    4
+   ],
+   "most_frequent_pair_exact_rank": 3,
+   "exact_rank1_is_most_frequent": false,
+   "pairs_with_violations": 34
+  },
+  {
+   "name": "random_3414",
+   "status": "invalid show",
+   "errors": [
+    "stage 0: target spacing 2.60 m is below 1.5 x min separation",
+    "stage 1: target spacing 2.60 m is below 1.5 x min separation",
+    "stage 2: target spacing 2.60 m is below 1.5 x min separation",
+    "stage 3: target spacing 2.60 m is below 1.5 x min separation",
+    "stage 4: target spacing 2.60 m is below 1.5 x min separation"
+   ]
+  },
+  {
+   "name": "random_3415",
+   "status": "invalid show",
+   "errors": [
+    "stage 0: target spacing 2.32 m is below 1.5 x min separation",
+    "stage 1: target spacing 2.32 m is below 1.5 x min separation",
+    "stage 2: target spacing 2.32 m is below 1.5 x min separation",
+    "stage 3: target spacing 2.32 m is below 1.5 x min separation",
+    "stage 4: target spacing 2.32 m is below 1.5 x min separation"
+   ]
+  },
+  {
+   "name": "random_3416",
+   "n_drones": 38,
+   "exact_verdict": "PASS",
+   "exact_min_separation_m": 2.157299441043708,
+   "violating_trials": 200,
+   "p_violation": 1.0,
+   "violation_events": 1421,
+   "wall_s": 4.335055589675903,
+   "included": true,
+   "top1_share": 0.038001407459535536,
+   "top5_share": 0.14567206192821958,
+   "top10_share": 0.2962702322308234,
+   "most_frequent_pair": [
+    9,
+    16
+   ],
+   "most_frequent_pair_exact_rank": 6,
+   "exact_rank1_is_most_frequent": false,
+   "pairs_with_violations": 162
+  },
+  {
+   "name": "random_3417",
+   "status": "invalid show",
+   "errors": [
+    "stage 0: target spacing 2.56 m is below 1.5 x min separation",
+    "stage 1: target spacing 2.56 m is below 1.5 x min separation",
+    "stage 2: target spacing 2.56 m is below 1.5 x min separation",
+    "stage 3: target spacing 2.56 m is below 1.5 x min separation",
+    "stage 4: target spacing 2.56 m is below 1.5 x min separation"
+   ]
+  },
+  {
+   "name": "random_3418",
+   "status": "invalid show",
+   "errors": [
+    "stage 0: target spacing 2.88 m is below 1.5 x min separation",
+    "stage 1: target spacing 2.88 m is below 1.5 x min separation",
+    "stage 2: target spacing 2.88 m is below 1.5 x min separation",
+    "stage 3: target spacing 2.88 m is below 1.5 x min separation",
+    "stage 4: target spacing 2.88 m is below 1.5 x min separation"
+   ]
+  },
+  {
+   "name": "random_3419",
+   "status": "invalid show",
+   "errors": [
+    "stage 0: target spacing 2.54 m is below 1.5 x min separation",
+    "stage 1: target spacing 2.54 m is below 1.5 x min separation",
+    "stage 2: target spacing 2.54 m is below 1.5 x min separation",
+    "stage 3: target spacing 2.54 m is below 1.5 x min separation",
+    "stage 4: target spacing 2.54 m is below 1.5 x min separation"
+   ]
+  }
+ ],
+ "n_cases": 24,
+ "n_included": 9,
+ "excluded": [
+  {
+   "name": "random_3400",
+   "violating_trials": null
+  },
+  {
+   "name": "random_3401",
+   "violating_trials": null
+  },
+  {
+   "name": "random_3405",
+   "violating_trials": null
+  },
+  {
+   "name": "random_3406",
+   "violating_trials": null
+  },
+  {
+   "name": "random_3407",
+   "violating_trials": null
+  },
+  {
+   "name": "random_3408",
+   "violating_trials": null
+  },
+  {
+   "name": "random_3409",
+   "violating_trials": null
+  },
+  {
+   "name": "random_3410",
+   "violating_trials": null
+  },
+  {
+   "name": "random_3411",
+   "violating_trials": null
+  },
+  {
+   "name": "random_3412",
+   "violating_trials": null
+  },
+  {
+   "name": "random_3414",
+   "violating_trials": null
+  },
+  {
+   "name": "random_3415",
+   "violating_trials": null
+  },
+  {
+   "name": "random_3417",
+   "violating_trials": null
+  },
+  {
+   "name": "random_3418",
+   "violating_trials": null
+  },
+  {
+   "name": "random_3419",
+   "violating_trials": null
+  }
+ ],
+ "P34": {
+  "fraction_with_top10_share_ge_0.8": 0.0,
+  "threshold": 0.75,
+  "median_top10_share": 0.2962702322308234,
+  "median_top5_share": 0.14567206192821958,
+  "median_top1_share": 0.038001407459535536
+ },
+ "P35": {
+  "fraction_exact_rank1_most_frequent": 0.0,
+  "threshold": 0.5
+ },
+ "environment": {
+  "python": "3.13.16",
+  "implementation": "CPython",
+  "numpy": "2.5.3",
+  "scipy": "1.18.1",
+  "sirb": "0.1.0",
+  "os": "Linux 6.18.44-fc-v230",
+  "machine": "x86_64",
+  "cpu_count": 2,
+  "thread_environment": {
+   "OMP_NUM_THREADS": null,
+   "OPENBLAS_NUM_THREADS": "1",
+   "MKL_NUM_THREADS": null,
+   "SIRB_WORKERS": "2"
+  },
+  "device": "cpu",
+  "seeds": {
+   "stress_seed": 20261016,
+   "random_fleet_seeds": [
+    3400,
+    3401,
+    3402,
+    3403,
+    3404,
+    3405,
+    3406,
+    3407,
+    3408,
+    3409,
+    3410,
+    3411,
+    3412,
+    3413,
+    3414,
+    3415,
+    3416,
+    3417,
+    3418,
+    3419
+   ]
+  }
+ }
+}

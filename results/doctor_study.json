@@ -1,0 +1,587 @@
+{
+ "label": "SIMULATED; synthetic fleets; assumed disturbance profile; not flight evidence",
+ "profile": {
+  "dt": 0.2,
+  "w20": 6.0,
+  "gnss_bias_sigma": 0.5,
+  "gnss_deg_fraction": 0.25
+ },
+ "trials": 200,
+ "seed": 20261016,
+ "min_violating_trials": 20,
+ "cases": [
+  {
+   "name": "gallery_120",
+   "n_drones": 120,
+   "exact_verdict": "PASS",
+   "exact_min_separation_m": 2.1558062328596472,
+   "violating_trials": 200,
+   "p_violation": 1.0,
+   "violation_events": 4384,
+   "wall_s": 43.97870135307312,
+   "included": true,
+   "top1_share": 0.009808394160583942,
+   "top5_share": 0.04927007299270073,
+   "top10_share": 0.09397810218978102,
+   "most_frequent_pair": [
+    68,
+    79
+   ],
+   "most_frequent_pair_exact_rank": 4,
+   "exact_rank1_is_most_frequent": false,
+   "pairs_with_violations": 628
+  },
+  {
+   "name": "oryx_500",
+   "n_drones": 500,
+   "exact_verdict": "PASS",
+   "exact_min_separation_m": 2.5213611850134434,
+   "violating_trials": 200,
+   "p_violation": 1.0,
+   "violation_events": 9512,
+   "wall_s": 329.80904960632324,
+   "included": true,
+   "top1_share": 0.0019974768713204374,
+   "top5_share": 0.010828427249789739,
+   "top10_share": 0.018292682926829267,
+   "most_frequent_pair": [
+    22,
+    436
+   ],
+   "most_frequent_pair_exact_rank": 3,
+   "exact_rank1_is_most_frequent": false,
+   "pairs_with_violations": 2283
+  },
+  {
+   "name": "torus_300",
+   "n_drones": 300,
+   "exact_verdict": "PASS",
+   "exact_min_separation_m": 2.1958735705894443,
+   "violating_trials": 200,
+   "p_violation": 1.0,
+   "violation_events": 4736,
+   "wall_s": 91.37697553634644,
+   "included": true,
+   "top1_share": 0.00633445945945946,
+   "top5_share": 0.028927364864864864,
+   "top10_share": 0.0546875,
+   "most_frequent_pair": [
+    149,
+    150
+   ],
+   "most_frequent_pair_exact_rank": 2,
+   "exact_rank1_is_most_frequent": false,
+   "pairs_with_violations": 1014
+  },
+  {
+   "name": "sirb_text_100",
+   "n_drones": 100,
+   "exact_verdict": "PASS",
+   "exact_min_separation_m": 2.188611469898205,
+   "violating_trials": 200,
+   "p_violation": 1.0,
+   "violation_events": 2650,
+   "wall_s": 22.91698408126831,
+   "included": true,
+   "top1_share": 0.02150943396226415,
+   "top5_share": 0.08415094339622642,
+   "top10_share": 0.1649056603773585,
+   "most_frequent_pair": [
+    27,
+    57
+   ],
+   "most_frequent_pair_exact_rank": 11,
+   "exact_rank1_is_most_frequent": false,
+   "pairs_with_violations": 423
+  },
+  {
+   "name": "random_3400",
+   "n_drones": 40,
+   "exact_verdict": "PASS",
+   "exact_min_separation_m": 2.272248407611783,
+   "violating_trials": 195,
+   "p_violation": 0.975,
+   "violation_events": 831,
+   "wall_s": 4.273975610733032,
+   "included": true,
+   "top1_share": 0.03489771359807461,
+   "top5_share": 0.1901323706377858,
+   "top10_share": 0.3417569193742479,
+   "most_frequent_pair": [
+    9,
+    16
+   ],
+   "most_frequent_pair_exact_rank": 3,
+   "exact_rank1_is_most_frequent": false,
+   "pairs_with_violations": 134
+  },
+  {
+   "name": "random_3401",
+   "n_drones": 40,
+   "exact_verdict": "PASS",
+   "exact_min_separation_m": 2.574899034477606,
+   "violating_trials": 135,
+   "p_violation": 0.675,
+   "violation_events": 219,
+   "wall_s": 3.905155658721924,
+   "included": true,
+   "top1_share": 0.0684931506849315,
+   "top5_share": 0.2465753424657534,
+   "top10_share": 0.3561643835616438,
+   "most_frequent_pair": [
+    18,
+    19
+   ],
+   "most_frequent_pair_exact_rank": 1,
+   "exact_rank1_is_most_frequent": true,
+   "pairs_with_violations": 78
+  },
+  {
+   "name": "random_3402",
+   "n_drones": 20,
+   "exact_verdict": "PASS",
+   "exact_min_separation_m": 2.992286797396693,
+   "violating_trials": 11,
+   "p_violation": 0.055,
+   "violation_events": 11,
+   "wall_s": 1.6905903816223145,
+   "included": false,
+   "top1_share": 0.6363636363636364,
+   "top5_share": 0.9090909090909091,
+   "top10_share": 0.9090909090909091,
+   "most_frequent_pair": [
+    12,
+    17
+   ],
+   "most_frequent_pair_exact_rank": 1,
+   "exact_rank1_is_most_frequent": true,
+   "pairs_with_violations": 4
+  },
+  {
+   "name": "random_3403",
+   "n_drones": 29,
+   "exact_verdict": "PASS",
+   "exact_min_separation_m": 2.9780888295585366,
+   "violating_trials": 27,
+   "p_violation": 0.135,
+   "violation_events": 28,
+   "wall_s": 2.5292603969573975,
+   "included": true,
+   "top1_share": 0.17857142857142858,
+   "top5_share": 0.5,
+   "top10_share": 0.5357142857142857,
+   "most_frequent_pair": [
+    13,
+    14
+   ],
+   "most_frequent_pair_exact_rank": 1,
+   "exact_rank1_is_most_frequent": true,
+   "pairs_with_violations": 19
+  },
+  {
+   "name": "random_3404",
+   "n_drones": 19,
+   "exact_verdict": "PASS",
+   "exact_min_separation_m": 3.3145928324081053,
+   "violating_trials": 11,
+   "p_violation": 0.055,
+   "violation_events": 11,
+   "wall_s": 1.944793939590454,
+   "included": false,
+   "top1_share": 0.09090909090909091,
+   "top5_share": 0.5454545454545454,
+   "top10_share": 0.8181818181818182,
+   "most_frequent_pair": [
+    2,
+    7
+   ],
+   "most_frequent_pair_exact_rank": 3,
+   "exact_rank1_is_most_frequent": false,
+   "pairs_with_violations": 9
+  },
+  {
+   "name": "random_3405",
+   "n_drones": 23,
+   "exact_verdict": "PASS",
+   "exact_min_separation_m": 2.166856749725277,
+   "violating_trials": 191,
+   "p_violation": 0.955,
+   "violation_events": 765,
+   "wall_s": 2.1947150230407715,
+   "included": true,
+   "top1_share": 0.040522875816993466,
+   "top5_share": 0.23921568627450981,
+   "top10_share": 0.4143790849673203,
+   "most_frequent_pair": [
+    6,
+    11
+   ],
+   "most_frequent_pair_exact_rank": 3,
+   "exact_rank1_is_most_frequent": false,
+   "pairs_with_violations": 86
+  },
+  {
+   "name": "random_3406",
+   "n_drones": 38,
+   "exact_verdict": "PASS",
+   "exact_min_separation_m": 2.722684795326196,
+   "violating_trials": 179,
+   "p_violation": 0.895,
+   "violation_events": 466,
+   "wall_s": 3.430269479751587,
+   "included": true,
+   "top1_share": 0.023605150214592276,
+   "top5_share": 0.13304721030042918,
+   "top10_share": 0.2317596566523605,
+   "most_frequent_pair": [
+    27,
+    34
+   ],
+   "most_frequent_pair_exact_rank": 2,
+   "exact_rank1_is_most_frequent": false,
+   "pairs_with_violations": 87
+  },
+  {
+   "name": "random_3407",
+   "n_drones": 30,
+   "exact_verdict": "PASS",
+   "exact_min_separation_m": 2.413382486339777,
+   "violating_trials": 181,
+   "p_violation": 0.905,
+   "violation_events": 433,
+   "wall_s": 3.118903160095215,
+   "included": true,
+   "top1_share": 0.06235565819861432,
+   "top5_share": 0.2840646651270208,
+   "top10_share": 0.581986143187067,
+   "most_frequent_pair": [
+    6,
+    18
+   ],
+   "most_frequent_pair_exact_rank": 4,
+   "exact_rank1_is_most_frequent": false,
+   "pairs_with_violations": 85
+  },
+  {
+   "name": "random_3408",
+   "n_drones": 25,
+   "exact_verdict": "PASS",
+   "exact_min_separation_m": 2.414698761956132,
+   "violating_trials": 158,
+   "p_violation": 0.79,
+   "violation_events": 308,
+   "wall_s": 2.5011982917785645,
+   "included": true,
+   "top1_share": 0.05519480519480519,
+   "top5_share": 0.33766233766233766,
+   "top10_share": 0.6688311688311688,
+   "most_frequent_pair": [
+    2,
+    7
+   ],
+   "most_frequent_pair_exact_rank": 4,
+   "exact_rank1_is_most_frequent": false,
+   "pairs_with_violations": 50
+  },
+  {
+   "name": "random_3409",
+   "n_drones": 30,
+   "exact_verdict": "PASS",
+   "exact_min_separation_m": 2.4853868440454736,
+   "violating_trials": 132,
+   "p_violation": 0.66,
+   "violation_events": 232,
+   "wall_s": 3.107135534286499,
+   "included": true,
+   "top1_share": 0.08620689655172414,
+   "top5_share": 0.3922413793103448,
+   "top10_share": 0.6120689655172413,
+   "most_frequent_pair": [
+    15,
+    20
+   ],
+   "most_frequent_pair_exact_rank": 4,
+   "exact_rank1_is_most_frequent": false,
+   "pairs_with_violations": 64
+  },
+  {
+   "name": "random_3410",
+   "n_drones": 26,
+   "exact_verdict": "PASS",
+   "exact_min_separation_m": 2.1394940234904407,
+   "violating_trials": 192,
+   "p_violation": 0.96,
+   "violation_events": 630,
+   "wall_s": 2.3748388290405273,
+   "included": true,
+   "top1_share": 0.05238095238095238,
+   "top5_share": 0.2841269841269841,
+   "top10_share": 0.5888888888888889,
+   "most_frequent_pair": [
+    14,
+    20
+   ],
+   "most_frequent_pair_exact_rank": 8,
+   "exact_rank1_is_most_frequent": false,
+   "pairs_with_violations": 70
+  },
+  {
+   "name": "random_3411",
+   "n_drones": 29,
+   "exact_verdict": "PASS",
+   "exact_min_separation_m": 2.407222984671099,
+   "violating_trials": 164,
+   "p_violation": 0.82,
+   "violation_events": 338,
+   "wall_s": 2.965627908706665,
+   "included": true,
+   "top1_share": 0.07988165680473373,
+   "top5_share": 0.3727810650887574,
+   "top10_share": 0.6005917159763313,
+   "most_frequent_pair": [
+    6,
+    12
+   ],
+   "most_frequent_pair_exact_rank": 3,
+   "exact_rank1_is_most_frequent": false,
+   "pairs_with_violations": 59
+  },
+  {
+   "name": "random_3412",
+   "n_drones": 30,
+   "exact_verdict": "PASS",
+   "exact_min_separation_m": 2.311005101268546,
+   "violating_trials": 171,
+   "p_violation": 0.855,
+   "violation_events": 380,
+   "wall_s": 3.2020912170410156,
+   "included": true,
+   "top1_share": 0.05263157894736842,
+   "top5_share": 0.26842105263157895,
+   "top10_share": 0.39210526315789473,
+   "most_frequent_pair": [
+    21,
+    27
+   ],
+   "most_frequent_pair_exact_rank": 3,
+   "exact_rank1_is_most_frequent": false,
+   "pairs_with_violations": 84
+  },
+  {
+   "name": "random_3413",
+   "n_drones": 18,
+   "exact_verdict": "PASS",
+   "exact_min_separation_m": 3.290582288721427,
+   "violating_trials": 3,
+   "p_violation": 0.015,
+   "violation_events": 3,
+   "wall_s": 1.916153907775879,
+   "included": false,
+   "top1_share": 0.0,
+   "top5_share": 0.6666666666666666,
+   "top10_share": 1.0,
+   "most_frequent_pair": [
+    5,
+    10
+   ],
+   "most_frequent_pair_exact_rank": 4,
+   "exact_rank1_is_most_frequent": false,
+   "pairs_with_violations": 2
+  },
+  {
+   "name": "random_3414",
+   "n_drones": 31,
+   "exact_verdict": "PASS",
+   "exact_min_separation_m": 2.4059053055992656,
+   "violating_trials": 177,
+   "p_violation": 0.885,
+   "violation_events": 432,
+   "wall_s": 2.844515085220337,
+   "included": true,
+   "top1_share": 0.05555555555555555,
+   "top5_share": 0.3055555555555556,
+   "top10_share": 0.5115740740740741,
+   "most_frequent_pair": [
+    7,
+    25
+   ],
+   "most_frequent_pair_exact_rank": 3,
+   "exact_rank1_is_most_frequent": false,
+   "pairs_with_violations": 86
+  },
+  {
+   "name": "random_3415",
+   "n_drones": 16,
+   "exact_verdict": "PASS",
+   "exact_min_separation_m": 2.2050219616535545,
+   "violating_trials": 157,
+   "p_violation": 0.785,
+   "violation_events": 380,
+   "wall_s": 1.6995031833648682,
+   "included": true,
+   "top1_share": 0.07368421052631578,
+   "top5_share": 0.37894736842105264,
+   "top10_share": 0.6421052631578947,
+   "most_frequent_pair": [
+    9,
+    13
+   ],
+   "most_frequent_pair_exact_rank": 6,
+   "exact_rank1_is_most_frequent": false,
+   "pairs_with_violations": 43
+  },
+  {
+   "name": "random_3416",
+   "n_drones": 38,
+   "exact_verdict": "PASS",
+   "exact_min_separation_m": 2.7229848134911467,
+   "violating_trials": 95,
+   "p_violation": 0.475,
+   "violation_events": 128,
+   "wall_s": 4.277792930603027,
+   "included": true,
+   "top1_share": 0.0546875,
+   "top5_share": 0.3046875,
+   "top10_share": 0.6015625,
+   "most_frequent_pair": [
+    11,
+    18
+   ],
+   "most_frequent_pair_exact_rank": 8,
+   "exact_rank1_is_most_frequent": false,
+   "pairs_with_violations": 47
+  },
+  {
+   "name": "random_3417",
+   "n_drones": 19,
+   "exact_verdict": "PASS",
+   "exact_min_separation_m": 2.383368124434778,
+   "violating_trials": 99,
+   "p_violation": 0.495,
+   "violation_events": 137,
+   "wall_s": 1.8207080364227295,
+   "included": true,
+   "top1_share": 0.12408759124087591,
+   "top5_share": 0.3722627737226277,
+   "top10_share": 0.5547445255474452,
+   "most_frequent_pair": [
+    5,
+    6
+   ],
+   "most_frequent_pair_exact_rank": 1,
+   "exact_rank1_is_most_frequent": true,
+   "pairs_with_violations": 34
+  },
+  {
+   "name": "random_3418",
+   "n_drones": 20,
+   "exact_verdict": "PASS",
+   "exact_min_separation_m": 2.600578227123139,
+   "violating_trials": 67,
+   "p_violation": 0.335,
+   "violation_events": 86,
+   "wall_s": 1.9920382499694824,
+   "included": true,
+   "top1_share": 0.10465116279069768,
+   "top5_share": 0.46511627906976744,
+   "top10_share": 0.6627906976744186,
+   "most_frequent_pair": [
+    0,
+    10
+   ],
+   "most_frequent_pair_exact_rank": 5,
+   "exact_rank1_is_most_frequent": false,
+   "pairs_with_violations": 28
+  },
+  {
+   "name": "random_3419",
+   "n_drones": 34,
+   "exact_verdict": "PASS",
+   "exact_min_separation_m": 2.3609646267942863,
+   "violating_trials": 184,
+   "p_violation": 0.92,
+   "violation_events": 491,
+   "wall_s": 3.312128782272339,
+   "included": true,
+   "top1_share": 0.07128309572301425,
+   "top5_share": 0.2953156822810591,
+   "top10_share": 0.4317718940936864,
+   "most_frequent_pair": [
+    12,
+    24
+   ],
+   "most_frequent_pair_exact_rank": 1,
+   "exact_rank1_is_most_frequent": true,
+   "pairs_with_violations": 98
+  }
+ ],
+ "n_cases": 24,
+ "n_included": 21,
+ "excluded": [
+  {
+   "name": "random_3402",
+   "violating_trials": 11
+  },
+  {
+   "name": "random_3404",
+   "violating_trials": 11
+  },
+  {
+   "name": "random_3413",
+   "violating_trials": 3
+  }
+ ],
+ "P34": {
+  "fraction_with_top10_share_ge_0.8": 0.0,
+  "threshold": 0.75,
+  "median_top10_share": 0.5115740740740741,
+  "median_top5_share": 0.2841269841269841,
+  "median_top1_share": 0.05519480519480519
+ },
+ "P35": {
+  "fraction_exact_rank1_most_frequent": 0.19047619047619047,
+  "threshold": 0.5
+ },
+ "environment": {
+  "python": "3.13.16",
+  "implementation": "CPython",
+  "numpy": "2.5.3",
+  "scipy": "1.18.1",
+  "sirb": "0.1.0",
+  "os": "Linux 6.18.44-fc-v230",
+  "machine": "x86_64",
+  "cpu_count": 2,
+  "thread_environment": {
+   "OMP_NUM_THREADS": null,
+   "OPENBLAS_NUM_THREADS": "1",
+   "MKL_NUM_THREADS": null,
+   "SIRB_WORKERS": "2"
+  },
+  "device": "cpu",
+  "seeds": {
+   "stress_seed": 20261016,
+   "random_fleet_seeds": [
+    3400,
+    3401,
+    3402,
+    3403,
+    3404,
+    3405,
+    3406,
+    3407,
+    3408,
+    3409,
+    3410,
+    3411,
+    3412,
+    3413,
+    3414,
+    3415,
+    3416,
+    3417,
+    3418,
+    3419
+   ]
+  }
+ }
+}
