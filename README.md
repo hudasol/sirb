@@ -45,10 +45,10 @@ Generated from `results/*.json`; every number traces to a seeded script.
 ### Headlines
 
 <!-- HEADLINES:START -->
-- Demo show `sirb_text_100` (100 drones, 156 s): the nominal trajectory passed the specified separation check (exact minimum separation 2.189 m against d_min 2.0 m, verdict PASS; model: drones as points on the planned polynomials).
-- Demo show `torus_300` (300 drones, 107 s): the nominal trajectory passed the specified separation check (exact minimum separation 2.196 m against d_min 2.0 m, verdict PASS; model: drones as points on the planned polynomials).
-- Demo show `oryx_500` (500 drones, 144 s): the nominal trajectory passed the specified separation check (exact minimum separation 2.521 m against d_min 2.0 m, verdict PASS; model: drones as points on the planned polynomials).
 - Demo show `gallery_120` (120 drones, 246 s): the nominal trajectory passed the specified separation check (exact minimum separation 2.156 m against d_min 2.0 m, verdict PASS; model: drones as points on the planned polynomials).
+- Demo show `oryx_500` (500 drones, 144 s): the nominal trajectory passed the specified separation check (exact minimum separation 2.521 m against d_min 2.0 m, verdict PASS; model: drones as points on the planned polynomials).
+- Demo show `torus_300` (300 drones, 107 s): the nominal trajectory passed the specified separation check (exact minimum separation 2.196 m against d_min 2.0 m, verdict PASS; model: drones as points on the planned polynomials).
+- Demo show `sirb_text_100` (100 drones, 156 s): the nominal trajectory passed the specified separation check (exact minimum separation 2.189 m against d_min 2.0 m, verdict PASS; model: drones as points on the planned polynomials).
 - Simulated wind (ASSUMED models), 100 drone show: highest tested wind with a Wilson upper bound at most 5%: 12 m/s at 20 ft; first tested wind with an observed violation: 15 m/s. This is not a wind limit: the model has no actuator limit, the sweep goes beyond the vehicle's published wind limit, and the value moves with the tracking and GNSS assumptions (`docs/SENSITIVITY.md`).
 - Simulated GNSS bias (25% of drones degraded, ASSUMED): P(violation) exceeds 5% already at bias sigma 0.1 m (35.5%); the nominal margin over d_min is only 0.189 m.
 - Smallest tested formation spacing in the stated scenario whose Wilson upper bound is at most 5%: 5.0 m, nominal separation 3.54 m (300 trials, a coarse grid of spacings; the margin tool's search answer is in `docs/MARGIN.md`).
@@ -62,7 +62,7 @@ Generated from `results/*.json`; every number traces to a seeded script.
 - Second, independent verifier (interval branch and bound, `sirb/verify2.py`): 10856 fleets (8000 random, 2750 adversarial in 11 families), 13100 verdict checks: lower bound above the exact value in 0 cases (max l minus e = 0.0e+00 m), FAIL verdicts with the exact value at or above the threshold: 6 (max margin 0.0e+00 m); 30 disagreement records, all in the high multiplicity root family, largest exact minus lower bound 7.3e-08 m (`docs/VERIFIER.md`). Brute force sampling at dt = 1e-4 s against the exact value: 3034 comparisons, largest sampled minus exact 1.1e-08 m (grid plus breakpoints), largest negative gap 3.6e-15 m.
 - Mutation testing (mutmut, killed over total): fresh phase 6 run on the current code: `assign.py` 93.0% of 314; `planner/baseline.py` 98.4% of 188; `planner/common.py` 95.4% of 196; `planner/prioritized.py` 82.8% of 682; `planner/waves.py` 90.0% of 450; `verify.py` 92.9% of 2383; `verify2.py` 95.3% of 988. (`docs/MUTATION.md`).
 - Viewer accessibility (axe-core 4.14.0, 8 page runs): 18 violated rules before, 0 after; this is an automated check and does not replace manual testing.
-- Viewer behaviour checks (keyboard, reduced motion, light theme, file protocol, RTL, overflow): 40 passed, 0 failed.
+- Viewer behaviour checks (keyboard, reduced motion, light theme, file protocol, RTL, overflow): 44 passed, 0 failed.
 - Scale (computational study): n = 4000: plan 233 s, exact verification 164 s, peak memory 665 MB (`docs/PERFORMANCE.md`).
 - Viewer, 1000 drones, two panes, software WebGL: median frame interval 317 ms (3.2 fps), JavaScript update p95 1.2 ms; smoothness on a GPU is not measured.
 - Largest one at a time swings of the median minimum separation (stressed baseline): gnss_bias_sigma (1.57 m), gnss_deg_fraction (0.43 m), gnss_bias_tau (0.09 m) (`docs/SENSITIVITY.md`).
