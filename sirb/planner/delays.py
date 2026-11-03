@@ -124,7 +124,9 @@ def plan_delay_cbs(show: dict, *, assign: str = "hungarian_sq", dt: float = 0.1,
         step = step_s if step_s is not None else max(0.5, 0.15 * T)
         steps = np.zeros(n, dtype=int)
         rounds, unresolved = 0, 0
-        if T > 0:
+        if T > 0 and not conflicts(pos, delta, np.zeros(n), T, d_req, dt):
+            pass        # synchronous legs are already clear: same plan as the baseline planner
+        elif T > 0:
             layer = precedence_layers(pos, dst, d_req) if layered else np.zeros(n, dtype=int)
             gap = max(1, int(np.ceil(T / step)))
             color = np.zeros(n, dtype=int)
