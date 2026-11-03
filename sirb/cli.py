@@ -1,4 +1,4 @@
-"""Command line entry point: ``python -m sirb {validate,plan,check,margin,stress,doctor,verify-external}``.
+"""Command line entry point: ``python -m sirb {validate,plan,check,margin,stress,doctor,repair,verify-external}``.
 
 Files in, files out. Nothing here talks to an aircraft, a radio or a ground station.
 Exit status: 0 = ok, 1 = invalid input or failed check, 2 = the plan verified but FAILED a limit.
@@ -174,6 +174,39 @@ def _doctor(a) -> int:
     return 0 if ex["verdict"] == "PASS" else 2
 
 
+def _repair(a) -> int:
+    import json
+
+    from .disturbance import StressConfig
+    from .envinfo import environment
+    from .gnss_params import load, to_stress_config
+    from .repair import repair
+
+    if a.max_moves < 0 or a.w20 < 0 or not 0.0 < a.target < 1.0:
+        print("error: --max-moves must not be negative, --w20 not negative and --target strictly "
+              "between 0 and 1", file=sys.stderr)
+        return 1
+    show, fleet, _ = load_export(a.export)
+    cfg = to_stress_config(load(a.gnss), base=StressConfig(dt=0.2, w20=a.w20))
+    log, show2, fleet2 = repair(show, cfg, target=a.target, max_moves=a.max_moves)
+    log["environment"] = environment({"search": log["search"]})
+    b, f = log["before"], log["after"]
+    print(f"SIMULATED under assumed disturbance models; not flight evidence. status: {log['status']}; "
+          f"{log['n_moves']} move(s)")
+    print(f"P(violation) {b['p_violation']:.3f} -> {f['p_violation']:.3f} "
+          f"(Wilson upper {b['p_violation_ci95'][1]:.3f} -> {f['p_violation_ci95'][1]:.3f}; "
+          f"target {a.target}); exact {f['exact_verdict']}, interval {f['interval_verdict']}")
+    print(f"cost: {log['cost']['extra_duration_s']:+.2f} s duration, "
+          f"{log['cost']['extra_path_length_m']:+.1f} m path length")
+    if a.log:
+        with open(a.log, "w", encoding="utf-8") as fh:
+            json.dump(log, fh, indent=1, default=float)
+    if a.out:
+        save_export(a.out, build_export(show2, fleet2))
+        print(f"wrote {a.out}")
+    return 0 if f["meets_target"] else 2
+
+
 def main(argv: list[str] | None = None) -> int:
     ap = argparse.ArgumentParser(prog="sirb", description=SAFETY_STATEMENT)
     ap.add_argument("--version", action="version", version=f"sirb {__version__}")
@@ -227,6 +260,15 @@ def main(argv: list[str] | None = None) -> int:
     d.add_argument("--target", type=float, default=0.05, help="Wilson upper bound target")
     d.add_argument("--workers", type=int, default=1)
     d.add_argument("--report", help="write the diagnosis (.json)")
+    r = sub.add_parser("repair", help="apply the smallest set of moves that brings an export "
+                       "under a simulated risk target (explicit, logged moves)")
+    r.add_argument("export")
+    r.add_argument("--gnss", required=True, help="GNSS parameter file (docs/GNSS_PARAMS.md)")
+    r.add_argument("--w20", type=float, default=0.0, help="mean wind at 20 ft, m/s (assumed)")
+    r.add_argument("--target", type=float, default=0.05, help="Wilson upper bound target")
+    r.add_argument("--max-moves", type=int, default=15)
+    r.add_argument("--out", help="repaired export bundle (.json)")
+    r.add_argument("--log", help="repair log (.json)")
     a = ap.parse_args(argv)
 
     try:
@@ -254,6 +296,8 @@ def main(argv: list[str] | None = None) -> int:
             return _verify_external(a)
         if a.cmd == "stress":
             return _stress(a)
+        if a.cmd == "repair":
+            return _repair(a)
         if a.cmd == "doctor":
             return _doctor(a)
         show, fleet, cert = load_export(a.export)

@@ -17,8 +17,15 @@ import numpy as np
 
 from .disturbance import StressConfig
 from .envinfo import environment
-from .stress import (_fork_available, candidate_pairs, dev_bound, exact_pair_min, realize,
-                     sample_reference, wilson)
+from .stress import (
+    _fork_available,
+    candidate_pairs,
+    dev_bound,
+    exact_pair_min,
+    realize,
+    sample_reference,
+    wilson,
+)
 from .verify import pair_minima, verify
 
 FORMAT = "sirb-diagnosis-1"
