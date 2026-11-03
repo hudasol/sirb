@@ -157,3 +157,17 @@ Setup: simulation in hardware (SIH) quadrotors, 2, 3 and 4 vehicles, 10 seeds ea
 | P45 | With the tuned set the maximum deviation is at most 3 m in at least 80 percent of runs, against at most 20 percent of runs with the defaults. | to be filled after the run | to be filled |
 | P46 | The flown minimum separation is below the 2.0 m threshold in at least 20 percent of default runs and in at most 10 percent of tuned runs. | to be filled after the run | to be filled |
 | P47 | The median fitted natural frequency of the tuned runs is higher than that of the default runs, and the median fit error (RMS of flown minus fitted position) of the tuned runs is below 1.0 m. | to be filled after the run | to be filled |
+
+### Planner capacity on crossing assignments (WP6, `scripts/capacity_study.py`)
+
+Informed priors (disclosed): `docs/NEXT_STEPS.md` states that the prioritized planner fails on crossing assignments at 200 or more drones. I have not measured where it fails or how it fails (time budget or no feasible candidate). I have not run the new planner.
+
+New planner: `plan_delay_cbs` (`sirb/planner/delays.py`), opt in, existing planners unchanged. Per transition it builds straight legs for the given assignment, finds conflicting pairs with the exact pair minima of the verifier module, and resolves them by increasing start delays of the drones with the most conflicts, round by round (a constraint tree over delays reduced to its greedy path), until no pair is below the declared threshold plus a small margin or a cap on the delay is hit. It does not import the verifier's verdict function: the exact verifier still judges the final plan.
+
+Setup: two stage shows (launch grid, then a sphere, spacing 3.2 m), assignment `random` (a crossing assignment), n in 50, 100, 200, 300, 400, seeds 0 to 4 (assignment and shape seed). Per plan wall limit 300 s, counted as a failure if exceeded. Success means the exact verifier returns PASS on every declared limit. Reference: the baseline planner with the Hungarian assignment on the same show gives the completion time without crossings.
+
+| # | Prediction (made before the run) | Outcome | Hit / miss |
+|---|---|---|---|
+| P48 | The prioritized planner with the random assignment succeeds on at least 80 percent of seeds at n = 50 and n = 100 and on at most 20 percent of seeds at n = 200, 300 and 400. | to be filled after the run | to be filled |
+| P49 | The new delay planner succeeds on at least 80 percent of seeds at every n up to 400. | to be filled after the run | to be filled |
+| P50 | At n = 200 the median completion time of the new planner's plans is at most 4 times that of the baseline Hungarian plan. | to be filled after the run | to be filled |
