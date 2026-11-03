@@ -123,3 +123,14 @@ Setup: `sirb repair` applies moves chosen greedily from per pair violation count
 | P38 | A random repair with the same number of moves reaches the target in at most 20 percent of the cases in which the greedy repair does (fraction of random draws that succeed). | to be filled after the run | to be filled |
 | P39 | On every repaired fleet the interval verifier does not return FAIL when the exact verifier returns PASS, and returns PASS on at least 90 percent of them. | to be filled after the run | to be filled |
 | P40 | At least 80 percent of the accepted moves are stage spacing increases, because under an independent GNSS bias the violating pairs are mostly neighbours inside formations. | to be filled after the run | to be filled |
+
+### Downwash rule: how many pairs of the demo shows would violate (WP4, `scripts/downwash_study.py`)
+
+Informed priors (disclosed): the demo shows were verified against a spherical threshold of 2.0 m only. Their formations are layered with spacings between about 2.2 and 4 m, so a rule that demands more vertical than horizontal distance may bite. I have not computed any pair count under an anisotropic rule for these shows.
+
+Rule (ASSUMED, scaled from a smaller vehicle, see `docs/DOWNWASH.md`): horizontal radius d_h = 2.0 m (the declared minimum separation) and vertical radius d_v, checked exactly as an ellipsoid with `sirb.clearance`. The vehicle of the demo shows has radius 0.24 m; the Crazyflie of the cited measurements has an arm length of 0.0325 m, a ratio of 7.4. Scaled with that ratio, thrust is unaffected beyond 19 arm lengths (4.56 m), which gives the central value d_v = 4.56 m; the sensitivity values are d_v = 3.0 m (1.5 times d_h), 4.56 m and 5.0 m (the ratio of 2.5 used by Preiss et al. applied to d_h). Counting is by drone pairs whose ellipsoidal minimum is below d_h at some time.
+
+| # | Prediction (made before the run) | Outcome | Hit / miss |
+|---|---|---|---|
+| P41 | At d_v = 4.56 m, all four demo shows have at least one violating pair, while none has one at d_v = 2.0 m (the existing spherical verdict). | to be filled after the run | to be filled |
+| P42 | The number of violating pairs at d_v = 4.56 m is at least 5 times the number at d_v = 3.0 m in at least 3 of the 4 demo shows (the count grows steeply with d_v). | to be filled after the run | to be filled |
