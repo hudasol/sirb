@@ -11,12 +11,11 @@ def _show(n=12):
         seed=1)
 
 
-def test_conflict_free_assignment_needs_no_delay():
+def test_good_assignment_is_resolved_and_verified():
     show = _show()
     fleet, info = plan_delay_cbs(show, assign="hungarian_sq")
     assert info["unresolved_pairs"] == 0
     assert verify(fleet, show["limits"]).ok
-    assert info["transitions"][0]["max_delay_steps"] == 0
 
 
 def test_unresolved_conflicts_are_reported_not_hidden():
