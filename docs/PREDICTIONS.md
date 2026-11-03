@@ -134,3 +134,14 @@ Rule (ASSUMED, scaled from a smaller vehicle, see `docs/DOWNWASH.md`): horizonta
 |---|---|---|---|
 | P41 | At d_v = 4.56 m, all four demo shows have at least one violating pair, while none has one at d_v = 2.0 m (the existing spherical verdict). | `results/downwash_study.json`: at d_v = 4.56 m the violating pair counts are 183 (gallery_120), 317 (oryx_500), 5 (torus_300) and 66 (sirb_text_100); at d_v = 2.0 m all four are 0. | Hit. |
 | P42 | The number of violating pairs at d_v = 4.56 m is at least 5 times the number at d_v = 3.0 m in at least 3 of the 4 demo shows (the count grows steeply with d_v). | to be filled after the run | to be filled |
+
+### Relative GNSS error: does the decision depend on the unsourced parameter (WP5, `scripts/gnss_band_study.py`)
+
+Informed priors (disclosed): earlier results show the 100 drone text show moving from P(violation) 0.013 to 1.000 as the GNSS bias sigma goes from low to high values (`results/sensitivity.json`), and that a shared bias component lowers the violation probability (`results/gnss_common.json`). I have not computed a verdict band for the cases below. No free source gives a measured relative error between nearby show drones (decision D3), so the band is a sensitivity analysis over ASSUMED values, not a measurement.
+
+Setup: sirb_text_100, gallery_120, torus_300 and the 20 random fleets of the doctor study (seeds 3400 to 3419). Grid: bias sigma in 0.1, 0.25, 0.5 and 1.0 m, shared fraction in 0 and 0.5, 25 percent of drones degraded, mean wind 6 m/s at 20 ft, 100 trials per cell, search seed fixed. A cell meets the target if the Wilson upper bound of P(violation) is at most 0.05. A case "depends on the parameter" if some cells of its grid meet the target and some do not.
+
+| # | Prediction (made before the run) | Outcome | Hit / miss |
+|---|---|---|---|
+| P43 | In at least 80 percent of the cases the verdict depends on the parameter (some grid cells meet the target and some do not). | to be filled after the run | to be filled |
+| P44 | At bias sigma 0.5 m, setting the shared fraction to 0.5 instead of 0 changes whether the target is met in at least 30 percent of the cases. | to be filled after the run | to be filled |
