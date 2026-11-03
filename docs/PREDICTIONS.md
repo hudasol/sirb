@@ -92,3 +92,18 @@ Informed priors (disclosed): two exploratory two vehicle runs were made while de
 | P31 | Four PX4 SIH instances plus the replay script run at real time in this workspace (2 cores, 8 GB) using less than 1.5 cores in total and less than 100 MB resident memory per instance. | Four vehicles: mean 0.63 cores, peak 0.68 cores, 10.6 MB resident per instance, wall time 36 s. Two vehicles 0.33 cores, three 0.48. | Hit. |
 | P32 | With default PX4 parameters the maximum deviation between flown and planned positions exceeds 5 m for at least one vehicle in every one of the 2, 3 and 4 vehicle runs, because the plan asks for speeds and accelerations above the default position controller limits. | Maximum deviation 9.41 m (2 vehicles), 20.29 m (3), 9.71 m (4); mean error 3.2 to 3.9 m. | Hit. |
 | P33 | In the 4 vehicle run the flown minimum separation is below the planned exact minimum separation, so the separation verified for the plan does not carry over to the flown paths without tuning. | Four vehicles: planned exact minimum 3.12 m, flown minimum 0.52 m. Two vehicles flown 0.37 m, three vehicles 3.77 m (above the planned value). | Hit for the 4 vehicle run as written. Not a general rule: the 3 vehicle run flew above the planned value. |
+
+## Assurance loop predictions (written 2026-11-03, before the experiments of this section were run)
+
+Author: Huda Mueen. Numbering continues from P33. All experiments in this section are simulations under the assumed disturbance models of `docs/MODEL_FIDELITY.md`; none is flight evidence.
+
+### Doctor: does the exact margin explain the simulated violations (WP1, `scripts/doctor_study.py`)
+
+Informed priors (disclosed): I have not computed per pair violation counts from the stress trials before; `run_trial` records only the worst pair of each trial. The four demo shows have many pairs with nearly equal exact minima (launch grids and wall formations at fixed spacing), which could spread violations over many pairs and weaken any ranking by exact margin.
+
+Setup: the four demo shows (`gallery_120`, `oryx_500`, `torus_300`, `sirb_text_100`) and 20 random fleets (seeds 3400 to 3419: 16 to 40 drones, spacing 2.2 to 3.4 m, three stages chosen from sphere, wall, ring and torus, planned with the baseline planner and the declared limits). Stress profile: GNSS bias sigma 0.5 m on 25 percent of drones, mean wind 6 m/s at 20 ft, 200 trials, frame step 0.2 s, all other values the `StressConfig` defaults (ASSUMED). A case counts only if at least 20 of the 200 trials violate; excluded cases are listed with their count. A violation event is a pair of drones below the declared threshold in one trial. Pairs are ranked by the exact minimum separation from the exact verifier (smallest first), computed on the nominal plan.
+
+| # | Prediction (made before the run) | Outcome | Hit / miss |
+|---|---|---|---|
+| P34 | In at least 75 percent of included cases, the 10 pairs with the smallest exact margin account for at least 80 percent of all simulated violation events. | to be filled after the run | to be filled |
+| P35 | In at least 50 percent of included cases, the pair with the smallest exact margin is also the pair that violates in the largest number of trials. | to be filled after the run | to be filled |
