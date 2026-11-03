@@ -1,4 +1,4 @@
-"""Command line entry point: ``python -m sirb {validate,plan,check,margin,stress,verify-external}``.
+"""Command line entry point: ``python -m sirb {validate,plan,check,margin,stress,doctor,verify-external}``.
 
 Files in, files out. Nothing here talks to an aircraft, a radio or a ground station.
 Exit status: 0 = ok, 1 = invalid input or failed check, 2 = the plan verified but FAILED a limit.
@@ -141,6 +141,39 @@ def _stress(a) -> int:
     return 0
 
 
+def _doctor(a) -> int:
+    import json
+
+    from .disturbance import StressConfig
+    from .doctor import diagnose
+    from .gnss_params import load, to_stress_config
+
+    if a.trials < 1 or a.workers < 1 or a.w20 < 0 or not 0.0 < a.target < 1.0:
+        print("error: --trials and --workers must be at least 1, --w20 not negative and --target "
+              "strictly between 0 and 1", file=sys.stderr)
+        return 1
+    show, fleet, _ = load_export(a.export)
+    cfg = to_stress_config(load(a.gnss), base=StressConfig(
+        dt=0.2, w20=a.w20, gnss_common_fraction=a.gnss_common_fraction))
+    d = diagnose(show, fleet, cfg, trials=a.trials, seed=a.seed, top_k=a.top, target=a.target,
+                 workers=a.workers)
+    ex, st = d["exact"], d["stress"]
+    print(f"exact verdict: {ex['verdict']}; minimum separation {ex['min_separation_m']:.4f} m "
+          f"against {ex['threshold_m']} m (margin {ex['nominal_margin_m']:.4f} m)")
+    lo, hi = st["p_violation_ci95"]
+    print(f"SIMULATED under assumed disturbance models; not flight evidence. {a.trials} trials, "
+          f"seed {a.seed}: P(violation) = {st['p_violation']:.3f} (Wilson 95%: {lo:.3f} to {hi:.3f})")
+    for r in st["pair_ranking"][:min(a.top, 5)]:
+        print(f"  pair {r['pair'][0]}-{r['pair'][1]}: {r['violating_trials']} trials, "
+              f"exact rank {r['exact_rank']}, exact minimum {r['exact_min_separation_m']}")
+    print(d["notice"])
+    if a.report:
+        with open(a.report, "w", encoding="utf-8") as f:
+            json.dump(d, f, indent=1)
+        print(f"wrote {a.report}")
+    return 0 if ex["verdict"] == "PASS" else 2
+
+
 def main(argv: list[str] | None = None) -> int:
     ap = argparse.ArgumentParser(prog="sirb", description=SAFETY_STATEMENT)
     ap.add_argument("--version", action="version", version=f"sirb {__version__}")
@@ -182,6 +215,18 @@ def main(argv: list[str] | None = None) -> int:
                         "(default 0: errors independent per drone, the pessimistic reading)")
     t.add_argument("--workers", type=int, default=1)
     t.add_argument("--report", help="write the full result (.json)")
+    d = sub.add_parser("doctor", help="diagnose an export bundle: exact margins, and which pairs, "
+                       "time windows and limits drive the simulated violation probability")
+    d.add_argument("export")
+    d.add_argument("--gnss", required=True, help="GNSS parameter file (docs/GNSS_PARAMS.md)")
+    d.add_argument("--w20", type=float, default=0.0, help="mean wind at 20 ft, m/s (assumed)")
+    d.add_argument("--trials", type=int, default=200)
+    d.add_argument("--seed", type=int, default=20261016)
+    d.add_argument("--gnss-common-fraction", type=float, default=0.0)
+    d.add_argument("--top", type=int, default=10, help="how many pairs and windows to list")
+    d.add_argument("--target", type=float, default=0.05, help="Wilson upper bound target")
+    d.add_argument("--workers", type=int, default=1)
+    d.add_argument("--report", help="write the diagnosis (.json)")
     a = ap.parse_args(argv)
 
     try:
@@ -209,6 +254,8 @@ def main(argv: list[str] | None = None) -> int:
             return _verify_external(a)
         if a.cmd == "stress":
             return _stress(a)
+        if a.cmd == "doctor":
+            return _doctor(a)
         show, fleet, cert = load_export(a.export)
         print("export hash and recomputed certificate agree")
         return _print_cert(cert)
